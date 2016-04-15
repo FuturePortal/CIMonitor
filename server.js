@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var exec = require('child_process').exec;
 
-var ballsAvailable = 13;
+var ballsAvailable = 10;
 var oneFireTime = 390;
 
 app.get('/', function (req, res) {
