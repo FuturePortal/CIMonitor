@@ -1,0 +1,19 @@
+{
+  "name": "DeploymentMonitor",
+  "version": "0.1.0",
+  "description": "Monitors deployment and makes sure epic stuff happens accordingly",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "depoloyment",
+    "monitor"
+  ],
+  "author": "Rick van der Staaij",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
