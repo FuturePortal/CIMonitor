@@ -4,7 +4,7 @@ var bs = require('browser-sync');
 
 var options = {
     server: {
-        path: './app/server.js',
+        path: './server.js',
         execArgv: ['--harmony']
     },
     bs: {
@@ -13,7 +13,9 @@ var options = {
 };
 
 var serverFiles = [
-    './app/server.js'
+    './server.js',
+    './app/**/*.js',
+    './public/index.html'
 ];
 
 gulp.task('server:start', function() {
