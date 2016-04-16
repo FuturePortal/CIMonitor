@@ -23,13 +23,13 @@ app.get('/fire/:amount', function (req, res) {
     }
 
     if (balls > ballsAvailable) {
-       res.send('Not enough ballzzz<meta http-equiv="refresh" content="1;url=/">');
-       console.log(balls + ' balls was requested, but we only have ' + ballsAvailable + ' balls available');
-       return;
+        res.send('Not enough ballzzz<meta http-equiv="refresh" content="1;url=/">');
+        console.log(balls + ' balls was requested, but we only have ' + ballsAvailable + ' balls available');
+        return;
     }
     res.send('Firing ' + balls + ' balls!<meta http-equiv="refresh" content="1;url=/">');
 
-    exec('gpio write 7 0');
+    // exec('gpio write 7 0');
     console.log('Firing ' + balls + ' balls!');
     ballsAvailable -= balls;
     console.log('Now got ' + ballsAvailable + ' balls available.');
@@ -37,7 +37,7 @@ app.get('/fire/:amount', function (req, res) {
     var fireTime = balls * oneFireTime;
 
     setTimeout(function() {
-        exec('gpio write 7 1');
+        // exec('gpio write 7 1');
     }, fireTime);
 
     for (var i = 1; i <= balls; i++) {
@@ -48,7 +48,7 @@ app.get('/fire/:amount', function (req, res) {
     }
 });
 
-app.listen(8080, function () {
+app.listen(3000, function () {
     console.log('=== Listening on 8080 ===');
     console.log('Making sure all relays are setup correctly');
     exec('gpio mode 7 out');
@@ -60,4 +60,4 @@ app.listen(8080, function () {
     exec('gpio mode 3 out');
     exec('gpio write 3 1');
     console.log('Ready for commands!');
-})
+});

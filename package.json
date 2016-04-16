@@ -15,5 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "gulp-develop-server": "~0.5.1",
+    "browser-sync": "~2.12.3"
   }
 }
