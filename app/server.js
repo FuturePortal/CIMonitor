@@ -4,6 +4,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 /**
+ * Make the socket part of the app
+ */
+app.socket = io;
+
+/**
  * @type [] of statuses
  */
 app.statuses = [{ test: 'test' }];
@@ -11,7 +16,7 @@ app.statuses = [{ test: 'test' }];
 /**
  * Serve static files from /public
  */
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/../public'));
 
 /**
  * GET /
@@ -19,8 +24,8 @@ app.use(express.static(__dirname + '/public'));
  * Loads the dashboard
  */
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-    console.log('The dashboard is load.');
+    res.sendFile(__dirname + '/../public/index.html');
+    console.log('[Server] The dashboard is load.');
 });
 
 /**
@@ -30,7 +35,7 @@ app.get('/', function (req, res) {
  */
 app.get('/statuses', function (req, res) {
     res.send(JSON.stringify(app.statuses));
-    console.log('/statuses was requested and provided.');
+    console.log('[Server] /statuses was requested and provided.');
 });
 
 /**
@@ -39,7 +44,7 @@ app.get('/statuses', function (req, res) {
  * Provide a new status for the monitor to process and display
  */
 app.post('/status', function (req, res, content) {
-    console.log('Incomming status: ' + content);
+    console.log('[Server] Incomming status: ' + content);
 });
 
 /**

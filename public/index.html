@@ -6,10 +6,11 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
+
+        socket.on('status', function(status) {
+            console.log(status);
+        });
     </script>
     <h1>CI Monitor</h1>
-    <div id="list">
-
-    </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
     "depoloyment",
     "monitor"
   ],
-  "author": "Rick van der Staaij",
+  "author": "https://github.com/CIMonitor/CIMonitor/graphs/contributors",
   "license": "ISC",
   "dependencies": {
     "express": "~4.13.4",

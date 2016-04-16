@@ -4,7 +4,7 @@ var bs = require('browser-sync');
 
 var options = {
     server: {
-        path: './server.js',
+        path: './app/server.js',
         execArgv: ['--harmony']
     },
     bs: {
@@ -13,7 +13,6 @@ var options = {
 };
 
 var serverFiles = [
-    './server.js',
     './app/**/*.js',
     './public/index.html'
 ];
