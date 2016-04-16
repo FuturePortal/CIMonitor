@@ -1,21 +1,15 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-/**
- * Make the socket part of the app
- */
-app.socket = io;
-
-/**
- * @type [] of statuses
- */
-app.statuses = [{ test: 'test' }];
+var bodyParser = require('body-parser');
+var Core = require('./core/core');
+var dashboardSocket = require('socket.io')(http);
 
 /**
  * Serve static files from /public
  */
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(express.static(__dirname + '/../public'));
 
 /**
@@ -25,17 +19,6 @@ app.use(express.static(__dirname + '/../public'));
  */
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/../public/index.html');
-    console.log('[Server] The dashboard is load.');
-});
-
-/**
- * GET /statuses
- *
- * Get the array of statuses that are shown in the board
- */
-app.get('/statuses', function (req, res) {
-    res.send(JSON.stringify(app.statuses));
-    console.log('[Server] /statuses was requested and provided.');
 });
 
 /**
@@ -43,28 +26,22 @@ app.get('/statuses', function (req, res) {
  *
  * Provide a new status for the monitor to process and display
  */
-app.post('/status', function (req, res, content) {
-    console.log('[Server] Incomming status: ' + content);
+app.post('/status', function (request, response) {
+    if (app.core.handleStatus(request.body)) {
+        response.sendStatus(200);
+    } else {
+        response.sendStatus(422);
+    }
 });
 
 /**
  * Setup the server and initialise the modules
  */
 var server = app.listen(3000, function () {
-    console.log('===================');
-    console.log('    CI Monitor');
-    console.log('===================');
-    console.log('Initialising modules...');
-
-    // @todo: init modules/listeners
-
-    console.log('Load and ready, sir.');
+    console.log('Web server is ready.');
 });
 
 /**
- * Connects the dashboard via a socket
+ * Set the application core
  */
-var socket  = io.listen(server);
-socket.on('connection', function(socket){
-    console.log('[Dashboard] connected.');
-});
+app.core = new Core(server, dashboardSocket);
