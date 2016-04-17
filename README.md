@@ -12,8 +12,6 @@ limit!
 
 # V1 TODO
 
-* Create dashboard styling
-* Create dashboard status handler
 * Make it possible to hook up epic modules
 * Create `MarbleRun` module
 * Create `LedStrip` module
