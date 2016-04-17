@@ -27,11 +27,7 @@ app.get('/', function (req, res) {
  * Provide a new status for the monitor to process and display
  */
 app.post('/status', function (request, response) {
-    if (app.core.handleStatus(request.body)) {
-        response.sendStatus(200);
-    } else {
-        response.sendStatus(422);
-    }
+    response.sendStatus(app.core.handleStatus(request.body) ? 200 : 422);
 });
 
 /**
