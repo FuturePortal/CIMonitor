@@ -42,7 +42,8 @@ StatusManager.prototype.getKey = function(status) {
 };
 
 /**
- * Get the global status
+ * Checks if there is a started status between all statuses
+ * Because you don't want all lights green when there is still some service running
  *
  * @returns {string}
  */
