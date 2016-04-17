@@ -78,3 +78,6 @@ free to submit a PR and extend the extensions list.
 If you want to run this project in development mode, all you need to do
 is run `npm install && npm install -g gulp` once, and then `gulp` to
 start the project and run file watchers.
+
+To emulate statuses sent to the dashboard, there is a postman collection
+available [here](https://www.getpostman.com/collections/773cb5cad1199fd0149d).
