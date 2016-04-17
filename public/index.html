@@ -1,16 +1,33 @@
 <html>
 <head>
     <title>CI Montior</title>
+    <link rel="stylesheet" href="style/dashboard.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="shortcut icon" href="/images/status/success.ico" id="status-icon" type="image/x-icon">
 </head>
 <body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
 
-        socket.on('status', function(status) {
-            console.log(status);
+        socket.on('status', function(update) {
+            console.log(update);
+
+            var status = update.newStatus.status;
+            if (update.hasStartedStatus) {
+                status = 'started';
+            }
+            $('#status-icon').attr('href', '/images/status/' + status + '.ico');
+
+            $('.statuses').html('');
+            $.each(update.statuses, function(key, status) {
+                $('.statuses').append('<li>' + JSON.stringify(status) + '</li>');
+            });
         });
     </script>
     <h1>CI Monitor</h1>
+    <ul class="statuses">
+
+    </ul>
 </body>
 </html>
