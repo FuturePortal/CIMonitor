@@ -6,7 +6,9 @@
  * @constructor
  */
 var StatusModule = function(config) {
-    this.config = config;
+    this.config = config.globalConfig;
+
+    this.events = config.events;
 
     this.init();
 };
@@ -25,11 +27,9 @@ StatusModule.prototype.init = function() {
  * @param status
  */
 StatusModule.prototype.handleStatus = function(status) {
-    var events = this.config.events;
-
-    for (var event in events) {
-        if (this.doesEventMeetCriteria(events[event].on, status)) {
-            this.execute(events[event].do);
+    for (var event in this.events) {
+        if (this.doesEventMeetCriteria(this.events[event].on, status)) {
+            this.execute(this.events[event].do);
         }
     }
 };

@@ -3,6 +3,7 @@
         "MarbleRun": {
             "globalConfig": {
                 "oneMarbleFireTime": 390,
+                "runDuration": 13000,
                 "maxMarbles": 10,
                 "gpioPin": 7
             },

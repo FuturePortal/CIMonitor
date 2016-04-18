@@ -34,7 +34,7 @@ app.post('/status', function (request, response) {
  * Setup the server and initialise the modules
  */
 var server = app.listen(3000, function () {
-    console.log('Web server is ready.');
+    console.log('[Server] Ready.');
 });
 
 /**

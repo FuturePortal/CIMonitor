@@ -20,9 +20,12 @@ var StatusManager = function(eventHandler) {
  * @param {object} status
  */
 StatusManager.prototype.newStatus = function(status) {
+
     // Add extra attributes to the status object
     status.key = this.getKey(status);
     status.updateTime = new Date().getTime();
+
+    console.log('[StatusManager] New status for ' + status.key + ': ' + status.status);
 
     // Add the new/updated status to the statuses
     this.statuses[status.key] = status;

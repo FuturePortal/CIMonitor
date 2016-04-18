@@ -14,7 +14,7 @@ var Core = function(httpServer, dashboardSocket) {
     console.log('===================');
     console.log('    CI Monitor');
     console.log('===================');
-    console.log('Loading all modules...');
+    console.log('[Core] Loading all modules...');
 
     this.eventHandler = new Events.EventEmitter();
 
@@ -26,7 +26,7 @@ var Core = function(httpServer, dashboardSocket) {
 
     this.modules = this.loadStatusModules();
 
-    console.log('Init completed.');
+    console.log('[Core] Init completed.');
 };
 
 /**
@@ -35,7 +35,7 @@ var Core = function(httpServer, dashboardSocket) {
 Core.prototype.loadStatusModules = function() {
     var Core = this;
 
-    console.log('Loading status modules...');
+    console.log('[Core] Loading status modules...');
 
     for (var module in this.config.statusModules) {
         var StatusModule = new (require('./../StatusModule/' + module))(this.config.statusModules[module]);
@@ -56,8 +56,6 @@ Core.prototype.loadStatusModules = function() {
  * @returns {boolean}
  */
 Core.prototype.handleStatus = function(data) {
-    console.log('New status: '  + JSON.stringify(data));
-
     this.statusManager.newStatus(data);
 
     return true;

@@ -77,6 +77,7 @@ The relay will turn on for a limited time, releasing a marble into the track.
         "MarbleRun": {
             "globalConfig": {
                 "oneMarbleFireTime": 390,
+                "runDuration": 13000,
                 "maxMarbles": 10,
                 "gpioPin": 7
             },

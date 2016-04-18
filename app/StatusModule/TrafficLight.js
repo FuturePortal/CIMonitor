@@ -8,7 +8,6 @@ var StatusModule = require('./StatusModule');
  * @constructor
  */
 var TrafficLight = function(config) {
-    console.log('Load module TrafficLight.');
     StatusModule.call(this, config);
 };
 util.inherits(TrafficLight, StatusModule);
