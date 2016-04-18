@@ -14,9 +14,8 @@ limit!
 
 # V1 TODO
 
-* ~~Create~~ `MarbleRun` module
+* `TrafficLight` module
 * Create `LedStrip` module
-* ~~Create~~ `TrafficLight` module
 * Create `PowerUp` module
 * Abstract the modules to their own repo
 * Create demo video
