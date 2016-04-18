@@ -1,0 +1,37 @@
+{
+    "statusModules": {
+        "MarbleRun": {
+            "globalConfig": {
+                "oneMarbleFireTime": "380",
+                "maxMarbles": 10,
+                "gpioPin": "17"
+            },
+            "events": [
+                {
+                    "on": {
+                        "status": "success",
+                        "type": "deploy"
+                    },
+                    "do": {
+                        "fireAmount": 3
+                    }
+                },
+                {
+                    "on": {
+                        "status": "failure"
+                    },
+                    "do": {
+                        "fireAmount": 10
+                    }
+                }
+            ]
+        },
+        "TrafficLight": {
+            "globalConfig": {
+                "gpioPinRed": 11,
+                "gpioPinOrange": 12,
+                "gpioPinGreen": 13
+            }
+        }
+    }
+}
