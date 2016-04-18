@@ -42,6 +42,12 @@ StatusModule.prototype.handleStatus = function(status) {
  * @returns {boolean}
  */
 StatusModule.prototype.doesEventMeetCriteria = function(criteria, status) {
+    for (var criterion in criteria) {
+        if (criteria[criterion] != status[criterion]) {
+            return false;
+        }
+    }
+
     return true;
 };
 
