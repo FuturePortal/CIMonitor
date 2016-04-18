@@ -2,9 +2,9 @@
     "statusModules": {
         "MarbleRun": {
             "globalConfig": {
-                "oneMarbleFireTime": "380",
+                "oneMarbleFireTime": 390,
                 "maxMarbles": 10,
-                "gpioPin": "17"
+                "gpioPin": 7
             },
             "events": [
                 {
@@ -28,9 +28,9 @@
         },
         "TrafficLight": {
             "globalConfig": {
-                "gpioPinRed": 11,
-                "gpioPinOrange": 12,
-                "gpioPinGreen": 13
+                "gpioPinRedLight": 11,
+                "gpioPinOrangeLight": 12,
+                "gpioPinGreenLight": 13
             }
         }
     }

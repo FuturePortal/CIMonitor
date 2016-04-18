@@ -14,12 +14,11 @@ limit!
 
 # V1 TODO
 
-* Make it possible to hook up epic modules
-* Create `MarbleRun` module
+* ~~Create~~ `MarbleRun` module
 * Create `LedStrip` module
-* Create `TrafficLight` module
+* ~~Create~~ `TrafficLight` module
 * Create `PowerUp` module
-* Introduce config file
+* Abstract the modules to their own repo
 * Create demo video
 
 # Demo video
@@ -38,15 +37,10 @@ limit!
 1. Download CIMonitors source code onto your raspberry pi (or other
    machine)
 1. Run `npm install --production`
-1. Configure your config file (example below)
+1. Copy the config file (`cp app/Config/config.dist.json
+    app/Config/config.json`) and make changes accordingly.
 1. To start the server, run `node app/server.js`.
 1. The dashboard is now available on the port you provided.
-
-```json
-{
-    "config-example": "@todo"
-}
-```
 
 ### Send CI statuses to the dashboard
 
@@ -54,24 +48,76 @@ limit!
    updates to your running machine, by posting to `/status`.
 1. Now for every build, the dashboard should display the status!
 
-### Hook up modules
+### Hook up modules (optional)
 
-@todo
+To add a status module to your application, you need to provide the
+configuration for that module in the global config file
+(`app/Config/config.json`) in the statusModules object:
 
-# Available extensions
+```json
+{
+    /* global config... */
 
-Of course you're able to add your own extensions as well, but why not
-use some modules we already made for you?
+    /* configure your modules */
+    "statusModules": {
+        /* add your module here */
+    }
+}
+```
 
-Module | What does it do? | Link
------- | ---------------- | ----
-MarbleRun | Run a (or multiple) marble(s) for every event you configured. | @todo
-LedStrip | Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for success! | @todo
-TrafficLight | Display the status of your board with a traffic light. Requires a green, orange and red light bulb. | @todo
-PowerUp | Power a module for a couple of seconds for the events you configured. Maybe flash a beacon light for every status change? | @todo
+# Modules
 
-Did you create a module yourself, and added it to github and npm? Feel
-free to submit a PR and extend the extensions list.
+Currently modules are pre-installed in the repository, later this will be npm modules so can be added with ease.
+
+### MarbleRun
+
+Run a (or multiple) marble(s) for every event you configured. Requires one GPIO port which is connected to a relay.
+The relay will turn on for a limited time, releasing a marble into the track.
+
+```json
+        "MarbleRun": {
+            "globalConfig": {
+                "oneMarbleFireTime": 390,
+                "maxMarbles": 10,
+                "gpioPin": 7
+            },
+            "events": [
+                {
+                    "on": {
+                        "status": "success",
+                        "type": "deploy"
+                    },
+                    "do": {
+                        "fireAmount": 3
+                    }
+                }
+                /* Add more events if wanted */
+            ]
+        }
+```
+
+### LedStrip
+
+Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for success!
+
+### TrafficLight
+
+Display the status of your board with a traffic light. Requires a green, orange and red light bulb. Requires 3 GPIO
+pins connected to a on/off relay.
+
+```json
+        "TrafficLight": {
+            "globalConfig": {
+                "gpioPinRedLight": 11,
+                "gpioPinOrangeLight": 12,
+                "gpioPinGreenLight": 13
+            }
+        }
+```
+
+### PowerUp
+
+Power a module for a couple of seconds for the events you configured. Maybe flash a beacon light for every status change?
 
 # Development
 
