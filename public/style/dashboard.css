@@ -1,0 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
+body {
+    background: url('https://c4.staticflickr.com/3/2909/14831394931_83c79b508e_b.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Coda', cursive;
+}
+
+.overlay-success,
+.overlay-started,
+.overlay-failure {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+}
+
+.overlay-success {
+    background: rgba(135, 192, 86, .3);
+}
+
+.overlay-started {
+    background: rgba(255, 204, 102, .3);
+}
+
+.overlay-failure {
+    background: rgba(236, 122, 96, .3);
+}
+
+.status {
+    position: relative;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    border-radius: 10px;
+    height: 90px;
+}
+.status:first-child {
+    margin-top: 20px;
+}
+
+.status-success {
+    color: rgb(56, 95, 46);
+    background: rgba(135, 192, 86, .8);
+}
+
+.status-started {
+    color: rgb(117, 96, 46);
+    background: rgba(255, 204, 102, .8);
+}
+
+.status-failure {
+    color: rgb(109, 54, 54);
+    background: rgba(236, 122, 96, .8);
+}
+
+.status .project {
+    position: absolute;
+    top: 12px;
+    left: 150px;
+    font-size: 50px;
+}
+
+.status .time {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+}
+
+.status .branch {
+    position: absolute;
+    top: 75px;
+    left: 150px;
+    font-size: 30px;
+}

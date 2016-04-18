@@ -5,6 +5,8 @@ The CI Monitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
+![Dashboard example](https://cloud.githubusercontent.com/assets/6495166/14587781/7bbef534-04b9-11e6-9835-e85f0a05efa8.png)
+
 And if that's not enough for you, why not attach some epic hardware
 that will represent the status of your projects! Attach a traffic
 light, run marbles when a deployment is successful. The sky is the
@@ -12,8 +14,6 @@ limit!
 
 # V1 TODO
 
-* Create dashboard styling
-* Create dashboard status handler
 * Make it possible to hook up epic modules
 * Create `MarbleRun` module
 * Create `LedStrip` module

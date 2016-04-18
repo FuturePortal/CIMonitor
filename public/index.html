@@ -1,16 +1,63 @@
 <html>
 <head>
     <title>CI Montior</title>
+    <link rel="stylesheet" href="style/dashboard.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <link rel="shortcut icon" href="/images/status/success.ico" id="status-icon" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
 
-        socket.on('status', function(status) {
-            console.log(status);
+        function updateTimes() {
+            $('.statuses .time').each(function() {
+                var time = $(this).data('time');
+                time = moment(time, 'x').fromNow();
+                $(this).html(time);
+            });
+        }
+
+        function updateTimesEveryMinute() {
+            updateTimes();
+            setTimeout(function() { updateTimesEveryMinute() }, 10000);
+        }
+        setTimeout(function() { updateTimesEveryMinute() }, 10000);
+
+        socket.on('status', function(update) {
+            console.log(update);
+
+            var status = update.newStatus.status;
+            if (update.hasStartedStatus) {
+                status = 'started';
+            }
+            $('#status-icon').attr('href', '/images/status/' + status + '.ico');
+            $('#overlay').attr('class', 'overlay-' + status);
+
+            $('.statuses').html('');
+            $.each(update.statuses, function(key, status) {
+                var statusDiv = '<div id="' + status.key + '" class="status status-' + status.status + '">';
+                statusDiv += '<div class="type"><img src="/images/types/' + status.type + '.svg" height="90" alt="'
+                    + status.type + '" /></div>';
+                statusDiv += '<div class="project">' + status.project + '</div>';
+                statusDiv += '<div class="branch">' + status.branch + '</div>';
+                statusDiv += '<div class="time" data-time="' + status.updateTime + '"></div>';
+                statusDiv += '</div>';
+
+                $('.statuses').append(statusDiv);
+            });
+            updateTimes();
         });
     </script>
-    <h1>CI Monitor</h1>
+    <div id="overlay" class="overlay-success"></div>
+    <div class="statuses">
+        <div class="status status-success">
+            <div class="project">
+                Waiting for the first status...
+            </div>
+        </div>
+    </div>
 </body>
 </html>
