@@ -56,11 +56,10 @@ configuration for that module in the global config file
 
 ```json
 {
-    /* global config... */
+    "_comment": "global config...",
 
-    /* configure your modules */
     "statusModules": {
-        /* add your module here */
+        "_comment": "place your module configs in here"
     }
 }
 ```
@@ -90,8 +89,8 @@ The relay will turn on for a limited time, releasing a marble into the track.
                     "do": {
                         "fireAmount": 3
                     }
-                }
-                /* Add more events if wanted */
+                },
+                "_comment": "You can add as may events as you want"
             ]
         }
 ```
