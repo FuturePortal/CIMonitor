@@ -31,6 +31,15 @@ app.post('/status', function (request, response) {
 });
 
 /**
+ * POST /jenkins-status
+ *
+ * Provide a new status from jenkins for the monitor to display
+ */
+app.post('/jenkins-status', function (request, response) {
+    response.sendStatus(app.core.handleJenkinsStatus(request.body) ? 200 : 422);
+});
+
+/**
  * Setup the server and initialise the modules
  */
 var server = app.listen(3000, function () {

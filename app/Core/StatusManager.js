@@ -20,7 +20,6 @@ var StatusManager = function(eventHandler) {
  * @param {object} status
  */
 StatusManager.prototype.newStatus = function(status) {
-
     // Add extra attributes to the status object
     status.key = this.getKey(status);
     status.updateTime = new Date().getTime();
@@ -32,6 +31,8 @@ StatusManager.prototype.newStatus = function(status) {
 
     // Fire status event
     this.eventHandler.emit('status', status);
+
+    return true;
 };
 
 /**
