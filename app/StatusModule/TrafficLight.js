@@ -18,7 +18,7 @@ util.inherits(TrafficLight, StatusModule);
  * @param {object} status
  */
 TrafficLight.prototype.handleStatus = function(status) {
-    // @todo: Handle incomming statuses
+    // @todo: Handle incoming statuses
 };
 
 /**
