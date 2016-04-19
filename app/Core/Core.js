@@ -50,15 +50,57 @@ Core.prototype.loadStatusModules = function() {
 };
 
 /**
- * Handles a incoming bundle status
+ * Handles an incoming CI status
  *
  * @param {object} data
  * @returns {boolean}
  */
 Core.prototype.handleStatus = function(data) {
-    this.statusManager.newStatus(data);
+    return this.statusManager.newStatus(data);
+};
 
-    return true;
+/**
+ * Figure buildStatus form the jenkins callback
+ *
+ * @param {object} data
+ * @returns {string}
+ */
+Core.prototype.getStatusFromJenkinsCallback = function(data) {
+    if (data.build.phase.toLowerCase() === 'started') {
+        return 'started';
+    }
+
+    var buildStatus = data.build.status.toLowerCase();
+    var failureStatuses = ['unstable', 'failure', 'aborted'];
+    if (failureStatuses.indexOf(buildStatus) >= 0) {
+        return 'failure';
+    }
+
+    if (buildStatus === 'success') {
+        return 'success';
+    }
+
+    // Unknown status, assume failure
+    return 'failure';
+};
+
+/**
+ * Handles an incoming jenkins status
+ *
+ * @param {object} data
+ * @returns {boolean}
+ */
+Core.prototype.handleJenkinsStatus = function(data) {
+    var buildStatus = 'started';
+
+    var status = {
+        project: data.name,
+        branch: data.build.scm.branch,
+        type: 'test',
+        status: this.getStatusFromJenkinsCallback(data)
+    };
+
+    return this.statusManager.newStatus(status);
 };
 
 module.exports = Core;

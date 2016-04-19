@@ -14,9 +14,37 @@ var MarbleRun = function(config) {
 util.inherits(MarbleRun, StatusModule);
 
 /**
+ * Set the gpio pins to the correct mode on initialisation
+ */
+MarbleRun.prototype.init = function() {
+    /** {int} */
+    this.pin = this.config.gpioPin;
+
+    /** {int} */
+    this.availableMarbles = this.config.maxMarbles;
+
+    /** {int} */
+    this.oneMarbleFireTime = this.config.oneMarbleFireTime;
+
+    /** {int} */
+    this.runDuration = this.config.runDuration;
+
+    this.prepareRelay();
+};
+
+/**
+ * Prepare te relay for on/off toggling
+ */
+MarbleRun.prototype.prepareRelay = function() {
+    exec('gpio mode ' + this.pin + ' out');
+    exec('gpio write ' + this.pin + ' 1');
+    console.log('[MarbleRun] Set gpio pin ' + this.pin + ' to output mode and switched off.');
+};
+
+/**
  * Execute the MarbleRun with the given config for the matched event.
  *
- * @param doConfig
+ * @param {object} doConfig
  */
 MarbleRun.prototype.execute = function(doConfig) {
     var MarbleRun = this;
@@ -39,10 +67,10 @@ MarbleRun.prototype.execute = function(doConfig) {
     this.availableMarbles -= fireAmount;
     console.log('[MarbleRun] Firing ' + fireAmount + ' marble(s) (' + this.availableMarbles + ' left available).');
 
-    // Enable the relay to fire a ball.
+    // Enable the relay to fire a marble.
     exec('gpio write ' + this.pin + ' 0');
 
-    // Close the relay if all balls are fired
+    // Close the relay if all marbles are fired
     setTimeout(function() {
         exec('gpio write ' + MarbleRun.pin + ' 1');
     }, fireAmount * this.oneMarbleFireTime);
@@ -54,27 +82,6 @@ MarbleRun.prototype.execute = function(doConfig) {
             console.log('[MarbleRun] ' + MarbleRun.availableMarbles + ' marble(s) available.');
         }, 13000 + ((i - 1) * MarbleRun.oneMarbleFireTime));
     }
-};
-
-/**
- * Set the gpio pins to the correct mode on initialisation
- */
-MarbleRun.prototype.init = function() {
-    /** {int} */
-    this.pin = this.config.gpioPin;
-
-    /** {int} */
-    this.availableMarbles = this.config.maxMarbles;
-
-    /** {int} */
-    this.oneMarbleFireTime = this.config.oneMarbleFireTime;
-
-    /** {int} */
-    this.runDuration = this.config.runDuration;
-
-    exec('gpio mode ' + this.pin + ' out');
-    exec('gpio write ' + this.pin + ' 1');
-    console.log('[MarbleRun] Set gpio pin ' + this.pin + ' to output mode and switched off.');
 };
 
 module.exports = MarbleRun;
