@@ -3,12 +3,15 @@
  *
  * @abstract
  * @param {object} config
+ * @param {StatusManager} statusManager
  * @constructor
  */
-var StatusModule = function(config) {
+var StatusModule = function(config, statusManager) {
     this.config = config.globalConfig;
 
     this.events = config.events;
+
+    this.statusManager = statusManager;
 
     this.init();
 };

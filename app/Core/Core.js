@@ -38,7 +38,8 @@ Core.prototype.loadStatusModules = function() {
     console.log('[Core] Loading status modules...');
 
     for (var module in this.config.statusModules) {
-        var StatusModule = new (require('./../StatusModule/' + module))(this.config.statusModules[module]);
+        var ModuleClass = require('./../StatusModule/' + module)
+        var StatusModule = new ModuleClass(this.config.statusModules[module], this.statusManager);
 
         // Prepare for some fucked-up javascript scope
         (function(StatusModule){

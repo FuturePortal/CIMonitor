@@ -6,10 +6,11 @@ var exec = require('child_process').exec;
  * PowerUp
  *
  * @param {object} config
+ * @param {StatusManager} statusManager
  * @constructor
  */
-var PowerUp = function(config) {
-    StatusModule.call(this, config);
+var PowerUp = function(config, statusManager) {
+    StatusModule.call(this, config, statusManager);
 };
 util.inherits(PowerUp, StatusModule);
 
