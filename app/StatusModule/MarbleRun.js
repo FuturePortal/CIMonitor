@@ -10,18 +10,6 @@ var exec = require('child_process').exec;
  */
 var MarbleRun = function(config) {
     StatusModule.call(this, config);
-
-    /** {int} */
-    this.pin = this.config.gpioPin;
-
-    /** {int} */
-    this.availableMarbles = this.config.maxMarbles;
-
-    /** {int} */
-    this.oneMarbleFireTime = this.config.oneMarbleFireTime;
-
-    /** {int} */
-    this.runDuration = this.config.runDuration;
 };
 util.inherits(MarbleRun, StatusModule);
 
@@ -72,6 +60,18 @@ MarbleRun.prototype.execute = function(doConfig) {
  * Set the gpio pins to the correct mode on initialisation
  */
 MarbleRun.prototype.init = function() {
+    /** {int} */
+    this.pin = this.config.gpioPin;
+
+    /** {int} */
+    this.availableMarbles = this.config.maxMarbles;
+
+    /** {int} */
+    this.oneMarbleFireTime = this.config.oneMarbleFireTime;
+
+    /** {int} */
+    this.runDuration = this.config.runDuration;
+
     exec('gpio mode ' + this.pin + ' out');
     exec('gpio write ' + this.pin + ' 1');
     console.log('[MarbleRun] Set gpio pin ' + this.pin + ' to output mode and switched off.');
