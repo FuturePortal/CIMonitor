@@ -58,7 +58,7 @@ DashboardProvider.prototype.displayStatus = function(socket, status) {
         hasStartedStatus: this.statusManager.hasStartedStatus(),
         statuses: this.statusManager.getStatuses()
     });
-    console.log('Sent update to the dashboard.')
+    console.log('[DashboardProvider] Sent update to the dashboard.')
 };
 
 module.exports = DashboardProvider;

@@ -2,14 +2,14 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
-var Core = require('./core/core');
+var Core = require('./Core/Core');
 var dashboardSocket = require('socket.io')(http);
 
 /**
  * Serve static files from /public
  */
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../public'));
 
 /**
@@ -34,7 +34,7 @@ app.post('/status', function (request, response) {
  * Setup the server and initialise the modules
  */
 var server = app.listen(3000, function () {
-    console.log('Web server is ready.');
+    console.log('[Server] Ready.');
 });
 
 /**
