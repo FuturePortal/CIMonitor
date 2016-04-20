@@ -52,8 +52,8 @@ TrafficLight.prototype.handleStatus = function(status) {
     exec('gpio write ' + this.orangePin + ' ' + orangeLight);
     exec('gpio write ' + this.redPin + ' ' + redLight);
     console.log(
-        '[TrafficLight] Green is ' + (greenLight === ON) ? 'on' : 'off' + ', orange is'
-        + (orangeLight === ON) ? 'on' : 'off' + ', and red is ' + (redLight === ON) ? 'on' : 'off' + '.'
+        '[TrafficLight] Green is ' + ((greenLight === ON) ? 'on' : 'off') + ', orange is '
+        + ((orangeLight === ON) ? 'on' : 'off') + ', and red is ' + ((redLight === ON) ? 'on' : 'off') + '.'
     );
 };
 
