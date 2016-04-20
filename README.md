@@ -12,22 +12,10 @@ that will represent the status of your projects! Attach a traffic
 light, run marbles when a deployment is successful. The sky is the
 limit!
 
-# V1 TODO
-
-* `TrafficLight` module
-* Create `LedStrip` module
-* Create `PowerUp` module
-* Abstract the modules to their own repo
-* Create demo video
-
-# Demo video
-
-@todo
-
 # Features
 
-* Push all your test/deployment statuses to a dashboard
-* Hook up some epic modules to have fun with your statuses
+* Push all your test/deployment statuses to a real-time dashboard
+* Hook up some epic status modules to have fun with your statuses
 
 # Setup & Configuration
 
@@ -97,7 +85,10 @@ The relay will turn on for a limited time, releasing a marble into the track.
 
 ### LedStrip
 
-Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for success!
+Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for
+success!
+
+@todo: will build this one later, as I need to have a proper led-strip setup first.
 
 ### TrafficLight
 
@@ -116,7 +107,36 @@ pins connected to a on/off relay.
 
 ### PowerUp
 
-Power a module for a couple of seconds for the events you configured. Maybe flash a beacon light for every status change?
+Power a module for a couple of seconds for the events you configured. Maybe flash a beacon light for every status
+change? Requires a gpio pin connected to a relay.
+
+```json
+        "PowerUp": {
+            "events": [
+                {
+                    "on": {
+                        "status": "started"
+                    },
+                    "do": {
+                        "powerForMiliSeconds": 5000,
+                        "gpioPin": 14
+                    }
+                },
+                {
+                    "on": {
+                        "status": "failure"
+                    },
+                    "do": {
+                        "powerForMiliSeconds": 5000,
+                        "gpioPin": 15
+                    }
+                }
+            ]
+        }
+```
+
+**Note**: You can choose what gpio pin to switch on for a configured duration per matched event. This way you are
+not limited in the amount of relay switches you want to power on.
 
 # Development
 

@@ -61,6 +61,39 @@ StatusManager.prototype.hasStartedStatus = function() {
 };
 
 /**
+ * Checks if there is a started status between all statuses
+ * Because you don't want all lights green when there is still some service running
+ *
+ * @returns {bool}
+ */
+StatusManager.prototype.hasStatus = function(status) {
+    for (var statusKey in this.statuses) {
+        if (this.statuses[statusKey].status === status) {
+            return true;
+        }
+    }
+    return false;
+};
+
+/**
+ * Checks if there is a started status between all statuses
+ *
+ * @returns {bool}
+ */
+StatusManager.prototype.hasStartedStatus = function() {
+    return this.hasStatus('started');
+};
+
+/**
+ * Checks if there is a failed status between all statuses
+ *
+ * @returns {bool}
+ */
+StatusManager.prototype.hasFailureStatus = function() {
+    return this.hasStatus('failure');
+};
+
+/**
  * Return all statuses sorted by update time
  *
  * @returns {Array}

@@ -33,6 +33,28 @@
                 "gpioPinOrangeLight": 12,
                 "gpioPinGreenLight": 13
             }
+        },
+        "PowerUp": {
+            "events": [
+                {
+                    "on": {
+                        "status": "started"
+                    },
+                    "do": {
+                        "powerForMiliSeconds": 5000,
+                        "gpioPin": 14
+                    }
+                },
+                {
+                    "on": {
+                        "status": "failure"
+                    },
+                    "do": {
+                        "powerForMiliSeconds": 5000,
+                        "gpioPin": 15
+                    }
+                }
+            ]
         }
     }
 }

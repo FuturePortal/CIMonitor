@@ -29,8 +29,10 @@
         socket.on('status', function(update) {
             console.log(update);
 
-            var status = update.newStatus.status;
-            if (update.hasStartedStatus) {
+            var status = 'success';
+            if (update.hasFailureStatus) {
+                status = 'failure';
+            } else if (update.hasStartedStatus) {
                 status = 'started';
             }
             $('#status-icon').attr('href', '/images/status/' + status + '.ico');

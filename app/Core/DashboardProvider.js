@@ -54,8 +54,8 @@ DashboardProvider.prototype.connectToDashboard = function() {
  */
 DashboardProvider.prototype.displayStatus = function(socket, status) {
     socket.emit('status', {
-        newStatus: status,
         hasStartedStatus: this.statusManager.hasStartedStatus(),
+        hasFailureStatus: this.statusManager.hasFailureStatus(),
         statuses: this.statusManager.getStatuses()
     });
     console.log('[DashboardProvider] Sent update to the dashboard.')

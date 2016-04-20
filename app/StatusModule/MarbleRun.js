@@ -5,11 +5,12 @@ var exec = require('child_process').exec;
 /**
  * MarbleRun
  *
- * @param config
+ * @param {object} config
+ * @param {StatusManager} statusManager
  * @constructor
  */
-var MarbleRun = function(config) {
-    StatusModule.call(this, config);
+var MarbleRun = function(config, statusManager) {
+    StatusModule.call(this, config, statusManager);
 };
 util.inherits(MarbleRun, StatusModule);
 
