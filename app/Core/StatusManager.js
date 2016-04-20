@@ -1,16 +1,16 @@
 /**
  * @param {EventEmitter} eventHandler
+ * @param {int} cleanUpAfterDays
  * @constructor
  */
-var StatusManager = function(eventHandler) {
-    /**
-     * {EventEmitter}
-     */
+var StatusManager = function(eventHandler, cleanUpAfterDays) {
+    /** {EventEmitter} */
     this.eventHandler = eventHandler;
 
-    /**
-     * @type {{}}
-     */
+    /** {int} */
+    this.cleanUpAfterDays = cleanUpAfterDays;
+
+    /** @type {{}} */
     this.statuses = {};
 };
 
@@ -20,6 +20,8 @@ var StatusManager = function(eventHandler) {
  * @param {object} status
  */
 StatusManager.prototype.newStatus = function(status) {
+    this.removeOldStatuses();
+
     // Add extra attributes to the status object
     status.key = this.getKey(status);
     status.updateTime = new Date().getTime();
@@ -33,6 +35,23 @@ StatusManager.prototype.newStatus = function(status) {
     this.eventHandler.emit('status', status);
 
     return true;
+};
+
+/**
+ * Clean up all the old statuses
+ */
+StatusManager.prototype.removeOldStatuses = function() {
+    var allowedStatusDate = new Date().getTime() - (1000 * 60 * 60 * 24 * this.cleanUpAfterDays);
+
+    for (var statusKey in this.statuses) {
+        if (this.statuses[statusKey].updateTime < allowedStatusDate) {
+            console.log(
+                '[StatusManager] Removing status ' + this.statuses[statusKey].key
+                + ' because it\'s older then ' + this.cleanUpAfterDays + ' days.'
+            );
+            delete this.statuses[statusKey];
+        }
+    }
 };
 
 /**

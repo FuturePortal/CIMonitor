@@ -1,4 +1,5 @@
 {
+    "cleanUpAfterDays": 30,
     "statusModules": {
         "MarbleRun": {
             "globalConfig": {

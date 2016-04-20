@@ -16,15 +16,13 @@ var Core = function(httpServer, dashboardSocket) {
     console.log('===================');
     console.log('[Core] Loading all modules...');
 
+    this.config = JSON.parse(FileSystem.readFileSync(__dirname + '/../Config/config.json'));
     this.eventHandler = new Events.EventEmitter();
-
-    this.statusManager = new StatusManager(this.eventHandler);
+    this.statusManager = new StatusManager(this.eventHandler, this.config.cleanUpAfterDays);
 
     new DashboardProvider(httpServer, dashboardSocket, this.eventHandler, this.statusManager);
 
-    this.config = JSON.parse(FileSystem.readFileSync(__dirname + '/../Config/config.json'));
-
-    this.modules = this.loadStatusModules();
+    this.loadStatusModules();
 
     console.log('[Core] Init completed.');
 };
