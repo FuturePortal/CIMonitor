@@ -32,7 +32,16 @@ limit!
 ### Send CI statuses to the dashboard
 
 1. Configure your test and deployment environments to push status
-   updates to your running machine, by posting to `/status`.
+   updates to your running machine, by posting to `/status`:
+```json
+{
+    "project": "CIMonitor",
+    "branch": "master",
+    "type": "deploy OR test",
+    "status": "started OR failure OR success",
+    "note": "This field is optional"
+}
+```
 1. Now for every build, the dashboard should display the status!
 
 ### Hook up modules (optional)

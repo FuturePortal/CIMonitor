@@ -96,7 +96,8 @@ Core.prototype.handleJenkinsStatus = function(data) {
         project: data.name,
         branch: data.build.scm.branch,
         type: 'test',
-        status: this.getStatusFromJenkinsCallback(data)
+        status: this.getStatusFromJenkinsCallback(data),
+        note: '#' + data.build.number
     };
 
     return this.statusManager.newStatus(status);
