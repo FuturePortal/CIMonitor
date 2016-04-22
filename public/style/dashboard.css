@@ -13,7 +13,8 @@ body {
 
 .overlay-success,
 .overlay-started,
-.overlay-failure {
+.overlay-failure,
+.statuses {
     position: absolute;
     top: 0;
     right: 0;
@@ -33,6 +34,10 @@ body {
 
 .overlay-failure {
     background: rgba(236, 122, 96, .3);
+}
+
+.statuses {
+    overflow: hidden;
 }
 
 .status {
