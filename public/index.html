@@ -44,7 +44,8 @@
                 statusDiv += '<div class="type"><img src="/images/types/' + status.type + '.svg" height="90" alt="'
                     + status.type + '" /></div>';
                 statusDiv += '<div class="project">' + status.project + '</div>';
-                statusDiv += '<div class="branch">' + status.branch + '</div>';
+                var note = (status.note === undefined) ? '' : ' - ' + status.note;
+                statusDiv += '<div class="branch">' + status.branch + note + '</div>';
                 statusDiv += '<div class="time" data-time="' + status.updateTime + '"></div>';
                 statusDiv += '</div>';
 
