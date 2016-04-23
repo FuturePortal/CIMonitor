@@ -20,46 +20,6 @@ If you want to use nano, feel free, but I like to use vim. If you want to use na
 
 `sudo apt-get install vim`
 
-`sudo vim ~/.vimrc`
-
-```
-" ---------------
-" General
-" ---------------
-set nocompatible
-set encoding=utf-8
-
-" ---------------
-" User Interface
-" ---------------
-syntax on
-set number
-set nowrap
-set background=dark
-set showcmd
-set ttyfast
-set lazyredraw
-
-" ---------------
-" Text Format
-" ---------------
-
-" Correct tab and indent settings, use 4 spaces instead of tabs
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-set shiftround
-set autoindent
-set smartindent
-
-" ---------------
-" Remove trailing whitespaces on save
-" ---------------
-autocmd BufWritePre * :%s/\s\+$//e
-```
-
 ### Static IP
 
 Set a static IP in raspbian is a bit different than editing your `/etc/network/interfaces`, you need to edit `dhcpcd.conf`:
@@ -99,30 +59,48 @@ find `[SeatDefault]` and place under it:
 
 ### Download CIMonitor
 
-See ReadMe.
+1. `cd ~`
+1. `mkdir CIMonitor`
+1. [Create a new git key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+   and add it to your github account. (or download the zip and unzip)
+1. `git clone git@github.com:CIMonitor/CIMonitor.git`
+1. cd `CIMonitor/`
+1. `cp app/Config/config.dist.json app/Config/config.json`
+1. `vim app/Config/config.json` and make the required changes.
+1. `npm install`
+1. You can now test if the app runs with `node app/server.js`
 
 ### Run node as a service
 
-`pm2`
+Install the `pm2` service manager, that lets you start node applications as a service.
 
-### Full screen browser
+`npm install pm2 -g`
+
+### Start CIMonitor & full screen browser
 
 Start your browser full screen
 
 1. `sudo apt-get install xautomation unclutter`
-1. `vim ~/start-browser-fullscreen.sh`
+1. `vim ~/start-cimonitor.sh`
 
    ```sh
+   pm2 start /home/pi/CIMonitor/app/server.js --name CIMonitor && sleep 30s;
    sudo -u pi epiphany-browser -a -i --profile ~/.config http://localhost:3000 --display=:0 &
    sleep 15s;
    xte "key F11" -x:0
    ```
-1. `sudo chmod +x ./start-browser-fullscreen.sh`
+1. `sudo chmod +x ./start-cimonitor.sh`
 1. `sudo vim ~/.config/lxsession/LXDE-pi/autostart`
 
    ```
    @xset s off
    @xset -dpms
    @xset s noblank
-   @/home/pi/start-browser-fullscreen.sh
+   @/home/pi/start-cimonitor.sh
    ```
+
+### Done!
+
+If you restart your raspberry, it should start the CIMonitor application now and start the browser in full screen mode.
+
+`sudo reboot`
