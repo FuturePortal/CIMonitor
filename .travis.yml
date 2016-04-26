@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+    - "5.1"
+
+cache:
+    directories:
+        - node_modules
+
+before_install:
+    - curl -s -o ~/hookr.sh https://hookr.enrise.com/clients/travis.sh && chmod +x ~/hookr.sh
+    - ~/hookr.sh "CIMonitor" "CIMonitor" "started"
+
+script:
+    - sleep 30s;
+    
+after_success:
+    - ~/hookr.sh "CIMonitor" "CIMonitor" "success"
+    # - ~/hookr.sh "Webistrano" "CIMonitor"
+    
+after_failure:
+    - ~/hookr.sh "CIMonitor" "CIMonitor" "failure"
