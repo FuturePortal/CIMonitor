@@ -26,11 +26,19 @@ var DashboardProvider = function(httpServer, dashboardSocket, eventHandler, stat
      */
     this.statusManager = statusManager;
 
-    /** {} */
+    /** {{Socket}} */
     this.dashboardSockets = {};
 
+    /**
+     * The id that will be given and increased for every connected dashboard
+     * @type {number}
+     */
+    this.socketId = 1;
+
+    // Open dashboard socket
     this.openDashboardSocket();
 
+    // Handle status updates
     var DashboardProvider = this;
     this.eventHandler.on('status', function(status) {
         DashboardProvider.pushStatusToDashboards(status);
@@ -46,16 +54,23 @@ DashboardProvider.prototype.openDashboardSocket = function() {
     var socket  = this.dashboardSocket.listen(this.httpServer);
     socket.on('connection', function(socket) {
         var connectedSocked = socket;
-        console.log('[DashboardProvider] Dashboard connected with id ' + connectedSocked.id + '.');
-        DashboardProvider.dashboardSockets[connectedSocked.id] = connectedSocked;
+        var socketId = DashboardProvider.socketId++;
+
+        console.log('[DashboardProvider] Dashboard connected with id ' + socketId + '.');
+        DashboardProvider.dashboardSockets[socketId] = connectedSocked;
 
         socket.on('disconnect', function () {
-            console.log('[DashboardProvider] Dashboard with id ' + connectedSocked.id + ' disconnected.');
-            delete DashboardProvider.dashboardSockets[connectedSocked.id];
+            console.log('[DashboardProvider] Dashboard with id ' + socketId + ' disconnected.');
+            delete DashboardProvider.dashboardSockets[socketId];
         });
     });
 };
 
+/**
+ * Pushes a new status to all connected dashboards
+ *
+ * @param {object} status
+ */
 DashboardProvider.prototype.pushStatusToDashboards = function(status) {
     var dashboardStatus = {
         hasStartedStatus: this.statusManager.hasStartedStatus(),
