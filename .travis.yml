@@ -13,8 +13,8 @@ before_install:
 script:
     - sleep 30s;
     
-- after_success:
+after_success:
     - ~/push-to-dashboard.sh "$HOOKR_AUTH_KEY" "CIMonitor" "CIMonitor" "$TRAVIS_BRANCH" "test" "success" "#$TRAVIS_BUILD_ID"
     
-- after_failure:
+after_failure:
     - ~/push-to-dashboard.sh "$HOOKR_AUTH_KEY" "CIMonitor" "CIMonitor" "$TRAVIS_BRANCH" "test" "failure" "#$TRAVIS_BUILD_ID"
