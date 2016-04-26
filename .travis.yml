@@ -7,7 +7,7 @@ cache:
         - node_modules
 
 before_install:
-    - curl -O ~/push-to-dashboard.sh https://hookr.enrise.com/client.sh && chmod +x ~/push-to-dashboard.sh
+    - curl -o ~/push-to-dashboard.sh https://hookr.enrise.com/client.sh && chmod +x ~/push-to-dashboard.sh
     - ~/push-to-dashboard.sh "$HOOKR_AUTH_KEY" "CIMonitor" "CIMonitor" "$TRAVIS_BRANCH" "test" "started" "#$TRAVIS_BUILD_ID"
 
 script:
