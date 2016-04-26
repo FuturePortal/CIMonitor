@@ -124,6 +124,10 @@ StatusManager.prototype.getStatuses = function() {
         statuses.push(this.statuses[statusKey]);
     }
 
+    if (statuses.length === 0) {
+        return [];
+    }
+
     statuses.sort(this.sortByUpdateTime);
 
     return statuses;

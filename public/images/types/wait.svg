@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="44px" height="63.999px" viewBox="0 0 44 63.999" style="enable-background:new 0 0 44 63.999;" xml:space="preserve">
+<g id="Stand">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#999999;" d="M2,4h40c1.104,0,2-0.896,2-2.001S43.104,0,42,0H2
+			C0.896,0,0,0.895,0,1.999S0.896,4,2,4z M42,59.999H2c-1.104,0-2,0.896-2,2s0.896,2,2,2h40c1.104,0,2-0.896,2-2
+			S43.104,59.999,42,59.999z"/>
+	</g>
+</g>
+<g id="Glass">
+	<g>
+		<path style="fill:#E6E6E6;" d="M24,32c0,0,16-12.51,16-28H4c0,15.49,16,28,16,28S4,44.507,4,59.999h36C40,44.507,24,32,24,32z"/>
+	</g>
+</g>
+<g id="Sand">
+	<g>
+		<path style="fill:#ED7161;" d="M22,46c-5.302,0-10.412,4.72-12,10h24C32.412,50.72,27.302,46,22,46z"/>
+	</g>
+</g>
+<g id="Sand_1_">
+	<g>
+		<path style="fill:#ED7161;" d="M13.124,18c1.589,2.635,4.762,7.257,8.876,10c4.114-2.743,7.287-7.365,8.875-10H13.124z"/>
+	</g>
+</g>
+</svg>
