@@ -43,7 +43,7 @@ Core.prototype.loadStatusModules = function() {
         (function(StatusModule){
             Core.eventHandler.on('status', function(status) {
                 StatusModule.handleStatus(status);
-            })
+            });
         })(StatusModule);
     }
 };

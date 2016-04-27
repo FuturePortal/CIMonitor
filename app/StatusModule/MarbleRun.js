@@ -1,4 +1,4 @@
-const util = require('util');
+var util = require('util');
 var StatusModule = require('./StatusModule');
 var exec = require('child_process').exec;
 
@@ -81,7 +81,7 @@ MarbleRun.prototype.execute = function(doConfig) {
         setTimeout(function() {
             MarbleRun.availableMarbles++;
             console.log('[MarbleRun] ' + MarbleRun.availableMarbles + ' marble(s) available.');
-        }, 13000 + ((i - 1) * MarbleRun.oneMarbleFireTime));
+        }, 13000 + (i - 1) * MarbleRun.oneMarbleFireTime);
     }
 };
 

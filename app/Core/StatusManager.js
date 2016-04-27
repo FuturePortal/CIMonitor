@@ -41,7 +41,7 @@ StatusManager.prototype.newStatus = function(status) {
  * Clean up all the old statuses
  */
 StatusManager.prototype.removeOldStatuses = function() {
-    var allowedStatusDate = new Date().getTime() - (1000 * 60 * 60 * 24 * this.cleanUpAfterDays);
+    var allowedStatusDate = new Date().getTime() - 1000 * 60 * 60 * 24 * this.cleanUpAfterDays;
 
     for (var statusKey in this.statuses) {
         if (this.statuses[statusKey].updateTime < allowedStatusDate) {

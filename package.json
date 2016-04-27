@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "gulp-develop-server": "~0.5.1",
-    "browser-sync": "~2.12.3"
+    "browser-sync": "~2.12.3",
+    "gulp-eslint": "~2.0.0"
   }
 }

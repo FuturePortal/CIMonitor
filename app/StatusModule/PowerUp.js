@@ -1,4 +1,4 @@
-const util = require('util');
+var util = require('util');
 var StatusModule = require('./StatusModule');
 var exec = require('child_process').exec;
 

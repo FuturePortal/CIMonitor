@@ -54,7 +54,7 @@ DashboardProvider.prototype.openDashboardSocket = function() {
         DashboardProvider.dashboardSockets[socketId] = connectedSocked;
         connectedSocked.emit('status', DashboardProvider.getDashboardStatuses());
         console.log(
-            '[DashboardProvider] Dashboard connected with id ' + socketId + '  and has now the latest statuses.'
+            '[DashboardProvider] Dashboard connected with id ' + socketId + ' and has now the latest statuses.'
         );
 
         socket.on('disconnect', function () {
