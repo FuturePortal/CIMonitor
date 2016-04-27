@@ -39,7 +39,9 @@
             $('#overlay').attr('class', 'overlay-' + status);
 
             $('.statuses').html('');
+            var statusCount = 0;
             $.each(update.statuses, function(key, status) {
+                statusCount++;
                 var statusDiv = '<div id="' + status.key + '" class="status status-' + status.status + '">';
                 statusDiv += '<div class="type"><img src="/images/types/' + status.type + '.svg" height="90" alt="'
                     + status.type + '" /></div>';
@@ -51,16 +53,21 @@
 
                 $('.statuses').append(statusDiv);
             });
+            if (statusCount === 0) {
+                var statusDiv = '<div class="status status-success">';
+                statusDiv += '<div class="type"><img src="/images/types/wait.svg" height="90" alt="loading" /></div>';
+                statusDiv += '<div class="project">No statuses</div>';
+                statusDiv += '<div class="branch">CIMonitor is waiting to receive a status...</div>';
+                statusDiv += '<div class="time" data-time="' + new Date().getTime() + '"></div>';
+                statusDiv += '</div>';
+
+                $('.statuses').append(statusDiv);
+            }
             updateTimes();
         });
     </script>
     <div id="overlay" class="overlay-success"></div>
     <div class="statuses">
-        <div class="status status-success">
-            <div class="project">
-                Waiting for the first status...
-            </div>
-        </div>
     </div>
 </body>
 </html>

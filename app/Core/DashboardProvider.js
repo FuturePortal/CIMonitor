@@ -6,59 +6,89 @@
  * @param statusManager
  */
 var DashboardProvider = function(httpServer, dashboardSocket, eventHandler, statusManager) {
-    /**
-     * {Server}
-     */
+    /** {Server} */
     this.httpServer = httpServer;
 
-    /**
-     * {http}
-     */
+    /** {http} */
     this.dashboardSocket = dashboardSocket;
 
-    /**
-     * {EventEmitter}
-     */
+    /** {EventEmitter} */
     this.eventHandler = eventHandler;
 
-    /**
-     * {StatusManager}
-     */
+    /** {StatusManager} */
     this.statusManager = statusManager;
 
-    this.connectToDashboard();
+    /** {{Socket}} */
+    this.dashboardSockets = {};
+
+    /** @type {number} */
+    this.socketId = 1;
+
+    this.openDashboardSocket();
+
+    this.attachStatusListener();
 };
 
 /**
- * Connects to the dashboard, and listens for incoming statuses
+ * Add the status listener
  */
-DashboardProvider.prototype.connectToDashboard = function() {
+DashboardProvider.prototype.attachStatusListener = function() {
+    var DashboardProvider = this;
+
+    this.eventHandler.on('status', function(status) {
+        DashboardProvider.pushStatusToDashboards(status);
+    });
+};
+
+/**
+ * Opens the dashboard socket, and keeps list of the connected sockets
+ */
+DashboardProvider.prototype.openDashboardSocket = function() {
     var DashboardProvider = this;
 
     var socket  = this.dashboardSocket.listen(this.httpServer);
-    socket.on('connection', function(socket){
-        console.log('[DashboardProvider] Dashboard connected.');
+    socket.on('connection', function(socket) {
+        var connectedSocked = socket;
+        var socketId = DashboardProvider.socketId++;
 
-        // Listen to new statuses
-        DashboardProvider.eventHandler.on('status', function(status) {
-            DashboardProvider.displayStatus(DashboardProvider.dashboardSocket, status);
+        DashboardProvider.dashboardSockets[socketId] = connectedSocked;
+        connectedSocked.emit('status', DashboardProvider.getDashboardStatuses());
+        console.log(
+            '[DashboardProvider] Dashboard connected with id ' + socketId + '  and has now the latest statuses.'
+        );
+
+        socket.on('disconnect', function () {
+            console.log('[DashboardProvider] Dashboard disconnected with id ' + socketId + '.');
+            delete DashboardProvider.dashboardSockets[socketId];
         });
     });
 };
 
 /**
- * Display the new status on the dashboard
+ * Get all information form the statuses
  *
- * @param {http} socket
- * @param {object} status
+ * @returns {{hasStartedStatus: (*|bool|string), hasFailureStatus: (*|bool), statuses: Array}}
  */
-DashboardProvider.prototype.displayStatus = function(socket, status) {
-    socket.emit('status', {
+DashboardProvider.prototype.getDashboardStatuses = function() {
+    return {
         hasStartedStatus: this.statusManager.hasStartedStatus(),
         hasFailureStatus: this.statusManager.hasFailureStatus(),
         statuses: this.statusManager.getStatuses()
-    });
-    console.log('[DashboardProvider] Sent update to the dashboard.')
+    };
+};
+
+/**
+ * Pushes the statuses to the connected dashboards
+ *
+ * @param {object} status
+ */
+DashboardProvider.prototype.pushStatusToDashboards = function(status) {
+    var dashboardStatuses = this.getDashboardStatuses();
+
+    for (var id in this.dashboardSockets) {
+        this.dashboardSockets[id].emit('status', dashboardStatuses);
+        console.log('[DashboardProvider] Sent update to dashboard with id ' + id + '.');
+    }
 };
 
 module.exports = DashboardProvider;
