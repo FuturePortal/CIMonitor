@@ -1,4 +1,4 @@
-const MARK_STARTED_FAILED_TIME = 60000 * 30;
+var MARK_STARTED_FAILED_TIME = 60000 * 30;
 
 /**
  * @param {EventEmitter} eventHandler
