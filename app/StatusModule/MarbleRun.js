@@ -18,17 +18,20 @@ util.inherits(MarbleRun, StatusModule);
  * Set the gpio pins to the correct mode on initialisation
  */
 MarbleRun.prototype.init = function() {
-    /** {int} */
+    /** @type {int} */
     this.pin = this.config.gpioPin;
 
-    /** {int} */
+    /** @type {int} */
     this.availableMarbles = this.config.maxMarbles;
 
-    /** {int} */
+    /** @type {int} */
     this.oneMarbleFireTime = this.config.oneMarbleFireTime;
 
-    /** {int} */
+    /** @type {int} */
     this.runDuration = this.config.runDuration;
+
+    /** @type {boolean} */
+    this.isFiring = false;
 
     this.prepareRelay();
 };
@@ -53,28 +56,42 @@ MarbleRun.prototype.execute = function(doConfig) {
     var fireAmount = doConfig.fireAmount;
 
     if (isNaN(fireAmount) || fireAmount < 1) {
-        console.log('[MarbleRun] Invalid fire amount configured: "' + req.params.amount + '".');
+        console.log('[MarbleRun] Invalid fire amount configured: "' + fireAmount + '".');
         return;
     }
 
-    if (fireAmount > this.availableMarbles) {
+    if (MarbleRun.isFiring) {
+        setTimeout(function() {
+            console.log('[MarbleRun] Postponing fire as it already is firing.');
+            MarbleRun.execute(doConfig);
+        }, 1000);
+        return;
+    }
+
+    if (fireAmount > MarbleRun.availableMarbles) {
         console.log(
             '[MarbleRun] Wanted to fire ' + fireAmount + ' marble(s), but only ' +  this.availableMarbles
             + ' marbles are available.'
         );
-        fireAmount = this.availableMarbles;
+        fireAmount = MarbleRun.availableMarbles;
     }
 
-    this.availableMarbles -= fireAmount;
-    console.log('[MarbleRun] Firing ' + fireAmount + ' marble(s) (' + this.availableMarbles + ' left available).');
+    if (fireAmount === 0) {
+        return;
+    }
+
+    MarbleRun.isFiring = true;
+    MarbleRun.availableMarbles -= fireAmount;
+    console.log('[MarbleRun] Firing ' + fireAmount + ' marble(s) (' + MarbleRun.availableMarbles + ' left available).');
 
     // Enable the relay to fire a marble.
-    exec('gpio write ' + this.pin + ' 0');
+    exec('gpio write ' + MarbleRun.pin + ' 0');
 
     // Close the relay if all marbles are fired
     setTimeout(function() {
         exec('gpio write ' + MarbleRun.pin + ' 1');
-    }, fireAmount * this.oneMarbleFireTime);
+        MarbleRun.isFiring = false;
+    }, fireAmount * MarbleRun.oneMarbleFireTime);
 
     // Make the marbles available again when they return.
     for (var i = 1; i <= fireAmount; i++) {
