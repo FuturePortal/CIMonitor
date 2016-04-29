@@ -20,8 +20,9 @@
     "validate.js": "^0.9.0"
   },
   "devDependencies": {
-    "gulp-develop-server": "~0.5.1",
     "browser-sync": "~2.12.3",
+    "gulp": "^3.9.1",
+    "gulp-develop-server": "~0.5.1",
     "gulp-eslint": "~2.0.0"
   }
 }

@@ -9,10 +9,9 @@ cache:
 before_install:
     - curl -s -o ~/hookr.sh https://hookr.enrise.com/clients/travis.sh && chmod +x ~/hookr.sh
     - ~/hookr.sh "CIMonitor" "CIMonitor" "started"
-    - npm install -g gulp
 
 script:
-    - gulp eslint-fail-on-error
+    - node_modules/.bin/gulp eslint-fail-on-error
     
 after_success:
     - ~/hookr.sh "CIMonitor" "CIMonitor" "success"
