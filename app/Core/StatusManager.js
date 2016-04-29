@@ -1,13 +1,15 @@
+const MARK_STARTED_FAILED_TIME = 60000 * 30;
+
 /**
  * @param {EventEmitter} eventHandler
  * @param {int} cleanUpAfterDays
  * @constructor
  */
 var StatusManager = function(eventHandler, cleanUpAfterDays) {
-    /** {EventEmitter} */
+    /** @type {EventEmitter} */
     this.eventHandler = eventHandler;
 
-    /** {int} */
+    /** @type {int} */
     this.cleanUpAfterDays = cleanUpAfterDays;
 
     /** @type {{}} */
@@ -20,6 +22,8 @@ var StatusManager = function(eventHandler, cleanUpAfterDays) {
  * @param {object} status
  */
 StatusManager.prototype.newStatus = function(status) {
+    var StatusManager = this;
+
     this.removeOldStatuses();
 
     // Add extra attributes to the status object
@@ -31,10 +35,33 @@ StatusManager.prototype.newStatus = function(status) {
     // Add the new/updated status to the statuses
     this.statuses[status.key] = status;
 
+    if (status.status === 'started') {
+        setTimeout(function() {
+            StatusManager.checkIfStartedFailed();
+        }, MARK_STARTED_FAILED_TIME)
+    }
+
     // Fire status event
     this.eventHandler.emit('status', status);
 
     return true;
+};
+
+/**
+ * If a started status remains started for longer then 30 minutes, assume it failed.
+ */
+StatusManager.prototype.checkIfStartedFailed = function() {
+    var expiredStartedTime = new Date().getTime() - MARK_STARTED_FAILED_TIME;
+
+    for (var statusKey in this.statuses) {
+        var status = this.statuses[statusKey];
+        if (status.status === 'started' && status.updateTime <= expiredStartedTime) {
+            status.status = 'failure';
+            status.updateTime = new Date().getTime();
+            this.statuses[statusKey] = status;
+            this.eventHandler.emit('status', status);
+        }
+    }
 };
 
 /**
