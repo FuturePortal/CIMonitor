@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var Core = require('./Core/Core');
 var dashboardSocket = require('socket.io')(http);
+var validate = require('validate.js');
 
 /**
  * Serve static files from /public
@@ -27,7 +28,19 @@ app.get('/', function (req, res) {
  * Provide a new status for the monitor to process and display
  */
 app.post('/status', function (request, response) {
-    response.sendStatus(app.core.handleStatus(request.body) ? 200 : 422);
+    var statusValidation = require('./Validation/Status');
+    var requestBody = request.body;
+
+    requestBody = validate.cleanAttributes(requestBody, statusValidation.whitelist);
+    var validationErrors = validate(requestBody, statusValidation.rules);
+
+    if (validationErrors) {
+        response.status(422).json(validationErrors);
+        return;
+    }
+
+    app.core.handleStatus(requestBody);
+    response.sendStatus(200);
 });
 
 /**
@@ -36,7 +49,19 @@ app.post('/status', function (request, response) {
  * Provide a new status from jenkins for the monitor to display
  */
 app.post('/jenkins-status', function (request, response) {
-    response.sendStatus(app.core.handleJenkinsStatus(request.body) ? 200 : 422);
+    var statusValidation = require('./Validation/JenkinsStatus');
+    var requestBody = request.body;
+
+    requestBody = validate.cleanAttributes(requestBody, statusValidation.whitelist);
+    var validationErrors = validate(requestBody, statusValidation.rules);
+
+    if (validationErrors) {
+        response.status(422).json(validationErrors);
+        return;
+    }
+
+    app.core.handleJenkinsStatus(requestBody);
+    response.sendStatus(200);
 });
 
 /**
