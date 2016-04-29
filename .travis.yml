@@ -11,7 +11,7 @@ before_install:
     - ~/hookr.sh "CIMonitor" "CIMonitor" "started"
 
 script:
-    - sleep 30s;
+    - eslint-fail-on-error
     
 after_success:
     - ~/hookr.sh "CIMonitor" "CIMonitor" "success"
