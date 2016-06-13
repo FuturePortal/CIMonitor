@@ -12,6 +12,7 @@ var validate = require('validate.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../public'));
+app.set('port', process.env.PORT || 3000);
 
 /**
  * GET /
@@ -67,8 +68,9 @@ app.post('/jenkins-status', function (request, response) {
 /**
  * Setup the server and initialise the modules
  */
-var server = app.listen(3000, function () {
-    console.log('[Server] Ready.');
+var server = app.listen(app.get('port'),
+  function(){
+    console.log("[Server] Ready and listening on port " + app.get('port'));
 });
 
 /**
