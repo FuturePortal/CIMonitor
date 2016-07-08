@@ -43,7 +43,7 @@ LedStrip.prototype.handleStatus = function(status) {
     }
 
     if (this.statusManager.hasStartedStatus()) {
-        this.setColor(255, 187, 0);
+        this.setColor(255, 55, 0);
         return;
     }
 
