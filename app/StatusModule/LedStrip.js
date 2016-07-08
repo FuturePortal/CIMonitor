@@ -28,13 +28,13 @@ LedStrip.prototype.init = function() {
 LedStrip.prototype.blink = function(red, green, blue) {
     var LedStrip = this;
     for (var i = 0; i <= 5; i++) {
-        setTimeout(function() {
+        (setTimeout(function() {
             if (i % 2) {
                 LedStrip.setColor(0, 0, 0);
             } else {
                 LedStrip.setColor(red, green, blue);
             }
-        }, 1000 * i);
+        }, 1000 * i))(i);
     }
 };
 
