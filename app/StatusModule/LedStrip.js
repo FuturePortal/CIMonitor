@@ -26,9 +26,9 @@ LedStrip.prototype.init = function() {
 };
 
 LedStrip.prototype.setColor = function(red, green, blue) {
-    exec('pigs p' + this.redPin + ' ' + red);
-    exec('pigs p' + this.greenPin + ' ' + green);
-    exec('pigs p' + this.bluePin + ' ' + blue);
+    exec('pigs p ' + this.redPin + ' ' + red);
+    exec('pigs p ' + this.greenPin + ' ' + green);
+    exec('pigs p ' + this.bluePin + ' ' + blue);
 };
 
 /**
