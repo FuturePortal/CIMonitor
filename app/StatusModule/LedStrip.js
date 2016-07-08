@@ -25,7 +25,21 @@ LedStrip.prototype.init = function() {
     this.prepareRelay();
 };
 
+LedStrip.prototype.blink = function(red, green, blue) {
+    var LedStrip = this;
+    for (var i = 0; i <= 5; i++) {
+        setTimeout(function() {
+            if (i % 2) {
+                LedStrip.setColor(0, 0, 0);
+            } else {
+                LedStrip.setColor(red, green, blue);
+            }
+        }, 1000 * i);
+    }
+};
+
 LedStrip.prototype.setColor = function(red, green, blue) {
+    console.log('[LedStrip] Color red:' + red + ' green:' + green + ' blue:' + blue);
     exec('pigs p ' + this.redPin + ' ' + red);
     exec('pigs p ' + this.greenPin + ' ' + green);
     exec('pigs p ' + this.bluePin + ' ' + blue);
@@ -38,16 +52,16 @@ LedStrip.prototype.setColor = function(red, green, blue) {
  */
 LedStrip.prototype.handleStatus = function(status) {
     if (this.statusManager.hasFailureStatus()) {
-        this.setColor(255, 0, 0);
+        this.blink(80, 0, 0);
         return;
     }
 
     if (this.statusManager.hasStartedStatus()) {
-        this.setColor(255, 55, 0);
+        this.blink(80, 20, 0);
         return;
     }
 
-    this.setColor(0, 255, 0);
+    this.setColor(0, 40, 0);
 };
 
 /**
