@@ -27,14 +27,17 @@ LedStrip.prototype.init = function() {
 
 LedStrip.prototype.blink = function(red, green, blue) {
     var LedStrip = this;
-    for (var i = 0; i <= 5; i++) {
-        (setTimeout(function() {
-            if (i % 2) {
-                LedStrip.setColor(0, 0, 0);
-            } else {
-                LedStrip.setColor(red, green, blue);
-            }
-        }, 1000 * i))(i);
+    for (var i = 0; i <= 6; i++) {
+        (function(i) {
+            setTimeout(function() {
+                console.log('Q.Q : ' + i);
+                if (i % 2) {
+                    LedStrip.setColor(0, 0, 0);
+                } else {
+                    LedStrip.setColor(red, green, blue);
+                }
+            }, 750 * i)
+        })(i);
     }
 };
 
@@ -68,11 +71,7 @@ LedStrip.prototype.handleStatus = function(status) {
  * Prepares the gpio pins. Turns the green light on, turns the orange and red light off.
  */
 LedStrip.prototype.prepareRelay = function() {
-    this.setColor(0, 255, 255);
-    console.log(
-        '[LedStrip] Led strip enabled on red:' + this.redPin + ', green:' + this.greenPin + ' and blue:' + this.bluePin
-        + '. Strip is off.'
-    );
+    this.setColor(0, 50, 50);
 };
 
 module.exports = LedStrip;
