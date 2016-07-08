@@ -48,7 +48,7 @@ LedStrip.prototype.handleStatus = function(status) {
         return;
     }
 
-    this.setColor(0, 40, 0);
+    this.setColor(0, 30, 0);
 };
 
 /**
