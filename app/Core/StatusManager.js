@@ -1,4 +1,4 @@
-const MARK_STARTED_FAILED_TIME = 60000 * 30;
+var MARK_STARTED_FAILED_TIME = 60000 * 30;
 
 /**
  * @param {EventEmitter} eventHandler
@@ -68,7 +68,7 @@ StatusManager.prototype.checkIfStartedFailed = function() {
  * Clean up all the old statuses
  */
 StatusManager.prototype.removeOldStatuses = function() {
-    var allowedStatusDate = new Date().getTime() - (1000 * 60 * 60 * 24 * this.cleanUpAfterDays);
+    var allowedStatusDate = new Date().getTime() - 1000 * 60 * 60 * 24 * this.cleanUpAfterDays;
 
     for (var statusKey in this.statuses) {
         if (this.statuses[statusKey].updateTime < allowedStatusDate) {

@@ -1,9 +1,9 @@
-const util = require('util');
+var util = require('util');
 var StatusModule = require('./StatusModule');
 var exec = require('child_process').exec;
 
-const ON = 0;
-const OFF = 1;
+var ON = 0;
+var OFF = 1;
 
 /**
  * TrafficLight
@@ -52,8 +52,8 @@ TrafficLight.prototype.handleStatus = function(status) {
     exec('gpio write ' + this.orangePin + ' ' + orangeLight);
     exec('gpio write ' + this.redPin + ' ' + redLight);
     console.log(
-        '[TrafficLight] Green is ' + ((greenLight === ON) ? 'on' : 'off') + ', orange is '
-        + ((orangeLight === ON) ? 'on' : 'off') + ', and red is ' + ((redLight === ON) ? 'on' : 'off') + '.'
+        '[TrafficLight] Green is ' + (greenLight === ON) ? 'on' : 'off' + ', orange is '
+        + (orangeLight === ON) ? 'on' : 'off' + ', and red is ' + (redLight === ON) ? 'on' : 'off' + '.'
     );
 };
 
