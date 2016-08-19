@@ -1,6 +1,6 @@
 var util = require('util');
 var StatusModule = require('./StatusModule');
-var exec = require('child_process').exec;
+var piblaster = require('pi-blaster.js');
 
 /**
  * MarbleRun
@@ -32,17 +32,6 @@ MarbleRun.prototype.init = function() {
 
     /** @type {boolean} */
     this.isFiring = false;
-
-    this.prepareRelay();
-};
-
-/**
- * Prepare te relay for on/off toggling
- */
-MarbleRun.prototype.prepareRelay = function() {
-    exec('gpio mode ' + this.pin + ' out');
-    exec('gpio write ' + this.pin + ' 1');
-    console.log('[MarbleRun] Set gpio pin ' + this.pin + ' to output mode and switched off.');
 };
 
 /**
@@ -85,11 +74,11 @@ MarbleRun.prototype.execute = function(doConfig) {
     console.log('[MarbleRun] Firing ' + fireAmount + ' marble(s) (' + MarbleRun.availableMarbles + ' left available).');
 
     // Enable the relay to fire a marble.
-    exec('gpio write ' + MarbleRun.pin + ' 0');
+    piblaster.setPwm(MarbleRun.pin, 0);
 
     // Close the relay if all marbles are fired
     setTimeout(function() {
-        exec('gpio write ' + MarbleRun.pin + ' 1');
+        piblaster.setPwm(MarbleRun.pin, 1);
         MarbleRun.isFiring = false;
     }, fireAmount * MarbleRun.oneMarbleFireTime);
 

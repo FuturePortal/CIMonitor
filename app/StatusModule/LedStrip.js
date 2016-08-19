@@ -1,6 +1,6 @@
 var util = require('util');
 var StatusModule = require('./StatusModule');
-var exec = require('child_process').exec;
+var piblaster = require('pi-blaster.js');
 
 /**
  * LedStrip
@@ -26,10 +26,9 @@ LedStrip.prototype.init = function() {
 };
 
 LedStrip.prototype.setColor = function(red, green, blue) {
-    console.log('[LedStrip] Color red:' + red + ' green:' + green + ' blue:' + blue);
-    exec('pigs p ' + this.redPin + ' ' + red);
-    exec('pigs p ' + this.greenPin + ' ' + green);
-    exec('pigs p ' + this.bluePin + ' ' + blue);
+    piblaster.setPwm(this.redPin, red);
+    piblaster.setPwm(this.greenPin, green);
+    piblaster.setPwm(this.bluePin, blue);
 };
 
 /**
@@ -39,23 +38,23 @@ LedStrip.prototype.setColor = function(red, green, blue) {
  */
 LedStrip.prototype.handleStatus = function(status) {
     if (this.statusManager.hasFailureStatus()) {
-        this.setColor(80, 0, 0);
+        this.setColor(0.31, 0, 0);
         return;
     }
 
     if (this.statusManager.hasStartedStatus()) {
-        this.setColor(80, 20, 0);
+        this.setColor(0.31, 0.08, 0);
         return;
     }
 
-    this.setColor(0, 30, 0);
+    this.setColor(0, 0.12, 0);
 };
 
 /**
  * Prepares the gpio pins. Turns the green light on, turns the orange and red light off.
  */
 LedStrip.prototype.prepareRelay = function() {
-    this.setColor(0, 50, 50);
+    this.setColor(0, 0.19, 0.19);
 };
 
 module.exports = LedStrip;
