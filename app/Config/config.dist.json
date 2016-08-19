@@ -56,6 +56,13 @@
                     }
                 }
             ]
+        },
+        "LedStrip": {
+            "globalConfig": {
+                "gpioPinRed": 23,
+                "gpioPinGreen": 24,
+                "gpioPinBlue": 18
+            }
         }
     }
 }
