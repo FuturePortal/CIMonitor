@@ -1,6 +1,5 @@
 var util = require('util');
 var StatusModule = require('./StatusModule');
-var exec = require('child_process').exec;
 
 var ON = 0;
 var OFF = 1;
@@ -48,9 +47,9 @@ TrafficLight.prototype.handleStatus = function(status) {
         redLight = ON;
     }
 
-    exec('gpio write ' + this.greenPin + ' ' + greenLight);
-    exec('gpio write ' + this.orangePin + ' ' + orangeLight);
-    exec('gpio write ' + this.redPin + ' ' + redLight);
+    piblaster.setPwm(this.greenPin, greenLight);
+    piblaster.setPwm(this.orangePin, orangeLight);
+    piblaster.setPwm(this.redPin, redLight);
     console.log(
         '[TrafficLight] Green is ' + (greenLight === ON) ? 'on' : 'off' + ', orange is '
         + (orangeLight === ON) ? 'on' : 'off' + ', and red is ' + (redLight === ON) ? 'on' : 'off' + '.'
@@ -61,12 +60,6 @@ TrafficLight.prototype.handleStatus = function(status) {
  * Prepares the gpio pins. Turns the green light on, turns the orange and red light off.
  */
 TrafficLight.prototype.prepareRelay = function() {
-    exec('gpio mode ' + this.redPin + ' out');
-    exec('gpio write ' + this.redPin + ' ' + OFF);
-    exec('gpio mode ' + this.orangePin + ' out');
-    exec('gpio write ' + this.orangePin + ' ' + OFF);
-    exec('gpio mode ' + this.greenPin + ' out');
-    exec('gpio write ' + this.greenPin + ' ' + ON);
     console.log(
         '[TrafficLight] Set gpio pin ' + this.redPin + ', ' + this.orangePin + ' and ' + this.greenPin
         + ' to output mode and switched off. Green light is on.'

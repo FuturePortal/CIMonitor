@@ -1,6 +1,6 @@
 var util = require('util');
 var StatusModule = require('./StatusModule');
-var exec = require('child_process').exec;
+var piblaster = require('pi-blaster.js');
 
 /**
  * PowerUp
@@ -28,8 +28,6 @@ PowerUp.prototype.init = function() {
             continue;
         }
 
-        exec('gpio mode ' + pin + ' out');
-        exec('gpio write ' + pin + ' 1');
         console.log('[PowerUp] Set gpio pin ' + pin + ' to output mode and switched off.');
         enabledPins.push(pin);
     }
@@ -42,13 +40,13 @@ PowerUp.prototype.init = function() {
  */
 PowerUp.prototype.execute = function(doConfig) {
     // Switch the relay on for the configured gpio pin
-    exec('gpio write ' + doConfig.gpioPin + ' 1');
+    piblaster.setPwm(doConfig.gpioPin, 0);
     console.log(
         '[PowerUp] Power on gpio pin ' + doConfig.gpioPin + ' for ' + doConfig.powerForMiliSeconds + 'ms.'
     );
 
     setTimeout(function() {
-        exec('gpio write ' + doConfig.gpioPin + ' 0');
+        piblaster.setPwm(doConfig.gpioPin, 1);
         console.log('[PowerUp] Power off gpio pin ' + doConfig.gpioPin + '.');
     }, doConfig.powerForMiliSeconds);
 };
