@@ -29,10 +29,8 @@ TrafficLight.prototype.init = function() {
 
 /**
  * Handle the incoming statuses
- *
- * @param {object} status
  */
-TrafficLight.prototype.handleStatus = function(status) {
+TrafficLight.prototype.handleStatus = function() {
     var greenLight = ON;
     var orangeLight = OFF;
     var redLight = OFF;
@@ -60,10 +58,7 @@ TrafficLight.prototype.handleStatus = function(status) {
  * Prepares the gpio pins. Turns the green light on, turns the orange and red light off.
  */
 TrafficLight.prototype.prepareRelay = function() {
-    console.log(
-        '[TrafficLight] Set gpio pin ' + this.redPin + ', ' + this.orangePin + ' and ' + this.greenPin
-        + ' to output mode and switched off. Green light is on.'
-    );
+    this.handleStatus();
 };
 
 module.exports = TrafficLight;
