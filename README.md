@@ -19,7 +19,7 @@ limit!
 
 # Setup & Configuration
 
-### Run the dashboard
+### Setup & Run the dashboard
 
 1. Download CIMonitors source code onto your raspberry pi (or other
    machine)
@@ -98,7 +98,20 @@ The relay will turn on for a limited time, releasing a marble into the track.
 Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for
 success!
 
-@todo: will build this one later, as I need to have a proper led-strip setup first.
+To have an awesome ledstrip added to your CIMonitor, you need to do some hardware hacking first. There is a step
+by step tutorial [here](http://popoklopsi.github.io/RaspberryPi-LedStrip/#!/). When you've done that, all you need
+to do is configure the correct gpio pins used. NOTE: we use [pi-blaster](https://github.com/sarfata/pi-blaster),
+the gpio numbers might be different, so we recommend that you test the gpio pins first.
+
+```json
+        "LedStrip": {
+            "globalConfig": {
+                "gpioPinRed": 23,
+                "gpioPinGreen": 24,
+                "gpioPinBlue": 18
+            }
+        }
+```
 
 ### TrafficLight
 
