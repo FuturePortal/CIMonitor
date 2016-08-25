@@ -29,6 +29,8 @@
         socket.on('status', function(update) {
             console.log(update);
 
+            $('.no-connection').addClass('hidden');
+
             var status = 'success';
             if (update.hasFailureStatus) {
                 status = 'failure';
@@ -65,9 +67,14 @@
             }
             updateTimes();
         });
+
+        socket.on('disconnect', function(){
+            $('.no-connection').removeClass('hidden');
+        });
     </script>
     <div id="overlay" class="overlay-success"></div>
     <div class="statuses">
     </div>
+    <div class="no-connection"><img src="/images/no-connection.svg" height="90" alt="loading" /></div>
 </body>
 </html>
