@@ -33,10 +33,8 @@ LedStrip.prototype.setColor = function(red, green, blue) {
 
 /**
  * Handle the incoming statuses
- *
- * @param {object} status
  */
-LedStrip.prototype.handleStatus = function(status) {
+LedStrip.prototype.handleStatus = function() {
     if (this.statusManager.hasFailureStatus()) {
         this.setColor(0.31, 0, 0);
         return;
@@ -54,7 +52,7 @@ LedStrip.prototype.handleStatus = function(status) {
  * Prepares the gpio pins. Turns the green light on, turns the orange and red light off.
  */
 LedStrip.prototype.prepareRelay = function() {
-    this.setColor(0, 0.19, 0.19);
+    this.handleStatus();
 };
 
 module.exports = LedStrip;

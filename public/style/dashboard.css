@@ -67,6 +67,7 @@ body {
 .status-failure {
     color: rgb(109, 54, 54);
     background: rgba(236, 122, 96, .8);
+    animation: pulse-failure 2s linear infinite;
 }
 
 @keyframes pulse-started {
@@ -103,4 +104,40 @@ body {
     top: 75px;
     left: 150px;
     font-size: 30px;
+}
+
+.no-connection {
+    /* positioning */
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+
+    /* box-model */
+    padding: 50px;
+    border-radius: 50%;
+
+    /* visual */
+    background: rgba(236, 122, 96, .8);
+    animation: pulse-failure 2s linear infinite;
+}
+
+.no-connection img {
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes pulse-failure {
+    0% {
+        background: rgba(236, 122, 96, .95);
+    }
+    50% {
+        background: rgba(236, 122, 96, .5);
+    }
+    100% {
+        background: rgba(236, 122, 96, .95);
+    }
+}
+
+.hidden {
+    display: none;
 }
