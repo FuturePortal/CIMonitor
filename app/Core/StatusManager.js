@@ -1,3 +1,4 @@
+var fileSystem = require('fs');
 var MARK_STARTED_FAILED_TIME = 60000 * 30;
 
 /**
@@ -14,6 +15,54 @@ var StatusManager = function(eventHandler, cleanUpAfterDays) {
 
     /** @type {{}} */
     this.statuses = {};
+
+    this.statusesFile = './statuses.json';
+
+    this.init();
+};
+
+/**
+ * Initialise the StatusManager
+ * Loads the saved statuses and attaches a status listener to save status updates
+ */
+StatusManager.prototype.init = function() {
+    var StatusManager = this;
+
+    this.loadStatuses();
+
+    this.eventHandler.on('status', function() {
+        StatusManager.saveStatuses();
+    });
+};
+
+/**
+ * Save the statues to a json file, so that no status will be list when the app restarts
+ */
+StatusManager.prototype.saveStatuses = function() {
+    var statusesJson = JSON.stringify(this.statuses);
+
+    fileSystem.writeFile(this.statusesFile, statusesJson, function (error) {
+        if (error) {
+            console.log('[StatusManager] There has been an error saving your configuration data.');
+            console.log('[StatusManager] ' + error.message);
+            return;
+        }
+        console.log('[StatusManager] Stored the statuses in a json file.')
+    });
+};
+
+/**
+ * Load all statuses that have been saved previously
+ */
+StatusManager.prototype.loadStatuses = function() {
+    try {
+        var statuses = fileSystem.readFileSync(this.statusesFile);
+        this.statuses = JSON.parse(statuses);
+        console.log('[StatusManager] Statuses have been load from a previous save.');
+    } catch (error) {
+        console.log('[StatusManager] There has been an error parsing the saved statuses.');
+        console.log('[StatusManager] ' + error);
+    }
 };
 
 /**
