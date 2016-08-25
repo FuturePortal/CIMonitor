@@ -54,18 +54,18 @@ body {
 }
 
 .status-success {
-    color: rgb(56, 95, 46);
+    color: rgb(23, 55, 23);
     background: rgba(135, 192, 86, .8);
 }
 
 .status-started {
     background: rgba(255, 204, 102, .8);
-    color: rgb(117, 96, 46);
+    color: rgb(55, 47, 19);
     animation: pulse-started 2s linear infinite;
 }
 
 .status-failure {
-    color: rgb(109, 54, 54);
+    color: rgb(55, 26, 26);
     background: rgba(236, 122, 96, .8);
     animation: pulse-failure 2s linear infinite;
 }
@@ -73,7 +73,7 @@ body {
 @keyframes pulse-started {
     0% {
         background: rgba(255, 204, 102, .95);
-        color: rgb(117, 96, 46);
+        color: rgb(55, 47, 19);
     }
     50% {
         background: rgba(255, 204, 102, .5);
@@ -81,7 +81,7 @@ body {
     }
     100% {
         background: rgba(255, 204, 102, .95);
-        color: rgb(117, 96, 46);
+        color: rgb(55, 47, 19);
     }
 }
 
