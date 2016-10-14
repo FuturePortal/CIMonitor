@@ -63,6 +63,12 @@
                 "gpioPinGreen": 24,
                 "gpioPinBlue": 18
             }
+        },
+        "HueLight": {
+            "globalConfig": {
+                "hub": "127.0.0.1",
+                "path": "/api/username/lights/1/state"
+            }
         }
     }
 }
