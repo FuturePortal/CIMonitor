@@ -20,7 +20,7 @@ HueLight.prototype.init = function() {
     this.hub = this.config.hub;
     this.path = this.config.path;
 
-    this.prepareRelay();
+    this.handleStatus();
 };
 
 HueLight.prototype.setColor = function(x, y) {
@@ -60,13 +60,6 @@ HueLight.prototype.handleStatus = function() {
     }
 
     this.setColor(0.2682, 0.6632);
-};
-
-/**
- * Prepares the hue light pins. Turns the green light on, turns the orange and red light off.
- */
-HueLight.prototype.prepareRelay = function() {
-    this.handleStatus();
 };
 
 module.exports = HueLight;
