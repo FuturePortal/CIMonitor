@@ -96,8 +96,6 @@ Core.prototype.getStatusFromJenkinsCallback = function(data) {
  * @returns {boolean}
  */
 Core.prototype.handleJenkinsStatus = function(data) {
-    var buildStatus = 'started';
-
     var status = {
         project: data.name,
         branch: data.build.scm.branch.replace('origin/', ''),

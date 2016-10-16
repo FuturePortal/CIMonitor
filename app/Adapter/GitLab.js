@@ -19,9 +19,55 @@ GitLab.prototype.init = function() {
 GitLab.prototype.processEvent = function(event) {
     console.log('[GitLab] Translating GitLab event...');
 
-    console.log(JSON.stringify(event));
+    switch(event.object_kind) {
+        case 'build':
+            this.handleBuild(event);
+            break;
+        case 'pipeline':
+            this.handlePipeline(event);
+            break;
+    }
+};
 
-    console.log(event.object_kind);
+GitLab.prototype.translateStatus = function(status) {
+    var ciMonitorStatus = 'success';
+
+    switch(status) {
+        case 'created':
+        case 'pending':
+        case 'running':
+            ciMonitorStatus = 'started';
+            break;
+        case 'failed':
+            ciMonitorStatus = 'failure';
+            break;
+    }
+
+    return ciMonitorStatus;
+};
+
+GitLab.prototype.handleBuild = function(event) {
+    var status = {
+        project: event.repository.name,
+        branch: event.ref,
+        type: event.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
+        status: this.translateStatus(event.build_status),
+        note: event.build_name + ': ' + event.build_status
+    };
+
+    return this.statusManager.newStatus(status);
+};
+
+GitLab.prototype.handlePipeline = function(event) {
+    var status = {
+        project: event.project.name,
+        branch: event.object_attributes.ref,
+        type: 'test', // @todo: NEW TYPE: PIPELINE
+        status: this.translateStatus(event.object_attributes.status),
+        note: 'Pipeline triggered by ' + event.user.name
+    };
+
+    return this.statusManager.newStatus(status);
 };
 
 module.exports = GitLab;
