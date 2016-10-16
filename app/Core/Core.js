@@ -1,5 +1,6 @@
 var StatusManager = require('./StatusManager');
 var DashboardProvider = require('./DashboardProvider');
+var GitLabAdapter = require('../Adapter/GitLab');
 var Events = require('events');
 var FileSystem = require('fs');
 
@@ -19,6 +20,7 @@ var Core = function(httpServer, dashboardSocket) {
     this.config = JSON.parse(FileSystem.readFileSync(__dirname + '/../Config/config.json'));
     this.eventHandler = new Events.EventEmitter();
     this.statusManager = new StatusManager(this.eventHandler, this.config.cleanUpAfterDays);
+    this.gitlabAdapter = new GitLabAdapter(this.statusManager);
 
     new DashboardProvider(httpServer, dashboardSocket, this.eventHandler, this.statusManager);
 
@@ -56,6 +58,10 @@ Core.prototype.loadStatusModules = function() {
  */
 Core.prototype.handleStatus = function(data) {
     return this.statusManager.newStatus(data);
+};
+
+Core.prototype.handleGitLabStatus = function(event) {
+    this.gitlabAdapter.processEvent(event);
 };
 
 /**
