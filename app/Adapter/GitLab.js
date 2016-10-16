@@ -49,10 +49,10 @@ GitLab.prototype.translateStatus = function(status) {
 GitLab.prototype.handleBuild = function(event) {
     var status = {
         project: event.repository.name,
-        branch: event.ref,
+        branch: event.ref + '.' + event.build_name,
         type: event.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
         status: this.translateStatus(event.build_status),
-        note: event.build_name + ': ' + event.build_status
+        note: event.build_status
     };
 
     return this.statusManager.newStatus(status);
@@ -62,7 +62,7 @@ GitLab.prototype.handlePipeline = function(event) {
     var status = {
         project: event.project.name,
         branch: event.object_attributes.ref,
-        type: 'test', // @todo: NEW TYPE: PIPELINE
+        type: 'pipeline',
         status: this.translateStatus(event.object_attributes.status),
         note: 'Pipeline triggered by ' + event.user.name
     };
