@@ -59,22 +59,32 @@ find `[SeatDefault]` and place under it:
 
 ### Download CIMonitor
 
-1. `cd ~`
-1. `mkdir CIMonitor`
+1. `$ cd ~`
+1. `$ mkdir CIMonitor`
 1. [Create a new git key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
    and add it to your github account. (or download the zip and unzip)
-1. `git clone git@github.com:CIMonitor/CIMonitor.git`
-1. cd `CIMonitor/`
-1. `cp app/Config/config.dist.json app/Config/config.json`
-1. `vim app/Config/config.json` and make the required changes.
-1. `npm install`
+1. `$ git clone git@github.com:CIMonitor/CIMonitor.git`
+1. `$ cd CIMonitor/`
+1. `$ cp app/Config/config.dist.json app/Config/config.json`
+1. `$ vim app/Config/config.json` and make the required changes.
+1. `$ npm install`
 1. You can now test if the app runs with `node app/server.js`
+
+## Install [pi-blaster](https://github.com/sarfata/pi-blaster)
+
+1. Follow the installation instructions on the Github Repo so you end up with `/usr/sbin/pi-blaster`.
+1. Make sure you ran `sudo make install` so the systemd service script has been created and is auto started on boot.
+1. Open `/lib/systemd/system/pi-blaster.service` and change the ExecStart so it reads as follows:
+    ```
+    ExecStart=/bin/sh -c "/bin/sleep 20 && /usr/sbin/pi-blaster $DAEMON_ARGS"
+    ```
 
 ### Run node as a service
 
-Install the `pm2` service manager, that lets you start node applications as a service.
-
-`npm install pm2 -g`
+1. `$ npm install pm2 -g` - Install the `pm2` service manager, that lets you start node applications as a service.
+1. `$ pm2 startup system` - Create a systemd service file with `$ pm2 startup system` and run the command that follows.
+1. `$ sudo systemctl enable pm2` - Let pm2 start on boot.
+1. In `/etc/sytemctl/system/pm2.service`, add `pi-blaster.service` (separated by space) behind the line that reads `After=`
 
 ### Start CIMonitor & full screen browser
 
@@ -84,7 +94,6 @@ Start your browser full screen
 1. `vim ~/start-cimonitor.sh`
 
    ```sh
-   pm2 start /home/pi/CIMonitor/app/server.js --name CIMonitor && sleep 30s;
    sudo -u pi epiphany-browser -a -i --profile ~/.config http://localhost:3000 --display=:0 &
    sleep 15s;
    xte "key F11" -x:0
