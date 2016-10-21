@@ -27,6 +27,11 @@ var LedStrip = function(config, statusManager) {
             r: 255,
             g: 50,
             b: 0 
+        },
+        off: {
+            r: 0,
+            g: 0,
+            b: 0
         }
     };
 
@@ -46,15 +51,18 @@ LedStrip.prototype.init = function() {
     this.bluePin = this.config.gpioPinBlue;
 
     this.colorCycle();
-    this.runTestCycle(0);
 };
 
 LedStrip.prototype.colorCycle = function() {
     var LedStrip = this;
-    console.log('cycle');
 
     if (this.currentColor !== this.statusColor) {
-        return this.changeToColor(this.statusColor, 10);
+        console.log('[LedStrip] Changing color to status ' + this.statusColor);
+        return this.changeToColor(this.statusColor, 100);
+    }
+
+    if (this.statusColor === 'started' || this.statusColor === 'failure') {
+        return this.changeToColor(this.statusColor, this.currentIntencity === 100 ? 10 : 100);
     }
 
     setTimeout(function() {
@@ -62,26 +70,44 @@ LedStrip.prototype.colorCycle = function() {
     }, 1000);
 };
 
+LedStrip.prototype.calculateFade = function(startColor, finalColor, currentStep, steps) {
+    if (startColor === finalColor) {
+        return finalColor;
+    }
+
+    var range = (finalColor < startColor) ? startColor - finalColor : finalColor - startColor;
+    var stepSize = range / steps;
+
+    if (finalColor < startColor) {
+        return startColor - stepSize * currentStep;
+    }
+    
+    return startColor + stepSize * currentStep;
+};
+
 LedStrip.prototype.changeToColor = function(color, intencity, step = 0) {
+    var steps = 50;
     var LedStrip = this;
     var red = this.colors[color].r;
     var green = this.colors[color].g;
     var blue = this.colors[color].b;
 
-    if (step === 0) {
-        console.log('Changing color to ' + color + ' (R:' + red + ' G:' + green +  ' B:' + blue + ')...');
-    }
+    red = this.calculateFade(this.colors[this.currentColor].r, red, step, steps);
+    green = this.calculateFade(this.colors[this.currentColor].g, green, step, steps);
+    blue = this.calculateFade(this.colors[this.currentColor].b, blue, step, steps);
 
-    red = red / 255 * intencity / 100;
-    green = green / 255 * intencity / 100;
-    blue = blue / 255 * intencity / 100;
+    var fadeIntencity = this.calculateFade(this.currentIntencity, intencity, step, steps);
+
+    red = red / 255 * fadeIntencity / 100;
+    green = green / 255 * fadeIntencity / 100;
+    blue = blue / 255 * fadeIntencity / 100;
 
     piblaster.setPwm(this.redPin, red);
     piblaster.setPwm(this.greenPin, green);
     piblaster.setPwm(this.bluePin, blue);
 
-    if (step > 99) {
-        console.log('COLOR CHANGED!');
+    if (step >= steps) {
+        this.currentIntencity = intencity;
         this.currentColor = color;
         this.colorCycle();
         return;
@@ -97,37 +123,16 @@ LedStrip.prototype.changeToColor = function(color, intencity, step = 0) {
  */
 LedStrip.prototype.handleStatus = function() {
     if (this.statusManager.hasFailureStatus()) {
-        //this.setColor(0.31, 0, 0);
+        this.statusColor = 'failure';
         return;
     }
 
     if (this.statusManager.hasStartedStatus()) {
-        //this.setColor(0.31, 0.08, 0);
+        this.statusColor = 'started';
         return;
     }
 
-    //this.setColor(0, 0.12, 0);
-};
-
-LedStrip.prototype.runTestCycle = function(counter) {
-    var LedStrip = this;
-
-    switch(counter % 4) {
-        case 0:
-        case 2:
-            this.statusColor = 'started';
-            break;
-        case 1:
-            this.statusColor = 'success';
-            break;
-        case 3:
-            this.statusColor = 'failure';
-            break;
-    }
-
-    setTimeout(function() {
-        LedStrip.runTestCycle(counter + 1);
-    }, 5000);
+    this.statusColor = 'success';
 };
 
 module.exports = LedStrip;
