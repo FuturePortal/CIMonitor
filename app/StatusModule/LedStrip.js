@@ -28,6 +28,11 @@ var LedStrip = function(config, statusManager) {
             g: 50,
             b: 0 
         },
+        neutral: {
+            r: 0,
+            g: 160,
+            b: 255
+        },
         off: {
             r: 0,
             g: 0,
@@ -50,6 +55,8 @@ LedStrip.prototype.init = function() {
     this.greenPin = this.config.gpioPinGreen;
     this.bluePin = this.config.gpioPinBlue;
 
+    this.lastChange = new Date();
+    
     this.colorCycle();
 };
 
@@ -63,6 +70,14 @@ LedStrip.prototype.colorCycle = function() {
 
     if (this.statusColor === 'started' || this.statusColor === 'failure') {
         return this.changeToColor(this.statusColor, this.currentIntencity === 100 ? 10 : 100);
+    }
+
+    var now = new Date();
+    // Change the led strip color to a neutral color after 3 minutes
+    if (this.currentColor !== 'neutral' && now.getTime() - this.lastChange.getTime() > 1000 * 60 * 3) {
+        console.log('[LedStrip] Changing the color to the neutral color.');
+        this.statusColor = 'neutral';
+        return this.changeToColor('neutral', 50);
     }
 
     setTimeout(function() {
@@ -109,6 +124,7 @@ LedStrip.prototype.changeToColor = function(color, intencity, step = 0) {
     if (step >= steps) {
         this.currentIntencity = intencity;
         this.currentColor = color;
+        this.lastChange = new Date();
         this.colorCycle();
         return;
     }
