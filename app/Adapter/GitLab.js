@@ -49,7 +49,7 @@ GitLab.prototype.translateStatus = function(status) {
 GitLab.prototype.handleBuild = function(event) {
     var status = {
         project: event.repository.name,
-        branch: event.ref + '.' + event.build_name,
+        branch: event.ref + ' ' + event.build_name,
         type: event.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
         status: this.translateStatus(event.build_status),
         note: event.build_status

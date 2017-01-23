@@ -60,6 +60,9 @@ Core.prototype.handleStatus = function(data) {
     return this.statusManager.newStatus(data);
 };
 
+/**
+ * Handle an incoming GitLab status
+ */
 Core.prototype.handleGitLabStatus = function(event) {
     this.gitlabAdapter.processEvent(event);
 };

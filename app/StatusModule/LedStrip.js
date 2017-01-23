@@ -16,27 +16,32 @@ var LedStrip = function(config, statusManager) {
         failure: {
             r: 255,
             g: 0,
-            b: 0
+            b: 0,
+            intensity: 100
         },
         success: {
             r: 0,
             g: 255,
-            b: 0
+            b: 0,
+            intensity: 100
         },
         started: {
             r: 255,
             g: 50,
-            b: 0 
+            b: 0 ,
+            intensity: 100
         },
         neutral: {
             r: 0,
-            g: 160,
-            b: 255
+            g: 255,
+            b: 0,
+            intensity: 50
         },
         off: {
             r: 0,
             g: 0,
-            b: 0
+            b: 0,
+            intensity: 100
         }
     };
 
@@ -48,36 +53,47 @@ var LedStrip = function(config, statusManager) {
 util.inherits(LedStrip, StatusModule);
 
 /**
- * Set the gpio pins to the correct mode on initialisation
+ * Overwrite default values from the config
  */
 LedStrip.prototype.init = function() {
     this.redPin = this.config.gpioPinRed;
     this.greenPin = this.config.gpioPinGreen;
     this.bluePin = this.config.gpioPinBlue;
 
+    if (typeof this.config.colors !== 'undefined') {
+        for (var overWriteColor in this.config.colors) {
+            if (this.config.colors.hasOwnProperty(overWriteColor)) {
+                this.colors[overWriteColor] = this.config.colors[overWriteColor];
+            }
+        }
+    }
+
     this.lastChange = new Date();
     
     this.colorCycle();
 };
 
+/**
+ * This method handles the current led strip color, determined by the current status
+ */
 LedStrip.prototype.colorCycle = function() {
     var LedStrip = this;
 
     if (this.currentColor !== this.statusColor) {
         console.log('[LedStrip] Changing color to status ' + this.statusColor);
-        return this.changeToColor(this.statusColor, 100);
+        return this.changeToColor(this.statusColor, false);
     }
 
     if (this.statusColor === 'started' || this.statusColor === 'failure') {
-        return this.changeToColor(this.statusColor, this.currentIntencity === 100 ? 10 : 100);
+        return this.changeToColor(this.statusColor, this.currentIntencity === 100);
     }
 
     var now = new Date();
     // Change the led strip color to a neutral color after 3 minutes
-    if (this.currentColor !== 'neutral' && now.getTime() - this.lastChange.getTime() > 1000 * 60 * 3) {
+    if (this.currentColor !== 'neutral' && now.getTime() - this.lastChange.getTime() > 1000 * 60 * 5) {
         console.log('[LedStrip] Changing the color to the neutral color.');
         this.statusColor = 'neutral';
-        return this.changeToColor('neutral', 50);
+        return this.changeToColor('neutral', false);
     }
 
     setTimeout(function() {
@@ -85,44 +101,64 @@ LedStrip.prototype.colorCycle = function() {
     }, 1000);
 };
 
-LedStrip.prototype.calculateFade = function(startColor, finalColor, currentStep, steps) {
-    if (startColor === finalColor) {
-        return finalColor;
+/**
+ * Calculates the fade between two numbers given a number of steps
+ *
+ * @param {int} startNumber
+ * @param {int} finalNumber
+ * @param {int} currentStep
+ * @param {int} steps
+ * @returns {int}
+ */
+LedStrip.prototype.calculateFade = function(startNumber, finalNumber, currentStep, steps) {
+    if (startNumber === finalNumber) {
+        return finalNumber;
     }
 
-    var range = (finalColor < startColor) ? startColor - finalColor : finalColor - startColor;
+    var range = (finalNumber < startNumber) ? startNumber - finalNumber : finalNumber - startNumber;
     var stepSize = range / steps;
 
-    if (finalColor < startColor) {
-        return startColor - stepSize * currentStep;
+    if (finalNumber < startNumber) {
+        return startNumber - stepSize * currentStep;
     }
     
-    return startColor + stepSize * currentStep;
+    return startNumber + stepSize * currentStep;
 };
 
-LedStrip.prototype.changeToColor = function(color, intencity, step = 0) {
+/**
+ * Change the led strip color to a named color
+ *
+ * @param {string} color
+ * @param {boolean} dimmed
+ * @param {int|null} step
+ */
+LedStrip.prototype.changeToColor = function(color, dimmed, step) {
+    step = step || 0;
+
     var steps = 50;
     var LedStrip = this;
     var red = this.colors[color].r;
     var green = this.colors[color].g;
     var blue = this.colors[color].b;
 
+    var intensity = dimmed ? this.colors[color].intensity / 10 : this.colors[color].intensity;
+
     red = this.calculateFade(this.colors[this.currentColor].r, red, step, steps);
     green = this.calculateFade(this.colors[this.currentColor].g, green, step, steps);
     blue = this.calculateFade(this.colors[this.currentColor].b, blue, step, steps);
 
-    var fadeIntencity = this.calculateFade(this.currentIntencity, intencity, step, steps);
+    var fadeIntensity = this.calculateFade(this.currentIntencity, intensity, step, steps);
 
-    red = red / 255 * fadeIntencity / 100;
-    green = green / 255 * fadeIntencity / 100;
-    blue = blue / 255 * fadeIntencity / 100;
+    red = red / 255 * fadeIntensity / 100;
+    green = green / 255 * fadeIntensity / 100;
+    blue = blue / 255 * fadeIntensity / 100;
 
     piblaster.setPwm(this.redPin, red);
     piblaster.setPwm(this.greenPin, green);
     piblaster.setPwm(this.bluePin, blue);
 
     if (step >= steps) {
-        this.currentIntencity = intencity;
+        this.currentIntencity = intensity;
         this.currentColor = color;
         this.lastChange = new Date();
         this.colorCycle();
@@ -130,12 +166,12 @@ LedStrip.prototype.changeToColor = function(color, intencity, step = 0) {
     }
 
     setTimeout(function() {
-        LedStrip.changeToColor(color, intencity, step + 1);
+        LedStrip.changeToColor(color, dimmed, step + 1);
     }, 20);
 };
 
 /**
- * Handle the incoming statuses
+ * Set the led strip status to what should be presented to the user
  */
 LedStrip.prototype.handleStatus = function() {
     if (this.statusManager.hasFailureStatus()) {
@@ -152,4 +188,3 @@ LedStrip.prototype.handleStatus = function() {
 };
 
 module.exports = LedStrip;
-
