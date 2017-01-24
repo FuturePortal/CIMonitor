@@ -47,8 +47,6 @@ GitLab.prototype.translateStatus = function(status) {
 };
 
 GitLab.prototype.handleBuild = function(data) {
-    console.log('BUILD: ' + JSON.stringify(data));
-
     var status = {
         project: data.repository.name,
         branch: data.ref + ' ' + data.build_name,
