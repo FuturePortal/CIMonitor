@@ -63,7 +63,7 @@ LedStrip.prototype.init = function() {
     if (typeof this.config.colors !== 'undefined') {
         for (var overWriteColor in this.config.colors) {
             if (this.config.colors.hasOwnProperty(overWriteColor)) {
-                console.log('overwriting ' + overWriteColor + ': ' + JSON.stringify(his.config.colors[overWriteColor]));
+                console.log('overwriting ' + overWriteColor + ': ' + JSON.stringify(this.config.colors[overWriteColor]));
                 this.colors[overWriteColor] = this.config.colors[overWriteColor];
             }
         }
