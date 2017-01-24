@@ -30,6 +30,14 @@ limit!
 1. To start the server, run `node app/server.js`.
 1. The dashboard is now available on the port you provided.
 
+### Linking GitLab
+
+To push GitLab build statuses to the CIMonitor, you need to configure a web-hook in GitLab under the project settings.
+Enter a URL to your running CIMonitor instance ending on `/gitlab`. So for example: `https://ci.example.org/gitlab`.
+Note that there is no support yet for a token, so uncheck that option.
+
+With build statuses checked, the CIMonitor should fill up with all your builds!
+
 ### Send CI statuses to the dashboard
 
 1. Configure your test and deployment environments to push status
@@ -43,7 +51,7 @@ limit!
     "note": "This field is optional"
 }
 ```
-1. Now for every build, the dashboard should display the status!
+2. Now for every build, the dashboard should display the status!
 
 ### Hook up modules (optional)
 
