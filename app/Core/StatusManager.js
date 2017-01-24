@@ -87,7 +87,7 @@ StatusManager.prototype.newStatus = function(status) {
     if (status.status === 'started') {
         setTimeout(function() {
             StatusManager.checkIfStartedFailed();
-        }, MARK_STARTED_FAILED_TIME)
+        }, MARK_STARTED_FAILED_TIME);
     }
 
     // Fire status event

@@ -16,15 +16,15 @@ GitLab.prototype.init = function() {
     console.log('[GitLab] Ready to process GitLab events.');
 };
 
-GitLab.prototype.processEvent = function(event) {
+GitLab.prototype.processEvent = function(data) {
     console.log('[GitLab] Translating GitLab event...');
 
-    switch(event.object_kind) {
+    switch(data.object_kind) {
         case 'build':
-            this.handleBuild(event);
+            this.handleBuild(data);
             break;
         case 'pipeline':
-            this.handlePipeline(event);
+            this.handlePipeline(data);
             break;
     }
 };
@@ -46,25 +46,27 @@ GitLab.prototype.translateStatus = function(status) {
     return ciMonitorStatus;
 };
 
-GitLab.prototype.handleBuild = function(event) {
+GitLab.prototype.handleBuild = function(data) {
+    console.log('BUILD: ' + JSON.stringify(data));
+
     var status = {
-        project: event.repository.name,
-        branch: event.ref + ' ' + event.build_name,
-        type: event.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
-        status: this.translateStatus(event.build_status),
-        note: event.build_status
+        project: data.repository.name,
+        branch: data.ref + ' ' + data.build_name,
+        type: data.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
+        status: this.translateStatus(data.build_status),
+        note: data.build_status
     };
 
     return this.statusManager.newStatus(status);
 };
 
-GitLab.prototype.handlePipeline = function(event) {
+GitLab.prototype.handlePipeline = function(data) {
     var status = {
-        project: event.project.name,
-        branch: event.object_attributes.ref,
+        project: data.project.name,
+        branch: data.object_attributes.ref,
         type: 'pipeline',
-        status: this.translateStatus(event.object_attributes.status),
-        note: 'Pipeline triggered by ' + event.user.name
+        status: this.translateStatus(data.object_attributes.status),
+        note: 'Pipeline triggered by ' + data.user.name
     };
 
     return this.statusManager.newStatus(status);
