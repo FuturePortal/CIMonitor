@@ -35,7 +35,7 @@ var LedStrip = function(config, statusManager) {
             r: 0,
             g: 255,
             b: 0,
-            intensity: 50
+            intensity: 30
         },
         off: {
             r: 0,

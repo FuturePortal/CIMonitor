@@ -103,7 +103,7 @@ by step tutorial [here](http://popoklopsi.github.io/RaspberryPi-LedStrip/#!/). W
 to do is configure the correct gpio pins used. NOTE: we use [pi-blaster](https://github.com/sarfata/pi-blaster),
 the gpio numbers might be different, so we recommend that you test the gpio pins first.
 
-Note that the started and failure statusses will be blinking.
+Note that the started and failure statuses will be blinking.
 
 When the led strip is on the success status for 5 minutes,
 it will go to the "neutral". This so it the light doesn't have to be super bright when not used for a while.
@@ -113,36 +113,36 @@ it will go to the "neutral". This so it the light doesn't have to be super brigh
             "globalConfig": {
                 "gpioPinRed": 23,
                 "gpioPinGreen": 24,
-                "gpioPinBlue": 18
-            },
-            "_comment": "everything below is optional",
-            "colors": {
-                "failure": {
-                    "r": 255,
-                    "g": 0,
-                    "b": 0,
-                    "intensity": 100
-                },
-                "success": {
-                    "r": 0,
-                    "g": 255,
-                    "b": 0,
-                    "intensity": 100
-                },
-                "started": {
-                    "r": 255,
-                    "g": 50,
-                    "b": 0 ,
-                    "intensity": 100
-                },
-                "_comment": "The neutral color is shown after 5 minutes of success",
-                "neutral": {
-                    "r": 0,
-                    "g": 255,
-                    "b": 0,
-                    "intensity": 50
+                "gpioPinBlue": 18,
+                "_comment": "everything below is optional",
+                "colors": {
+                    "failure": {
+                        "r": 255,
+                        "g": 0,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "success": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "started": {
+                        "r": 255,
+                        "g": 50,
+                        "b": 0 ,
+                        "intensity": 100
+                    },
+                    "_comment": "The neutral color is shown after 5 minutes of success",
+                    "neutral": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 30
+                    }
                 }
-            }
+            },
         }
 ```
 
