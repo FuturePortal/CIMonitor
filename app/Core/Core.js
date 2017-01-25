@@ -1,5 +1,6 @@
 var StatusManager = require('./StatusManager');
 var DashboardProvider = require('./DashboardProvider');
+var CIMonitorListener = require('./CIMonitorListener');
 var GitLabAdapter = require('../Adapter/GitLab');
 var Events = require('events');
 var FileSystem = require('fs');
@@ -21,6 +22,10 @@ var Core = function(httpServer, dashboardSocket) {
     this.eventHandler = new Events.EventEmitter();
     this.statusManager = new StatusManager(this.eventHandler, this.config.cleanUpAfterDays);
     this.gitlabAdapter = new GitLabAdapter(this.statusManager);
+
+    if (typeof this.config.listenUrl !== 'undefined') {
+        new CIMonitorListener(this.config.listenUrl, this.statusManager);
+    }
 
     new DashboardProvider(httpServer, dashboardSocket, this.eventHandler, this.statusManager);
 

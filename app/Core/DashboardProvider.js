@@ -46,7 +46,7 @@ DashboardProvider.prototype.attachStatusListener = function() {
 DashboardProvider.prototype.openDashboardSocket = function() {
     var DashboardProvider = this;
 
-    var socket  = this.dashboardSocket.listen(this.httpServer);
+    var socket = this.dashboardSocket.listen(this.httpServer);
     socket.on('connection', function(socket) {
         var connectedSocked = socket;
         var socketId = DashboardProvider.socketId++;
