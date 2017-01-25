@@ -10,8 +10,6 @@ var piblaster = require('pi-blaster.js');
  * @constructor
  */
 var LedStrip = function(config, statusManager) {
-    StatusModule.call(this, config, statusManager);
-
     this.colors = {
         failure: {
             r: 255,
@@ -49,6 +47,8 @@ var LedStrip = function(config, statusManager) {
     this.currentColor = 'off';
 
     this.currentIntencity = 100;
+
+    StatusModule.call(this, config, statusManager);
 };
 util.inherits(LedStrip, StatusModule);
 
@@ -63,7 +63,6 @@ LedStrip.prototype.init = function() {
     if (typeof this.config.colors !== 'undefined') {
         for (var overWriteColor in this.config.colors) {
             if (this.config.colors.hasOwnProperty(overWriteColor)) {
-                console.log('overwriting ' + overWriteColor + ': ' + JSON.stringify(this.config.colors[overWriteColor]));
                 this.colors[overWriteColor] = this.config.colors[overWriteColor];
             }
         }
