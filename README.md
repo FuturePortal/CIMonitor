@@ -1,7 +1,7 @@
-![CI Monitor](https://cloud.githubusercontent.com/assets/6495166/14582332/071b3286-0402-11e6-9104-144f5e150189.png)
+![CIMonitor](https://cloud.githubusercontent.com/assets/6495166/14582332/071b3286-0402-11e6-9104-144f5e150189.png)
 ===
 
-The CI Monitor is a place where all your project statuses come together.
+The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
