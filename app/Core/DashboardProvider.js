@@ -52,7 +52,7 @@ DashboardProvider.prototype.openDashboardSocket = function() {
         var socketId = DashboardProvider.socketId++;
 
         DashboardProvider.dashboardSockets[socketId] = connectedSocked;
-        connectedSocked.emit('status', DashboardProvider.getDashboardStatuses());
+        connectedSocked.emit('statuses', DashboardProvider.getDashboardStatuses());
         console.log(
             '[DashboardProvider] Dashboard connected with id ' + socketId + ' and has now the latest statuses.'
         );
@@ -86,7 +86,8 @@ DashboardProvider.prototype.pushStatusToDashboards = function(status) {
     var dashboardStatuses = this.getDashboardStatuses();
 
     for (var id in this.dashboardSockets) {
-        this.dashboardSockets[id].emit('status', dashboardStatuses);
+        this.dashboardSockets[id].emit('statuses', dashboardStatuses);
+        this.dashboardSockets[id].emit('status', status);
         console.log('[DashboardProvider] Sent update to dashboard with id ' + id + '.');
     }
 };

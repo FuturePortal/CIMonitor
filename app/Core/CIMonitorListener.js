@@ -16,18 +16,28 @@ var CIMonitorListener = function(webHookUrl, statusManager) {
     this.statusManager = statusManager;
 
     this.listenToStatuses();
-
-    console.log('[CIMonitorListener] Waiting for statuses.');
 };
 
 CIMonitorListener.prototype.listenToStatuses = function() {
     var CIMonitorListener = this;
 
-    var socket = io.connect(this.webHookUrl);
-    socket.on('status', function(data) {
-        console.log('[CIMonitorListener] RECEIVED STATUS!!!');
-        CIMonitorListener.statusManager.newStatus(data);
-    });
+    var socket = require('socket.io-client')(this.webHookUrl);
+    socket.on('connect', function() { CIMonitorListener.onConnect(); });
+    socket.on('status', function(status) { CIMonitorListener.onStatus(status); });
+    socket.on('disconnect', function() { CIMonitorListener.onDisconnect(); });
+};
+
+CIMonitorListener.prototype.onConnect = function() {
+    console.log('[CIMonitorListener] Connected to the external CIMonitor at ' + this.webHookUrl + '.');
+};
+
+CIMonitorListener.prototype.onStatus = function(data) {
+    console.log('[CIMonitorListener] New external status comming in...');
+    this.statusManager.newStatus(data);
+};
+
+CIMonitorListener.prototype.onDisconnect = function() {
+    console.log('[CIMonitorListener] Disconnected from ' + this.webHookUrl + '.');
 };
 
 module.exports = CIMonitorListener;
