@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="Base">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#9B7CAB;" d="M50,20V4c0-2.209-1.791-4-4-4H18c-2.209,0-4,1.791-4,4v16
+			c0,2.209,1.791,4,4,4h28C48.209,24,50,22.209,50,20z M12,48.001H4c-2.209,0-4,1.79-4,3.999v8c0,2.21,1.791,4,4,4h8
+			c2.209,0,4-1.79,4-4v-8C16,49.791,14.209,48.001,12,48.001z M36,48.001h-8c-2.209,0-4,1.79-4,3.999v8c0,2.21,1.791,4,4,4h8
+			c2.209,0,4-1.79,4-4v-8C40,49.791,38.209,48.001,36,48.001z M60,48.001h-8c-2.209,0-4,1.79-4,3.999v8c0,2.21,1.791,4,4,4h8
+			c2.209,0,4-1.79,4-4v-8C64,49.791,62.209,48.001,60,48.001z"/>
+	</g>
+</g>
+<g id="Lines_1_">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#CCCCCC;" d="M52,34H34V24h-4v10H12c-3.313,0-6,2.687-6,6.001v8h4v-8
+			C10,38.896,10.895,38,12,38h18v10.001h4V38h18c1.104,0,2,0.896,2,2.001v8h4v-8C58,36.687,55.313,34,52,34z"/>
+	</g>
+</g>
+<g id="Labels">
+	<g>
+		<path style="fill:#FFFFFF;" d="M40,8.001H24c-1.104,0-2,0.895-2,1.999v4c0,1.105,0.896,2.001,2,2.001h16c1.104,0,2-0.896,2-2.001
+			v-4C42,8.896,41.104,8.001,40,8.001z"/>
+	</g>
+</g>
+</svg>

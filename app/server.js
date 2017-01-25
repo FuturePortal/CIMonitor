@@ -44,6 +44,16 @@ app.post('/status', function (request, response) {
     response.sendStatus(200);
 });
 
+app.post('/gitlab', function (request, response) {
+    var requestBody = request.body;
+
+    setTimeout(function() {
+        app.core.handleGitLabStatus(requestBody);
+    }, 0);
+
+    response.sendStatus(200);
+});
+
 /**
  * POST /jenkins-status
  *

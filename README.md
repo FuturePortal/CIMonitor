@@ -30,6 +30,14 @@ limit!
 1. To start the server, run `node app/server.js`.
 1. The dashboard is now available on the port you provided.
 
+### Linking GitLab
+
+To push GitLab build statuses to the CIMonitor, you need to configure a web-hook in GitLab under the project settings.
+Enter a URL to your running CIMonitor instance ending on `/gitlab`. So for example: `https://ci.example.org/gitlab`.
+Note that there is no support yet for a token, so uncheck that option.
+
+With build statuses checked, the CIMonitor should fill up with all your builds!
+
 ### Send CI statuses to the dashboard
 
 1. Configure your test and deployment environments to push status
@@ -43,7 +51,7 @@ limit!
     "note": "This field is optional"
 }
 ```
-1. Now for every build, the dashboard should display the status!
+2. Now for every build, the dashboard should display the status!
 
 ### Hook up modules (optional)
 
@@ -98,18 +106,51 @@ The relay will turn on for a limited time, releasing a marble into the track.
 Display the status of your board with a led-strip. Red for a failure, orange for an active process, and green for
 success!
 
-To have an awesome ledstrip added to your CIMonitor, you need to do some hardware hacking first. There is a step
+To have an awesome led-strip added to your CIMonitor, you need to do some hardware hacking first. There is a step
 by step tutorial [here](http://popoklopsi.github.io/RaspberryPi-LedStrip/#!/). When you've done that, all you need
 to do is configure the correct gpio pins used. NOTE: we use [pi-blaster](https://github.com/sarfata/pi-blaster),
 the gpio numbers might be different, so we recommend that you test the gpio pins first.
+
+Note that the started and failure statuses will be blinking.
+
+When the led strip is on the success status for 5 minutes,
+it will go to the "neutral". This so it the light doesn't have to be super bright when not used for a while.
 
 ```json
         "LedStrip": {
             "globalConfig": {
                 "gpioPinRed": 23,
                 "gpioPinGreen": 24,
-                "gpioPinBlue": 18
-            }
+                "gpioPinBlue": 18,
+                "_comment": "everything below is optional",
+                "colors": {
+                    "failure": {
+                        "r": 255,
+                        "g": 0,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "success": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "started": {
+                        "r": 255,
+                        "g": 50,
+                        "b": 0 ,
+                        "intensity": 100
+                    },
+                    "_comment": "The neutral color is shown after 5 minutes of success",
+                    "neutral": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 30
+                    }
+                }
+            },
         }
 ```
 
