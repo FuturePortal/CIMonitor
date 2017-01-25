@@ -1,5 +1,7 @@
 {
+    "_comment": "Remove everything you do not need!",
     "cleanUpAfterDays": 30,
+    "listenUrl": "http://ci.example.org",
     "statusModules": {
         "MarbleRun": {
             "globalConfig": {
@@ -61,7 +63,33 @@
             "globalConfig": {
                 "gpioPinRed": 23,
                 "gpioPinGreen": 24,
-                "gpioPinBlue": 18
+                "gpioPinBlue": 18,
+                "colors": {
+                    "failure": {
+                        "r": 255,
+                        "g": 0,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "success": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 100
+                    },
+                    "started": {
+                        "r": 255,
+                        "g": 50,
+                        "b": 0 ,
+                        "intensity": 100
+                    },
+                    "neutral": {
+                        "r": 0,
+                        "g": 255,
+                        "b": 0,
+                        "intensity": 30
+                    }
+                }
             }
         },
         "HueLight": {
