@@ -26,7 +26,7 @@
         }
         setTimeout(function() { updateTimesEveryMinute() }, 10000);
 
-        socket.on('status', function(update) {
+        socket.on('statuses', function(update) {
             console.log(update);
 
             $('.no-connection').addClass('hidden');

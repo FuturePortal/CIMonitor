@@ -1,7 +1,7 @@
-![CI Monitor](https://cloud.githubusercontent.com/assets/6495166/14582332/071b3286-0402-11e6-9104-144f5e150189.png)
+![CIMonitor](https://cloud.githubusercontent.com/assets/6495166/14582332/071b3286-0402-11e6-9104-144f5e150189.png)
 ===
 
-The CI Monitor is a place where all your project statuses come together.
+The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
@@ -68,6 +68,20 @@ configuration for that module in the global config file
     }
 }
 ```
+
+### Listen to another CIMonitor
+
+In case you want to have a second raspberry pi running, but listen to the same statuses, you can provide a web hook
+URL to the other running CIMonitor. That way all the statuses that are pushed to the dashboard, are pushed to the
+second CIMonitor instance as well. To make this work, add a listen URL in your config:
+
+```json
+{
+    "listenUrl": "http://ci.example.org"
+}
+```
+
+The same URL should be used as the status dashboard.
 
 # Modules
 
