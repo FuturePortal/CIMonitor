@@ -47,6 +47,10 @@ GitLab.prototype.translateStatus = function(status) {
 };
 
 GitLab.prototype.handleBuild = function(data) {
+    if (data.build_name.substring(0, 4) === 'stop') {
+        return;
+    }
+
     var status = {
         project: data.repository.name,
         branch: data.ref + ' ' + data.build_name,
