@@ -22,15 +22,18 @@ WebHook.prototype.init = function() {
  * Handle the incoming statuses
  */
 WebHook.prototype.handleStatus = function() {
-    var webHook,
-        request;
+    var webHook;
+    var request;
 
-    if (this.statusManager.hasStartedStatus()) {
+    if (this.statusManager.hasStartedStatus() && this.config.hasOwnProperty('started')) {
         webHook = this.config.started;
-    } else if(this.statusManager.hasFailureStatus()) {
+    } else if(this.statusManager.hasFailureStatus() && this.config.hasOwnProperty('failure')) {
         webHook = this.config.failure;
-    } else {
+    } else if(this.config.hasOwnProperty('success')) {
         webHook = this.config.success;
+    } else {
+        console.warn("[WebHook] Unhandled status or invalid WebHook configuration.");
+        return;
     }
 
     request = this.https.request({
@@ -40,7 +43,6 @@ WebHook.prototype.handleStatus = function() {
         "headers": {
             "Content-Type": "application/json;charset=UTF-8"
         }
-    }, function(response) {
     });
 
     request.end();
