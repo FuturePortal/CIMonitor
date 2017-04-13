@@ -97,6 +97,22 @@
                 "hub": "127.0.0.1",
                 "path": "/api/username/lights/1/state"
             }
+        },
+        "WebHook": {
+            "globalConfig": {
+                "failure": {
+                    "hostName": "maker.ifttt.com",
+                    "path": "/trigger/failure/with/key/your_ifttt_token"
+                },
+                "started": {
+                    "hostName": "maker.ifttt.com",
+                    "path": "/trigger/started/with/key/your_ifttt_token"
+                },
+                "success": {
+                    "hostName": "maker.ifttt.com",
+                    "path": "/trigger/success/with/key/your_ifttt_token"
+                }
+            }
         }
     }
 }
