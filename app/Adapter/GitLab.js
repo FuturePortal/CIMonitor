@@ -33,7 +33,6 @@ GitLab.prototype.translateStatus = function(status) {
     var ciMonitorStatus = 'success';
 
     switch(status) {
-        case 'created':
         case 'pending':
         case 'running':
             ciMonitorStatus = 'started';
@@ -47,7 +46,7 @@ GitLab.prototype.translateStatus = function(status) {
 };
 
 GitLab.prototype.handleBuild = function(data) {
-    if (data.build_name.substring(0, 4) === 'stop') {
+    if (data.build_status === 'created') {
         return;
     }
 
