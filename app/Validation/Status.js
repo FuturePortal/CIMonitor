@@ -37,7 +37,8 @@ module.exports = {
             inclusion: {
                 within: [
                     'test',
-                    'deploy'
+                    'deploy',
+                    'build'
                 ],
                 message: 'may only be test, or deploy.'
             }
