@@ -45,7 +45,20 @@ GitLab.prototype.translateStatus = function(status) {
     return ciMonitorStatus;
 };
 
+GitLab.prototype.determineType = function(buildName) {
+    if (buildName.substring(0, 6) === 'deploy') {
+        return 'deploy';
+    }
+
+    if (buildName.substring(0, 5) === 'build') {
+        return 'build';
+    }
+
+    return 'test';
+};
+
 GitLab.prototype.handleBuild = function(data) {
+    // Not acting upon the created status
     if (data.build_status === 'created') {
         return;
     }
@@ -53,7 +66,7 @@ GitLab.prototype.handleBuild = function(data) {
     var status = {
         project: data.repository.name,
         branch: data.ref + ' ' + data.build_name,
-        type: data.build_name.substring(0, 6) === 'deploy' ? 'deploy' : 'test',
+        type: this.determineType(data.build_name),
         status: this.translateStatus(data.build_status),
         note: data.build_status
     };
