@@ -1,3 +1,4 @@
+.idea/
 node_modules/
 app/Config/config.json
 statuses.json

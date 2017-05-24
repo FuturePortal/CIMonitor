@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="72px" viewBox="0 0 64 72" style="enable-background:new 0 0 64 72;" xml:space="preserve">
+<g id="Red_Carpet">
+	<g>
+		<polygon style="fill:#ED7161;" points="44,40 20,40 4,72 60,72"/>
+	</g>
+</g>
+<g id="Poles">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#CCCCCC;" d="M6,20c-1.104,0-2,0.895-2,2v48c0,1.104,0.896,2,2,2
+			s2-0.896,2-2V22C8,20.895,7.104,20,6,20z M58,20c-1.104,0-2,0.895-2,2v48c0,1.104,0.896,2,2,2s2-0.896,2-2V22
+			C60,20.895,59.104,20,58,20z"/>
+	</g>
+</g>
+<g id="Pole_Base">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#B3B3B3;" d="M10,68H2c-1.104,0-2,0.895-2,2c0,1.104,0.896,2,2,2h8
+			c1.104,0,2-0.896,2-2C12,68.895,11.104,68,10,68z M62,68h-8c-1.104,0-2,0.895-2,2c0,1.104,0.896,2,2,2h8c1.104,0,2-0.896,2-2
+			C64,68.895,63.104,68,62,68z"/>
+	</g>
+</g>
+<g id="Cord">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFCC66;" d="M32,52C18.745,52,8,41.254,8,28H4c0,15.464,12.536,28,28,28
+			s28-12.536,28-28h-4C56,41.254,45.255,52,32,52z"/>
+	</g>
+</g>
+<g id="Shape_7_">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#C09641;" d="M4,26v1.999C4,29.104,4.896,30,6,30s2-0.896,2-2.001V26v-4H4
+			V26z M56,22v4v1.999C56,29.104,56.896,30,58,30s2-0.896,2-2.001V26v-4H56z"/>
+	</g>
+</g>
+<g id="Poll_Head">
+	<g>
+		<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#B3B3B3;" d="M6,11.999c-3.314,0-6,2.687-6,6C0,21.313,2.686,24,6,24
+			c3.313,0,6-2.687,6-6.001C12,14.686,9.313,11.999,6,11.999z M58,11.999c-3.313,0-6,2.687-6,6C52,21.313,54.687,24,58,24
+			s6-2.687,6-6.001C64,14.686,61.313,11.999,58,11.999z"/>
+	</g>
+</g>
+</svg>

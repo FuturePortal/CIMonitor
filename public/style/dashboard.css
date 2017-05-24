@@ -13,7 +13,179 @@ body {
     font-family: 'Coda', cursive;
 }
 
-.overlay-success,
+.status {
+    /* positioning */
+    position: relative;
+
+    /* box-model */
+    margin: 20px 20px 0 20px;
+    height: 150px;
+    overflow: hidden;
+
+    /* visual */
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+
+.status-icon-box {
+    /* positioning */
+    position: absolute;
+    top: 0;
+    left: -25px;
+    bottom: 0;
+
+    /* box-model */
+    height: auto;
+    width: 150px;
+    padding: 30px 10px 30px 25px;
+    transform: skew(-19deg);
+    text-align: center;
+
+    /* visual */
+    background: rgb(255, 204, 102);
+}
+
+.status-icon-box img {
+    /* box-model */
+    height: 90px;
+
+    /* box-model */
+    transform: skew(19deg);
+}
+
+.status-title {
+    /* positioning */
+    position: absolute;
+    top: 5px;
+    left: 195px;
+
+    /* box-model */
+
+    /* visual */
+    color: rgb(255, 204, 102);
+}
+
+.status-title .title {
+    /* box-model */
+    transform: skew(-19deg);
+    display: inline-block;
+
+    /* typography */
+    font-size: 50px;
+}
+
+.status-title .sub-title {
+    /* box-model */
+    padding-left: 10px;
+    display: inline-block;
+
+    /* typography */
+    font-size: 26px;
+}
+
+.status-stages {
+    /* positioning */
+    position: absolute;
+    bottom: 37px;
+    left: 156px;
+
+    /* box-model */
+    height: 34px;
+}
+
+.status-jobs {
+    /* positioning */
+    position: absolute;
+    bottom: 0;
+    left: 143px;
+
+    /* box-model */
+    height: 34px;
+}
+
+.job-container div {
+    /* box-model */
+    display: inline-block;
+    transform: skew(-19deg);
+    height: 34px;
+
+    /* visual */
+    background: rgb(255, 204, 102);
+    color: #202020;
+}
+
+.job-container span {
+    /* box-model */
+    display: block;
+    padding: 2px 15px;
+
+    /* typography */
+    font-size: 20px;
+
+    /* box-model */
+    transform: skew(19deg);
+}
+
+.job-container .success {
+    /* visual */
+    background: rgb(135, 192, 86);
+}
+
+.job-container .todo {
+    /* visual */
+    background: rgba(255, 204, 102, 0.5);
+}
+
+.status-info {
+    /* positioning */
+    position: absolute;
+    right: -30px;
+    top: 0;
+    bottom: 0;
+
+    /* box-model */
+    width: 155px;
+    height: auto;
+    padding-right: 10px;
+    transform: skew(-19deg);
+    overflow: hidden;
+
+    /* visual */
+    background: rgb(255, 204, 102);
+    color: #202020;
+}
+
+.status-time {
+    /* positioning */
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    right: 0;
+
+    /* box-model */
+    transform: skew(19deg);
+    width: auto;
+    text-align: center;
+    padding-right: 5px;
+
+    /* typography */
+    font-size: 20px;
+}
+
+.status-face {
+    /* box-model */
+    transform: skew(19deg);
+    height: 116px;
+    width: 150px;
+    margin-left: -20px;
+
+    /* visual */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/*.overlay-success,
 .overlay-started,
 .overlay-failure,
 .statuses {
@@ -107,16 +279,16 @@ body {
 }
 
 .no-connection {
-    /* positioning */
+    /* positioning
     position: absolute;
     bottom: 50px;
     right: 50px;
 
-    /* box-model */
+    /* box-model
     padding: 50px;
     border-radius: 50%;
 
-    /* visual */
+    /* visual
     background: rgba(236, 122, 96, .8);
     animation: pulse-failure 2s linear infinite;
 }
@@ -140,4 +312,4 @@ body {
 
 .hidden {
     display: none;
-}
+}*/
