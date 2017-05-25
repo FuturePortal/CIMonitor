@@ -29,16 +29,7 @@ Vue.component('status-block', {
     '       </div>' +
     '   </div>' +
     '</div>',
-    props: ['status'],
-    created: function() {
-        setTimeout(this.forceUpdate, 10000);
-    },
-    methods: {
-        forceUpdate: function() {
-            this.$forceUpdate();
-            setTimeout(this.forceUpdate, 10000);
-        },
-    },
+    props: ['status', 'now'],
     computed: {
         getTypeImage: function() {
             return '/images/types/' + this.status.type + '.svg';
@@ -47,7 +38,7 @@ Vue.component('status-block', {
             return 'background-image: url(\'' + this.status.photo + '\')'
         },
         getTimeAgo: function() {
-            return moment(this.status.updateTime).fromNow();
+            return moment(this.status.updateTime).from(this.now);
         },
     }
 });
@@ -59,6 +50,7 @@ Vue.component('status-overview', {
     '       v-for="status in getStatuses()"' +
     '       :key="status.time"' +
     '       :status="status"' +
+    '       :now="now"' +
     '   ></status-block>' +
     '   <div v-if="disconnected" class="no-connection">' +
     '       <img src="/images/no-connection.svg" height="90" />' +
@@ -69,16 +61,22 @@ Vue.component('status-overview', {
             statuses: [],
             disconnected: true,
             socket: null,
+            now: this.getCurrentTimestamp(),
         };
     },
     created: function() {
         this.socket = io();
         this.socket.on('statuses', this.setStatuses);
         this.socket.on('disconnect', this.socketDisconnected);
+        setTimeout(this.setNow, 1000);
     },
     methods: {
         getCurrentTimestamp: function() {
             return (new Date()).getTime();
+        },
+        setNow: function() {
+            this.now = this.getCurrentTimestamp();
+            setTimeout(this.setNow, 1000);
         },
         setStatuses: function(update) {
             this.disconnected = false;
