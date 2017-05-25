@@ -48,7 +48,7 @@ body {
     /* visual */
     background: rgb(135, 192, 86);
 }
-.status.error .status-icon-box {
+.status.failure .status-icon-box {
     /* visual */
     background: rgb(236, 122, 96);
 }
@@ -74,7 +74,7 @@ body {
     /* visual */
     color: rgb(135, 192, 86);
 }
-.status.error .status-title {
+.status.failure .status-title {
     /* visual */
     color: rgb(236, 122, 96);
 }
@@ -144,7 +144,10 @@ body {
     /* visual */
     background: rgb(135, 192, 86);
 }
-
+.job-container .failure {
+    /* visual */
+    background: rgb(236, 122, 96);
+}
 .job-container .todo {
     /* visual */
     background: rgba(255, 204, 102, 0.5);
@@ -172,7 +175,7 @@ body {
     /* visual */
     background: rgb(135, 192, 86);
 }
-.status.error .status-info {
+.status.failure .status-info {
     /* visual */
     background: rgb(236, 122, 96);
 }
