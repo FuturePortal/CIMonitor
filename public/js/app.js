@@ -25,26 +25,23 @@ Vue.component('status-block', {
     '           :style="getStatusPhoto"' +
     '       ></div>' +
     '       <div class="status-time">' +
-    '           {{ time }}' +
+    '           {{ getTimeAgo }}' +
     '       </div>' +
     '   </div>' +
     '</div>',
-    props: ['status'],
-    data: function() {
-        return {
-            'time': 'now',
-        };
-    },
-    methods: {
-
-    },
+    props: ['status', 'now'],
     computed: {
         getTypeImage: function() {
             return '/images/types/' + this.status.type + '.svg';
         },
         getStatusPhoto: function() {
             return 'background-image: url(\'' + this.status.photo + '\')'
-        }
+        },
+        getTimeAgo: function() {
+            // lame hack to update the value
+            var time = this.now + this.status.updateTime - this.now;
+            return moment(time).fromNow();
+        },
     }
 });
 
@@ -55,14 +52,43 @@ Vue.component('status-overview', {
     '       v-for="status in getStatuses()"' +
     '       :key="status.time"' +
     '       :status="status"' +
+    '       :now="now"' +
     '   ></status-block>' +
+    '   <div v-if="disconnected" class="no-connection">' +
+    '       <img src="/images/no-connection.svg" height="90" />' +
+    '   </div>' +
     '</div>',
     data: function() {
         return {
             statuses: [],
+            disconnected: true,
+            socket: null,
+            now: this.getCurrentTimestamp(),
         };
     },
+    created: function() {
+        this.socket = io();
+        this.socket.on('statuses', this.setStatuses);
+        this.socket.on('disconnect', this.socketDisconnected);
+        setTimeout(this.setNow, 10000);
+    },
     methods: {
+        getCurrentTimestamp: function() {
+            return (new Date()).getTime();
+        },
+        setNow: function() {
+            this.now = this.getCurrentTimestamp();
+            setTimeout(this.setNow, 10000);
+        },
+        setStatuses: function(update) {
+            this.disconnected = false;
+            console.log(update);
+            this.statuses = update.statuses;
+        },
+        socketDisconnected: function() {
+            this.disconnected = true;
+            console.log('Disconnect :(');
+        },
         getStatuses: function() {
             if (this.statuses.length === 0) {
                 return [{
@@ -70,7 +96,7 @@ Vue.component('status-overview', {
                     type: 'wait',
                     branch: '',
                     status: 'success',
-                    time: (new Date()).getMilliseconds(),
+                    updateTime: (new Date()).getMilliseconds(),
                     jobs: [{
                         name: 'Waiting for new statuses',
                         status: 'success',

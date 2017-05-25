@@ -181,17 +181,21 @@ body {
     /* positioning */
     position: absolute;
     bottom: 3px;
-    left: 0;
-    right: 0;
+    left: 5px;
 
     /* box-model */
     transform: skew(19deg);
-    width: auto;
+    width: 145px;
     text-align: center;
     padding-right: 5px;
+    overflow: hidden;
 
     /* typography */
     font-size: 20px;
+
+    /* misc */
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .status-face {
@@ -206,8 +210,6 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
 }
-
-/* Below old stuff */
 
 .no-connection {
     /* positioning */
@@ -225,6 +227,7 @@ body {
 }
 
 .no-connection img {
+    /* box-model */
     width: 100px;
     height: 100px;
 }
@@ -238,20 +241,5 @@ body {
     }
     100% {
         background: rgba(236, 122, 96, .95);
-    }
-}
-
-@keyframes pulse-started {
-    0% {
-        background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
-    }
-    50% {
-        background: rgba(255, 204, 102, .5);
-        color: rgb(86, 66, 43);
-    }
-    100% {
-        background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
     }
 }

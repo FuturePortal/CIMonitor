@@ -2,81 +2,16 @@
 <head>
     <title>CIMontior</title>
     <link rel="stylesheet" href="style/dashboard.css">
-    <script src="https://unpkg.com/vue"></script>
-    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="/js/vue.min.js"></script>
+    <script type="text/javascript" src="/js/moment.js"></script>
     <link rel="shortcut icon" href="/images/status/success.ico" id="status-icon" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet" type="text/css">
 </head>
 <body>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-//        var socket = io();
-//
-//        function updateTimes() {
-//            $('.statuses .time').each(function() {
-//                var time = $(this).data('time');
-//                time = moment(time, 'x').fromNow();
-//                $(this).html(time);
-//            });
-//        }
-//
-//        function updateTimesEveryMinute() {
-//            updateTimes();
-//            setTimeout(function() { updateTimesEveryMinute() }, 10000);
-//        }
-//        setTimeout(function() { updateTimesEveryMinute() }, 10000);
-//
-//        socket.on('statuses', function(update) {
-//            console.log(update);
-//
-//            $('.no-connection').addClass('hidden');
-//
-//            var status = 'success';
-//            if (update.hasFailureStatus) {
-//                status = 'failure';
-//            } else if (update.hasStartedStatus) {
-//                status = 'started';
-//            }
-//            $('#status-icon').attr('href', '/images/status/' + status + '.ico');
-//            $('#overlay').attr('class', 'overlay-' + status);
-//
-//            $('.statuses').html('');
-//            var statusCount = 0;
-//            $.each(update.statuses, function(key, status) {
-//                statusCount++;
-//                var statusDiv = '<div id="' + status.key + '" class="status status-' + status.status + '">';
-//                statusDiv += '<div class="type"><img src="/images/types/' + status.type + '.svg" height="90" alt="'
-//                    + status.type + '" /></div>';
-//                statusDiv += '<div class="project">' + status.project + '</div>';
-//                var note = (status.note === undefined) ? '' : ' - ' + status.note;
-//                statusDiv += '<div class="branch">' + status.branch + note + '</div>';
-//                statusDiv += '<div class="time" data-time="' + status.updateTime + '"></div>';
-//                statusDiv += '</div>';
-//
-//                $('.statuses').append(statusDiv);
-//            });
-//            if (statusCount === 0) {
-//                var statusDiv = '<div class="status status-success">';
-//                statusDiv += '<div class="type"><img src="/images/types/wait.svg" height="90" alt="loading" /></div>';
-//                statusDiv += '<div class="project">No statuses</div>';
-//                statusDiv += '<div class="branch">CIMonitor is waiting to receive a status...</div>';
-//                statusDiv += '<div class="time" data-time="' + new Date().getTime() + '"></div>';
-//                statusDiv += '</div>';
-//
-//                $('.statuses').append(statusDiv);
-//            }
-//            updateTimes();
-//        });
-//
-//        socket.on('disconnect', function(){
-//            $('.no-connection').removeClass('hidden');
-//        });
-    </script>
     <div id="app">
         <status-overview></status-overview>
     </div>
-    <div id="overlay" class="overlay-success"></div>
-    <div class="no-connection"><img src="/images/no-connection.svg" height="90" alt="loading" /></div>
-    <script src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
 </body>
 </html>
