@@ -23,7 +23,7 @@ body {
     overflow: hidden;
 
     /* visual */
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
 }
 
@@ -44,6 +44,14 @@ body {
     /* visual */
     background: rgb(255, 204, 102);
 }
+.status.success .status-icon-box {
+    /* visual */
+    background: rgb(135, 192, 86);
+}
+.status.error .status-icon-box {
+    /* visual */
+    background: rgb(236, 122, 96);
+}
 
 .status-icon-box img {
     /* box-model */
@@ -59,10 +67,16 @@ body {
     top: 5px;
     left: 195px;
 
-    /* box-model */
-
     /* visual */
     color: rgb(255, 204, 102);
+}
+.status.success .status-title {
+    /* visual */
+    color: rgb(135, 192, 86);
+}
+.status.error .status-title {
+    /* visual */
+    color: rgb(236, 122, 96);
 }
 
 .status-title .title {
@@ -154,6 +168,14 @@ body {
     background: rgb(255, 204, 102);
     color: #202020;
 }
+.status.success .status-info {
+    /* visual */
+    background: rgb(135, 192, 86);
+}
+.status.error .status-info {
+    /* visual */
+    background: rgb(236, 122, 96);
+}
 
 .status-time {
     /* positioning */
@@ -185,110 +207,19 @@ body {
     background-repeat: no-repeat;
 }
 
-/*.overlay-success,
-.overlay-started,
-.overlay-failure,
-.statuses {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-}
-
-.overlay-success {
-    background: rgba(135, 192, 86, .3);
-}
-
-.overlay-started {
-    background: rgba(255, 204, 102, .3);
-}
-
-.overlay-failure {
-    background: rgba(236, 122, 96, .3);
-}
-
-.statuses {
-    overflow: hidden;
-}
-
-.status {
-    position: relative;
-    padding: 20px;
-    margin: 0 20px 20px 20px;
-    border-radius: 10px;
-    height: 90px;
-}
-.status:first-child {
-    margin-top: 20px;
-}
-
-.status-success {
-    color: rgb(23, 55, 23);
-    background: rgba(135, 192, 86, .8);
-}
-
-.status-started {
-    background: rgba(255, 204, 102, .8);
-    color: rgb(55, 47, 19);
-    animation: pulse-started 2s linear infinite;
-}
-
-.status-failure {
-    color: rgb(55, 26, 26);
-    background: rgba(236, 122, 96, .8);
-    animation: pulse-failure 2s linear infinite;
-}
-
-@keyframes pulse-started {
-    0% {
-        background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
-    }
-    50% {
-        background: rgba(255, 204, 102, .5);
-        color: rgb(86, 66, 43);
-    }
-    100% {
-        background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
-    }
-}
-
-.status .project {
-    position: absolute;
-    top: 12px;
-    left: 150px;
-    font-size: 50px;
-}
-
-.status .time {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-}
-
-.status .branch {
-    position: absolute;
-    top: 75px;
-    left: 150px;
-    font-size: 30px;
-}
+/* Below old stuff */
 
 .no-connection {
-    /* positioning
+    /* positioning */
     position: absolute;
     bottom: 50px;
     right: 50px;
 
-    /* box-model
+    /* box-model */
     padding: 50px;
     border-radius: 50%;
 
-    /* visual
+    /* visual */
     background: rgba(236, 122, 96, .8);
     animation: pulse-failure 2s linear infinite;
 }
@@ -310,6 +241,17 @@ body {
     }
 }
 
-.hidden {
-    display: none;
-}*/
+@keyframes pulse-started {
+    0% {
+        background: rgba(255, 204, 102, .95);
+        color: rgb(55, 47, 19);
+    }
+    50% {
+        background: rgba(255, 204, 102, .5);
+        color: rgb(86, 66, 43);
+    }
+    100% {
+        background: rgba(255, 204, 102, .95);
+        color: rgb(55, 47, 19);
+    }
+}
