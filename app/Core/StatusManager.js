@@ -108,7 +108,7 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
     if (pipeline.status === 'success') {
         this.statuses[key].type = 'success';
     } else if (pipeline.status === 'failure') {
-        var failureImages = ['rip-stone', 'pumpkin', 'skull', 'firewall', 'bomb', 'thunder', 'stuk'];
+        var failureImages = ['rip-stone', 'pumpkin', 'skull', 'firewall', 'bomb', 'thunder'];
         this.statuses[key].type = failureImages[Math.floor(Math.random() * failureImages.length)];
     }
 
