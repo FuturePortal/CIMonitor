@@ -85,7 +85,7 @@ GitLab.prototype.handleNewPipeline = function(data) {
 
 GitLab.prototype.handlePipeline = function(data) {
     if (data.object_attributes.status === 'pending') {
-        return this.handleNewPipeline();
+        return this.handleNewPipeline(data);
     }
 
     return this.statusManager.updatePipeline({
