@@ -95,6 +95,11 @@ StatusManager.prototype.newPipeline = function(pipeline) {
 StatusManager.prototype.updatePipeline = function(pipeline) {
     var key = this.getSimpleKey(pipeline);
 
+    if (typeof this.statuses[key] === 'undefined') {
+        console.log('[StatusManager] ' + key + ' does not exist yet.');
+        return true;
+    }
+
     this.statuses[key].updateTime = new Date().getTime();
     this.statuses[key].status = pipeline.status;
 
