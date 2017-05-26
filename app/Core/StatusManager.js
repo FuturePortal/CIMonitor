@@ -136,18 +136,18 @@ StatusManager.prototype.filterType = function(stage) {
     return 'test';
 };
 
-StatusManager.prototype.determineStageStatus = function(stage, stages) {
+StatusManager.prototype.determineStageStatus = function(stage, jobs) {
     var hasStarted = false;
     var hasFailure = false;
 
-    for (var stageKey in stages) {
-        if (stages[stageKey].name === stage) {
-            if (stages[stageKey].status === 'started') {
+    for (var stageKey in jobs) {
+        if (jobs[stageKey].stage === stage) {
+            if (jobs[stageKey].status === 'started') {
                 hasStarted = true;
             }
-        }
-        if (stages[stageKey].status === 'failure') {
-            hasFailure = true;
+            if (jobs[stageKey].status === 'failure') {
+                hasFailure = true;
+            }
         }
     }
 
@@ -172,7 +172,7 @@ StatusManager.prototype.newJob = function(job, pipeline) {
     }
 
     this.statuses[key].jobs[job.name] = job;
-    this.statuses[key].stages[job.stage].status = this.determineStageStatus(job.stage, this.statuses[key].stages);
+    this.statuses[key].stages[job.stage].status = this.determineStageStatus(job.stage, this.statuses[key].jobs);
 
     this.statuses[key].type = this.filterType(job.stage);
     this.statuses[key].currentStage = job.stage;
