@@ -113,6 +113,13 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
  * Processes an incoming status
  */
 StatusManager.prototype.newJob = function(job, pipeline) {
+    var key = this.getSimpleKey(pipeline);
+
+    if (typeof this.statuses[key] === 'undefined') {
+        console.log('[StatusManager] ' + key + ' does not exist yet.');
+        return true;
+    }
+
     // var job = {
     //     name: data.build_name,
     //     stage: data.build_stage,
@@ -123,8 +130,6 @@ StatusManager.prototype.newJob = function(job, pipeline) {
     //     project: data.repository.name,
     //     branch: data.ref,
     // };
-
-    var key = this.getSimpleKey(pipeline);
 
     this.statuses[key].jobs[job.name] = job;
 

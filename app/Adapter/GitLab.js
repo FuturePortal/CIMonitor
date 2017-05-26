@@ -17,9 +17,6 @@ GitLab.prototype.init = function() {
 };
 
 GitLab.prototype.processEvent = function(data) {
-    console.log('[GitLab] Translating GitLab event...');
-    console.log('[GitLab] ' + JSON.stringify(data));
-
     switch(data.object_kind) {
         case 'build':
             return this.handleBuild(data);
