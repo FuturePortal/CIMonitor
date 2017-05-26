@@ -226,6 +226,10 @@ StatusManager.prototype.newStatus = function(status) {
     // Add extra attributes to the status object
     status.key = this.getKey(status);
     status.updateTime = new Date().getTime();
+    status.jobs = [{
+        name: status.status,
+        status: status.status,
+    }];
 
     console.log('[StatusManager] New status for ' + status.key + ': ' + status.status);
 
