@@ -127,20 +127,10 @@ StatusManager.prototype.newJob = function(job, pipeline) {
         return true;
     }
 
-    // var job = {
-    //     name: data.build_name,
-    //     stage: data.build_stage,
-    //     status: this.translateStatus(data.build_status),
-    // };
-    //
-    // var pipeline = {
-    //     project: data.repository.name,
-    //     branch: data.ref,
-    // };
-
     this.statuses[key].jobs[job.name] = job;
 
-    this.statuses[key].status = job.stage; // MAKE FILTER FOR THIS, SO ONLY AVAILABLE IMAGES ARE SHOWN
+    this.statuses[key].type = job.stage; // MAKE FILTER FOR THIS, SO ONLY AVAILABLE IMAGES ARE SHOWN
+    this.statuses[key].currentStage = job.stage;
 
     // Fire status event
     // @todo: add job name
