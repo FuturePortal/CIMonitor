@@ -5,7 +5,8 @@ The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
-![Dashboard example](https://cloud.githubusercontent.com/assets/6495166/14587781/7bbef534-04b9-11e6-9835-e85f0a05efa8.png)
+![Dashboard example](https://cloud.githubusercontent.com/assets/6495166/26514898/7aa0c6e6-4275-11e7-8c52-5a9f4e6079c3.png)
+
 
 And if that's not enough for you, why not attach some epic hardware
 that will represent the status of your projects! Attach a traffic
