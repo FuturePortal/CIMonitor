@@ -105,6 +105,10 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
     this.statuses[key].updateTime = new Date().getTime();
     this.statuses[key].status = pipeline.status;
 
+    if (pipeline.status === 'success') {
+        this.statuses[key].type = 'success';
+    }
+
     // Fire status event
     this.eventHandler.emit('status', this.buildStatus(
         pipeline.project,
@@ -114,6 +118,46 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
     ));
 
     return true;
+};
+
+StatusManager.prototype.filterType = function(stage) {
+    if (stage.substring(0, 5) === 'build') {
+        return 'build';
+    }
+    if (stage.substring(0, 6) === 'deploy') {
+        return 'deploy';
+    }
+    if (stage.substring(0, 3) === 'tag') {
+        return 'tag';
+    }
+    if (stage.substring(0, 4) === 'prod') {
+        return 'deploy';
+    }
+    return 'test';
+};
+
+StatusManager.prototype.determineStageStatus = function(stage, stages) {
+    var hasStarted = false;
+    var hasFailure = false;
+
+    for (var stageKey in stages) {
+        if (stages[stageKey].stage === stage) {
+            if (stages[stageKey].status === 'started') {
+                hasStarted = true;
+            }
+        }
+        if (stages[stageKey].status === 'failure') {
+            hasFailure = true;
+        }
+    }
+
+    if (hasFailure) {
+        return 'failure';
+    }
+    if (hasStarted) {
+        return 'started';
+    }
+    return 'success';
 };
 
 /**
@@ -128,8 +172,9 @@ StatusManager.prototype.newJob = function(job, pipeline) {
     }
 
     this.statuses[key].jobs[job.name] = job;
+    this.statuses[key].stages[job.stage].status = this.determineStageStatus(job.stage, this.statuses[key].stages);
 
-    this.statuses[key].type = job.stage; // MAKE FILTER FOR THIS, SO ONLY AVAILABLE IMAGES ARE SHOWN
+    this.statuses[key].type = this.filterType(job.stage);
     this.statuses[key].currentStage = job.stage;
 
     // Fire status event
