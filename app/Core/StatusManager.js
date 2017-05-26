@@ -141,7 +141,6 @@ StatusManager.prototype.determineStageStatus = function(stage, jobs) {
     var hasFailure = false;
 
     for (var jobKey in jobs) {
-        console.log('[TMP] ' + jobs[jobKey].status + ':' + stage + ' = ' + jobs[jobKey].status);
         if (jobs[jobKey].stage === stage) {
             if (jobs[jobKey].status === 'started') {
                 hasStarted = true;
