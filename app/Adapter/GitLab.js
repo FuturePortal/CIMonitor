@@ -44,30 +44,16 @@ GitLab.prototype.translateStatus = function(status) {
     return ciMonitorStatus;
 };
 
-GitLab.prototype.determineType = function(buildName) {
-    if (buildName.substring(0, 6) === 'deploy') {
-        return 'deploy';
-    }
-
-    if (buildName.substring(0, 5) === 'build') {
-        return 'build';
-    }
-
-    return 'test';
-};
-
 GitLab.prototype.handleBuild = function(data) {
     // Not acting upon the created status
     if (data.build_status === 'created') {
         return;
     }
 
-    // data.build_name
-
     var job = {
-        // type: this.determineType(data.build_name),
-        // status: this.translateStatus(data.build_status),
-        // note: data.build_status
+        name: data.build_name,
+        stage: data.build_stage,
+        status: this.translateStatus(data.build_status),
     };
 
     var pipeline = {
@@ -78,16 +64,18 @@ GitLab.prototype.handleBuild = function(data) {
     return this.statusManager.newJob(job, pipeline);
 };
 
-GitLab.prototype.handlePipeline = function(data) {
+GitLab.prototype.handleNewPipeline = function(data) {
     var pipeline = {
         project: data.project.name,
         branch: data.object_attributes.ref,
         type: 'wait',
         status: this.translateStatus(data.object_attributes.status),
+        photo: data.user.avatar_url
     };
 
     var stages = data.object_attributes.stages;
     pipeline.stages = [];
+    pipeline.jobs = [];
     for (var stageKey in stages) {
         pipeline.stages.push({
             name: stages[stageKey],
@@ -96,6 +84,18 @@ GitLab.prototype.handlePipeline = function(data) {
     }
 
     return this.statusManager.newPipeline(pipeline);
+};
+
+GitLab.prototype.handlePipeline = function(data) {
+    if (data.object_attributes.status === 'pending') {
+        return this.handleNewPipeline();
+    }
+
+    return this.statusManager.updatePipeline({
+        project: data.project.name,
+        branch: data.object_attributes.ref,
+        status: this.translateStatus(data.object_attributes.status),
+    });
 };
 
 module.exports = GitLab;

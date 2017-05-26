@@ -78,7 +78,28 @@ StatusManager.prototype.newPipeline = function(pipeline) {
 
     // Fire status event
     this.eventHandler.emit('status', this.buildStatus(
-        pipeline.key,
+        pipeline.project,
+        pipeline.branch,
+        'pipeline',
+        pipeline.status
+    ));
+
+    return true;
+};
+
+/**
+ * Processes a job
+ *
+ * @param {object} pipeline
+ */
+StatusManager.prototype.updatePipeline = function(pipeline) {
+    var key = this.getSimpleKey(pipeline);
+
+    this.statuses[key].updateTime = new Date().getTime();
+    this.statuses[key].status = pipeline.status;
+
+    // Fire status event
+    this.eventHandler.emit('status', this.buildStatus(
         pipeline.project,
         pipeline.branch,
         'pipeline',
@@ -90,11 +111,22 @@ StatusManager.prototype.newPipeline = function(pipeline) {
 
 /**
  * Processes an incoming status
- *
- * @param {object} status
  */
 StatusManager.prototype.newJob = function(job, pipeline) {
+    // var job = {
+    //     name: data.build_name,
+    //     stage: data.build_stage,
+    //     status: this.translateStatus(data.build_status),
+    // };
+    //
+    // var pipeline = {
+    //     project: data.repository.name,
+    //     branch: data.ref,
+    // };
 
+    var key = this.getSimpleKey(pipeline);
+
+    this.statuses[key].jobs[job.name] = job;
 
     return true;
 };
@@ -126,7 +158,6 @@ StatusManager.prototype.newStatus = function(status) {
 
     // Fire status event
     this.eventHandler.emit('status', this.buildStatus(
-        status.key,
         status.project,
         status.branch,
         'api',
@@ -139,9 +170,8 @@ StatusManager.prototype.newStatus = function(status) {
 /**
  *
  */
-StatusManager.prototype.buildStatus = function(key, project, branch, source, status) {
+StatusManager.prototype.buildStatus = function(project, branch, source, status) {
     return {
-        key: key,
         project: project,
         branch: branch,
         source: source,
