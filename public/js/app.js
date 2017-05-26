@@ -39,7 +39,7 @@ Vue.component('status-block', {
         },
         getTimeAgo: function() {
             var timeAgo = moment(this.status.updateTime).from(this.now);
-            if (timeAgo === 'a few seconds ago') {
+            if (timeAgo === 'a few seconds ago' || timeAgo === 'in a few seconds') {
                 timeAgo = 'just now';
             }
             return timeAgo;

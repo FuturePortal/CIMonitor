@@ -175,19 +175,18 @@ StatusManager.prototype.newJob = function(job, pipeline) {
         return true;
     }
 
-    var stageStatus = this.determineStageStatus(job.stage, this.statuses[key].jobs);
-
     if (this.statuses[key].currentStage !== job.stage) {
         this.eventHandler.emit('status', this.buildStatus(
             pipeline.project,
             pipeline.branch,
             'stage',
-            stageStatus,
+            'started',
             job.stage
         ));
     }
 
     this.statuses[key].jobs[job.name] = job;
+    var stageStatus = this.determineStageStatus(job.stage, this.statuses[key].jobs);
     this.statuses[key].stages[job.stage].status = stageStatus;
     this.statuses[key].type = this.filterType(job.stage);
     this.statuses[key].currentStage = job.stage;
