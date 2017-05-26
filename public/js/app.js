@@ -38,7 +38,11 @@ Vue.component('status-block', {
             return 'background-image: url(\'' + this.status.photo + '\')'
         },
         getTimeAgo: function() {
-            return moment(this.status.updateTime).from(this.now);
+            var timeAgo = moment(this.status.updateTime).from(this.now);
+            if (timeAgo === 'a few seconds ago') {
+                timeAgo = 'just now';
+            }
+            return timeAgo;
         },
     }
 });

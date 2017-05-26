@@ -117,7 +117,8 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
         pipeline.project,
         pipeline.branch,
         'pipeline',
-        pipeline.status
+        pipeline.status,
+        'status'
     ));
 
     return true;
@@ -174,21 +175,41 @@ StatusManager.prototype.newJob = function(job, pipeline) {
         return true;
     }
 
+    var stageStatus = this.determineStageStatus(job.stage, this.statuses[key].jobs);
+
+    if (this.statuses[key].currentStage !== job.stage) {
+        this.eventHandler.emit('status', this.buildStatus(
+            pipeline.project,
+            pipeline.branch,
+            'stage',
+            stageStatus,
+            job.stage
+        ));
+    }
+
     this.statuses[key].jobs[job.name] = job;
-    this.statuses[key].stages[job.stage].status = this.determineStageStatus(job.stage, this.statuses[key].jobs);
+    this.statuses[key].stages[job.stage].status = stageStatus;
     this.statuses[key].type = this.filterType(job.stage);
     this.statuses[key].currentStage = job.stage;
     this.statuses[key].updateTime = new Date().getTime();
 
-    // Fire status event
-    // @todo: add job name
-    // @todo: determine if a stage status changed
+    // Fire status events
     this.eventHandler.emit('status', this.buildStatus(
         pipeline.project,
         pipeline.branch,
         'job',
-        job.status
+        job.status,
+        job.name
     ));
+    if (stageStatus === 'success') {
+        this.eventHandler.emit('status', this.buildStatus(
+            pipeline.project,
+            pipeline.branch,
+            'stage',
+            stageStatus,
+            job.stage
+        ));
+    }
 
     return true;
 };
@@ -223,21 +244,29 @@ StatusManager.prototype.newStatus = function(status) {
         status.project,
         status.branch,
         'api',
-        status.status
+        status.status,
+        'status'
     ));
 
     return true;
 };
 
 /**
+ * Build a status object for the status modules
  *
+ * @param {string} project
+ * @param {string} branch
+ * @param {string} source
+ * @param {string} status
+ * @param {string} name
  */
-StatusManager.prototype.buildStatus = function(project, branch, source, status) {
+StatusManager.prototype.buildStatus = function(project, branch, source, status, name) {
     return {
         project: project,
         branch: branch,
         source: source,
-        status: status
+        status: status,
+        name: name
     };
 };
 
