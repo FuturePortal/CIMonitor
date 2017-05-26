@@ -71,8 +71,8 @@ GitLab.prototype.handleNewPipeline = function(data) {
     };
 
     var stages = data.object_attributes.stages;
-    pipeline.stages = [];
-    pipeline.jobs = [];
+    pipeline.stages = {};
+    pipeline.jobs = {};
     for (var stageKey in stages) {
         pipeline.stages[stages[stageKey]] = {
             name: stages[stageKey],
