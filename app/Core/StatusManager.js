@@ -107,6 +107,9 @@ StatusManager.prototype.updatePipeline = function(pipeline) {
 
     if (pipeline.status === 'success') {
         this.statuses[key].type = 'success';
+    } else if (pipeline.status === 'failure') {
+        var failureImages = ['rip-stone', 'pumpkin', 'skull', 'firewall', 'bomb', 'thunder', 'stuk'];
+        this.statuses[key].type = failureImages[Math.floor(Math.random() * failureImages.length)];
     }
 
     // Fire status event
@@ -173,9 +176,9 @@ StatusManager.prototype.newJob = function(job, pipeline) {
 
     this.statuses[key].jobs[job.name] = job;
     this.statuses[key].stages[job.stage].status = this.determineStageStatus(job.stage, this.statuses[key].jobs);
-
     this.statuses[key].type = this.filterType(job.stage);
     this.statuses[key].currentStage = job.stage;
+    this.statuses[key].updateTime = new Date().getTime();
 
     // Fire status event
     // @todo: add job name
