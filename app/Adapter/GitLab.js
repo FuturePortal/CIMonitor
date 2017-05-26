@@ -18,14 +18,13 @@ GitLab.prototype.init = function() {
 
 GitLab.prototype.processEvent = function(data) {
     console.log('[GitLab] Translating GitLab event...');
+    console.log('[GitLab] ' + JSON.stringify(data));
 
     switch(data.object_kind) {
         case 'build':
-            this.handleBuild(data);
-            break;
+            return this.handleBuild(data);
         case 'pipeline':
-            this.handlePipeline(data);
-            break;
+            return this.handlePipeline(data);
     }
 };
 
@@ -58,8 +57,6 @@ GitLab.prototype.determineType = function(buildName) {
 };
 
 GitLab.prototype.handleBuild = function(data) {
-    console.log('BUILD: ' + JSON.stringify(data));
-
     // Not acting upon the created status
     if (data.build_status === 'created') {
         return;
@@ -82,8 +79,6 @@ GitLab.prototype.handleBuild = function(data) {
 };
 
 GitLab.prototype.handlePipeline = function(data) {
-    console.log('PIPELINE: ' + JSON.stringify(data));
-
     var pipeline = {
         project: data.project.name,
         branch: data.object_attributes.ref,
