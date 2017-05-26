@@ -30,7 +30,9 @@ StatusManager.prototype.init = function() {
 
     this.loadStatuses();
 
-    this.eventHandler.on('status', function() {
+    this.eventHandler.on('status', function(status) {
+        console.log('[StatusManager] New status: ' + JSON.stringify(status));
+
         StatusManager.saveStatuses();
     });
 };
@@ -47,7 +49,7 @@ StatusManager.prototype.saveStatuses = function() {
             console.log('[StatusManager] ' + error.message);
             return;
         }
-        console.log('[StatusManager] Stored the statuses in a json file.')
+        console.log('[StatusManager] Stored the statuses in a json file.');
     });
 };
 
@@ -139,6 +141,16 @@ StatusManager.prototype.newJob = function(job, pipeline) {
     this.statuses[key].jobs[job.name] = job;
 
     this.statuses[key].status = job.stage; // MAKE FILTER FOR THIS, SO ONLY AVAILABLE IMAGES ARE SHOWN
+
+    // Fire status event
+    // @todo: add job name
+    // @todo: determine if a stage status changed
+    this.eventHandler.emit('status', this.buildStatus(
+        status.project,
+        status.branch,
+        'job',
+        status.status
+    ));
 
     return true;
 };

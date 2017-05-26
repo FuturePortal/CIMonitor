@@ -74,10 +74,10 @@ GitLab.prototype.handleNewPipeline = function(data) {
     pipeline.stages = [];
     pipeline.jobs = [];
     for (var stageKey in stages) {
-        pipeline.stages.push({
+        pipeline.stages[stages[stageKey]] = {
             name: stages[stageKey],
             status: 'todo'
-        });
+        };
     }
 
     return this.statusManager.newPipeline(pipeline);
