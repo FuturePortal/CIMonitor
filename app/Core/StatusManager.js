@@ -146,10 +146,10 @@ StatusManager.prototype.newJob = function(job, pipeline) {
     // @todo: add job name
     // @todo: determine if a stage status changed
     this.eventHandler.emit('status', this.buildStatus(
-        status.project,
-        status.branch,
+        pipeline.project,
+        pipeline.branch,
         'job',
-        status.status
+        job.status
     ));
 
     return true;
