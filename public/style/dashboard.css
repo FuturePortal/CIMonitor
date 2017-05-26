@@ -122,6 +122,7 @@ body {
     display: inline-block;
     transform: skew(-19deg);
     height: 34px;
+    margin-right: 3px;
 
     /* visual */
     background: rgb(255, 204, 102);

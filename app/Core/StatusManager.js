@@ -66,6 +66,40 @@ StatusManager.prototype.loadStatuses = function() {
 };
 
 /**
+ * Processes a job
+ *
+ * @param {object} status
+ */
+StatusManager.prototype.newPipeline = function(pipeline) {
+    pipeline.key = this.getSimpleKey(pipeline);
+    pipeline.updateTime = new Date().getTime();
+
+    this.statuses[pipeline.key] = pipeline;
+
+    // Fire status event
+    this.eventHandler.emit('status', this.buildStatus(
+        pipeline.key,
+        pipeline.project,
+        pipeline.branch,
+        'pipeline',
+        pipeline.status
+    ));
+
+    return true;
+};
+
+/**
+ * Processes an incoming status
+ *
+ * @param {object} status
+ */
+StatusManager.prototype.newJob = function(job, pipeline) {
+
+
+    return true;
+};
+
+/**
  * Processes an incoming status
  *
  * @param {object} status
@@ -91,9 +125,28 @@ StatusManager.prototype.newStatus = function(status) {
     }
 
     // Fire status event
-    this.eventHandler.emit('status', status);
+    this.eventHandler.emit('status', this.buildStatus(
+        status.key,
+        status.project,
+        status.branch,
+        'api',
+        status.status
+    ));
 
     return true;
+};
+
+/**
+ *
+ */
+StatusManager.prototype.buildStatus = function(key, project, branch, source, status) {
+    return {
+        key: key,
+        project: project,
+        branch: branch,
+        source: source,
+        status: status
+    };
 };
 
 /**
@@ -138,6 +191,16 @@ StatusManager.prototype.removeOldStatuses = function() {
  */
 StatusManager.prototype.getKey = function(status) {
     return status.project + '.' + status.type + '.' + status.branch;
+};
+
+/**
+ * Get the unique key for a status
+ *
+ * @param {object} status
+ * @returns {string}
+ */
+StatusManager.prototype.getSimpleKey = function(status) {
+    return status.project + '.' + status.branch;
 };
 
 /**

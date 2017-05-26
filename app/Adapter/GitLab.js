@@ -58,32 +58,49 @@ GitLab.prototype.determineType = function(buildName) {
 };
 
 GitLab.prototype.handleBuild = function(data) {
+    console.log('BUILD: ' + JSON.stringify(data));
+
     // Not acting upon the created status
     if (data.build_status === 'created') {
         return;
     }
 
-    var status = {
-        project: data.repository.name,
-        branch: data.ref + ' ' + data.build_name,
-        type: this.determineType(data.build_name),
-        status: this.translateStatus(data.build_status),
-        note: data.build_status
+    // data.build_name
+
+    var job = {
+        // type: this.determineType(data.build_name),
+        // status: this.translateStatus(data.build_status),
+        // note: data.build_status
     };
 
-    return this.statusManager.newStatus(status);
+    var pipeline = {
+        project: data.repository.name,
+        branch: data.ref,
+    };
+
+    return this.statusManager.newJob(job, pipeline);
 };
 
 GitLab.prototype.handlePipeline = function(data) {
-    var status = {
+    console.log('PIPELINE: ' + JSON.stringify(data));
+
+    var pipeline = {
         project: data.project.name,
         branch: data.object_attributes.ref,
-        type: 'pipeline',
+        type: 'wait',
         status: this.translateStatus(data.object_attributes.status),
-        note: 'Pipeline triggered by ' + data.user.name
     };
 
-    return this.statusManager.newStatus(status);
+    var stages = data.object_attributes.stages;
+    pipeline.stages = [];
+    for (var stageKey in stages) {
+        pipeline.stages.push({
+            name: stages[stageKey],
+            status: 'todo'
+        });
+    }
+
+    return this.statusManager.newPipeline(pipeline);
 };
 
 module.exports = GitLab;
