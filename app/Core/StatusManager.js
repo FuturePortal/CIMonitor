@@ -141,7 +141,7 @@ StatusManager.prototype.determineStageStatus = function(stage, stages) {
     var hasFailure = false;
 
     for (var stageKey in stages) {
-        if (stages[stageKey].stage === stage) {
+        if (stages[stageKey].name === stage) {
             if (stages[stageKey].status === 'started') {
                 hasStarted = true;
             }
