@@ -128,6 +128,8 @@ StatusManager.prototype.newJob = function(job, pipeline) {
 
     this.statuses[key].jobs[job.name] = job;
 
+    this.statuses[key].status = job.stage; // MAKE FILTER FOR THIS, SO ONLY AVAILABLE IMAGES ARE SHOWN
+
     return true;
 };
 
