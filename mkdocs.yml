@@ -1,0 +1,8 @@
+site_name: CIMonitor
+theme: readthedocs
+pages:
+    - Home: index.md
+    - Setup CIMonitor: setup.md
+    - Setup Raspberry: setup-raspberry.md
+    - Connecting CI: connecting-ci.md
+    - StatusModules: status-modules.md
