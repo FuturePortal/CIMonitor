@@ -1,3 +1,5 @@
+Vue.config.devtools = true;
+
 Vue.component('status-block', {
     template:
     '<div class="status" :class="status.status">' +
