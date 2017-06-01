@@ -10,6 +10,15 @@ Make sure you push pipeline and build/job statuses.
 
 With build/job and pipeline statuses checked, the CIMonitor should fill up with all your builds!
 
+In order to have proper build icons, please start your stage names with the following:
+
+- default: Will show a testing bulldozer
+- `build`: Will show a container (for example: when building your docker image)
+- `deploy`: Will show a rocket ship
+- `acceptance`: Will show a testing bulldozer
+- `tag`: Will show a tagging label (for example: when tagging your docker image for production)
+- `production`: Will show a rocket ship
+
 ## Send CI statuses via the API
 
 1. Configure your test and deployment environments to push status
