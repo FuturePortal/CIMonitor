@@ -10,7 +10,7 @@ in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
 
-![Dashboard example](https://cloud.githubusercontent.com/assets/6495166/26514898/7aa0c6e6-4275-11e7-8c52-5a9f4e6079c3.png)
+![Dashboard example](https://cloud.githubusercontent.com/assets/6495166/26701884/054927be-4723-11e7-9a2b-bee612c23942.png)
 
 And if that's not enough for you, why not attach some epic hardware
 that will represent the status of your projects! Attach a traffic
