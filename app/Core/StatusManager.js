@@ -30,7 +30,9 @@ StatusManager.prototype.init = function() {
 
     this.loadStatuses();
 
-    this.eventHandler.on('status', function() {
+    this.eventHandler.on('status', function(status) {
+        console.log('[StatusManager] New status: ' + JSON.stringify(status));
+
         StatusManager.saveStatuses();
     });
 };
@@ -47,7 +49,7 @@ StatusManager.prototype.saveStatuses = function() {
             console.log('[StatusManager] ' + error.message);
             return;
         }
-        console.log('[StatusManager] Stored the statuses in a json file.')
+        console.log('[StatusManager] Stored the statuses in a json file.');
     });
 };
 
@@ -66,6 +68,152 @@ StatusManager.prototype.loadStatuses = function() {
 };
 
 /**
+ * Processes a job
+ *
+ * @param {object} status
+ */
+StatusManager.prototype.newPipeline = function(pipeline) {
+    pipeline.key = this.getSimpleKey(pipeline);
+    pipeline.updateTime = new Date().getTime();
+
+    this.statuses[pipeline.key] = pipeline;
+
+    // Fire status event
+    this.eventHandler.emit('status', this.buildStatus(
+        pipeline.project,
+        pipeline.branch,
+        'pipeline',
+        pipeline.status
+    ));
+
+    return true;
+};
+
+/**
+ * Processes a job
+ *
+ * @param {object} pipeline
+ */
+StatusManager.prototype.updatePipeline = function(pipeline) {
+    var key = this.getSimpleKey(pipeline);
+
+    if (typeof this.statuses[key] === 'undefined') {
+        console.log('[StatusManager] ' + key + ' does not exist yet.');
+        return true;
+    }
+
+    this.statuses[key].updateTime = new Date().getTime();
+    this.statuses[key].status = pipeline.status;
+
+    if (pipeline.status === 'success') {
+        this.statuses[key].type = 'success';
+    } else if (pipeline.status === 'failure') {
+        var failureImages = ['rip-stone', 'pumpkin', 'skull', 'firewall', 'bomb', 'thunder'];
+        this.statuses[key].type = failureImages[Math.floor(Math.random() * failureImages.length)];
+    }
+
+    // Fire status event
+    this.eventHandler.emit('status', this.buildStatus(
+        pipeline.project,
+        pipeline.branch,
+        'pipeline',
+        pipeline.status,
+        'status'
+    ));
+
+    return true;
+};
+
+StatusManager.prototype.filterType = function(stage) {
+    if (stage.substring(0, 5) === 'build') {
+        return 'build';
+    }
+    if (stage.substring(0, 6) === 'deploy') {
+        return 'deploy';
+    }
+    if (stage.substring(0, 3) === 'tag') {
+        return 'tag';
+    }
+    if (stage.substring(0, 4) === 'prod') {
+        return 'deploy';
+    }
+    return 'test';
+};
+
+StatusManager.prototype.determineStageStatus = function(stage, jobs) {
+    var hasStarted = false;
+    var hasFailure = false;
+
+    for (var jobKey in jobs) {
+        if (jobs[jobKey].stage === stage) {
+            if (jobs[jobKey].status === 'started') {
+                hasStarted = true;
+            }
+            if (jobs[jobKey].status === 'failure') {
+                hasFailure = true;
+            }
+        }
+    }
+
+    if (hasFailure) {
+        return 'failure';
+    }
+    if (hasStarted) {
+        return 'started';
+    }
+    return 'success';
+};
+
+/**
+ * Processes an incoming status
+ */
+StatusManager.prototype.newJob = function(job, pipeline) {
+    var key = this.getSimpleKey(pipeline);
+
+    if (typeof this.statuses[key] === 'undefined') {
+        console.log('[StatusManager] ' + key + ' does not exist yet.');
+        return true;
+    }
+
+    if (this.statuses[key].currentStage !== job.stage) {
+        this.eventHandler.emit('status', this.buildStatus(
+            pipeline.project,
+            pipeline.branch,
+            'stage',
+            'started',
+            job.stage
+        ));
+    }
+
+    this.statuses[key].jobs[job.name] = job;
+    var stageStatus = this.determineStageStatus(job.stage, this.statuses[key].jobs);
+    this.statuses[key].stages[job.stage].status = stageStatus;
+    this.statuses[key].type = this.filterType(job.stage);
+    this.statuses[key].currentStage = job.stage;
+    this.statuses[key].updateTime = new Date().getTime();
+
+    // Fire status events
+    this.eventHandler.emit('status', this.buildStatus(
+        pipeline.project,
+        pipeline.branch,
+        'job',
+        job.status,
+        job.name
+    ));
+    if (stageStatus === 'success') {
+        this.eventHandler.emit('status', this.buildStatus(
+            pipeline.project,
+            pipeline.branch,
+            'stage',
+            stageStatus,
+            job.stage
+        ));
+    }
+
+    return true;
+};
+
+/**
  * Processes an incoming status
  *
  * @param {object} status
@@ -78,6 +226,10 @@ StatusManager.prototype.newStatus = function(status) {
     // Add extra attributes to the status object
     status.key = this.getKey(status);
     status.updateTime = new Date().getTime();
+    status.jobs = [{
+        name: status.status,
+        status: status.status,
+    }];
 
     console.log('[StatusManager] New status for ' + status.key + ': ' + status.status);
 
@@ -91,9 +243,34 @@ StatusManager.prototype.newStatus = function(status) {
     }
 
     // Fire status event
-    this.eventHandler.emit('status', status);
+    this.eventHandler.emit('status', this.buildStatus(
+        status.project,
+        status.branch,
+        'api',
+        status.status,
+        status.type
+    ));
 
     return true;
+};
+
+/**
+ * Build a status object for the status modules
+ *
+ * @param {string} project
+ * @param {string} branch
+ * @param {string} source api|pipeline|job
+ * @param {string} status success|started|failure
+ * @param {string} type test|build|deploy|acceptance|tag|production
+ */
+StatusManager.prototype.buildStatus = function(project, branch, source, status, type) {
+    return {
+        project: project,
+        branch: branch,
+        source: source,
+        status: status,
+        type: type,
+    };
 };
 
 /**
@@ -138,6 +315,16 @@ StatusManager.prototype.removeOldStatuses = function() {
  */
 StatusManager.prototype.getKey = function(status) {
     return status.project + '.' + status.type + '.' + status.branch;
+};
+
+/**
+ * Get the unique key for a status
+ *
+ * @param {object} status
+ * @returns {string}
+ */
+StatusManager.prototype.getSimpleKey = function(status) {
+    return status.project + '.' + status.branch;
 };
 
 /**

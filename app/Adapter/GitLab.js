@@ -17,15 +17,11 @@ GitLab.prototype.init = function() {
 };
 
 GitLab.prototype.processEvent = function(data) {
-    console.log('[GitLab] Translating GitLab event...');
-
     switch(data.object_kind) {
         case 'build':
-            this.handleBuild(data);
-            break;
+            return this.handleBuild(data);
         case 'pipeline':
-            this.handlePipeline(data);
-            break;
+            return this.handlePipeline(data);
     }
 };
 
@@ -45,45 +41,58 @@ GitLab.prototype.translateStatus = function(status) {
     return ciMonitorStatus;
 };
 
-GitLab.prototype.determineType = function(buildName) {
-    if (buildName.substring(0, 6) === 'deploy') {
-        return 'deploy';
-    }
-
-    if (buildName.substring(0, 5) === 'build') {
-        return 'build';
-    }
-
-    return 'test';
-};
-
 GitLab.prototype.handleBuild = function(data) {
     // Not acting upon the created status
     if (data.build_status === 'created') {
         return;
     }
 
-    var status = {
-        project: data.repository.name,
-        branch: data.ref + ' ' + data.build_name,
-        type: this.determineType(data.build_name),
+    var job = {
+        name: data.build_name,
+        stage: data.build_stage,
         status: this.translateStatus(data.build_status),
-        note: data.build_status
     };
 
-    return this.statusManager.newStatus(status);
+    var pipeline = {
+        project: data.repository.name,
+        branch: data.ref,
+    };
+
+    return this.statusManager.newJob(job, pipeline);
+};
+
+GitLab.prototype.handleNewPipeline = function(data) {
+    var pipeline = {
+        project: data.project.name,
+        branch: data.object_attributes.ref,
+        type: 'wait',
+        status: this.translateStatus(data.object_attributes.status),
+        photo: data.user.avatar_url
+    };
+
+    var stages = data.object_attributes.stages;
+    pipeline.stages = {};
+    pipeline.jobs = {};
+    for (var stageKey in stages) {
+        pipeline.stages[stages[stageKey]] = {
+            name: stages[stageKey],
+            status: 'todo'
+        };
+    }
+
+    return this.statusManager.newPipeline(pipeline);
 };
 
 GitLab.prototype.handlePipeline = function(data) {
-    var status = {
+    if (data.object_attributes.status === 'pending') {
+        return this.handleNewPipeline(data);
+    }
+
+    return this.statusManager.updatePipeline({
         project: data.project.name,
         branch: data.object_attributes.ref,
-        type: 'pipeline',
         status: this.translateStatus(data.object_attributes.status),
-        note: 'Pipeline triggered by ' + data.user.name
-    };
-
-    return this.statusManager.newStatus(status);
+    });
 };
 
 module.exports = GitLab;

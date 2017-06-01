@@ -104,11 +104,16 @@ Core.prototype.getStatusFromJenkinsCallback = function(data) {
  * @returns {boolean}
  */
 Core.prototype.handleJenkinsStatus = function(data) {
+    var jenkinsStatus = this.getStatusFromJenkinsCallback(data);
     var status = {
         project: data.name,
         branch: data.build.scm.branch.replace('origin/', ''),
         type: 'test',
-        status: this.getStatusFromJenkinsCallback(data),
+        jobs: [{
+            name: jenkinsStatus,
+            status: jenkinsStatus,
+        }],
+        status: jenkinsStatus,
         note: '#' + data.build.number
     };
 
