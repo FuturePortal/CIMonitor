@@ -248,7 +248,7 @@ StatusManager.prototype.newStatus = function(status) {
         status.branch,
         'api',
         status.status,
-        'status'
+        status.type
     ));
 
     return true;
@@ -259,17 +259,17 @@ StatusManager.prototype.newStatus = function(status) {
  *
  * @param {string} project
  * @param {string} branch
- * @param {string} source
- * @param {string} status
- * @param {string} name
+ * @param {string} source api|pipeline|job
+ * @param {string} status success|started|failure
+ * @param {string} type test|build|deploy|acceptance|tag|production
  */
-StatusManager.prototype.buildStatus = function(project, branch, source, status, name) {
+StatusManager.prototype.buildStatus = function(project, branch, source, status, type) {
     return {
         project: project,
         branch: branch,
         source: source,
         status: status,
-        name: name
+        type: type,
     };
 };
 

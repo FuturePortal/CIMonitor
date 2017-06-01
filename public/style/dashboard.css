@@ -151,7 +151,15 @@ body {
 }
 .job-container .todo {
     /* visual */
-    background: rgba(255, 204, 102, 0.5);
+    background: rgba(255, 204, 102, 0.4);
+}
+.status.success .job-container .todo {
+    /* visual */
+    background: rgba(135, 192, 86, 0.4);
+}
+.status.failure .job-container .todo {
+    /* visual */
+    background: rgba(236, 122, 96, 0.4);
 }
 
 .status-info {
