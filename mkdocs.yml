@@ -6,3 +6,4 @@ pages:
     - Setup Raspberry: setup-raspberry.md
     - Connecting CI: connecting-ci.md
     - StatusModules: status-modules.md
+    - Linking CIMonitors: linking-cimonitors.md

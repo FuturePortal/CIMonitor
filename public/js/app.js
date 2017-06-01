@@ -18,10 +18,10 @@ Vue.component('status-block', {
         '   <div class="status-jobs job-container" v-if="status.jobs">' +
         '       <div' +
         '           v-for="job in status.jobs"' +
-    '               v-if="job.stage === status.currentStage"' +
+        '           v-if="job.stage === status.currentStage"' +
         '           :key="job.name"' +
         '           :class="job.status"' +
-    '           >' +
+        '       >' +
         '           <span>{{ job.name }}</span>' +
         '       </div>' +
         '   </div>' +

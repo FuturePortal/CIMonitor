@@ -32,7 +32,13 @@ static ip_address=172.17.0.53
 static routers=172.17.0.1
 static domain_name_servers=172.17.0.1
 ```
-`sudo reboot` and ssh to your static ip
+
+`sudo reboot` to reboot with your static IP.
+
+### Enable external SSH access (optional)
+
+If you want to access your raspberry remotely, we need to enable external SSH access. Check out the
+[raspberry documentation for this](https://www.raspberrypi.org/documentation/remote-access/ssh/).
 
 ### Rotate screen
 
