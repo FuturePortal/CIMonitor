@@ -1,8 +1,8 @@
 # [![image](https://cloud.githubusercontent.com/assets/6495166/26699859/947f4466-471b-11e7-9d82-9f0db072a675.png)](https://cimonitor.readthedocs.io) CIMonitor
-[
-    ![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
-    ![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)
-](https://cimonitor.readthedocs.io)
+
+[![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
+[![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://cimonitor.readthedocs.io)
+
 
 The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All

@@ -1,12 +1,11 @@
 # Setup & Run the dashboard
 
-1. Download CIMonitors source code onto your raspberry pi (or other
-   machine)
-1. Run `npm install --production`
-1. Make sure you have [pi-blaster](https://github.com/sarfata/pi-blaster) running on your pi
-1. Copy the config file (`cp app/Config/config.dist.json
-    app/Config/config.json`) and make changes accordingly.
-1. To start the server, run `node app/server.js`.
-1. The dashboard is now available on the port you provided.
+If you have a Raspberry PI 3, we strongly recommend that you follow the "Setup Raspberry" tutorial.
 
-To have a complete raspberry pi installation, check out the "Setup Raspberry" item in the menu.
+1. `$ git clone git@github.com:CIMonitor/CIMonitor.git`
+1. `$ cd CIMonitor/`
+1. `$ cp app/Config/config.dist.json app/Config/config.json`
+1. `$ vim app/Config/config.json` and make the required changes.
+1. `$ npm install --production`
+1. `$ node app/server.js` to run the application
+1. You can now access [localhost:3000](http://localhost:3000/)
