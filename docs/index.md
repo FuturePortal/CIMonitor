@@ -3,7 +3,6 @@
 [![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
 [![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://cimonitor.readthedocs.io)
 
-
 The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
