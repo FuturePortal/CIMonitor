@@ -251,15 +251,12 @@ body {
 @keyframes pulse-started {
     0% {
         background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
     }
     50% {
         background: rgba(255, 204, 102, .5);
-        color: rgb(86, 66, 43);
     }
     100% {
         background: rgba(255, 204, 102, .95);
-        color: rgb(55, 47, 19);
     }
 }
 
