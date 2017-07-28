@@ -27,6 +27,11 @@ body {
     border-radius: 5px;
 }
 
+.status:last-child {
+    /* box-model */
+    margin-bottom: 20px;
+}
+
 .status-icon-box {
     /* positioning */
     position: absolute;
