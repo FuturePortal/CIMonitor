@@ -42,7 +42,12 @@ Vue.component('status-block', {
             return '/images/types/' + this.status.type + '.svg';
         },
         getStatusPhoto: function() {
-            return 'background-image: url(\'' + this.status.photo + '\')'
+            var statusPhoto = this.status.photo;
+            // Photos from Gravatar will get blurry if we do not bump up the resolution.
+            if (statusPhoto.indexOf('gravatar.com') !== -1) {
+                statusPhoto = statusPhoto.replace('s=80', 's=300');
+            }
+            return 'background-image: url(\'' + statusPhoto + '\')'
         },
         getTimeAgo: function() {
             var timeAgo = moment(this.status.updateTime).from(this.now);
