@@ -42,9 +42,9 @@ Vue.component('status-block', {
             return '/images/types/' + this.status.type + '.svg';
         },
         getStatusPhoto: function() {
-            statusPhoto = this.status.photo;
+            var statusPhoto = this.status.photo;
             // Photos from Gravatar will get blurry if we do not bump up the resolution.
-            if (statusPhoto.indexOf('gravatar.com') != -1) {
+            if (statusPhoto.indexOf('gravatar.com') !== -1) {
                 statusPhoto = statusPhoto.replace('s=80', 's=300');
             }
             return 'background-image: url(\'' + statusPhoto + '\')'
