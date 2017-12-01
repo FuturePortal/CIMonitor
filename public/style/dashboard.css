@@ -233,10 +233,6 @@ body {
     /* visual */
     background: rgb(236, 122, 96);
 }
-.status.allowed-failure .status-info {
-    /* visual */
-    background: rgb(19, 162, 209);
-}
 
 .status-time {
     /* positioning */
