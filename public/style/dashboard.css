@@ -158,6 +158,41 @@ body {
     /* visual */
     background: rgb(236, 122, 96);
 }
+.job-container .allowed-failure {
+    /* visual */
+    background: rgb(236, 122, 96);
+}
+.status-stages .allowed-failure {
+    /* positioning */
+    position: relative;
+
+    /* box-model */
+    padding-right: 28px;
+
+    /* visual */
+    background: rgb(135, 192, 86);
+}
+.status-stages .allowed-failure:after {
+    /* positioning */
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    /* box-model */
+    width: 34px;
+    height: 28px;
+    text-align: center;
+    padding-top: 6px;
+
+    /* typography */
+    font-weight: bold;
+
+    /* visual */
+    background: rgb(255, 204, 102);
+
+    /* misc */
+    content: '!';
+}
 .job-container .todo {
     /* visual */
     background: rgba(255, 204, 102, 0.4);

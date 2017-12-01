@@ -143,6 +143,7 @@ StatusManager.prototype.filterType = function(stage) {
 StatusManager.prototype.determineStageStatus = function(stage, jobs) {
     var hasStarted = false;
     var hasFailure = false;
+    var hasAllowedFailure = false;
 
     for (var jobKey in jobs) {
         if (jobs[jobKey].stage === stage) {
@@ -152,6 +153,9 @@ StatusManager.prototype.determineStageStatus = function(stage, jobs) {
             if (jobs[jobKey].status === 'failure') {
                 hasFailure = true;
             }
+            if (jobs[jobKey].status === 'allowed-failure') {
+                hasAllowedFailure = true;
+            }
         }
     }
 
@@ -160,6 +164,9 @@ StatusManager.prototype.determineStageStatus = function(stage, jobs) {
     }
     if (hasStarted) {
         return 'started';
+    }
+    if (hasAllowedFailure) {
+        return 'allowed-failure';
     }
     return 'success';
 };

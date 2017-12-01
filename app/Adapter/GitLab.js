@@ -25,20 +25,16 @@ GitLab.prototype.processEvent = function(data) {
     }
 };
 
-GitLab.prototype.translateStatus = function(status) {
-    var ciMonitorStatus = 'success';
-
-    switch(status) {
-        case 'pending':
-        case 'running':
-            ciMonitorStatus = 'started';
-            break;
-        case 'failed':
-            ciMonitorStatus = 'failure';
-            break;
+GitLab.prototype.translateStatus = function(status, allowFailure) {
+    if (status === 'pending' || status === 'running') {
+        return 'started';
     }
 
-    return ciMonitorStatus;
+    if (status === 'failed') {
+        return allowFailure ? 'allowed-failure' : 'failure';
+    }
+
+    return 'success';
 };
 
 GitLab.prototype.handleBuild = function(data) {
@@ -50,7 +46,7 @@ GitLab.prototype.handleBuild = function(data) {
     var job = {
         name: data.build_name,
         stage: data.build_stage,
-        status: this.translateStatus(data.build_status),
+        status: this.translateStatus(data.build_status, data.build_allow_failure),
     };
 
     var pipeline = {
