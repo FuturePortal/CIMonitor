@@ -158,6 +158,42 @@ body {
     /* visual */
     background: rgb(236, 122, 96);
 }
+.job-container .allowed-failure {
+    /* visual */
+    background: rgb(236, 122, 96);
+}
+.status-stages .allowed-failure {
+    /* positioning */
+    position: relative;
+
+    /* box-model */
+    padding-right: 20px;
+
+    /* visual */
+    background: rgb(135, 192, 86);
+}
+.status-stages .allowed-failure:after {
+    /* positioning */
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    transform: skew(19deg);
+
+    /* box-model */
+    width: 22px;
+    height: 22px;
+    text-align: center;
+
+    /* typography */
+    font-weight: bold;
+
+    /* visual */
+    background: rgb(255, 204, 102);
+    border-radius: 50%;
+
+    /* misc */
+    content: '!';
+}
 .job-container .todo {
     /* visual */
     background: rgba(255, 204, 102, 0.4);
@@ -196,6 +232,10 @@ body {
 .status.failure .status-info {
     /* visual */
     background: rgb(236, 122, 96);
+}
+.status.allowed-failure .status-info {
+    /* visual */
+    background: rgb(19, 162, 209);
 }
 
 .status-time {
