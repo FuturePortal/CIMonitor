@@ -167,7 +167,7 @@ body {
     position: relative;
 
     /* box-model */
-    padding-right: 20px;
+    padding-right: 28px;
 
     /* visual */
     background: rgb(135, 192, 86);
@@ -176,7 +176,7 @@ body {
     /* positioning */
     position: absolute;
     top: 5px;
-    right: 8px;
+    right: 12px;
     transform: skew(19deg);
 
     /* box-model */
