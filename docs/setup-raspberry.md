@@ -68,7 +68,8 @@ find `[SeatDefault]` and place under it:
 
 ## Install nodejs & npm
 
-`# apt-get install nodejs-legacy npm`
+1. Install nvm: https://github.com/creationix/nvm
+1. Run `nvm install 8` (or another node version if you like)
 
 ## Download CIMonitor
 
