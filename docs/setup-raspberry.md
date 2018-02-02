@@ -91,6 +91,10 @@ find `[SeatDefault]` and place under it:
     ```
     ExecStart=/bin/sh -c "/bin/sleep 20 && /usr/sbin/pi-blaster $DAEMON_ARGS"
     ```
+1. When using the audio plug, you need to use pcm modues on the pi-blaster. Create an environment file `/etc/default/pi-blaster`:
+    ```
+    DAEMON_ARGS="--pcm"
+    ```
 
 ## Run node as a service
 
