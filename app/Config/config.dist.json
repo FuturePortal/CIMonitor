@@ -59,6 +59,26 @@
                 }
             ]
         },
+        "Sound": {
+            "events": [
+                {
+                    "on": {
+                        "status": "success"
+                    },
+                    "do": {
+                        "sound": "/home/pi/CIMonitor/success.mp3"
+                    }
+                },
+                {
+                    "on": {
+                        "status": "failure"
+                    },
+                    "do": {
+                        "sound": "/home/pi/CIMonitor/failure.mp3"
+                    }
+                }
+            ]
+        },
         "LedStrip": {
             "globalConfig": {
                 "gpioPinRed": 23,

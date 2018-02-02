@@ -1,16 +1,19 @@
 * {
+    /* box-model */
     padding: 0;
     margin: 0;
+
+    /* visual */
     outline: 0;
 }
 
 body {
-    background: url('https://c4.staticflickr.com/3/2909/14831394931_83c79b508e_b.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    /* typography */
     font-family: 'Coda', cursive;
+
+    /* visual */
+    background: url('https://c4.staticflickr.com/3/2909/14831394931_83c79b508e_b.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .status {
