@@ -41,7 +41,7 @@ StatusManager.prototype.init = function() {
  * Save the statues to a json file, so that no status will be list when the app restarts
  */
 StatusManager.prototype.saveStatuses = function() {
-    var statusesJson = JSON.stringify(this.statuses);
+    var statusesJson = JSON.stringify(this.statuses, null, 4);
 
     fileSystem.writeFile(this.statusesFile, statusesJson, function (error) {
         if (error) {
