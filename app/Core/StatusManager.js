@@ -174,6 +174,8 @@ StatusManager.prototype.determineStageStatus = function(stage, jobs) {
  * Processes an incoming status
  */
 StatusManager.prototype.newJob = function(job, pipeline) {
+    this.removeOldStatuses();
+    
     var key = this.getSimpleKey(pipeline);
 
     if (typeof this.statuses[key] === 'undefined') {
