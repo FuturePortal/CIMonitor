@@ -6,15 +6,5 @@ cache:
     directories:
         - node_modules
 
-before_install:
-    - curl -s -o ~/hookr.sh https://hookr.enrise.com/clients/travis.sh && chmod +x ~/hookr.sh
-    - ~/hookr.sh "CIMonitor" "started"
-
 script:
     - node_modules/.bin/gulp eslint-fail-on-error
-    
-after_success:
-    - ~/hookr.sh "CIMonitor" "success"
-    
-after_failure:
-    - ~/hookr.sh "CIMonitor" "failure"
