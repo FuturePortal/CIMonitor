@@ -31,6 +31,11 @@ export default {
         setNow() {
             this.now = this.getCurrentTimestamp();
         },
+        setFavicon() {
+            document
+                .querySelector('link[rel="shortcut icon"]')
+                .setAttribute('href', `/images/favicon/${this.globalState}.png`);
+        },
     },
     computed: {
         isNotConnected() {
@@ -72,6 +77,7 @@ export default {
         [socketEvents.statusesUpdated](statuses) {
             console.log('New statuses updated event!');
             this.statuses = statuses;
+            this.setFavicon();
         },
     },
 };

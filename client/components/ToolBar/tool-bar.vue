@@ -120,7 +120,7 @@ button
         clip: rect(0px, 20px, 20px, 0px)
         display: block
 
-$light-transparancy: 0.8
+$light-transparancy: 0.6
 $light-distance: 150px
 $light-spread: 120px
 

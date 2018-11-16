@@ -16,6 +16,8 @@ mix.options({
     // },
 });
 
+mix.copy('client/static/', 'dist/');
+
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
 }
