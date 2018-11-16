@@ -3,3 +3,5 @@ cypress/videos/
 dist/
 node_modules/
 logs/
+server/config/saved-statuses.json
+server/config/config.json

@@ -1,0 +1,62 @@
+{
+    "triggers": [
+        {
+            "on": {
+                "state": "success"
+            },
+            "targetEventName": "celebrate-success"
+        },
+        {
+            "on": {
+                "state": "error"
+            },
+            "targetEventName": "error-sequence"
+        }
+    ],
+    "events": [
+        {
+            "name": "celebrate-success",
+            "modules": [
+                {
+                    "name": "LedStrip",
+                    "push": {
+                        "state": "success"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "error-sequence",
+            "modules": [
+                {
+                    "name": "LedStrip",
+                    "push": {
+                        "state": "error"
+                    }
+                },
+                {
+                    "name": "PowerUp",
+                    "push": {
+                        "gpioPort": 13,
+                        "time": 5000
+                    }
+                }
+            ]
+        }
+    ],
+    "modules": [
+        {
+            "name": "LedStrip",
+            "config": {
+                "gpioPortRed": 10,
+                "gpioPortGreen": 11,
+                "gpioPortBlue": 12,
+                "state": "neutral"
+            }
+        },
+        {
+            "name": "PowerUp",
+            "config": {}
+        }
+    ]
+}

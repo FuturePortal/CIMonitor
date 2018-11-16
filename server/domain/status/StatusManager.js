@@ -1,6 +1,7 @@
 const Events = require('../Events');
 const Status = require('./Status');
 const staticEvents = require('../../../shared/socketEvents');
+const EventTrigger = require('../event/EventTrigger');
 
 class StatusManager {
     constructor() {
@@ -25,8 +26,15 @@ class StatusManager {
             console.log('[StatusManager] Status already exists, replacing the old status.');
             const index = this.statuses.indexOf(existingStatus);
             this.statuses[index] = status;
+
+            if (existingStatus.getState() !== status.getState()) {
+                EventTrigger.fireStatus(status);
+            }
+
             return;
         }
+
+        EventTrigger.fireStatus(status);
 
         console.log('[StatusManager] Adding new status to the statuses.');
         this.statuses.push(status);
@@ -43,10 +51,14 @@ class StatusManager {
     }
 
     /**
-     * @return Status
+     * @return {Status}
      */
     getStatusByKey(statusKey) {
         return this.statuses.find(status => status.getKey() === statusKey);
+    }
+
+    removeOldStatuses() {
+        this.statuses = this.statuses.filter(status => status.isOld());
     }
 
     /**
@@ -57,12 +69,14 @@ class StatusManager {
 
         this.processStatus(status);
 
-        // @todo: Remove old statuses
+        this.removeOldStatuses();
 
         Events.push(Events.event.statusesUpdated);
     }
 
     removeStatus(statusKey) {
+        this.removeOldStatuses();
+
         const existingStatus = this.statuses.find(existingStatus => existingStatus.getKey() === statusKey);
 
         if (existingStatus) {
