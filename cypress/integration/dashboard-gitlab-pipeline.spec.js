@@ -1,4 +1,4 @@
-context('Waiting', () => {
+context('Gitlab pipeline', () => {
     it('opens the dashboard', () => {
         cy.visit('/');
     });

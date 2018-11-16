@@ -13,7 +13,7 @@ class StatusAdapterTravisCI {
         }
 
         Status.createStatus({
-            key: data.id.toString(),
+            key: this.getKeyFromData(data),
             state: this.pipelineStatusToState(data.status_message),
             title: data.repository.owner_name + '/' + data.repository.name,
             subTitle: data.branch,
@@ -38,6 +38,11 @@ class StatusAdapterTravisCI {
                 return 'info';
         }
     }
+
+    getKeyFromData(data) {
+        return `travis-ci-${data.repository.owner_name}-${data.repository.name}-${data.branch}`.replace(/[^\w-]/g, '-');
+    }
+
 }
 
 module.exports = new StatusAdapterTravisCI();

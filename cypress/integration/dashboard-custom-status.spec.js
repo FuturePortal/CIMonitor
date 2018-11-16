@@ -1,4 +1,4 @@
-context('Waiting', () => {
+context('Custom states', () => {
     it('opens the dashboard', () => {
         cy.visit('/');
     });

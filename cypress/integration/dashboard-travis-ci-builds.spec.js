@@ -1,4 +1,4 @@
-context('Waiting', () => {
+context('Travis-CI builds', () => {
     it('opens the dashboard', () => {
         cy.visit('/');
     });
