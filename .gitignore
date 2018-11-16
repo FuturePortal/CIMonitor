@@ -1,4 +1,5 @@
 .idea/
+cypress/videos/
+dist/
 node_modules/
-app/Config/config.json
-statuses.json
+logs/
