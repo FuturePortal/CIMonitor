@@ -1,13 +1,13 @@
-# [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) GitLab-CIMonitor
+# [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) CIMonitor
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
+[![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
 The GitLab-CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
 deployments are successful. All in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
-
-NOTE: This project is still a work in progress, for a working version check CIMonitor/CIMonitor.
 
 ## Features
 
