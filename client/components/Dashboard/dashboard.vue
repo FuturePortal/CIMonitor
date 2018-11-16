@@ -3,7 +3,7 @@
         <status v-if="isNotConnected" :status="notConnectedStatus" />
         <status v-if="hasNoStatuses" :status="noStatusesStatus" />
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
-        <tool-bar />
+        <tool-bar :state="globalState" />
     </div>
 </template>
 
@@ -31,6 +31,11 @@ export default {
         setNow() {
             this.now = this.getCurrentTimestamp();
         },
+        setFavicon() {
+            document
+                .querySelector('link[rel="shortcut icon"]')
+                .setAttribute('href', `/images/favicon/${this.globalState}.png`);
+        },
     },
     computed: {
         isNotConnected() {
@@ -56,11 +61,23 @@ export default {
                 image: SateliteImage,
             };
         },
+        globalState() {
+            if (this.statuses.find(status => status.state === 'error')) {
+                return 'error';
+            }
+
+            if (this.statuses.find(status => status.state === 'warning')) {
+                return 'warning';
+            }
+
+            return 'success';
+        },
     },
     sockets: {
         [socketEvents.statusesUpdated](statuses) {
             console.log('New statuses updated event!');
             this.statuses = statuses;
+            this.setFavicon();
         },
     },
 };

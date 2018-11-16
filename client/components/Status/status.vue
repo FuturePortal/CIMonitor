@@ -3,7 +3,7 @@
         <img v-if="status.image" :src="status.image" class="image" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
-            <div class="jobs" v-if="status.jobs && interestingJobs">
+            <div class="jobs" v-if="status.jobs && interestingJobs.length > 0">
                 <div class="job" v-for="(job, index) in interestingJobs" :key="index">
                     <i :class="stateToIcon(job.state)"></i>
                     {{ job.name }}

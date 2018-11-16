@@ -14,7 +14,7 @@ class Status {
             stage: {},
             state: {
                 presence: true,
-                inclusion: ['pending', 'running', 'error', 'success', 'allowed-error'],
+                inclusion: ['info', 'pending', 'running', 'error', 'success', 'warning'],
             },
         };
     }
