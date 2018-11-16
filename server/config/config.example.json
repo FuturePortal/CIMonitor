@@ -22,6 +22,14 @@
                     "push": {
                         "state": "success"
                     }
+                },
+                {
+                    "name": "DashboardVideo",
+                    "push": {
+                        "youTubeKey": "ZTOIEz7p2KU",
+                        "startAt": 20,
+                        "duration": 20
+                    }
                 }
             ]
         },
@@ -46,6 +54,10 @@
     ],
     "modules": [
         {
+            "name": "DashboardVideo",
+            "config": {}
+        },
+        {
             "name": "LedStrip",
             "config": {
                 "gpioPortRed": 10,
@@ -57,6 +69,13 @@
         {
             "name": "PowerUp",
             "config": {}
+        },
+        {
+            "name": "HueLight",
+            "config": {
+                "hub": "---token---",
+                "path": "/api/---token---/lights/5/state"
+            }
         }
     ]
 }

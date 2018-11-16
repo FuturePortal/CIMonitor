@@ -6,10 +6,13 @@ class AbstractModule {
     }
 
     init() {
-        console.log('[AbstractModule] Empty init.');
+        // Empty init
     }
 
-    fireEvent(config) {
+    /**
+     * @param {Status} status
+     */
+    fireEvent(config, status) {
         console.log('[AbstractModule] No fire event defined.');
     }
 }

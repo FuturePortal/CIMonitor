@@ -7,14 +7,17 @@ class EventTrigger {
      * @param {Status} status
      */
     fireStatus(status) {
-        const statusData = status.getRawData();
         const triggers = Config.getTriggers();
         console.log(`[EventTrigger] Checking if status ${status.getKey()} triggers any events...`);
 
-        triggers.forEach(trigger => this.triggerEventIfMatch(trigger.on, statusData, trigger.targetEventName));
+        triggers.forEach(trigger => this.triggerEventIfMatch(trigger.on, status, trigger.targetEventName));
     }
 
-    triggerEventIfMatch(triggerData, statusData, targetEventName) {
+    /**
+     * @param {Status} status
+     */
+    triggerEventIfMatch(triggerData, status, targetEventName) {
+        const statusData = status.getRawData();
         for (let triggerKey of Object.keys(triggerData)) {
             if (triggerData[triggerKey] !== statusData[triggerKey]) {
                 console.log(`[EventTrigger] No match for event ${targetEventName}.`);
@@ -22,15 +25,18 @@ class EventTrigger {
             }
         }
 
-        this.fireModulesForEvent(targetEventName);
+        this.fireModulesForEvent(targetEventName, status);
     }
 
-    fireModulesForEvent(eventName) {
+    /**
+     * @param {Status} status
+     */
+    fireModulesForEvent(eventName, status) {
         console.log(`[EventTrigger] Firing modules for ${eventName}...`);
 
         const event = Config.getEventByName(eventName);
 
-        event.modules.forEach(module => ModuleManager.fireModuleEvent(module.name, module.push));
+        event.modules.forEach(module => ModuleManager.fireModuleEvent(module.name, module.push, status));
     }
 }
 

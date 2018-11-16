@@ -1,4 +1,5 @@
 const Config = require('../../config/Config');
+const Status = require('../status/Status');
 
 class ModuleManager {
     constructor() {
@@ -10,9 +11,6 @@ class ModuleManager {
 
     initModulesFromConfig() {
         const configuredModules = Config.getModules();
-
-        console.log(configuredModules);
-
         configuredModules.forEach(module => this.initializeModule(module.name, module.config));
     }
 
@@ -28,14 +26,22 @@ class ModuleManager {
         }
     }
 
-    fireModuleEvent(moduleName, pushConfig) {
+    /**
+     * @param {Status} status
+     */
+    fireModuleEvent(moduleName, pushConfig, status) {
         if (!this.modules[moduleName]) {
             console.log(`[ModuleManager] Module with name ${moduleName} isn't initialized.`);
             return;
         }
 
         console.log(`[ModuleManager] Fire event for ${moduleName}!`);
-        this.modules[moduleName].fireEvent(pushConfig);
+        try {
+            this.modules[moduleName].fireEvent(pushConfig, status);
+        } catch (error) {
+            console.log(`[ModuleManager] firing the event gave an error.`);
+            console.log(error);
+        }
     }
 }
 

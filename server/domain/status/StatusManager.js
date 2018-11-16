@@ -57,6 +57,18 @@ class StatusManager {
         return this.statuses.find(status => status.getKey() === statusKey);
     }
 
+    getGlobalState() {
+        if (this.statuses.find(status => status.getState() === 'error')) {
+            return 'error';
+        }
+
+        if (this.statuses.find(status => status.getState() === 'warning')) {
+            return 'warning';
+        }
+
+        return 'success';
+    }
+
     removeOldStatuses() {
         this.statuses = this.statuses.filter(status => status.isOld());
     }
