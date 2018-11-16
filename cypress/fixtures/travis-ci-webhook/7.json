@@ -1,0 +1,151 @@
+{
+    "id": 456159658,
+    "number": "39",
+    "config": {
+        "os": "linux",
+        "dist": "trusty",
+        "sudo": false,
+        "cache": {
+            "pip": true,
+            "directories": ["vendor/bundle", "node_modules"]
+        },
+        "group": "stable",
+        "addons": {
+            "apt": {
+                "packages": ["libxml2-utils"]
+            }
+        },
+        "deploy": {
+            "app": "docs-travis-ci-com",
+            "true": {
+                "branch": ["master"]
+            },
+            "api_key": {
+                "secure":
+                    "hylw2GIHMvZKOKX3uPSaLEzVrUGEA9mzGEA0s4zK37W9HJCTnvAcmgRCwOkRuC4L7R4Zshdh/CGORNnBBgh1xx5JGYwkdnqtjHuUQmWEXCusrIURu/iEBNSsZZEPK7zBuwqMHj2yRm64JfbTDJsku3xdoA5Z8XJG5AMJGKLFgUQ="
+            },
+            "provider": "heroku",
+            "skip_cleanup": true
+        },
+        "python": ["3.5.2"],
+        "script": ["bundle exec rake test", "xmllint --noout _site/feed.build-env-updates.xml"],
+        ".result": "configured",
+        "install": ["rvm use 2.4.3 --install", "bundle install --deployment"],
+        "branches": {
+            "only": ["master"]
+        },
+        "language": "python",
+        "global_env": ["PATH=$HOME/.local/user/bin:$PATH"],
+        "notifications": {
+            "slack": {
+                "rooms": {
+                    "secure":
+                        "LPNgf0Ra6Vu6I7XuK7tcnyFWJg+becx1RfAR35feWK81sru8TyuldQIt7uAKMA8tqFTP8j1Af7iz7UDokbCCfDNCX1GxdAWgXs+UKpwhO89nsidHAsCkW2lWSEM0E3xtOJDyNFoauiHxBKGKUsApJTnf39H+EW9tWrqN5W2sZg8="
+                },
+                "on_success": "never"
+            },
+            "webhooks": "https://docs.travis-ci.com/update_webhook_payload_doc"
+        }
+    },
+    "type": "push",
+    "state": "errored",
+    "status": 0,
+    "result": 0,
+    "status_message": "Pending",
+    "result_message": "Pending",
+    "started_at": "2018-11-16T21:08:19Z",
+    "finished_at": "2018-11-16T21:11:55Z",
+    "duration": 216,
+    "build_url": "https://travis-ci.org/Rachelmorrell/docs-travis-ci-com/builds/456159658",
+    "commit_id": 137354208,
+    "commit": "8334ac7065517c7a19e22b804dab21cdac4a5be3",
+    "base_commit": null,
+    "head_commit": null,
+    "branch": "master",
+    "message": "Formatting",
+    "compare_url": "https://github.com/Rachelmorrell/docs-travis-ci-com/compare/85780afd665f...8334ac706551",
+    "committed_at": "2018-11-16T20:34:44Z",
+    "author_name": "Dominic Jodoin",
+    "author_email": "dominic@travis-ci.com",
+    "committer_name": "GitHub",
+    "committer_email": "noreply@github.com",
+    "pull_request": false,
+    "pull_request_number": null,
+    "pull_request_title": null,
+    "tag": null,
+    "repository": {
+        "id": 19706851,
+        "name": "docs-travis-ci-com",
+        "owner_name": "Rachelmorrell",
+        "url": null
+    },
+    "matrix": [
+        {
+            "id": 456159659,
+            "repository_id": 19706851,
+            "parent_id": 456159658,
+            "number": "39.1",
+            "state": "errored",
+            "config": {
+                "os": "linux",
+                "dist": "trusty",
+                "sudo": false,
+                "cache": {
+                    "pip": true,
+                    "directories": ["vendor/bundle", "node_modules"]
+                },
+                "group": "stable",
+                "addons": {
+                    "apt": {
+                        "packages": ["libxml2-utils"]
+                    },
+                    "deploy": {
+                        "app": "docs-travis-ci-com",
+                        "true": {
+                            "branch": ["master"]
+                        },
+                        "api_key": {
+                            "secure":
+                                "hylw2GIHMvZKOKX3uPSaLEzVrUGEA9mzGEA0s4zK37W9HJCTnvAcmgRCwOkRuC4L7R4Zshdh/CGORNnBBgh1xx5JGYwkdnqtjHuUQmWEXCusrIURu/iEBNSsZZEPK7zBuwqMHj2yRm64JfbTDJsku3xdoA5Z8XJG5AMJGKLFgUQ="
+                        },
+                        "provider": "heroku",
+                        "skip_cleanup": true
+                    }
+                },
+                "python": "3.5.2",
+                "script": ["bundle exec rake test", "xmllint --noout _site/feed.build-env-updates.xml"],
+                ".result": "configured",
+                "install": ["rvm use 2.4.3 --install", "bundle install --deployment"],
+                "branches": {
+                    "only": ["master"]
+                },
+                "language": "python",
+                "global_env": ["PATH=$HOME/.local/user/bin:$PATH"],
+                "notifications": {
+                    "slack": {
+                        "rooms": {
+                            "secure":
+                                "LPNgf0Ra6Vu6I7XuK7tcnyFWJg+becx1RfAR35feWK81sru8TyuldQIt7uAKMA8tqFTP8j1Af7iz7UDokbCCfDNCX1GxdAWgXs+UKpwhO89nsidHAsCkW2lWSEM0E3xtOJDyNFoauiHxBKGKUsApJTnf39H+EW9tWrqN5W2sZg8="
+                        },
+                        "on_success": "never"
+                    },
+                    "webhooks": "https://docs.travis-ci.com/update_webhook_payload_doc"
+                }
+            },
+            "status": 1,
+            "result": 1,
+            "commit": "8334ac7065517c7a19e22b804dab21cdac4a5be3",
+            "branch": "master",
+            "message": "Formatting",
+            "compare_url": "https://github.com/Rachelmorrell/docs-travis-ci-com/compare/85780afd665f...8334ac706551",
+            "started_at": "2018-11-16T21:08:19Z",
+            "finished_at": "2018-11-16T21:11:55Z",
+            "committed_at": "2018-11-16T20:34:44Z",
+            "author_name": "Dominic Jodoin",
+            "author_email": "dominic@travis-ci.com",
+            "committer_name": "GitHub",
+            "committer_email": "noreply@github.com",
+            "allow_failure": false
+        }
+    ]
+}

@@ -13,15 +13,31 @@ Cypress.Commands.add('pushStatus', request => {
     });
 });
 
-Cypress.Commands.add('pushGitLabWebHook', request => {
-    cy.fixture(`gitlab-web-hook/${request}`).then(body => {
+Cypress.Commands.add('pushGitLabWebhook', request => {
+    cy.fixture(`gitlab-webhook/${request}`).then(body => {
         cy.request({
-            url: 'http://localhost:9999/gitlab',
+            url: 'http://localhost:9999/webhook/gitlab',
             method: 'POST',
             body,
             headers: {
                 'Content-Type': 'application/json',
             },
+        });
+    });
+});
+
+Cypress.Commands.add('pushTravisCIWebhook', request => {
+    cy.fixture(`travis-ci-webhook/${request}`).then(body => {
+        cy.request({
+            url: 'http://localhost:9999/webhook/travis',
+            method: 'POST',
+            body: {
+                payload: JSON.stringify(body),
+            },
+            headers: {
+                'Content-Type': 'x-www-form-urlencoded',
+            },
+            form: true,
         });
     });
 });
