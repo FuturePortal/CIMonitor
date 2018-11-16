@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="50.019px" height="64.019px" viewBox="0 0 50.019 64.019" style="enable-background:new 0 0 50.019 64.019;"
+	 xml:space="preserve">
+<g id="Leg_1_">
+	<g>
+		<path style="fill:#E6E6E6;" d="M34.019,32.019l-5.963,6c0,0,6.008,5.424,6.008,12v14h7.955v-16
+			C42.019,48.019,42.118,40.106,34.019,32.019z"/>
+	</g>
+</g>
+<g id="Stand_3_">
+	<g>
+		<path style="fill:#CCCCCC;" d="M46.019,60.019h-16c-2.209,0-4,1.791-4,4h24C50.019,61.81,48.228,60.019,46.019,60.019z"/>
+	</g>
+</g>
+<g id="Arms">
+	<g>
+		<polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#E6E6E6;" points="34.066,16.019 10.032,6.019 6.026,10.019
+			16.041,36.019 20.047,32.019 12.631,12.767 30.062,20.019 		"/>
+	</g>
+</g>
+<g id="Transmitor">
+	<g>
+		<ellipse style="fill:#9B7CAB;" cx="8.03" cy="8.019" rx="4.006" ry="4"/>
+	</g>
+</g>
+<g id="Dish">
+	<g>
+		<path style="fill:#CCCCCC;" d="M36.467,0L0,36.415c10.069,10.056,26.396,10.056,36.467,0C46.536,26.358,46.536,10.056,36.467,0z"
+			/>
+	</g>
+</g>
+<g id="Shape_5_">
+	<g>
+		<circle style="fill:#808080;" cx="34.019" cy="38.019" r="6"/>
+	</g>
+</g>
+<g id="Shape_6_">
+	<g>
+		<circle style="fill:#E6E6E6;" cx="34.019" cy="38.019" r="2"/>
+	</g>
+</g>
+<g id="Shape_7_">
+	<g>
+		<path style="fill:#B3B3B3;" d="M36.467,0L0,36.415c1.31,1.308,2.729,2.437,4.224,3.404L39.876,4.217
+			C38.907,2.726,37.776,1.308,36.467,0z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,41 @@
+{
+    "object_kind": "build",
+    "ref": "master",
+    "tag": false,
+    "before_sha": "0000000000000000000000000000000000000000",
+    "sha": "b43eb9240d28a6bfaa75fa52aa2df0a89e46d80f",
+    "build_id": 115398,
+    "build_name": "deploy to acceptance",
+    "build_stage": "deploy",
+    "build_status": "running",
+    "build_started_at": "2018-11-08 09:33:04 UTC",
+    "build_finished_at": null,
+    "build_duration": 0.051366814,
+    "build_allow_failure": false,
+    "build_failure_reason": "unknown_failure",
+    "project_id": 20,
+    "project_name": "Nawcast / Nawcast",
+    "user": { "id": 2, "name": "Rick van der Staaij", "email": "info@rickvanderstaaij.nl" },
+    "commit": {
+        "id": 30398,
+        "sha": "b43eb9240d28a6bfaa75fa52aa2df0a89e46d80f",
+        "message":
+            "Merge branch '31-slide-backgrounds' into 'master'\n\nAdd background color/image support for slides\n\nSee merge request Nawcast/Nawcast!44",
+        "author_name": "Rick van der Staaij",
+        "author_email": "info@rickvanderstaaij.nl",
+        "author_url": "https://gitlab.enrise.com/RickvdStaaij",
+        "status": "running",
+        "duration": null,
+        "started_at": "2018-11-08 09:27:35 UTC",
+        "finished_at": null
+    },
+    "repository": {
+        "name": "Nawcast",
+        "url": "git@gitlab.enrise.com:Nawcast/Nawcast.git",
+        "description": "https://nawcast.com",
+        "homepage": "https://gitlab.enrise.com/Nawcast/Nawcast",
+        "git_http_url": "https://gitlab.enrise.com/Nawcast/Nawcast.git",
+        "git_ssh_url": "git@gitlab.enrise.com:Nawcast/Nawcast.git",
+        "visibility_level": 10
+    }
+}

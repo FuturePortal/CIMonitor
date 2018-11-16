@@ -1,0 +1,230 @@
+{
+    "object_kind": "pipeline",
+    "object_attributes": {
+        "id": 30398,
+        "ref": "master",
+        "tag": false,
+        "sha": "b43eb9240d28a6bfaa75fa52aa2df0a89e46d80f",
+        "before_sha": "0000000000000000000000000000000000000000",
+        "status": "success",
+        "detailed_status": "passed",
+        "stages": ["test", "build", "deploy", "acceptance", "production", "merge back"],
+        "created_at": "2018-11-08 09:27:34 UTC",
+        "finished_at": "2018-11-08 09:38:30 UTC",
+        "duration": 651,
+        "variables": []
+    },
+    "user": {
+        "name": "Rick van der Staaij",
+        "username": "RickvdStaaij",
+        "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+    },
+    "project": {
+        "id": 20,
+        "name": "Nawcast",
+        "description": "https://nawcast.com",
+        "web_url": "https://gitlab.enrise.com/Nawcast/Nawcast",
+        "avatar_url": "https://gitlab.enrise.com/uploads/-/system/project/avatar/20/logo_round_no_txt.png",
+        "git_ssh_url": "git@gitlab.enrise.com:Nawcast/Nawcast.git",
+        "git_http_url": "https://gitlab.enrise.com/Nawcast/Nawcast.git",
+        "namespace": "Nawcast",
+        "visibility_level": 10,
+        "path_with_namespace": "Nawcast/Nawcast",
+        "default_branch": "master",
+        "ci_config_path": null
+    },
+    "commit": {
+        "id": "b43eb9240d28a6bfaa75fa52aa2df0a89e46d80f",
+        "message":
+            "Merge branch '31-slide-backgrounds' into 'master'\n\nAdd background color/image support for slides\n\nSee merge request Nawcast/Nawcast!44",
+        "timestamp": "2018-08-24T08:47:14Z",
+        "url": "https://gitlab.enrise.com/Nawcast/Nawcast/commit/b43eb9240d28a6bfaa75fa52aa2df0a89e46d80f",
+        "author": { "name": "Rick van der Staaij", "email": "info@rickvanderstaaij.nl" }
+    },
+    "builds": [
+        {
+            "id": 115402,
+            "stage": "merge back",
+            "name": "update branches",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:38:19 UTC",
+            "finished_at": "2018-11-08 09:38:30 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 6,
+                "description": "Runner01 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 2410 }
+        },
+        {
+            "id": 115401,
+            "stage": "production",
+            "name": "deploy to production",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:37:31 UTC",
+            "finished_at": "2018-11-08 09:38:18 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 3533 }
+        },
+        {
+            "id": 115399,
+            "stage": "acceptance",
+            "name": "electron regression",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:33:52 UTC",
+            "finished_at": "2018-11-08 09:37:31 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": "artifacts.zip", "size": 471336 }
+        },
+        {
+            "id": 115400,
+            "stage": "acceptance",
+            "name": "chrome regression",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:33:53 UTC",
+            "finished_at": "2018-11-08 09:37:16 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": "artifacts.zip", "size": 172347 }
+        },
+        {
+            "id": 115398,
+            "stage": "deploy",
+            "name": "deploy to acceptance",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:33:04 UTC",
+            "finished_at": "2018-11-08 09:33:52 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 6,
+                "description": "Runner01 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 4220 }
+        },
+        {
+            "id": 115397,
+            "stage": "build",
+            "name": "build application image",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:30:27 UTC",
+            "finished_at": "2018-11-08 09:33:04 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 115679 }
+        },
+        {
+            "id": 115395,
+            "stage": "test",
+            "name": "eslint",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:27:35 UTC",
+            "finished_at": "2018-11-08 09:30:25 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 2414 }
+        },
+        {
+            "id": 115396,
+            "stage": "test",
+            "name": "prettier",
+            "status": "success",
+            "created_at": "2018-11-08 09:27:34 UTC",
+            "started_at": "2018-11-08 09:27:36 UTC",
+            "finished_at": "2018-11-08 09:30:23 UTC",
+            "when": "on_success",
+            "manual": false,
+            "user": {
+                "name": "Rick van der Staaij",
+                "username": "RickvdStaaij",
+                "avatar_url": "https://gitlab.enrise.com/uploads/-/system/user/avatar/2/avatar.png"
+            },
+            "runner": {
+                "id": 9,
+                "description": "Runner02 - Can do 5 simultaneous builds",
+                "active": true,
+                "is_shared": true
+            },
+            "artifacts_file": { "filename": null, "size": 2417 }
+        }
+    ]
+}
