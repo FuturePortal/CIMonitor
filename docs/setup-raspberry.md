@@ -68,42 +68,42 @@ find `[SeatDefault]` and place under it:
 
 ## Install nodejs & npm
 
-1. Install nvm: https://github.com/creationix/nvm
-1. Run `nvm install 8` (or another node version if you like)
+1.  Install nvm: https://github.com/creationix/nvm
+1.  Run `nvm install 8` (or another node version if you like)
 
 ## Download CIMonitor
 
-1. `$ cd ~`
-1. [Create a new git key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
-   and add it to your github account. (or download the zip and unzip)
-1. `$ git clone git@github.com:CIMonitor/CIMonitor.git`
-1. `$ cd CIMonitor/`
-1. `$ cp app/Config/config.dist.json app/Config/config.json`
-1. `$ vim app/Config/config.json` and make the required changes.
-1. `$ npm install --production`
-1. You can now test if the app runs with `node app/server.js`
+1.  `$ cd ~`
+1.  [Create a new git key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+    and add it to your github account. (or download the zip and unzip)
+1.  `$ git clone git@github.com:CIMonitor/CIMonitor.git`
+1.  `$ cd CIMonitor/`
+1.  `$ cp app/Config/config.dist.json app/Config/config.json`
+1.  `$ vim app/Config/config.json` and make the required changes.
+1.  `$ npm install --production`
+1.  You can now test if the app runs with `node app/server.js`
 
 ## Install [pi-blaster](https://github.com/sarfata/pi-blaster)
 
-1. Follow the installation instructions on the Github Repo so you end up with `/usr/sbin/pi-blaster`.
-1. Make sure you ran `# make install` so the systemd service script has been created and is auto started on boot.
-1. `# vim /lib/systemd/system/pi-blaster.service` and change the ExecStart so it reads as follows:
+1.  Follow the installation instructions on the Github Repo so you end up with `/usr/sbin/pi-blaster`.
+1.  Make sure you ran `# make install` so the systemd service script has been created and is auto started on boot.
+1.  `# vim /lib/systemd/system/pi-blaster.service` and change the ExecStart so it reads as follows:
     ```
     ExecStart=/bin/sh -c "/bin/sleep 20 && /usr/sbin/pi-blaster $DAEMON_ARGS"
     ```
-1. When using the audio plug, you need to use pcm modues on the pi-blaster. Create an environment file `/etc/default/pi-blaster`:
+1.  When using the audio plug, you need to use pcm modues on the pi-blaster. Create an environment file `/etc/default/pi-blaster`:
     ```
     DAEMON_ARGS="--pcm"
     ```
 
 ## Run node as a service
 
-1. `# npm install pm2 -g` - Install the `pm2` service manager, that lets you start node applications as a service.
-1. `# pm2 startup` - Create a systemd service file with `# pm2 startup` and run the command that follows.
-1. `# systemctl enable pm2-root` - Let pm2 start on boot.
-1. `# vim /etc/systemd/system/pm2-root.service`, add `pi-blaster.service` (separated by space) behind the line that reads `After=`
-1. `# pm2 start /home/pi/CIMonitor/app/server.js --name CIMonitor`
-1. `# pm2 save`
+1.  `# npm install pm2 -g` - Install the `pm2` service manager, that lets you start node applications as a service.
+1.  `# pm2 startup` - Create a systemd service file with `# pm2 startup` and run the command that follows.
+1.  `# systemctl enable pm2-root` - Let pm2 start on boot.
+1.  `# vim /etc/systemd/system/pm2-root.service`, add `pi-blaster.service` (separated by space) behind the line that reads `After=`
+1.  `# pm2 start /home/pi/CIMonitor/app/server.js --name CIMonitor`
+1.  `# pm2 save`
 
 ## Start CIMonitor dashboard full-screen
 
