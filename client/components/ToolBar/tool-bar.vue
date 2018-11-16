@@ -24,7 +24,7 @@ export default {
     props: ['state'],
     methods: {
         openGitHub() {
-            window.open('https://github.com/cimonitor/gitlab-cimonitor', '_blank');
+            window.open('https://github.com/CIMonitor/CIMonitor', '_blank');
         },
         clearDashboard() {
             const xhttp = new XMLHttpRequest();

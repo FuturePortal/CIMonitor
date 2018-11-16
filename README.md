@@ -9,7 +9,7 @@ deployments are successful. All in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
 
-![](https://user-images.githubusercontent.com/6495166/48635784-6d860c80-e9c9-11e8-9065-3788b1216670.gif)
+![](https://user-images.githubusercontent.com/6495166/48636698-e5edcd00-e9cb-11e8-8fe4-76f076c60eb7.gif)
 
 ## Features
 
