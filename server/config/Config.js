@@ -11,20 +11,10 @@ class Config {
     }
 
     loadConfig() {
-        let config;
         const configFile = path.resolve(`${__dirname}/config.json`);
         console.log(`[Config] Loading config from ${configFile}...`);
 
-        fileSystem.readFile(configFile, 'utf8', this.parseConfigFile.bind(this));
-    }
-
-    parseConfigFile(error, configJsonString) {
-        if (error) {
-            console.log('[Config] Could not read the config file.');
-            return;
-        }
-
-        const config = JSON.parse(configJsonString);
+        const config = JSON.parse(fileSystem.readFileSync(configFile));
 
         // @todo: validation via promises
         this.triggers = config.triggers;

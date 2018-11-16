@@ -1,7 +1,6 @@
-const fileSystem = require('fs');
-
 const Status = require('../status/Status');
 const Config = require('../../config/Config');
+const ModuleManager = require('../module/ModuleManager');
 
 class EventTrigger {
     /**
@@ -31,7 +30,7 @@ class EventTrigger {
 
         const event = Config.getEventByName(eventName);
 
-        // @todo: Loop over all modules and trigger the event with the module specific config
+        event.modules.forEach(module => ModuleManager.fireModuleEvent(module.name, module.push));
     }
 }
 
