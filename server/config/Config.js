@@ -21,7 +21,7 @@ class Config {
         this.events = config.events;
         this.modules = config.modules;
 
-        console.log('[Config] Config is load.');
+        console.log('[Config] loaded.');
     }
 
     getTriggers() {
