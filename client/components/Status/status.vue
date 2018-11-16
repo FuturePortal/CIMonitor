@@ -72,14 +72,14 @@ $border-bottom: 3px
     background: $color-info
     border-top: $border-top solid $color-info-light
     border-bottom: $border-bottom solid $color-info-dark
-    margin-bottom: 10px
+    margin-top: 10px
     padding: 20px 0
     overflow: hidden
     display: flex
     flex-direction: row
 
-    &:last-child
-        margin-bottom: 0
+    &:first-child
+        margin-top: 0
 
 .details
     min-height: 100px

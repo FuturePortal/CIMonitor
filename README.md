@@ -1,18 +1,25 @@
 # [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) CIMonitor
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
-[![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
+![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+[![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
+[![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
 The GitLab-CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
 deployments are successful. All in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
 
+![](https://user-images.githubusercontent.com/6495166/48636698-e5edcd00-e9cb-11e8-8fe4-76f076c60eb7.gif)
+
 ## Features
 
 -   A **real-time dashboard** of your events and pipelines
 -   Add a **GitLab web-hook endpoint** to push all **pipeline and build statuses** with ease!
+
+## Installation & documentation
+
+All documentation on installation and setting up can be found in our online documentation at
+[cimonitor.readthedocs.io](https://cimonitor.readthedocs.io).
 
 ## Requirements
 

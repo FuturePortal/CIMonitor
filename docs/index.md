@@ -1,14 +1,14 @@
 # [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) CIMonitor
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
-[![](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
+![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+[![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
+[![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
 The CIMonitor is a place where all your project statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
-> version 2 screenshot coming soon
+![](https://user-images.githubusercontent.com/6495166/48636698-e5edcd00-e9cb-11e8-8fe4-76f076c60eb7.gif)
 
 And if that's not enough for you, why not attach some epic hardware
 that will represent the status of your projects! Attach a traffic
