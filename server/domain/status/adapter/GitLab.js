@@ -69,10 +69,6 @@ class StatusAdapterGitLab {
     }
 
     pipelineStatusToState(status) {
-        if (status === 'pending') {
-            return 'info';
-        }
-
         if (status === 'running') {
             return 'warning';
         }
@@ -81,7 +77,11 @@ class StatusAdapterGitLab {
             return 'error';
         }
 
-        return 'success';
+        if (status === 'success') {
+            return 'success';
+        }
+
+        return 'info';
     }
 
     buildStatusToState(status, errorAllowed = false) {
@@ -94,10 +94,14 @@ class StatusAdapterGitLab {
         }
 
         if (status === 'failed') {
-            return errorAllowed ? 'allowed-error' : 'error';
+            return errorAllowed ? 'warning' : 'error';
         }
 
-        return 'success';
+        if (status === 'success') {
+            return 'success';
+        }
+
+        return 'info';
     }
 }
 

@@ -1,19 +1,27 @@
 <template>
-    <div class="toolbar">
-        <button @click="openGitHub()">
-            <i class="fab fa-github"></i>
-        </button>
-        <div class="logo">
-            <img src="./traffic-light.svg" alt="logo" />
+    <div>
+        <div class="light" :class="state"></div>
+        <div class="toolbar">
+            <button @click="openGitHub()">
+                <i class="fab fa-github"></i>
+            </button>
+            <div class="logo">
+                <img :src="trafficLightImage" alt="logo" />
+            </div>
+            <button @click="clearDashboard()" title="Clear dashboard">
+                <i class="fas fa-ban"></i>
+            </button>
         </div>
-        <button @click="clearDashboard()" title="Clear dashboard">
-            <i class="fas fa-ban"></i>
-        </button>
     </div>
 </template>
 
 <script>
+import TrafficLightGreen from './traffic-light-green.svg';
+import TrafficLightOrange from './traffic-light-orange.svg';
+import TrafficLightRed from './traffic-light-red.svg';
+
 export default {
+    props: ['state'],
     methods: {
         openGitHub() {
             window.open('https://github.com/cimonitor/gitlab-cimonitor', '_blank');
@@ -22,6 +30,15 @@ export default {
             const xhttp = new XMLHttpRequest();
             xhttp.open('GET', '/status/clear-all', true);
             xhttp.send();
+        },
+    },
+    computed: {
+        trafficLightImage() {
+            return {
+                success: TrafficLightGreen,
+                warning: TrafficLightOrange,
+                error: TrafficLightRed,
+            }[this.state];
         },
     },
 };
@@ -102,4 +119,27 @@ button
         box-shadow: 0px 0px 0px 50px #FFF
         clip: rect(0px, 20px, 20px, 0px)
         display: block
+
+$light-transparancy: 0.8
+$light-distance: 150px
+$light-spread: 120px
+
+.light
+    position: fixed
+    bottom: 0
+    left: 50%
+    margin: 0 0 -30px -50px
+    width: 100px
+    height: 60px
+    border-radius: 50%
+    background: rgba($color-success, $light-transparancy)
+    box-shadow: 0 0 $light-distance $light-spread rgba($color-success, $light-transparancy)
+
+    &.warning
+        background: rgba($color-warning, $light-transparancy)
+        box-shadow: 0 0 $light-distance $light-spread rgba($color-warning, $light-transparancy)
+
+    &.error
+        background: rgba($color-error, $light-transparancy)
+        box-shadow: 0 0 $light-distance $light-spread rgba($color-error, $light-transparancy)
 </style>
