@@ -13,6 +13,11 @@ import ToolBar from '../ToolBar';
 import Status from '../Status';
 import SateliteImage from './satelite.svg';
 
+const notificationStates = [
+    'success',
+    'info',
+];
+
 export default {
     components: { ToolBar, Status },
     data() {
@@ -76,6 +81,15 @@ export default {
     sockets: {
         [socketEvents.statusesUpdated](statuses) {
             console.log('New statuses updated event!');
+            statuses.forEach(statusEvent => {
+                if (notificationStates.includes(statusEvent.state)) {
+                    let options = {
+                        body: statusEvent.title + ' completed with state ' + statusEvent.state,
+                        icon: statusEvent.image
+                    }
+                    new Notification(statusEvent.title+':'+ statusEvent.subTitle + ' -> ' + statusEvent.state, options);
+                }
+            });
             this.statuses = statuses;
             this.setFavicon();
         },

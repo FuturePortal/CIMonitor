@@ -18,6 +18,7 @@ new Vue({
     sockets: {
         connect() {
             console.log('Socket connected.');
+            Notification.requestPermission();
             this.isConnected = true;
         },
         disconnect() {
