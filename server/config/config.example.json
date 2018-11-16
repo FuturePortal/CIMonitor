@@ -18,12 +18,6 @@
             "name": "celebrate-success",
             "modules": [
                 {
-                    "name": "LedStrip",
-                    "push": {
-                        "state": "success"
-                    }
-                },
-                {
                     "name": "DashboardVideo",
                     "push": {
                         "youTubeKey": "ZTOIEz7p2KU",
@@ -35,21 +29,7 @@
         },
         {
             "name": "error-sequence",
-            "modules": [
-                {
-                    "name": "LedStrip",
-                    "push": {
-                        "state": "error"
-                    }
-                },
-                {
-                    "name": "PowerUp",
-                    "push": {
-                        "gpioPort": 13,
-                        "time": 5000
-                    }
-                }
-            ]
+            "modules": []
         }
     ],
     "modules": [
@@ -58,23 +38,10 @@
             "config": {}
         },
         {
-            "name": "LedStrip",
-            "config": {
-                "gpioPortRed": 10,
-                "gpioPortGreen": 11,
-                "gpioPortBlue": 12,
-                "state": "neutral"
-            }
-        },
-        {
-            "name": "PowerUp",
-            "config": {}
-        },
-        {
             "name": "HueLight",
             "config": {
-                "hub": "---token---",
-                "path": "/api/---token---/lights/5/state"
+                "hub": "172.17.0.106",
+                "path": "/api/Uffr5O1gDHXO5nvhDIyHkuXWCFxV3IbB8grksknj/lights/5/state"
             }
         }
     ]
