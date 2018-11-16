@@ -120,7 +120,7 @@ button
         clip: rect(0px, 20px, 20px, 0px)
         display: block
 
-$light-transparancy: 0.6
+$light-transparancy: 0.5
 $light-distance: 150px
 $light-spread: 120px
 
@@ -128,9 +128,9 @@ $light-spread: 120px
     position: fixed
     bottom: 0
     left: 50%
-    margin: 0 0 -30px -50px
+    margin: 0 0 -10px -50px
     width: 100px
-    height: 60px
+    height: 20px
     border-radius: 50%
     background: rgba($color-success, $light-transparancy)
     box-shadow: 0 0 $light-distance $light-spread rgba($color-success, $light-transparancy)
