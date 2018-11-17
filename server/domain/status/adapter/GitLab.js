@@ -22,7 +22,7 @@ class StatusAdapterGitLab {
             state: this.pipelineStatusToState(data.object_attributes.status),
             title: data.project.path_with_namespace,
             subTitle: data.object_attributes.ref,
-            image: data.project.avatar_url,
+            // image: data.project.avatar_url, leaving out for now as the image is not shown when not logged in
             userImage: data.user.avatar_url,
             stages: data.object_attributes.stages,
             jobs: data.builds.map(build => {

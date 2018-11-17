@@ -20,7 +20,7 @@ intro:
 # Main commands
 # ===========================
 
-init: intro do-install-git-hooks do-run-updates do-show-commands
+init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands
 
 github: intro do-checkout-pr do-run-updates
 update-project: intro do-run-updates
@@ -55,6 +55,9 @@ do-show-commands:
 	@echo "make test                   Run the testsuite."
 	@echo "make cypress                Open Cypress dashboard for quick testing."
 	@echo "make cypress-run            Run the cypress tests in the background."
+
+do-pre-init:
+	cp -n server/config/config.example.json server/config/config.json
 
 do-switch-branch:
 	@if [ -z $$BRANCH ]; then echo "No branch is set, please run:\nmake update BRANCH=<branch>"; exit 1; fi

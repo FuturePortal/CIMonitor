@@ -1,0 +1,48 @@
+{
+    "triggers": [
+        {
+            "on": {
+                "state": "success"
+            },
+            "targetEventName": "celebrate-success"
+        },
+        {
+            "on": {
+                "state": "error"
+            },
+            "targetEventName": "error-sequence"
+        }
+    ],
+    "events": [
+        {
+            "name": "celebrate-success",
+            "modules": [
+                {
+                    "name": "DashboardVideo",
+                    "push": {
+                        "youTubeKey": "ZTOIEz7p2KU",
+                        "startAt": 20,
+                        "duration": 20
+                    }
+                }
+            ]
+        },
+        {
+            "name": "error-sequence",
+            "modules": []
+        }
+    ],
+    "modules": [
+        {
+            "name": "DashboardVideo",
+            "config": {}
+        },
+        {
+            "name": "HueLight",
+            "config": {
+                "hub": "---ip---",
+                "path": "/api/---token---/lights/5/state"
+            }
+        }
+    ]
+}

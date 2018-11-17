@@ -141,6 +141,16 @@ class Status {
     getKey() {
         return this.data.key;
     }
+
+    getState() {
+        return this.data.state;
+    }
+
+    isOld() {
+        const expireTime = 7 * 24 * 60 * 60 * 1000;
+
+        return new Date() - this.data.time < expireTime;
+    }
 }
 
 module.exports = Status;
