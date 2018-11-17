@@ -40,8 +40,8 @@
         {
             "name": "HueLight",
             "config": {
-                "hub": "172.17.0.106",
-                "path": "/api/Uffr5O1gDHXO5nvhDIyHkuXWCFxV3IbB8grksknj/lights/5/state"
+                "hub": "---ip---",
+                "path": "/api/---token---/lights/5/state"
             }
         }
     ]
