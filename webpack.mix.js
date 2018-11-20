@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const Config = require('./server/config/Config');
 
 mix.js('client/client.js', 'dist');
 
@@ -25,7 +26,7 @@ if (!mix.inProduction()) {
 mix.version();
 
 mix.browserSync({
-    proxy: `localhost:9999`,
+    proxy: `localhost:${Config.getServerPort()}`,
     injectChanges: false,
     files: [`dist/**/*`],
 });

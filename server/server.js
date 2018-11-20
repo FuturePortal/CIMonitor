@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 
+const Config = require('./config/Config');
 const router = require('./routes');
 const ModuleManager = require('./domain/module/ModuleManager');
 const socketConnectionManager = require('./domain/dashboard/SocketConnectionManager');
@@ -16,6 +17,6 @@ socketConnectionManager.startListening();
 
 ModuleManager.initModulesFromConfig();
 
-server.listen(9999, () => {
-    console.log('[server] Running and listening...');
+server.listen(Config.getServerPort(), () => {
+    console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
 });
