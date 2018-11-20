@@ -3,8 +3,8 @@
         <status v-if="isNotConnected" :status="notConnectedStatus" />
         <status v-if="hasNoStatuses" :status="noStatusesStatus" />
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
-        <tool-bar :state="globalState" />
         <video-overlay />
+        <tool-bar :state="globalState" />
     </div>
 </template>
 

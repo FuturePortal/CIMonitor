@@ -42,7 +42,6 @@ class StatusAdapterTravisCI {
     getKeyFromData(data) {
         return `travis-ci-${data.repository.owner_name}-${data.repository.name}-${data.branch}`.replace(/[^\w-]/g, '-');
     }
-
 }
 
 module.exports = new StatusAdapterTravisCI();
