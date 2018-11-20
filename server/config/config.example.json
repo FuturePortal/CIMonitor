@@ -24,6 +24,13 @@
                         "startAt": 20,
                         "duration": 20
                     }
+                },
+                {
+                    "name": "PowerUp",
+                    "push": {
+                        "gpioPin": 3,
+                        "powerForMilliseconds": 3000
+                    }
                 }
             ]
         },
@@ -51,6 +58,10 @@
                 "gpioPinGreen": 11,
                 "gpioPinBlue": 12
             }
+        },
+        {
+            "name": "PowerUp",
+            "config": {}
         }
     ]
 }
