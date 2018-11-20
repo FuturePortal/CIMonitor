@@ -31,8 +31,8 @@ dev-server: intro do-dev-server
 dev-client: intro do-dev-client
 build-production: intro do-run-updates do-build-production
 
-test: intro do-test-prettier
-pre-commit: intro do-fix-prettier do-commit-intro
+test: intro do-test-eslint-prettier
+pre-commit: intro do-fix-eslint-prettier do-commit-intro
 
 cypress: do-cypress-open
 cypress-run: do-cypress-run
@@ -92,18 +92,14 @@ do-build-production:
 	@echo "\n=== Building files for production ===\n"
 	yarn production
 
-do-test-prettier:
-	@echo "\n=== Prettier code style check ===\n"
+do-test-eslint-prettier:
+	@echo "\n=== ESlint + Prettier code style check ===\n"
 	@echo "Wrongly formatted files:"
-	@node_modules/.bin/prettier -l "./**/*.{js,vue,json,md}" && echo "None ❤️"
+	@node_modules/.bin/eslint --ext .js,.vue,.json . && echo "None ❤️"
 
-do-fix-prettier:
-	@echo "\n=== Prettier code style fixer ===\n"
-	@node_modules/.bin/prettier --write "./**/*.{js,vue,json,md}" && echo "Code style is cleaned ❤️"
-
-# do-test-eslint:
-# 	@echo "\n=== Running ESLint ===\n"
-# 	@node_modules/.bin/eslint --color "{server,monitor}/**/*.{js,vue}" && echo "No errors ❤️"
+do-fix-eslint-prettier:
+	@echo "\n=== ESlint + Prettier code style fixer ===\n"
+	@node_modules/.bin/eslint --fix --ext .js,.vue,.json . && echo "Code style is cleaned ❤️"
 
 do-commit-intro:
 	@echo "\n=== Committing ===\n"
