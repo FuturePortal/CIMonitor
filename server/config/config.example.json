@@ -43,6 +43,14 @@
                 "hub": "---ip---",
                 "path": "/api/---token---/lights/5/state"
             }
+        },
+        {
+            "name": "LedStrip",
+            "config": {
+                "gpioPinRed": 10,
+                "gpioPinGreen": 11,
+                "gpioPinBlue": 12
+            }
         }
     ]
 }

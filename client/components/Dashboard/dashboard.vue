@@ -33,7 +33,7 @@ export default {
         setNow() {
             this.now = this.getCurrentTimestamp();
         },
-        setFavicon() {
+        updateFavicon() {
             document
                 .querySelector('link[rel="shortcut icon"]')
                 .setAttribute('href', `/images/favicon/${this.globalState}.png`);
@@ -77,9 +77,8 @@ export default {
     },
     sockets: {
         [socketEvents.statusesUpdated](statuses) {
-            console.log('New statuses updated event!');
             this.statuses = statuses;
-            this.setFavicon();
+            this.updateFavicon();
         },
     },
 };
