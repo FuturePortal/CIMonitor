@@ -84,6 +84,14 @@
                 "maxMarbles": 10,
                 "runDuration": 13000
             }
+        },
+        {
+            "name": "TrafficLight",
+            "config": {
+                "gpioPinRedLight": 10,
+                "gpioPinOrangeLight": 11,
+                "gpioPinGreenLight": 12
+            }
         }
     ]
 }
