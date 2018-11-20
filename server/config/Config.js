@@ -6,6 +6,7 @@ class Config {
         this.triggers = [];
         this.events = [];
         this.modules = [];
+        this.server = {};
 
         this.loadConfig();
     }
@@ -20,6 +21,7 @@ class Config {
         this.triggers = config.triggers;
         this.events = config.events;
         this.modules = config.modules;
+        this.server = config.server;
 
         console.log('[Config] loaded.');
     }
@@ -34,6 +36,10 @@ class Config {
 
     getModules() {
         return this.modules;
+    }
+
+    getServerPort() {
+        return this.server.port;
     }
 }
 

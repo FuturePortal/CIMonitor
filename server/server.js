@@ -2,6 +2,8 @@ console.log('[CIMonitor] Started!');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
+const Config = require('./config/Config');
 const router = require('./routes');
 
 const app = express();
@@ -14,6 +16,6 @@ const socketConnectionManager = require('./domain/dashboard/SocketConnectionMana
 socketConnectionManager.setSocketServer(server);
 socketConnectionManager.startListening();
 
-server.listen(9999, () => {
-    console.log('[server] Running and listening...');
+server.listen(Config.getServerPort(), () => {
+    console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
 });
