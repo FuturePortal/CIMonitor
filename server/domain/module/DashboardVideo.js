@@ -1,5 +1,5 @@
 const AbstractModule = require('./AbstractModule');
-const DashboardSocketConnectionManager = require('../dashboard/SocketConnectionManager');
+const DashboardSocketConnectionManager = require('../socket/ConnectionManager');
 
 class DashboardVideo extends AbstractModule {
     fireEvent(config) {

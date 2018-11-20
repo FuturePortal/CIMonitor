@@ -40,7 +40,7 @@ class StatusManager {
         this.statuses.push(status);
     }
 
-    getStatuses() {
+    getRawStatuses() {
         return (
             this.statuses
                 // Get raw data only

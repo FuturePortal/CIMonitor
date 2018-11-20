@@ -26,9 +26,9 @@ class SocketConnectionManager {
      */
     startListening() {
         this.io.on('connect', socket => {
-            console.log('[SocketConnectionManager] A dashboard connected.');
+            console.log('[SocketConnectionManager] A client connected.');
 
-            socket.emit(socketEvents.statusesUpdated, statusManager.getStatuses());
+            socket.emit(socketEvents.statusesUpdated, statusManager.getRawStatuses());
         });
     }
 
@@ -36,11 +36,12 @@ class SocketConnectionManager {
      * Push the latest statuses to all connected clients
      */
     onStatusesUpdated() {
-        this.io.sockets.emit(socketEvents.statusesUpdated, statusManager.getStatuses());
+        this.io.sockets.emit(socketEvents.statusesUpdated, statusManager.getRawStatuses());
     }
 
     /**
      * Push the latest statuses to all connected clients
+     *
      * @param {Status} status
      */
     onEventTriggerStatus(status) {
@@ -49,6 +50,8 @@ class SocketConnectionManager {
 
     /**
      * Push a video to all connected clients
+     *
+     * @param {Object} videoDetails
      */
     pushVideo(videoDetails) {
         this.io.sockets.emit(socketEvents.playVideo, videoDetails);

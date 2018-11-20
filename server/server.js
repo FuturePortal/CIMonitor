@@ -5,7 +5,7 @@ const http = require('http');
 const Config = require('./config/Config');
 const router = require('./routes');
 const ModuleManager = require('./domain/module/ModuleManager');
-const socketConnectionManager = require('./domain/dashboard/SocketConnectionManager');
+const socketConnectionManager = require('./domain/socket/ConnectionManager');
 
 const app = express();
 app.use(bodyParser.json());
