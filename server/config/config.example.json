@@ -31,12 +31,25 @@
                         "gpioPin": 3,
                         "powerForMilliseconds": 3000
                     }
+                },
+                {
+                    "name": "MarbleRun",
+                    "push": {
+                        "fireAmount": 3
+                    }
                 }
             ]
         },
         {
             "name": "error-sequence",
-            "modules": []
+            "modules": [
+                {
+                    "name": "MarbleRun",
+                    "push": {
+                        "fireAmount": 10
+                    }
+                }
+            ]
         }
     ],
     "modules": [
@@ -62,6 +75,15 @@
         {
             "name": "PowerUp",
             "config": {}
+        },
+        {
+            "name": "MarbleRun",
+            "config": {
+                "gpioPin": 5,
+                "oneMarbleFireTime": 300,
+                "maxMarbles": 10,
+                "runDuration": 13000
+            }
         }
     ]
 }
