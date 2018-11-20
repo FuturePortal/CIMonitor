@@ -1,6 +1,7 @@
 const Status = require('../status/Status');
 const Config = require('../../config/Config');
 const ModuleManager = require('../module/ModuleManager');
+const Events = require('../Events');
 
 class EventTrigger {
     /**
@@ -9,6 +10,8 @@ class EventTrigger {
     fireStatus(status) {
         const triggers = Config.getTriggers();
         console.log(`[EventTrigger] Checking if status ${status.getKey()} triggers any events...`);
+
+        Events.push(Events.event.eventTriggerStatus, status);
 
         triggers.forEach(trigger => this.triggerEventIfMatch(trigger.on, status, trigger.targetEventName));
     }

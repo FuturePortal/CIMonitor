@@ -12,6 +12,8 @@ class SocketConnectionManager {
     setListeners() {
         Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
 
+        Events.watch(Events.event.eventTriggerStatus, status => this.onEventTriggerStatus(status));
+
         console.log('[SocketConnectionManager] Listening to status list updates...');
     }
 
@@ -20,7 +22,7 @@ class SocketConnectionManager {
     }
 
     /**
-     * Make sure the newly connected dashboard receives the latest statuses
+     * Make sure the newly connected client receives the latest statuses
      */
     startListening() {
         this.io.on('connect', socket => {
@@ -31,14 +33,22 @@ class SocketConnectionManager {
     }
 
     /**
-     * Push the latest statuses to all connected dashboards
+     * Push the latest statuses to all connected clients
      */
     onStatusesUpdated() {
         this.io.sockets.emit(socketEvents.statusesUpdated, statusManager.getStatuses());
     }
 
     /**
-     * Push a video to all connected dashboards
+     * Push the latest statuses to all connected clients
+     * @param {Status} status
+     */
+    onEventTriggerStatus(status) {
+        this.io.sockets.emit(socketEvents.eventTriggerStatus, status.getRawData());
+    }
+
+    /**
+     * Push a video to all connected clients
      */
     pushVideo(videoDetails) {
         this.io.sockets.emit(socketEvents.playVideo, videoDetails);

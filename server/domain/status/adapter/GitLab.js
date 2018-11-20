@@ -69,7 +69,7 @@ class StatusAdapterGitLab {
     }
 
     pipelineStatusToState(status) {
-        if (status === 'running') {
+        if (status === 'running' || status === 'pending') {
             return 'warning';
         }
 
