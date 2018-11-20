@@ -20,7 +20,7 @@
                 {
                     "name": "DashboardVideo",
                     "push": {
-                        "youTubeKey": "ZTOIEz7p2KU",
+                        "youtubeKey": "ZTOIEz7p2KU",
                         "startAt": 20,
                         "duration": 20
                     }
