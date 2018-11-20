@@ -7,6 +7,8 @@ class StatusManager {
     constructor() {
         this.statuses = [];
 
+        console.log('[StatusManager] Init!');
+
         this.setListeners();
     }
 

@@ -4,6 +4,7 @@
         <status v-if="hasNoStatuses" :status="noStatusesStatus" />
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
         <tool-bar :state="globalState" />
+        <video-overlay />
     </div>
 </template>
 
@@ -11,10 +12,11 @@
 import socketEvents from '../../../shared/socketEvents';
 import ToolBar from '../ToolBar';
 import Status from '../Status';
+import VideoOverlay from '../VideoOverlay';
 import SateliteImage from './satelite.svg';
 
 export default {
-    components: { ToolBar, Status },
+    components: { ToolBar, Status, VideoOverlay },
     data() {
         return {
             statuses: [],

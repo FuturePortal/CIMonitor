@@ -1,5 +1,6 @@
 const AbstractModule = require('./AbstractModule');
 const Events = require('../Events');
+const StatusManager = require('../status/StatusManager');
 
 class HueLight extends AbstractModule {
     init() {
@@ -31,7 +32,7 @@ class HueLight extends AbstractModule {
     }
 
     setLightColor() {
-        const globalState = require('../status/StatusManager').getGlobalState();
+        const globalState = StatusManager.getGlobalState();
 
         if (globalState === 'error') {
             console.log('[VueLight] Changing color to error.');

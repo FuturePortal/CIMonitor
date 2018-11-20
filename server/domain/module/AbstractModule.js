@@ -6,14 +6,14 @@ class AbstractModule {
     }
 
     init() {
-        // Empty init
+        // Empty init, override this function if needed
     }
 
     /**
      * @param {Status} status
      */
     fireEvent(config, status) {
-        console.log('[AbstractModule] No fire event defined.');
+        // Empty fire event, override this function if needed
     }
 }
 
