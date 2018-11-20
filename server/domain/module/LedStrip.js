@@ -135,9 +135,9 @@ class LedStrip extends AbstractModule {
         green = ((green / 255) * fadeIntensity) / 100;
         blue = ((blue / 255) * fadeIntensity) / 100;
 
-        // piblaster.setPwm(this.redPin, red);
-        // piblaster.setPwm(this.greenPin, green);
-        // piblaster.setPwm(this.bluePin, blue);
+        piblaster.setPwm(this.redPin, red);
+        piblaster.setPwm(this.greenPin, green);
+        piblaster.setPwm(this.bluePin, blue);
 
         if (step >= steps) {
             this.currentIntensity = intensity;
