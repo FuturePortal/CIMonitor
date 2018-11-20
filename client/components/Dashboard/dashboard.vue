@@ -3,6 +3,7 @@
         <status v-if="isNotConnected" :status="notConnectedStatus" />
         <status v-if="hasNoStatuses" :status="noStatusesStatus" />
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
+        <video-overlay />
         <tool-bar :state="globalState" />
     </div>
 </template>
@@ -11,10 +12,11 @@
 import socketEvents from '../../../shared/socketEvents';
 import ToolBar from '../ToolBar';
 import Status from '../Status';
+import VideoOverlay from '../VideoOverlay';
 import SateliteImage from './satelite.svg';
 
 export default {
-    components: { ToolBar, Status },
+    components: { ToolBar, Status, VideoOverlay },
     data() {
         return {
             statuses: [],
@@ -31,7 +33,7 @@ export default {
         setNow() {
             this.now = this.getCurrentTimestamp();
         },
-        setFavicon() {
+        updateFavicon() {
             document
                 .querySelector('link[rel="shortcut icon"]')
                 .setAttribute('href', `/images/favicon/${this.globalState}.png`);
@@ -75,9 +77,8 @@ export default {
     },
     sockets: {
         [socketEvents.statusesUpdated](statuses) {
-            console.log('New statuses updated event!');
             this.statuses = statuses;
-            this.setFavicon();
+            this.updateFavicon();
         },
     },
 };

@@ -19,18 +19,29 @@ class SocketConnectionManager {
         this.io = require('socket.io')(server);
     }
 
+    /**
+     * Make sure the newly connected dashboard receives the latest statuses
+     */
     startListening() {
         this.io.on('connect', socket => {
-            console.log('[SocketConnectionManager] A dashboard connected!');
+            console.log('[SocketConnectionManager] A dashboard connected.');
 
-            // Make sure the newly connected dashboard receives the latest statuses
             socket.emit(socketEvents.statusesUpdated, statusManager.getStatuses());
         });
     }
 
+    /**
+     * Push the latest statuses to all connected dashboards
+     */
     onStatusesUpdated() {
-        // Push the latest statuses to all connected dashboards
         this.io.sockets.emit(socketEvents.statusesUpdated, statusManager.getStatuses());
+    }
+
+    /**
+     * Push a video to all connected dashboards
+     */
+    pushVideo(videoDetails) {
+        this.io.sockets.emit(socketEvents.playVideo, videoDetails);
     }
 }
 

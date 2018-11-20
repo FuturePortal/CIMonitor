@@ -1,12 +1,9 @@
 const Config = require('../../config/Config');
-const Status = require('../status/Status');
 
 class ModuleManager {
     constructor() {
         console.log('[ModuleManager] Setting up all configured modules...');
         this.modules = {};
-
-        this.initModulesFromConfig();
     }
 
     initModulesFromConfig() {
@@ -19,9 +16,10 @@ class ModuleManager {
 
         try {
             const Module = require(`./${name}.js`);
+
             this.modules[name] = new Module(config);
         } catch (error) {
-            console.log(`[ModuleManager] Module ${name} doesn't exist!`);
+            console.log(`[ModuleManager] Module ${name} has thrown an initialization error.`);
             console.log(error);
         }
     }
