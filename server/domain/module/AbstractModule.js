@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 class AbstractModule {
     constructor(config) {
         this.config = config;

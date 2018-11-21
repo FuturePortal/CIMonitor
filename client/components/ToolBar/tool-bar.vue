@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div class="light" :class="state"></div>
+        <div class="light" :class="state"/>
         <div class="toolbar">
             <button @click="openGitHub()">
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github"/>
             </button>
             <div class="logo">
-                <img :src="trafficLightImage" alt="logo" />
+                <img :src="trafficLightImage" alt="logo" >
             </div>
             <button @click="clearDashboard()" title="Clear dashboard">
-                <i class="fas fa-ban"></i>
+                <i class="fas fa-ban"/>
             </button>
         </div>
     </div>
@@ -21,7 +21,12 @@ import TrafficLightOrange from './traffic-light-orange.svg';
 import TrafficLightRed from './traffic-light-red.svg';
 
 export default {
-    props: ['state'],
+    props: {
+        state: {
+            type: String,
+            default: 'success',
+        },
+    },
     methods: {
         openGitHub() {
             window.open('https://github.com/CIMonitor/CIMonitor', '_blank');
