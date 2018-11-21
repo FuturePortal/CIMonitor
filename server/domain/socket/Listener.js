@@ -7,7 +7,7 @@ const Status = require('../status/Status');
 const StatusManager = require('../status/StatusManager');
 
 class SocketListener {
-    constructor() {
+    connectAndListen() {
         const masterAddress = Config.getServerSlaveMaster();
         const socket = SocketClient(masterAddress);
 
