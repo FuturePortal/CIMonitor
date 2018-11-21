@@ -86,6 +86,17 @@ class StatusManager {
         Events.push(Events.event.statusesUpdated);
     }
 
+    /**
+     * Completely overwrite the statuses
+     *
+     * @param {Status[]} statuses
+     */
+    overwriteStatuses(statuses) {
+        this.statuses = statuses;
+
+        Events.push(Events.event.statusesUpdated);
+    }
+
     removeStatus(statusKey) {
         this.removeOldStatuses();
 

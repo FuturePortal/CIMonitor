@@ -36,6 +36,11 @@ class SocketConnectionManager {
      * Push the latest statuses to all connected clients
      */
     onStatusesUpdated() {
+        if (!this.io) {
+            // No socket connection is established, no need to emit anything
+            return;
+        }
+
         this.io.sockets.emit(socketEvents.statusesUpdated, statusManager.getRawStatuses());
     }
 
@@ -45,6 +50,11 @@ class SocketConnectionManager {
      * @param {Status} status
      */
     onEventTriggerStatus(status) {
+        if (!this.io) {
+            // No socket connection is established, no need to emit anything
+            return;
+        }
+
         this.io.sockets.emit(socketEvents.eventTriggerStatus, status.getRawData());
     }
 
@@ -54,6 +64,12 @@ class SocketConnectionManager {
      * @param {Object} videoDetails
      */
     pushVideo(videoDetails) {
+        if (!this.io) {
+            // No socket connection is established, no need to emit anything
+            console.log(`[SocketConnectionManager] No socket connection. Videos can't be pushed on server-slaves.`);
+            return;
+        }
+
         this.io.sockets.emit(socketEvents.playVideo, videoDetails);
     }
 }

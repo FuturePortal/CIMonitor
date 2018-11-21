@@ -1,6 +1,9 @@
 const socketEvents = require('../../../shared/socketEvents');
 const statusManager = require('../status/StatusManager');
 const Config = require('../../config/Config');
+const EventTrigger = require('../event/EventTrigger');
+const Status = require('../status/Status');
+const StatusManager = require('../status/StatusManager');
 
 class SocketListener {
     constructor() {
@@ -17,13 +20,15 @@ class SocketListener {
     }
 
     triggerEventsForRawStatus(rawStatus) {
-        // @todo: Convert to status object and feed to the EventTrigger class
         console.log(`[SocketListener] Received raw status to trigger events.`);
+
+        EventTrigger.fireStatus(Status.hydrateStatus(rawStatus));
     }
 
     applyRawStatuses(rawStatuses) {
-        // @todo: Convert to status objects and put it in the status manager
         console.log(`[SocketListener] Received raw statuses to update the status manager.`);
+
+        StatusManager.overwriteStatuses(rawStatuses.map(rawStatus => Status.hydrateStatus(rawStatus)));
     }
 }
 
