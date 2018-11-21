@@ -21,7 +21,7 @@ class HueLight extends AbstractModule {
                 },
             };
 
-            const request = require('http').request(options, response => {});
+            const request = require('http').request(options);
 
             request.write(msg);
             request.end();

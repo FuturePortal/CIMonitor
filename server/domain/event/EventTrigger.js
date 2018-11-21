@@ -1,4 +1,3 @@
-const Status = require('../status/Status');
 const Config = require('../../config/Config');
 const ModuleManager = require('../module/ModuleManager');
 
@@ -14,7 +13,9 @@ class EventTrigger {
     }
 
     /**
+     * @param {Object} triggerData
      * @param {Status} status
+     * @param {string} targetEventName
      */
     triggerEventIfMatch(triggerData, status, targetEventName) {
         const statusData = status.getRawData();
@@ -29,6 +30,7 @@ class EventTrigger {
     }
 
     /**
+     * @param {string} eventName
      * @param {Status} status
      */
     fireModulesForEvent(eventName, status) {

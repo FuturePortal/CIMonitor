@@ -1,12 +1,15 @@
 <template>
-    <div v-if="playing" class="video-container" v-html="youtubeVideoFrame"></div>
+    <div 
+        v-if="playing" 
+        class="video-container" 
+        v-html="youtubeVideoFrame"/>
 </template>
 
 <script>
 import socketEvents from '../../../shared/socketEvents';
 
 export default {
-    props: [],
+    props: {},
     data() {
         return {
             youtubeVideoFrame: '',

@@ -10,7 +10,7 @@ app.post('/', (request, response) => {
             response.json({
                 message: 'Successfully pushed your status!',
                 status: status.getRawData(),
-            }),
+            })
         )
         .catch(error => response.status(422).json(error));
 });

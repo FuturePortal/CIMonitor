@@ -1,6 +1,4 @@
 const Events = require('../Events');
-const Status = require('./Status');
-const staticEvents = require('../../../shared/socketEvents');
 const EventTrigger = require('../event/EventTrigger');
 
 class StatusManager {
