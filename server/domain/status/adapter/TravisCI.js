@@ -1,6 +1,4 @@
 const Status = require('../Status');
-const StatusManager = require('../StatusManager');
-const { parse } = require('querystring');
 const gravatar = require('gravatar');
 
 class StatusAdapterTravisCI {
