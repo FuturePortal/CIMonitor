@@ -28,6 +28,7 @@ update: intro do-switch-branch do-run-updates
 git-hooks: intro do-install-git-hooks
 
 dev-server: intro do-dev-server
+dev-server-slave: intro do-dev-server-slave
 dev-client: intro do-dev-client
 build-production: intro do-run-updates do-build-production
 
@@ -49,7 +50,8 @@ do-show-commands:
 	@echo "make update BRANCH=<branch> Switch to a branch and run update-project."
 	@echo "make github PR=<number>     Check out a PR from github and update the project."
 	@echo "make git-hooks              Install the available git hooks."
-	@echo "make dev-server             Build and run the development server."
+	@echo "make dev-server             Run the development server."
+	@echo "make dev-server-slave       Run the development slave server, listening to a master."
 	@echo "make dev-client             Build, run and watch the development dashboard."
 	@echo "make build-production       Build all the files required for production."
 	@echo "make test                   Run the testsuite."
@@ -82,7 +84,11 @@ do-run-watch:
 
 do-dev-server:
 	@echo "\n=== Starting server application ===\n"
-	yarn start
+	node server/server.js
+
+do-dev-server-slave:
+	@echo "\n=== Starting server slave application ===\n"
+	node server/server-slave.js
 
 do-dev-client:
 	@echo "\n=== Building and watching files ===\n"

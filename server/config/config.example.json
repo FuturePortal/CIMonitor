@@ -2,6 +2,9 @@
     "server": {
         "port": 9999
     },
+    "serverSlave": {
+        "master": "http://localhost:9999/"
+    },
     "triggers": [
         {
             "on": {

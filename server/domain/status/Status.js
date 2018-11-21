@@ -87,6 +87,12 @@ class Status {
         };
     }
 
+    /**
+     * Create a status and let the application take care of the rest.
+     * If the data.key already exists, the StatusManager will take care of that.
+     *
+     * @param {Object} data
+     */
     static createStatus(data) {
         console.log('[Status] Creating status...');
 
@@ -110,6 +116,19 @@ class Status {
                     errors: errors,
                 };
             });
+    }
+
+    /**
+     * This function should only be used when a previously created status
+     * needs to become a status object again.
+     *
+     * const rawStatus = status.getRawData()
+     * const status = Status.hydrateStatus(rawStatus)
+     *
+     * @param {Object} data
+     */
+    static hydrateStatus(data) {
+        return new this(data);
     }
 
     updateJob(job) {

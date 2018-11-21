@@ -38,7 +38,7 @@ class StatusManager {
         this.statuses.push(status);
     }
 
-    getStatuses() {
+    getRawStatuses() {
         return (
             this.statuses
                 // Get raw data only
@@ -80,6 +80,17 @@ class StatusManager {
         this.processStatus(status);
 
         this.removeOldStatuses();
+
+        Events.push(Events.event.statusesUpdated);
+    }
+
+    /**
+     * Completely overwrite the statuses
+     *
+     * @param {Status[]} statuses
+     */
+    overwriteStatuses(statuses) {
+        this.statuses = statuses;
 
         Events.push(Events.event.statusesUpdated);
     }

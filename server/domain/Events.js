@@ -10,6 +10,7 @@ class Events {
         this.event = {
             newStatus: 'new-status',
             statusesUpdated: 'statuses-updated',
+            eventTriggerStatus: 'event-trigger-status',
         };
     }
 
