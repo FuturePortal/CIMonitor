@@ -1,5 +1,7 @@
 site_name: CIMonitor
 theme: readthedocs
+repo_url: https://github.com/CIMonitor/CIMonitor
+site_author: Rick van der Staaij
 nav:
     - Home: index.md
     - Setup:
