@@ -1,3 +1,5 @@
+const SocketServer = require('socket.io');
+
 const Events = require('../Events');
 const socketEvents = require('../../../shared/socketEvents');
 const statusManager = require('../status/StatusManager');
@@ -17,14 +19,12 @@ class SocketConnectionManager {
         console.log('[SocketConnectionManager] Listening to status list updates...');
     }
 
-    setSocketServer(server) {
-        this.io = require('socket.io')(server);
-    }
-
     /**
      * Make sure the newly connected client receives the latest statuses
      */
-    startListening() {
+    startSocketServer(server) {
+        this.io = SocketServer(server);
+
         this.io.on('connect', socket => {
             console.log('[SocketConnectionManager] A client connected.');
 

@@ -5,15 +5,14 @@ const http = require('http');
 const Config = require('./config/Config');
 const router = require('./routes');
 const ModuleManager = require('./domain/module/ModuleManager');
-const socketConnectionManager = require('./domain/socket/ConnectionManager');
+const SocketConnectionManager = require('./domain/socket/ConnectionManager');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(router);
 const server = http.createServer(app);
 
-socketConnectionManager.setSocketServer(server);
-socketConnectionManager.startListening();
+SocketConnectionManager.startSocketServer(server);
 
 ModuleManager.initModulesFromConfig();
 

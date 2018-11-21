@@ -11,10 +11,10 @@ class SocketListener {
         const masterAddress = Config.getServerSlaveMaster();
         const socket = SocketClient(masterAddress);
 
+        console.log(`[SocketListener] Connecting to master ${masterAddress}...`);
         socket.on('connect', () => console.log(`[SocketListener] Connected to master ${masterAddress}.`));
 
         socket.on(socketEvents.eventTriggerStatus, rawStatus => this.triggerEventsForRawStatus(rawStatus));
-
         socket.on(socketEvents.statusesUpdated, rawStatuses => this.applyRawStatuses(rawStatuses));
 
         socket.on('disconnect', () => console.log(`[SocketListener] Disconnected from ${masterAddress}.`));
