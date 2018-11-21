@@ -1,5 +1,6 @@
+const SocketClient = require('socket.io-client');
+
 const socketEvents = require('../../../shared/socketEvents');
-const statusManager = require('../status/StatusManager');
 const Config = require('../../config/Config');
 const EventTrigger = require('../event/EventTrigger');
 const Status = require('../status/Status');
@@ -8,7 +9,7 @@ const StatusManager = require('../status/StatusManager');
 class SocketListener {
     constructor() {
         const masterAddress = Config.getServerSlaveMaster();
-        const socket = require('socket.io-client')(masterAddress);
+        const socket = SocketClient(masterAddress);
 
         socket.on('connect', () => console.log(`[SocketListener] Connected to master ${masterAddress}.`));
 
