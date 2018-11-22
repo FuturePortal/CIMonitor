@@ -10,7 +10,7 @@ None!
 
 ## Configuration
 
-To enable the dashboard video module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `server/config/config.json`:
 
 ```json
 {

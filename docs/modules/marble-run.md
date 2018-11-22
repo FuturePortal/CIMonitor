@@ -23,7 +23,7 @@ for the application running on the raspberry-pi.
 
 ## Configuration
 
-To enable the dashboard video module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `server/config/config.json`:
 
 ```json
 {
@@ -50,7 +50,7 @@ The `config` object must be configured as following:
 | `maxMarbles`        | yes       | Maximum amount of marbles to be fired at the same time                   |
 | `runDuration`       | yes       | Duration of the run in milliseconds                                      |
 
-In order to push a video to the dashboard, you need to configure a trigger and an event. For example:
+In order to push an action, you need to configure a trigger and an event. For example:
 
 ```json
 {

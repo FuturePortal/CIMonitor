@@ -23,7 +23,7 @@ for the application running on the raspberry-pi.
 
 ## Configuration
 
-To enable the dashboard video module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `server/config/config.json`:
 
 ```json
 {
@@ -38,7 +38,7 @@ To enable the dashboard video module, add the module to the `server/config/confi
 
 The `config` object can be empty but must be present.
 
-In order to push a video to the dashboard, you need to configure a trigger and an event. For example:
+In order to push an action, you need to configure a trigger and an event. For example:
 
 ```json
 {

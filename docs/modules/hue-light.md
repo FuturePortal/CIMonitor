@@ -10,7 +10,7 @@ In order to use this module, you need to have a Philips Hue light, and a Philips
 
 ## Configuration
 
-To enable the dashboard video module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `server/config/config.json`:
 
 ```json
 {
