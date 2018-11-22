@@ -3,9 +3,9 @@
 ![marble run demo](../img/marble-run.gif)
 
 The marble run in the in the image above is what got the entire CIMonitor started.
-It might be a way to specific module, but it has a great story.
+It might be a way too specific module, but it has a great story.
 
-At (Enrise HQ)[https://enrise.com] we bought a 3D-printer. Of course we were printing
+At [Enrise HQ](https://enrise.com) we bought a 3D-printer. Of course we were printing
 lots of random crap. Until I (Rick van der Staaij) found an interesting project: the
 marble run! I spent more than 2 months printing the entire thing, making 1 to 5 parts a
 day during office hours. Once the entire thing was working, I thought it would be nice
@@ -32,7 +32,11 @@ installed on your Raspberry pi.
 
 ### relay board
 
-@todo: show image of an relay board
+![](https://www.trafex.nl/wp-content/uploads/2014/08/2014-08-22-13.29.36.jpg)
+
+You need a relay board connected to your raspberry as described in
+[Tim de Pater's blog post](https://www.trafex.nl/2014/08/25/connect-a-relay-board-to-your-raspberry-pi/).
+CIMonitor will use pi-blaster to control the relays though instead of the `gpio` api.
 
 ## Configuration
 

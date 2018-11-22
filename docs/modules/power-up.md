@@ -21,7 +21,11 @@ installed on your Raspberry pi.
 
 ### relay board
 
-@todo: show image of an relay board
+![](https://www.trafex.nl/wp-content/uploads/2014/08/2014-08-22-13.29.36.jpg)
+
+You need a relay board connected to your raspberry as described in
+[Tim de Pater's blog post](https://www.trafex.nl/2014/08/25/connect-a-relay-board-to-your-raspberry-pi/).
+CIMonitor will use pi-blaster to control the relays though instead of the `gpio` api.
 
 ## Configuration
 
