@@ -7,7 +7,9 @@ pages:
     - Home: index.md
     - Getting started:
           - Setup CIMonitor: setup/CIMonitor.md
-          - Setup Raspberry: setup/raspberry.md
+          - Configuration: setup/configuration.md
+          - Run a service: setup/run-as-service.md
+          - Setup Raspberry: setup/Raspberry.md
     - Status API: status-API.md
     - Link a service:
           - GitLab: services/GitLab.md
