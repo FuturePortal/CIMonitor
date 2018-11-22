@@ -17,7 +17,7 @@
             </div>
         </div>
         <img v-if="status.userImage" :src="status.userImage" class="user-image" >
-        <button class="remove-button" @click="remove(status.key)"><i class="fas fa-ban"/></button>
+        <button v-if="now" class="remove-button" @click="remove(status.key)"><i class="fas fa-ban"/></button>
     </div>
 </template>
 
@@ -27,12 +27,12 @@ import moment from 'moment';
 export default {
     props: {
         status: {
-            type: String,
-            default: 'pending',
+            type: Object,
+            default: null,
         },
         now: {
-            type: moment,
-            default: moment(),
+            type: Number,
+            default: null,
         },
     },
     methods: {

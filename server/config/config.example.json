@@ -1,4 +1,5 @@
 {
+    "_comment": "Learn how to configure CIMonitor at https://cimonitor.readthedocs.io",
     "server": {
         "port": 9999
     },
@@ -22,82 +23,12 @@
     "events": [
         {
             "name": "celebrate-success",
-            "modules": [
-                {
-                    "name": "DashboardVideo",
-                    "push": {
-                        "youtubeKey": "ZTOIEz7p2KU",
-                        "startAt": 20,
-                        "duration": 20
-                    }
-                },
-                {
-                    "name": "PowerUp",
-                    "push": {
-                        "gpioPin": 3,
-                        "powerForMilliseconds": 3000
-                    }
-                },
-                {
-                    "name": "MarbleRun",
-                    "push": {
-                        "fireAmount": 3
-                    }
-                }
-            ]
+            "modules": []
         },
         {
             "name": "error-sequence",
-            "modules": [
-                {
-                    "name": "MarbleRun",
-                    "push": {
-                        "fireAmount": 10
-                    }
-                }
-            ]
+            "modules": []
         }
     ],
-    "modules": [
-        {
-            "name": "DashboardVideo",
-            "config": {}
-        },
-        {
-            "name": "HueLight",
-            "config": {
-                "hub": "---ip---",
-                "path": "/api/---token---/lights/5/state"
-            }
-        },
-        {
-            "name": "LedStrip",
-            "config": {
-                "gpioPinRed": 10,
-                "gpioPinGreen": 11,
-                "gpioPinBlue": 12
-            }
-        },
-        {
-            "name": "PowerUp",
-            "config": {}
-        },
-        {
-            "name": "MarbleRun",
-            "config": {
-                "gpioPin": 5,
-                "oneMarbleFireTime": 300,
-                "maxMarbles": 10,
-                "runDuration": 13000
-            }
-        },
-        {
-            "name": "TrafficLight",
-            "config": {
-                "gpioPinRedLight": 10,
-                "gpioPinOrangeLight": 11,
-                "gpioPinGreenLight": 12
-            }
-        }
-    ]
+    "modules": []
 }
