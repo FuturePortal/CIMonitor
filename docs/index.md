@@ -4,7 +4,7 @@
 [![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
-The CIMonitor is a place where all your project statuses come together.
+CIMonitor is a place where all your statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
@@ -19,6 +19,8 @@ that will represent the status of your projects!
 
 Attach a traffic light or run marbles when a deployment is successful.
 The sky is the limit! Check out all available modules.
+
+The time that deployments were scary is over, lets make them FUN!
 
 # Development
 

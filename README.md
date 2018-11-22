@@ -1,10 +1,12 @@
 # [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) CIMonitor
 
-![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
-[![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
+[
+    ![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
+    ![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+](https://cimonitor.readthedocs.io)
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
-The GitLab-CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
+CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
 deployments are successful. All in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
@@ -13,9 +15,12 @@ The time that deployments were scary is over, lets make them FUN!
 
 ## Features
 
--   A **real-time dashboard** of your statuses (deployments, pipelines, builds, ect!)
--   A **GitLab web-hook endpoint** to push all **pipeline and build statuses** with ease!
--   A **Travis CI web-hook endpoint** to push all **builds** with ease!
+-   Server application to process and handle all your statuses
+-   An easy **API** to push **custom statuses**
+-   **Real-time dashboard** of your statuses (deployments, pipelines, builds, ect!)
+-   **GitLab web-hook endpoint** to push all **pipeline and build statuses** with ease!
+-   **Travis CI web-hook endpoint** to push all **builds** with ease!
+-   Support for a **master-slave** setup to have multiple computers listening to statuses
 -   Modules that push hardware to represent your status and/or events:
 
 | Philips hue light              | Marble run                      | Traffic light                      | Power up (beacon light)           |
