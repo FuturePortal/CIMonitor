@@ -2,7 +2,12 @@
 
 @todo: demo image
 
-@todo: introduction
+The led-strip module will color your led-strip with the global status color of the CIMonitor.
+
+- When there is an error status, the led-strip wil pulse red
+- When there is a warning status, the led-strip will pulse orange
+- When there are no errors or warnings, the led-strip will be green (but dimmed)
+- When a new success status is pushed, the led-strip will be bright green for 5 minutes
 
 ## Requirements
 
@@ -15,7 +20,10 @@ for the application running on the raspberry-pi.
 
 ### pi-blaster
 
-@todo: refer to pi-blaster docs
+To control the amount of color that needs to be sent to the led-strip, CIMonitor requires
+you to have pi-blaster installed. Check the
+[pi-blaster repository](https://github.com/sarfata/pi-blaster) and make sure it is
+installed on your Raspberry pi.
 
 ### led strip setup
 

@@ -11,11 +11,13 @@ In order to use this module, the following requirements must be present:
 ### Raspberry-pi
 
 You need to run either the `server` or `server-slave` on a raspberry pi. Configure this module
-for the application running on the raspberry-pi.
+for the application running on the Raspberry pi.
 
 ### pi-blaster
 
-@todo: refer to pi-blaster docs
+To control the relay board, CIMonitor requires you to have pi-blaster installed.
+Check the [pi-blaster repository](https://github.com/sarfata/pi-blaster) and make sure it is
+installed on your Raspberry pi.
 
 ### relay board
 

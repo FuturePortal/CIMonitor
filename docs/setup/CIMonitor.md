@@ -12,15 +12,7 @@ Setting up CIMonitor is quick and easy. You need to have the following packages 
 Clone or download the latest CIMonitor via [github.com/cimonitor/cimonitor](https://github.com/cimonitor/cimonitor)
 (press the green button).
 
-Open your terminal in the folder you just downloaded, and run the following command:
-
-```sh
-$ make build-production
-```
-
-This will download the required dependencies, and build the project files.
-
-Before you can start running the CIMonitor, you need to create the primary config file. Create the file
+In the folder you just downloaded, you need to create the primary config file. Create the file
 `server/config/config.json` in the project directory. You could also copy the `config.example.json` file
 you find there.
 
@@ -38,6 +30,14 @@ Make sure at least the following configuration is in your config file:
 ```
 
 For advanced configuration options, check out [the configuration page](configuration.md).
+
+Open your terminal in the folder you just downloaded, and run the following command:
+
+```sh
+$ make build-production
+```
+
+This will download the required dependencies, and build the project files.
 
 # Run the server application
 

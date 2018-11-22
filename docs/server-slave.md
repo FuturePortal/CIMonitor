@@ -1,3 +1,3 @@
 # Server slave
 
-![](images/master-slave-setup.png)
+![](img/master-slave-setup.png)

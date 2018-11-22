@@ -2,7 +2,8 @@
 
 @todo: demo image
 
-@todo: introduction
+The dashboard video module can play YouTube video's on the connected dashboards
+when a specific event is triggered.
 
 ## Requirements
 
