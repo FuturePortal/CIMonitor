@@ -1,6 +1,6 @@
 # Hue light
 
-![hue light demo](../images/hue-light.gif)
+![hue light demo](../img/hue-light.gif)
 
 @todo: introduction
 

@@ -1,6 +1,6 @@
 # Traffic light
 
-![traffic light demo](../images/traffic-light.gif)
+![traffic light demo](../img/traffic-light.gif)
 
 @todo: introduction
 

@@ -1,6 +1,6 @@
 # Power up
 
-![power up demo](../images/beacon-light.gif)
+![power up demo](../img/beacon-light.gif)
 
 @todo: introduction
 

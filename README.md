@@ -11,7 +11,7 @@ deployments are successful. All in one overview.
 
 The time that deployments were scary is over, lets make them FUN!
 
-[![dashboard example](docs/images/dashboard.gif)](https://cimonitor.readthedocs.io)
+[![dashboard example](docs/img/dashboard.gif)](https://cimonitor.readthedocs.io)
 
 ## Features
 
@@ -23,9 +23,9 @@ The time that deployments were scary is over, lets make them FUN!
 -   Support for a **master-slave** setup to have multiple computers listening to statuses
 -   Modules that push hardware to represent your status and/or events:
 
-| Philips hue light              | Marble run                      | Power up (beacon light)           |
-| ------------------------------ | ------------------------------- | --------------------------------- |
-| ![](docs/images/hue-light.gif) | ![](docs/images/marble-run.gif) | ![](docs/images/beacon-light.gif) |
+| Philips hue light           | Marble run                   | Power up (beacon light)        |
+| --------------------------- | ---------------------------- | ------------------------------ |
+| ![](docs/img/hue-light.gif) | ![](docs/img/marble-run.gif) | ![](docs/img/beacon-light.gif) |
 
 All modules are listed in [the documentation](https://cimonitor.readthedocs.io).
 

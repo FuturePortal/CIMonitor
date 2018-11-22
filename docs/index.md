@@ -8,14 +8,14 @@ CIMonitor is a place where all your statuses come together.
 Check if all tests have passed, and if deployments are successful. All
 in one overview.
 
-![dashboard example](images/dashboard.gif)
+![dashboard example](img/dashboard.gif)
 
 And if that's not enough for you, why not attach some epic hardware
 that will represent the status of your projects!
 
-| Philips hue light         | Marble run                 | Power up (beacon light)      |
-| ------------------------- | -------------------------- | ---------------------------- |
-| ![](images/hue-light.gif) | ![](images/marble-run.gif) | ![](images/beacon-light.gif) |
+| Philips hue light      | Marble run              | Power up (beacon light)   |
+| ---------------------- | ----------------------- | ------------------------- |
+| ![](img/hue-light.gif) | ![](img/marble-run.gif) | ![](img/beacon-light.gif) |
 
 Attach a traffic light or run marbles when a deployment is successful.
 The sky is the limit! Check out all available modules.

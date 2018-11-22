@@ -1,6 +1,6 @@
 # Marble run
 
-![marble run demo](../images/marble-run.gif)
+![marble run demo](../img/marble-run.gif)
 
 @todo: introduction
 
