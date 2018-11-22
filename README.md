@@ -23,9 +23,9 @@ The time that deployments were scary is over, lets make them FUN!
 -   Support for a **master-slave** setup to have multiple computers listening to statuses
 -   Modules that push hardware to represent your status and/or events:
 
-| Philips hue light              | Marble run                      | Traffic light                      | Power up (beacon light)           |
-| ------------------------------ | ------------------------------- | ---------------------------------- | --------------------------------- |
-| ![](docs/images/hue-light.gif) | ![](docs/images/marble-run.gif) | ![](docs/images/traffic-light.gif) | ![](docs/images/beacon-light.gif) |
+| Philips hue light              | Marble run                      | Power up (beacon light)           |
+| ------------------------------ | ------------------------------- | --------------------------------- |
+| ![](docs/images/hue-light.gif) | ![](docs/images/marble-run.gif) | ![](docs/images/beacon-light.gif) |
 
 All modules are listed in [the documentation](https://cimonitor.readthedocs.io).
 

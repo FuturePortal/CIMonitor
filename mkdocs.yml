@@ -4,11 +4,11 @@ repo_url: https://github.com/CIMonitor/CIMonitor
 site_author: Rick van der Staaij
 nav:
     - Home: index.md
-    - Setup:
+    - Getting started:
           - Setup CIMonitor: setup/CIMonitor.md
           - Setup Raspberry: setup/raspberry.md
     - Status API: status-API.md
-    - Connecting services:
+    - Link a service:
           - GitLab: services/GitLab.md
           - Travis CI: services/Travis-CI.md
     - Modules:
