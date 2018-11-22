@@ -2,7 +2,9 @@
 
 ![power up demo](../img/beacon-light.gif)
 
-@todo: introduction
+The power up module can switch a relay switch on for a specific amount of time.
+In the image above, a beacon light is turned on for a few seconds. You can
+however turn on pretty much anything you like.
 
 ## Requirements
 

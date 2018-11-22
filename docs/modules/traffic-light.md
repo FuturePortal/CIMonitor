@@ -2,7 +2,13 @@
 
 ![traffic light demo](../img/traffic-light.gif)
 
-@todo: introduction
+This module will give your traffic light the color of the global status of CIMonitor.
+
+- When there is an error status, the red light will be on
+- When there is a warning status, the orange light will be on
+- When there are no errors or warnings, the green light will be on
+
+Only one light will be on at the time!
 
 ## Requirements
 

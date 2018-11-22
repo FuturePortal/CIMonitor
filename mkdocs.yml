@@ -15,10 +15,10 @@ pages:
           - GitLab: services/GitLab.md
           - Travis CI: services/Travis-CI.md
     - Modules:
+          - Marble run: modules/marble-run.md
           - Dashboard video: modules/dashboard-video.md
           - Hue light: modules/hue-light.md
           - Led strip: modules/led-strip.md
-          - Marble run: modules/marble-run.md
           - Power up: modules/power-up.md
           - Traffic light: modules/traffic-light.md
     - Server slave: server-slave.md
