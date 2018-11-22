@@ -27,6 +27,8 @@ update-project: intro do-run-updates
 update: intro do-switch-branch do-run-updates
 git-hooks: intro do-install-git-hooks
 
+build-docs: intro do-build-docs
+
 dev-server: intro do-dev-server
 dev-server-slave: intro do-dev-server-slave
 dev-client: intro do-dev-client
@@ -54,6 +56,7 @@ do-show-commands:
 	@echo "make dev-server-slave       Run the development slave server, listening to a master."
 	@echo "make dev-client             Build, run and watch the development dashboard."
 	@echo "make build-production       Build all the files required for production."
+	@echo "make build-docs             Build a preview of the documentation."
 	@echo "make test                   Run the testsuite."
 	@echo "make cypress                Open Cypress dashboard for quick testing."
 	@echo "make cypress-run            Run the cypress tests in the background."
@@ -116,7 +119,13 @@ do-install-git-hooks:
 	chmod +x .git/hooks/*
 
 do-cypress-open:
+	@echo "\n=== Opening Cypress dashboard ===\n"
 	./node_modules/.bin/cypress open
 
 do-cypress-run:
+	@echo "\n=== Running Cypress tests ===\n"
 	./node_modules/.bin/cypress run
+
+do-build-docs:
+	@echo "\n=== Building docs with mkdocs ===\n"
+	docker run -ti --rm -v $$PWD:/docs/src -v $$PWD/docs-html:/docs/output cogset/mkdocs:latest -b
