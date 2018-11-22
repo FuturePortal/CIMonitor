@@ -128,4 +128,5 @@ do-cypress-run:
 
 do-build-docs:
 	@echo "\n=== Building docs with mkdocs ===\n"
-	docker run -ti --rm -v $$PWD:/docs/src -v $$PWD/docs-html:/docs/output cogset/mkdocs:latest -b
+	@echo "Check the documentation at http://localhost:9998/"
+	@docker run -ti --rm -p 9998:9998 -v $$PWD:/documents moird/mkdocs

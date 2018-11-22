@@ -22,7 +22,7 @@ The sky is the limit! Check out all available modules.
 
 The time that deployments were scary is over, lets make them FUN!
 
-# Development
+## Development
 
 Check out [github.com/CIMonitor/CIMonitor](https://github.com/CIMonitor/CIMonitor)
 and feel free to contribute!
