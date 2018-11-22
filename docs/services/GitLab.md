@@ -4,6 +4,9 @@ When you have your CIMonitor running, it's very easy to push your GitLab builds 
 
 GitLab needs to push the webhook to the following endpoint on the CIMonitor: `/webhook/gitlab`
 
+**Note:** GitLab can not push webhooks to your localhost! You need to expose your server address to
+the public first. This can be done via [port forwarding](https://lmgtfy.com?q=port+forwarding).
+
 ## Project settings
 
 Open your project integration settings in gitlab:
