@@ -11,10 +11,16 @@ in one overview.
 ![dashboard example](images/dashboard.gif)
 
 And if that's not enough for you, why not attach some epic hardware
-that will represent the status of your projects! Attach a traffic
-light, run marbles when a deployment is successful. The sky is the
-limit!
+that will represent the status of your projects!
+
+| Philips hue light         | Marble run                 | Traffic light                 | Power up (beacon light)      |
+| ------------------------- | -------------------------- | ----------------------------- | ---------------------------- |
+| ![](images/hue-light.gif) | ![](images/marble-run.gif) | ![](images/traffic-light.gif) | ![](images/beacon-light.gif) |
+
+Attach a traffic light or run marbles when a deployment is successful.
+The sky is the limit! Check out all available modules.
 
 # Development
 
-Check out https://github.com/CIMonitor/CIMonitor and feel free to contribute!
+Check out [github.com/CIMonitor/CIMonitor](https://github.com/CIMonitor/CIMonitor)
+and feel free to contribute!
