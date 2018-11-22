@@ -1,13 +1,15 @@
 # Dashboard video
 
-@todo: demo image
+![Video on the dashboard demo](../img/dashboard-video.gif)
 
-The dashboard video module can play YouTube video's on the connected dashboards
-when a specific event is triggered.
+The dashboard video module can play YouTube videos on the connected dashboards
+when a specific event is triggered. After the configured amount of time the video
+will be hidden.
 
 ## Requirements
 
-None!
+You can only configure this module for the `server.js`. The `server-slave.js` can't
+push the video to the dashboard, as it doesn't have a socket server.
 
 ## Configuration
 

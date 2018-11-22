@@ -2,7 +2,18 @@
 
 ![marble run demo](../img/marble-run.gif)
 
-@todo: introduction
+The marble run in the in the image above is what got the entire CIMonitor started.
+It might be a way to specific module, but it has a great story.
+
+At (Enrise HQ)[https://enrise.com] we bought a 3D-printer. Of course we were printing
+lots of random crap. Until I (Rick van der Staaij) found an interesting project: the
+marble run! I spent more than 2 months printing the entire thing, making 1 to 5 parts a
+day during office hours. Once the entire thing was working, I thought it would be nice
+to be able to control it remotely! I bought a relay board which I could control with a
+Raspberry pi, and created a quick and dirty nodejs application to fire some marbles
+into the marble run remotely. With this the idea of CIMonitor was born. How nice would
+it be to automatically run some marbles when a deployment succeeds?! From one thing came
+the next, and here we are. CIMonitor. Hope you have as much fun as I have!
 
 ## Requirements
 

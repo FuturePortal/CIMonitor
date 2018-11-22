@@ -2,7 +2,11 @@
 
 ![hue light demo](../img/hue-light.gif)
 
-@todo: introduction
+This module will give your Hue light the color of the global status of CIMonitor.
+
+- When there is an error status, the light will be red
+- When there is a warning status, the light will be orange
+- When there are no errors or warnings, the light will be green
 
 ## Requirements
 
