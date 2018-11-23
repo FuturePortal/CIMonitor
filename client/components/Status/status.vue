@@ -3,11 +3,7 @@
         <img v-if="status.image" :src="status.image" class="image" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
-            <div class="jobs" v-if="status.jobs && interestingJobs.length > 0">
-                <div class="job" v-for="(job, index) in interestingJobs" :key="index">
-                    <i :class="stateToIcon(job.state)" /> {{ job.name }}
-                </div>
-            </div>
+            <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
             <div class="sub-title">
                 <span v-if="status.subTitle">{{ status.subTitle }}</span>
                 <span class="time-ago" v-if="now"> <i class="far fa-clock" /> {{ timeAgo }} </span>
@@ -20,6 +16,7 @@
 
 <script>
 import moment from 'moment';
+import JobsAndStages from './JobsAndStages';
 
 export default {
     props: {
@@ -32,19 +29,12 @@ export default {
             default: null,
         },
     },
+    components: { JobsAndStages },
     methods: {
         remove(statusKey) {
             const xhttp = new XMLHttpRequest();
             xhttp.open('DELETE', `/status/${statusKey}`, true);
             xhttp.send();
-        },
-        stateToIcon(state) {
-            return {
-                error: 'fas fa-times',
-                running: 'fas fa-redo-alt fa-spin',
-                pending: 'far fa-pause-circle',
-                'allowed-error': 'fas fa-exclamation-triangle',
-            }[state];
         },
     },
     computed: {
@@ -54,15 +44,6 @@ export default {
                 return 'just now';
             }
             return timeAgo;
-        },
-        interestingJobs() {
-            if (!this.status.jobs) {
-                return [];
-            }
-
-            return this.status.jobs.filter(
-                job => ['pending', 'running', 'error', 'allowed-error'].indexOf(job.state) !== -1
-            );
         },
     },
 };
@@ -129,15 +110,6 @@ $border-bottom: 3px
 .time-ago
     padding-left: 10px
     font-size: 20px
-
-.jobs
-    margin-top: 10px
-
-.job
-    display: inline-block
-    font-size: 26px
-    margin: 0 20px 10px 0
-    border-radius: 5px
 
 .success
     background: $color-success
