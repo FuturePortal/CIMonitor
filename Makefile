@@ -32,7 +32,7 @@ build-docs: intro do-build-docs
 dev-server: intro do-dev-server
 dev-server-slave: intro do-dev-server-slave
 dev-client: intro do-dev-client
-build-production: intro do-run-updates do-build-production
+build-production: intro do-build-production
 
 test: intro do-test-eslint-prettier
 pre-commit: intro do-fix-eslint-prettier do-commit-intro
@@ -99,6 +99,7 @@ do-dev-client:
 
 do-build-production:
 	@echo "\n=== Building files for production ===\n"
+	yarn install --production
 	yarn production
 
 do-test-eslint-prettier:

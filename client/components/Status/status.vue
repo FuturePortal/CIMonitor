@@ -1,6 +1,6 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image" :src="status.image" class="image" >
+        <img v-if="status.image" :src="status.image" class="image" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <div class="jobs" v-if="status.jobs && interestingJobs.length > 0">
@@ -13,7 +13,7 @@
                 <span class="time-ago" v-if="now"> <i class="far fa-clock" /> {{ timeAgo }} </span>
             </div>
         </div>
-        <img v-if="status.userImage" :src="status.userImage" class="user-image" >
+        <img v-if="status.userImage" :src="status.userImage" class="user-image" />
         <button v-if="now" class="remove-button" @click="remove(status.key);"><i class="fas fa-ban" /></button>
     </div>
 </template>
