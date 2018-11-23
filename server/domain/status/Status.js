@@ -1,3 +1,5 @@
+const Moment = require('moment');
+
 const validate = require('validate.js');
 const Events = require('../Events');
 
@@ -166,9 +168,10 @@ class Status {
     }
 
     isOld() {
-        const expireTime = 7 * 24 * 60 * 60 * 1000;
+        const oneWeekAgo = Moment().subtract(1, 'weeks');
+        const statusCreatedTime = Moment(this.data.time);
 
-        return new Date() - this.data.time < expireTime;
+        return statusCreatedTime.isBefore(oneWeekAgo);
     }
 }
 

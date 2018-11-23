@@ -68,7 +68,7 @@ class StatusManager {
     }
 
     removeOldStatuses() {
-        this.statuses = this.statuses.filter(status => status.isOld());
+        this.statuses = this.statuses.filter(status => !status.isOld());
     }
 
     /**
