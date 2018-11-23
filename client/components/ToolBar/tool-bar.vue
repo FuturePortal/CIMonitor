@@ -1,16 +1,10 @@
 <template>
     <div>
-        <div class="light" :class="state"/>
+        <div class="light" :class="state" />
         <div class="toolbar">
-            <button @click="openGitHub()">
-                <i class="fab fa-github"/>
-            </button>
-            <div class="logo">
-                <img :src="trafficLightImage" alt="logo" >
-            </div>
-            <button @click="clearDashboard()" title="Clear dashboard">
-                <i class="fas fa-ban"/>
-            </button>
+            <button @click="openGitHub();"><i class="fab fa-github" /></button>
+            <div class="logo"><img :src="trafficLightImage" alt="logo" ></div>
+            <button @click="clearDashboard();" title="Clear dashboard"><i class="fas fa-ban" /></button>
         </div>
     </div>
 </template>

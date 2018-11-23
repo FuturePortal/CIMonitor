@@ -6,6 +6,7 @@ const Config = require('./config/Config');
 const router = require('./routes');
 const ModuleManager = require('./domain/module/ModuleManager');
 const SocketConnectionManager = require('./domain/socket/ConnectionManager');
+const StatusPersister = require('./domain/status/Persister');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +16,8 @@ const server = http.createServer(app);
 SocketConnectionManager.startSocketServer(server);
 
 ModuleManager.initModulesFromConfig();
+
+StatusPersister.loadSavedStatuses();
 
 server.listen(Config.getServerPort(), () => {
     console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
