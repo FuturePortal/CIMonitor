@@ -98,6 +98,8 @@ class Status {
     static createStatus(data) {
         console.log('[Status] Creating status...');
 
+        this.formatUserImage(data);
+
         return validate
             .async(data, this.getStatusConstraints())
             .then(data => {
@@ -160,7 +162,7 @@ class Status {
     }
 
     getKey() {
-        return this.data.key;
+        return this.data.key.toLowerCase();
     }
 
     getState() {
@@ -172,6 +174,19 @@ class Status {
         const statusCreatedTime = Moment(this.data.time);
 
         return statusCreatedTime.isBefore(oneWeekAgo);
+    }
+
+    static formatUserImage(data) {
+        if (data.userImage.indexOf('gravatar.com') === -1) {
+            return;
+        }
+
+        let questionMarkLocation = data.userImage.indexOf('?');
+        if (questionMarkLocation !== -1) {
+            data.userImage = data.userImage.substring(0, questionMarkLocation);
+        }
+
+        data.userImage += '?size=300&default=mp';
     }
 }
 

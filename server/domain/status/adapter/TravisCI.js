@@ -15,7 +15,7 @@ class StatusAdapterTravisCI {
             state: this.pipelineStatusToState(data.status_message),
             title: data.repository.owner_name + '/' + data.repository.name,
             subTitle: data.branch,
-            userImage: gravatar.url(data.committer_email, { size: '200' }, true),
+            userImage: gravatar.url(data.committer_email, null, true),
         });
     }
 
