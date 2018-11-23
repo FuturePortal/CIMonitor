@@ -84,6 +84,4 @@ export default {
 };
 </script>
 
-<style lang="sass" rel="stylesheet/sass" scoped>
-
-</style>
+<style lang="sass" rel="stylesheet/sass" scoped></style>

@@ -1,23 +1,20 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image" :src="status.image" class="image" >
+        <img v-if="status.image" :src="status.image" class="image" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <div class="jobs" v-if="status.jobs && interestingJobs.length > 0">
                 <div class="job" v-for="(job, index) in interestingJobs" :key="index">
-                    <i :class="stateToIcon(job.state)"/>
-                    {{ job.name }}
+                    <i :class="stateToIcon(job.state)" /> {{ job.name }}
                 </div>
             </div>
             <div class="sub-title">
                 <span v-if="status.subTitle">{{ status.subTitle }}</span>
-                <span class="time-ago" v-if="now">
-                    <i class="far fa-clock"/> {{ timeAgo }}
-                </span>
+                <span class="time-ago" v-if="now"> <i class="far fa-clock" /> {{ timeAgo }} </span>
             </div>
         </div>
-        <img v-if="status.userImage" :src="status.userImage" class="user-image" >
-        <button v-if="now" class="remove-button" @click="remove(status.key)"><i class="fas fa-ban"/></button>
+        <img v-if="status.userImage" :src="status.userImage" class="user-image" />
+        <button v-if="now" class="remove-button" @click="remove(status.key);"><i class="fas fa-ban" /></button>
     </div>
 </template>
 
