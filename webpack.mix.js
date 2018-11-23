@@ -21,16 +21,16 @@ mix.copy('client/static/', 'dist/');
 
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
+
+    mix.browserSync({
+        proxy: `localhost:${Config.getServerPort()}`,
+        injectChanges: false,
+        files: [`dist/**/*`],
+    });
+
+    mix.disableSuccessNotifications();
 }
 
 mix.version();
-
-mix.browserSync({
-    proxy: `localhost:${Config.getServerPort()}`,
-    injectChanges: false,
-    files: [`dist/**/*`],
-});
-
-mix.disableSuccessNotifications();
 
 mix.setPublicPath(`dist/`);

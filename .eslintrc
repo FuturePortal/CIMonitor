@@ -2,44 +2,44 @@
     "env": {
         "amd": true,
         "node": true,
-        "cypress/globals": true,
+        "cypress/globals": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/strongly-recommended",
-        "prettier",
-    ],
+    "extends": ["eslint:recommended", "plugin:vue/strongly-recommended", "prettier"],
     "parserOptions": {
         "ecmaVersion": "2018",
-        "sourceType": "module",
+        "sourceType": "module"
     },
-    "plugins": [
-        "cypress",
-        "json",
-        "prettier",
-        "vue",
-    ],
+    "plugins": ["cypress", "json", "prettier", "vue"],
     "rules": {
         "prettier/prettier": "error",
         "vue/html-indent": [
-            "error", 4, {
+            "error",
+            4,
+            {
                 "alignAttributesVertically": false
             }
         ],
         "no-console": "off",
-        "comma-dangle": ["error", {
-            "arrays": "always-multiline",
-            "objects": "always-multiline",
-            "imports": "always-multiline",
-            "exports": "always-multiline",
-            "functions": "never",
-        }],
-        "vue/max-attributes-per-line": ["error", {
-            "singleline": 5,
-            "multiline": {
-                "max": 1,
-                "allowFirstLine": false
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "never"
             }
-        }],
+        ],
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "singleline": 5,
+                "multiline": {
+                    "max": 1,
+                    "allowFirstLine": false
+                }
+            }
+        ],
+        "vue/html-self-closing": "off"
     }
 }

@@ -1,8 +1,5 @@
 <template>
-    <div 
-        v-if="playing" 
-        class="video-container" 
-        v-html="youtubeVideoFrame"/>
+    <div v-if="playing" class="video-container" v-html="youtubeVideoFrame" />
 </template>
 
 <script>
