@@ -1,6 +1,6 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image" :src="status.image" class="image" >
+        <img v-if="status.image" :src="status.image" class="image" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <div class="jobs" v-if="status.jobs && interestingJobs.length > 0">
