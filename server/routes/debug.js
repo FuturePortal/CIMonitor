@@ -16,7 +16,7 @@ app.post('/web-hook', (request, response) => {
         fs.mkdirSync(logPath);
     }
 
-    fs.writeFile(logFile, JSON.stringify(request.body), function(error) {
+    fs.writeFile(logFile, JSON.stringify(request.body), error => {
         if (error) {
             return console.log(`[Debug] ${error}`);
         }
