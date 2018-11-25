@@ -1,8 +1,5 @@
 <template>
-    <div class="note" :class="type">
-        <i :class="icon"></i>
-        <slot />
-    </div>
+    <div class="note" :class="type"><i :class="icon"></i> <slot /></div>
 </template>
 
 <script>
