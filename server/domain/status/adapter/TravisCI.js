@@ -1,4 +1,4 @@
-const Status = require('../Status');
+const StatusFactory = require('../StatusFactory');
 const gravatar = require('gravatar');
 
 class StatusAdapterTravisCI {
@@ -10,12 +10,12 @@ class StatusAdapterTravisCI {
             return;
         }
 
-        Status.createStatus({
+        StatusFactory.createStatus({
             key: this.getKeyFromData(data),
             state: this.pipelineStatusToState(data.status_message),
             title: data.repository.owner_name + '/' + data.repository.name,
             subTitle: data.branch,
-            userImage: gravatar.url(data.committer_email, { size: '200' }, true),
+            userImage: gravatar.url(data.committer_email, null, true),
         });
     }
 
