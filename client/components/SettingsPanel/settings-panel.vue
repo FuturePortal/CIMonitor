@@ -49,11 +49,7 @@ export default {
         openSettingsTab(tab) {
             this.openTab = tab;
         },
-        togglePanel() {
-            this.open = !this.open;
-        },
     },
-    computed: {},
 };
 </script>
 
