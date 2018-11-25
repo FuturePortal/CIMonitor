@@ -3,7 +3,7 @@ const SocketClient = require('socket.io-client');
 const socketEvents = require('../../../shared/socketEvents');
 const Config = require('../../config/Config');
 const EventTrigger = require('../event/EventTrigger');
-const Status = require('../status/Status');
+const StatusFactory = require('../status/StatusFactory');
 const StatusManager = require('../status/StatusManager');
 
 class SocketListener {
@@ -23,13 +23,13 @@ class SocketListener {
     triggerEventsForRawStatus(rawStatus) {
         console.log(`[SocketListener] Received raw status to trigger events.`);
 
-        EventTrigger.fireStatus(Status.hydrateStatus(rawStatus));
+        EventTrigger.fireStatus(StatusFactory.hydrateStatus(rawStatus));
     }
 
     applyRawStatuses(rawStatuses) {
         console.log(`[SocketListener] Received raw statuses to update the status manager.`);
 
-        StatusManager.overwriteStatuses(rawStatuses.map(rawStatus => Status.hydrateStatus(rawStatus)));
+        StatusManager.overwriteStatuses(rawStatuses.map(rawStatus => StatusFactory.hydrateStatus(rawStatus)));
     }
 }
 
