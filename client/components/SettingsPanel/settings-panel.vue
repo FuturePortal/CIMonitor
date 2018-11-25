@@ -1,18 +1,19 @@
 <template>
     <div v-if="open" class="overlay" @click="closeOnOutsideClick">
         <div class="settings-panel">
-            <div class="title-bar">
-                Settings
-            </div>
+            <div class="title-bar">Settings</div>
             <div class="body">
                 <div class="menu">
-                    <button v-for="tab in tabs" @click="openSettingsTab(tab)" :key="tab.name" :class="{active: tab === openTab}">
+                    <button
+                        v-for="tab in tabs"
+                        @click="openSettingsTab(tab);"
+                        :key="tab.name"
+                        :class="{ active: tab === openTab }"
+                    >
                         <i :class="tab.icon"></i> <span class="title">{{ tab.name }}</span>
                     </button>
                 </div>
-                <div class="setting-space">
-                    setting tweak pace!
-                </div>
+                <div class="setting-space">setting tweak pace!</div>
             </div>
         </div>
     </div>
@@ -135,5 +136,4 @@ $seperator-color: #F0F0F0;
     border-bottom-right-radius: $border-radius
     flex: 1
     padding: 20px
-
 </style>
