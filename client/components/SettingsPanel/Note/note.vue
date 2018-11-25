@@ -1,5 +1,8 @@
 <template>
-    <div class="note" :class="type"><slot /></div>
+    <div class="note" :class="type">
+        <i :class="icon"></i>
+        <slot />
+    </div>
 </template>
 
 <script>
@@ -10,6 +13,15 @@ export default {
             default: 'info',
         },
     },
+    computed: {
+        icon() {
+            if (this.type === 'warning') {
+                return 'fas fa-exclamation-triangle';
+            }
+
+            return 'fas fa-info-circle';
+        },
+    },
 };
 </script>
 
@@ -18,6 +30,7 @@ export default {
     padding: 20px
     background: $color-info
     color: #fff
+    font-size: 18px
 
     &.warning
         background: $color-warning
