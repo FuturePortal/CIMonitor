@@ -104,7 +104,7 @@ class StatusFactory {
 
                 Events.push(Events.event.newStatus, newStatus);
 
-                console.log('[Status] Successfully added!');
+                console.log('[StatusFactory] Successfully added!');
 
                 return newStatus;
             })
