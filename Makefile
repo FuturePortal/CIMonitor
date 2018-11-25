@@ -21,45 +21,54 @@ intro:
 # ===========================
 
 init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands
-
-github: intro do-checkout-pr do-run-updates
 update-project: intro do-run-updates
 update: intro do-switch-branch do-run-updates
+github: intro do-checkout-pr do-run-updates
 git-hooks: intro do-install-git-hooks
+
+build-production: intro do-build-production
 
 build-docs: intro do-build-docs
 
 dev-server: intro do-dev-server
 dev-server-slave: intro do-dev-server-slave
 dev-client: intro do-dev-client
-build-production: intro do-build-production
+
+build-container: intro do-backup-dependencies do-build-production do-build-container do-restore-dependencies do-run-updates
+dev-container: intro do-dev-container
 
 test: intro do-test-eslint-prettier
-pre-commit: intro do-fix-eslint-prettier do-commit-intro
-
 cypress: do-cypress-open
 cypress-run: do-cypress-run
+
+pre-commit: intro do-fix-eslint-prettier do-commit-intro
 
 # ===========================
 # Recipes
 # ===========================
 
 do-show-commands:
-	@echo "\n=== Make CIMonitor ===\n"
-	@echo "make                        Show the make commands you can run."
-	@echo "make init                   Initialise the project for development."
-	@echo "make update-project         Install all dependencies and generate required files."
-	@echo "make update BRANCH=<branch> Switch to a branch and run update-project."
-	@echo "make github PR=<number>     Check out a PR from github and update the project."
-	@echo "make git-hooks              Install the available git hooks."
-	@echo "make dev-server             Run the development server."
-	@echo "make dev-server-slave       Run the development slave server, listening to a master."
-	@echo "make dev-client             Build, run and watch the development dashboard."
-	@echo "make build-production       Build all the files required for production."
-	@echo "make build-docs             Build a preview of the documentation."
-	@echo "make test                   Run the testsuite."
-	@echo "make cypress                Open Cypress dashboard for quick testing."
-	@echo "make cypress-run            Run the cypress tests in the background."
+	@echo "\nProject:"
+	@echo "  make init                   Initialise the project for development."
+	@echo "  make update-project         Install all dependencies and generate required files."
+	@echo "  make update BRANCH=<branch> Switch to a branch and run update-project."
+	@echo "  make github PR=<number>     Check out a PR from github and update the project."
+	@echo "  make git-hooks              Install the available git hooks."
+	@echo "\nLocal installation:"
+	@echo "  make build-production       Build all the files required for production."
+	@echo "\nDocumentation:"
+	@echo "  make build-docs             Build a preview of the documentation."
+	@echo "\nDevelopment:"
+	@echo "  make dev-server             Run the development server."
+	@echo "  make dev-server-slave       Run the development slave server, listening to a master."
+	@echo "  make dev-client             Build, run and watch the development dashboard."
+	@echo "\nDocker container:"
+	@echo "  make build-container        Build production assets and a Docker container."
+	@echo "  make dev-container          Run the built Docker container."
+	@echo "\nTests:"
+	@echo "  make test                   Run the test suite."
+	@echo "  make cypress                Open Cypress dashboard for quick testing."
+	@echo "  make cypress-run            Run the cypress tests in the background."
 
 do-pre-init:
 	cp -n server/config/config.example.json server/config/config.json
@@ -131,3 +140,22 @@ do-build-docs:
 	@echo "\n=== Building docs with mkdocs ===\n"
 	@echo "Check the documentation at http://localhost:9998/"
 	@docker run -ti --rm -p 9998:9998 -v $$PWD:/documents moird/mkdocs
+
+do-dev-container:
+	@echo "\n=== Running dev container ===\n"
+	docker run -ti --rm -p9999:9999 cimonitor/cimonitor:latest
+
+do-build-container:
+	@echo "\n=== Building Docker container ===\n"
+	yarn remove babel-cli laravel-mix sass-resources-loader --production
+	docker build -t cimonitor/cimonitor:latest .
+
+do-backup-dependencies:
+	@echo "\n=== Backing up dependencies ===\n"
+	cp package.json package.json.tmp
+	cp yarn.lock yarn.lock.tmp
+
+do-restore-dependencies:
+	@echo "\n=== Restoring dependencies ===\n"
+	mv package.json.tmp package.json
+	mv yarn.lock.tmp yarn.lock
