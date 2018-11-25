@@ -4,7 +4,7 @@
         <div class="toolbar">
             <button @click="openGitHub();"><i class="fab fa-github" /></button>
             <div class="logo"><img :src="trafficLightImage" alt="logo" /></div>
-            <button @click="clearDashboard();" title="Clear dashboard"><i class="fas fa-ban" /></button>
+            <button @click="openSettings();" title="Clear dashboard"><i class="fas fa-cog" /></button>
         </div>
     </div>
 </template>
@@ -13,6 +13,7 @@
 import TrafficLightGreen from './traffic-light-green.svg';
 import TrafficLightOrange from './traffic-light-orange.svg';
 import TrafficLightRed from './traffic-light-red.svg';
+import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
 
 export default {
     props: {
@@ -25,10 +26,8 @@ export default {
         openGitHub() {
             window.open('https://github.com/CIMonitor/CIMonitor', '_blank');
         },
-        clearDashboard() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.open('GET', '/status/clear-all', true);
-            xhttp.send();
+        openSettings() {
+            this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
         },
     },
     computed: {
@@ -51,8 +50,8 @@ export default {
     width: 260px
     height: 50px
     margin-left: -130px
-    background-color: #666
-    color: #FFF
+    background-color: $color-gray-darker
+    color: $color-white
     border-radius: 20px 20px 0 0
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.2)
 
@@ -64,11 +63,11 @@ button
     cursor: pointer
     background: transparent
     transition: background-color 200ms
-    color: #FFF
+    color: $color-white
     font-size: 24px
 
     &:hover
-        background-color: #444
+        background-color: lighten($color-gray-darker, 5%)
 
     &:first-child
         margin-right: 76px
@@ -84,7 +83,7 @@ button
     width: 80px
     height: 65px
     margin-left: -40px
-    background: #FFF
+    background: $color-white
     text-align: center
     border-radius: 20px 20px 0 0
     padding-top: 15px
@@ -102,7 +101,7 @@ button
         position: absolute
         content: ''
         border-bottom-right-radius: 100%
-        box-shadow: 0px 0px 0px 50px #FFF
+        box-shadow: 0px 0px 0px 50px $color-white
         clip: rect(0px, 20px, 20px, 0px)
         display: block
 
@@ -115,7 +114,7 @@ button
         position: absolute
         content: ''
         border-bottom-left-radius: 100%
-        box-shadow: 0px 0px 0px 50px #FFF
+        box-shadow: 0px 0px 0px 50px $color-white
         clip: rect(0px, 20px, 20px, 0px)
         display: block
 
