@@ -72,7 +72,7 @@ $border-bottom: 3px
 
 .status
     position: relative
-    color: #fff
+    color: $color-white
     background: $color-info
     border-top: $border-top solid $color-info-light
     border-bottom: $border-bottom solid $color-info-dark
@@ -108,21 +108,6 @@ $border-bottom: 3px
     border-radius: 50%
     background-color: rgba(0, 0, 0, 0.1)
     margin-right: 20px
-
-.remove-button
-    position: absolute
-    top: $border-top
-    right: $border-top
-    background: transparent
-    border: 0
-    font-size: 20px
-    padding: 5px
-    cursor: pointer
-    color: rgba(0, 0, 0, 0.1)
-    transition: color 200ms
-
-    &:hover
-        color: #fff
 
 .time-ago
     padding-left: 10px

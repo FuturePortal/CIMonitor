@@ -85,8 +85,8 @@ export default {
 </script>
 
 <style lang="sass" rel="stylesheet/sass" scoped>
-$border-radius: 10px;
-$seperator-color: #F0F0F0;
+$border-radius: 10px
+$seperator-color: $color-gray-lighter
 
 .overlay
     position: fixed
@@ -111,10 +111,10 @@ $seperator-color: #F0F0F0;
 
 .title-bar
     position: relative
-    background: $gray-dark
+    background: $color-gray-darker
     border-radius: $border-radius $border-radius 0 0
     padding: 10px 20px
-    color: #fff
+    color: $color-white
     text-align: center
     font-size: 20px
 
@@ -125,7 +125,7 @@ $seperator-color: #F0F0F0;
     bottom: 0
     width: 50px
     height: auto
-    color: $white
+    color: $color-white
     background: transparent
     border: 0
     display: block
@@ -158,7 +158,7 @@ $seperator-color: #F0F0F0;
             background: $seperator-color
 
     i
-        color: #303030
+        color: $color-gray-darker
 
     @media(max-width: 800px)
         width: 60px
@@ -171,7 +171,7 @@ $seperator-color: #F0F0F0;
             text-align: center
 
 .setting-space-wrapper
-    background: #fff
+    background: $color-white
     border-bottom-right-radius: $border-radius
     flex: 1
     overflow: auto

@@ -53,7 +53,7 @@ export default {
     float: right
 
 .row
-    border-top: 2px solid $gray-lighter
+    border-top: 2px solid $color-gray-lighter
     padding-bottom: 10px
 
 .status
@@ -84,5 +84,5 @@ export default {
     border: 0
     font-family: $font
     cursor: pointer
-    color: #333
+    color: $color-gray-darker
 </style>
