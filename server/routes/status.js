@@ -1,11 +1,11 @@
 const app = (module.exports = require('express')());
-const Status = require('../domain/status/Status');
+const StatusFactory = require('../domain/status/StatusFactory');
 const StatusManager = require('../domain/status/StatusManager');
 
 app.post('/', (request, response) => {
     console.log('/status [POST]');
 
-    Status.createStatus(request.body)
+    StatusFactory.createStatus(request.body)
         .then(status =>
             response.json({
                 message: 'Successfully pushed your status!',
