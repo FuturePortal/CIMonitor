@@ -26,11 +26,6 @@ export default {
         openGitHub() {
             window.open('https://github.com/CIMonitor/CIMonitor', '_blank');
         },
-        clearDashboard() {
-            const xhttp = new XMLHttpRequest();
-            xhttp.open('GET', '/status/clear-all', true);
-            xhttp.send();
-        },
         openSettings() {
             this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
         },

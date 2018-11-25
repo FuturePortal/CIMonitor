@@ -16,7 +16,7 @@
                 <div class="setting-space-wrapper">
                     <note v-if="openTab.localChangesOnly">Changes you make here will only affect you.</note>
                     <note v-if="!openTab.localChangesOnly" type="warning">
-                        Changes you make here will affect on all connected clients.
+                        Changes you make here will affect all connected clients.
                     </note>
                     <div class="setting-space"><component :is="openTab.component" /></div>
                 </div>
@@ -81,7 +81,7 @@ $seperator-color: #F0F0F0;
     display: flex
     align-items: center
     justify-content: center
-    background: rgba(0, 0, 0, 0.1)
+    background: rgba(0, 0, 0, 0.8)
     padding: 0 20px
     top: 0
     left: 0
@@ -147,7 +147,12 @@ $seperator-color: #F0F0F0;
     background: #fff
     border-bottom-right-radius: $border-radius
     flex: 1
+    overflow: auto
 
 .setting-space
     padding: 20px
+
+    /deep/ h1,
+    /deep/ p
+        margin-bottom: 15px
 </style>
