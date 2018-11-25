@@ -10,18 +10,17 @@
 </template>
 
 <script>
-import socketEvents from '../../../shared/socketEvents';
 import ToolBar from '../ToolBar';
 import Status from '../Status';
 import VideoOverlay from '../VideoOverlay';
 import SettingsPanel from '../SettingsPanel';
-import { STATUS_CONNECTION_LOST, STATUS_NO_STATUSES } from '../Status/staticStatuses.js';
+import { STATUS_CONNECTION_LOST, STATUS_NO_STATUSES } from '../Status/staticStatuses';
+import { STATUS_GET_GLOBAL_STATE } from '../../store/StaticGetters';
 
 export default {
     components: { ToolBar, Status, VideoOverlay, SettingsPanel },
     data() {
         return {
-            statuses: [],
             now: this.getCurrentTimestamp(),
             noConnectionStatus: STATUS_CONNECTION_LOST,
             noStatusesStatus: STATUS_NO_STATUSES,
@@ -37,11 +36,6 @@ export default {
         setNow() {
             this.now = this.getCurrentTimestamp();
         },
-        updateFavicon() {
-            document
-                .querySelector('link[rel="shortcut icon"]')
-                .setAttribute('href', `/images/favicon/${this.globalState}.png`);
-        },
     },
     computed: {
         isNotConnected() {
@@ -51,21 +45,10 @@ export default {
             return this.statuses.length === 0;
         },
         globalState() {
-            if (this.statuses.find(status => status.state === 'error')) {
-                return 'error';
-            }
-
-            if (this.statuses.find(status => status.state === 'warning')) {
-                return 'warning';
-            }
-
-            return 'success';
+            return this.$store.getters[STATUS_GET_GLOBAL_STATE];
         },
-    },
-    sockets: {
-        [socketEvents.statusesUpdated](statuses) {
-            this.statuses = statuses;
-            this.updateFavicon();
+        statuses() {
+            return this.$store.state.statuses.statuses;
         },
     },
 };

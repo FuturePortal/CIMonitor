@@ -18,9 +18,7 @@
                     <note v-if="!openTab.localChangesOnly" type="warning">
                         Changes you make here will affect on all connected clients.
                     </note>
-                    <div class="setting-space">
-                        <component :is="openTab.component" />
-                    </div>
+                    <div class="setting-space"><component :is="openTab.component" /></div>
                 </div>
             </div>
         </div>

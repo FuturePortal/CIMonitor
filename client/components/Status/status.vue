@@ -14,7 +14,6 @@
             </div>
         </div>
         <img v-if="status.userImage" :src="status.userImage" class="user-image" />
-        <button v-if="now" class="remove-button" @click="remove(status.key);"><i class="fas fa-ban" /></button>
     </div>
 </template>
 
@@ -33,11 +32,6 @@ export default {
         },
     },
     methods: {
-        remove(statusKey) {
-            const xhttp = new XMLHttpRequest();
-            xhttp.open('DELETE', `/status/${statusKey}`, true);
-            xhttp.send();
-        },
         stateToIcon(state) {
             return {
                 error: 'fas fa-times',
@@ -49,6 +43,10 @@ export default {
     },
     computed: {
         timeAgo() {
+            if (!this.now) {
+                return 'never';
+            }
+
             var timeAgo = moment(this.status.time).from(this.now);
             if (timeAgo === 'a few seconds ago' || timeAgo === 'in a few seconds') {
                 return 'just now';

@@ -1,6 +1,7 @@
 <template>
     <div>
         Statuses
+        <button class="remove-button" @click="remove('test');"><i class="fas fa-ban" /></button>
     </div>
 </template>
 
@@ -9,7 +10,13 @@ export default {
     data() {
         return {};
     },
-    methods: {},
+    methods: {
+        remove(statusKey) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open('DELETE', `/status/${statusKey}`, true);
+            xhttp.send();
+        },
+    },
     computed: {},
 };
 </script>
