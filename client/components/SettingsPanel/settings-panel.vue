@@ -2,8 +2,7 @@
     <div v-if="open" class="overlay" @click="closeOnOutsideClick">
         <div class="settings-panel">
             <div class="title-bar">
-                Settings
-                <button @click="closePanel" class="close"><i class="fas fa-times"></i></button>
+                Settings <button @click="closePanel" class="close"><i class="fas fa-times"></i></button>
             </div>
             <div class="body">
                 <div class="menu">
