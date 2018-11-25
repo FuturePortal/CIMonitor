@@ -1,5 +1,7 @@
 # GitLab
 
+![Pipeline example](../img/gitlab/webhook-status.gif)
+
 When you have your CIMonitor running, it's very easy to push your GitLab builds to the CIMonitor.
 
 GitLab needs to push the webhook to the following endpoint on the CIMonitor: `/webhook/gitlab`
