@@ -5,6 +5,7 @@
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
         <video-overlay />
         <tool-bar :state="globalState" />
+        <settings-panel />
     </div>
 </template>
 
@@ -14,9 +15,10 @@ import ToolBar from '../ToolBar';
 import Status from '../Status';
 import VideoOverlay from '../VideoOverlay';
 import SateliteImage from './satelite.svg';
+import SettingsPanel from '../SettingsPanel';
 
 export default {
-    components: { ToolBar, Status, VideoOverlay },
+    components: { ToolBar, Status, VideoOverlay, SettingsPanel },
     data() {
         return {
             statuses: [],

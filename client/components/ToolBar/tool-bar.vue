@@ -2,9 +2,9 @@
     <div>
         <div class="light" :class="state" />
         <div class="toolbar">
-            <button @click="openGitHub();"><i class="fab fa-github" /></button>
+            <button @click="openGitHub()"><i class="fab fa-github" /></button>
             <div class="logo"><img :src="trafficLightImage" alt="logo" /></div>
-            <button @click="clearDashboard();" title="Clear dashboard"><i class="fas fa-ban" /></button>
+            <button @click="openSettings()" title="Clear dashboard"><i class="fas fa-cog" /></button>
         </div>
     </div>
 </template>
@@ -30,6 +30,9 @@ export default {
             xhttp.open('GET', '/status/clear-all', true);
             xhttp.send();
         },
+        openSettings() {
+            alert('WIP');
+        },
     },
     computed: {
         trafficLightImage() {
@@ -51,7 +54,7 @@ export default {
     width: 260px
     height: 50px
     margin-left: -130px
-    background-color: #666
+    background-color: $gray-dark
     color: #FFF
     border-radius: 20px 20px 0 0
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.2)
