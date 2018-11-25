@@ -9,19 +9,16 @@ const getters = {};
 
 const actions = {
     [SETTINGS_PANEL_TOGGLE]({ commit, state }) {
-        console.log('Toggling the settings panel.');
         commit(state.settingsPanelOpen ? SETTINGS_PANEL_SET_CLOSED : SETTINGS_PANEL_SET_OPEN);
     },
 };
 
 const mutations = {
     [SETTINGS_PANEL_SET_OPEN](state) {
-        console.log('Setting settings panel open.');
         state.settingsPanelOpen = true;
     },
 
     [SETTINGS_PANEL_SET_CLOSED](state) {
-        console.log('Setting settings panel closed.');
         state.settingsPanelOpen = false;
     },
 };
