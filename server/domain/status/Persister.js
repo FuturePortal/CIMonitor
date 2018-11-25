@@ -3,7 +3,7 @@ const path = require('path');
 
 const Events = require('../Events');
 const StatusManager = require('../status/StatusManager');
-const Status = require('../status/Status');
+const StatusFactory = require('../status/StatusFactory');
 
 class Persister {
     constructor() {
@@ -36,7 +36,7 @@ class Persister {
         }
 
         const rawStatuses = JSON.parse(fileSystem.readFileSync(this.statusesFile));
-        const statuses = rawStatuses.map(rawStatus => Status.hydrateStatus(rawStatus));
+        const statuses = rawStatuses.map(rawStatus => StatusFactory.hydrateStatus(rawStatus));
 
         StatusManager.overwriteStatuses(statuses);
 
