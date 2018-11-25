@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="stages">
-            <div class="stage" v-for="(stage, index) in stages" :key="index">
+        <div class="stages" v-if="stages.length > 0">
+            <div class="stage" :class="getStageStatus(stage)" v-for="(stage, index) in stages" :key="index">
                 <i :class="stateToIcon(getStageStatus(stage))" /> {{ stage }}
             </div>
         </div>
@@ -28,34 +28,38 @@ export default {
     methods: {
         stateToIcon(state) {
             return {
-                error: 'far fa-times-circle',
-                running: 'fas fa-spinner fa-spin',
-                pending: 'far fa-circle',
-                success: 'far fa-check-circle',
-                warning: 'fas fa-exclamation-circle',
+                error: 'fas fa-times',
+                running: 'fas fa-redo-alt fa-spin',
+                pending: 'fas fa-map-marker-alt',
+                success: 'fas fa-check',
+                warning: 'fas fa-exclamation-triangle',
                 info: 'fas fa-info-circle',
             }[state];
         },
         getStageStatus(stage) {
-            const relevantJobs = this.jobs.filter(job => job.stage && job.stage === stage);
+            const jobsForStage = this.jobs.filter(job => job.stage && job.stage === stage);
 
-            if (relevantJobs.find(job => job.state === 'running')) {
+            if (jobsForStage.find(job => job.state === 'running')) {
                 return 'running';
             }
 
-            if (relevantJobs.find(job => job.state === 'error')) {
+            if (jobsForStage.find(job => job.state === 'error')) {
                 return 'error';
             }
 
-            if (relevantJobs.find(job => job.state === 'warning')) {
+            if (jobsForStage.find(job => job.state === 'warning')) {
                 return 'warning';
             }
 
-            if (relevantJobs.find(job => job.state === 'success')) {
+            if (jobsForStage.find(job => job.state === 'success')) {
                 return 'success';
             }
 
-            return 'info';
+            if (jobsForStage.find(job => job.state === 'pending') || jobsForStage.lenght === 0) {
+                return 'pending';
+            }
+
+            return 'error';
         },
     },
     computed: {
@@ -64,7 +68,7 @@ export default {
                 return [];
             }
 
-            return this.jobs.filter(job => ['pending', 'running', 'error', 'warning'].indexOf(job.state) !== -1);
+            return this.jobs.filter(job => ['running', 'error', 'warning'].indexOf(job.state) !== -1);
         },
     },
 };
@@ -74,11 +78,14 @@ export default {
 .jobs,
 .stages
     margin-top: 10px
+    font-size: 26px
 
 .job,
 .stage
     display: inline-block
-    font-size: 26px
     margin: 0 20px 10px 0
     border-radius: 5px
+
+    &.pending
+        opacity: 0.5
 </style>

@@ -6,7 +6,7 @@
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
             <div class="sub-title">
                 <span v-if="status.subTitle">{{ status.subTitle }}</span>
-                <span class="time-ago" v-if="now"> <i class="far fa-clock" /> {{ timeAgo }} </span>
+                <span class="time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
             </div>
         </div>
         <img v-if="status.userImage" :src="status.userImage" class="user-image" />
@@ -65,6 +65,21 @@ $border-bottom: 3px
     &:first-child
         margin-top: 0
 
+    &.success
+        background: $color-success
+        border-top: $border-top solid $color-success-light
+        border-bottom: $border-bottom solid $color-success-dark
+
+    &.warning
+        background: $color-warning
+        border-top: $border-top solid $color-warning-light
+        border-bottom: $border-bottom solid $color-warning-dark
+
+    &.error
+        background: $color-error
+        border-top: $border-top solid $color-error-light
+        border-bottom: $border-bottom solid $color-error-dark
+
 .details
     min-height: 100px
     flex-grow: 1
@@ -91,20 +106,5 @@ $border-bottom: 3px
 
 .time-ago
     padding-left: 10px
-    font-size: 20px
-
-.success
-    background: $color-success
-    border-top: $border-top solid $color-success-light
-    border-bottom: $border-bottom solid $color-success-dark
-
-.warning
-    background: $color-warning
-    border-top: $border-top solid $color-warning-light
-    border-bottom: $border-bottom solid $color-warning-dark
-
-.error
-    background: $color-error
-    border-top: $border-top solid $color-error-light
-    border-bottom: $border-bottom solid $color-error-dark
+    font-size: 24px
 </style>
