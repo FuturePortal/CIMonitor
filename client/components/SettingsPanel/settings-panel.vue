@@ -13,7 +13,15 @@
                         <i :class="tab.icon"></i> <span class="title">{{ tab.name }}</span>
                     </button>
                 </div>
-                <div class="setting-space">setting tweak pace!</div>
+                <div class="setting-space-wrapper">
+                    <note v-if="openTab.localChangesOnly">Changes you make here will only affect you.</note>
+                    <note v-if="!openTab.localChangesOnly" type="warning">
+                        Changes you make here will affect on all connected clients.
+                    </note>
+                    <div class="setting-space">
+                        <component :is="openTab.component" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -21,21 +29,27 @@
 
 <script>
 import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
+import PersonalizePanel from './panels/Personalize';
+import StatusesPanel from './panels/Statuses';
+import Note from './Note';
 
 const tabs = [
     {
         icon: 'fas fa-th-list',
         name: 'Statuses',
-        component: null,
+        component: StatusesPanel,
+        localChangesOnly: false,
     },
     {
         icon: 'fas fa-paint-brush',
         name: 'Personalisation',
-        component: null,
+        component: PersonalizePanel,
+        localChangesOnly: true,
     },
 ];
 
 export default {
+    components: { Note },
     data() {
         return {
             tabs,
@@ -131,9 +145,11 @@ $seperator-color: #F0F0F0;
             padding: 20px 0
             text-align: center
 
-.setting-space
+.setting-space-wrapper
     background: #fff
     border-bottom-right-radius: $border-radius
     flex: 1
+
+.setting-space
     padding: 20px
 </style>
