@@ -1,4 +1,4 @@
-const Status = require('../Status');
+const StatusFactory = require('../StatusFactory');
 const StatusManager = require('../StatusManager');
 
 class StatusAdapterGitLab {
@@ -17,7 +17,7 @@ class StatusAdapterGitLab {
         console.log('[StatusAdapterGitLab] Processing pipeline into a status...');
         const key = this.getKeyFromPipeline(data);
 
-        Status.createStatus({
+        StatusFactory.createStatus({
             key,
             state: this.pipelineStatusToState(data.object_attributes.status),
             title: data.project.path_with_namespace,
@@ -45,19 +45,19 @@ class StatusAdapterGitLab {
         }
 
         // Check if status key already exists, if not, ¯\_(ツ)_/¯
-        const status = StatusManager.getStatusByKey(key);
+        let status = StatusManager.getStatusByKey(key);
         if (!status) {
             console.log(`[StatusAdapterGitLab] Received build details for a pipeline that doesn't exist yet.`);
             return;
         }
 
         console.log('[StatusAdapterGitLab] Updating status with new build details...');
-        status.updateJob({
+        status = StatusFactory.updateJob(status, {
             name: data.build_name,
             stage: data.build_stage,
             state: this.buildStatusToState(data.build_status, data.build_allow_failure),
         });
-        Status.createStatus(status.getRawData());
+        StatusFactory.createStatus(status.getRawData());
     }
 
     getKeyFromPipeline(data) {
