@@ -13,6 +13,7 @@
 import TrafficLightGreen from './traffic-light-green.svg';
 import TrafficLightOrange from './traffic-light-orange.svg';
 import TrafficLightRed from './traffic-light-red.svg';
+import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
 
 export default {
     props: {
@@ -31,7 +32,7 @@ export default {
             xhttp.send();
         },
         openSettings() {
-            alert('WIP');
+            this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
         },
     },
     computed: {

@@ -1,32 +1,19 @@
 import Vue from 'vue';
 import VueSocketIo from 'vue-socket.io-extended';
 import io from 'socket.io-client';
+import Vuex from 'vuex';
 
 import Dashboard from './components/Dashboard';
+import Store from './store';
 
 Vue.use(VueSocketIo, io());
+Vue.use(Vuex);
 
 Vue.component(`dashboard`, Dashboard);
 
-Vue.directive('click-outside', {
-    bind() {
-        this.event = event => this.vm.$emit(this.expression, event);
-        this.el.addEventListener('click', this.stopProp);
-        document.body.addEventListener('click', this.event);
-    },
-
-    unbind() {
-        this.el.removeEventListener('click', this.stopProp);
-        document.body.removeEventListener('click', this.event);
-    },
-
-    stopProp(event) {
-        event.stopPropagation();
-    },
-});
-
 new Vue({
     el: '#app',
+    store: Store,
     data() {
         return {
             isConnected: false,

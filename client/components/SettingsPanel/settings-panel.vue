@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
+
 const tabs = [
     {
         icon: 'fas fa-th-list',
@@ -35,7 +37,6 @@ const tabs = [
 export default {
     data() {
         return {
-            open: true,
             tabs,
             openTab: tabs[0],
         };
@@ -43,11 +44,16 @@ export default {
     methods: {
         closeOnOutsideClick(event) {
             if (event.target.className === 'overlay') {
-                this.open = false;
+                this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
             }
         },
         openSettingsTab(tab) {
             this.openTab = tab;
+        },
+    },
+    computed: {
+        open() {
+            return this.$store.state.settings.settingsPanelOpen;
         },
     },
 };
@@ -76,6 +82,7 @@ $seperator-color: #F0F0F0;
     width: 800px
     max-width: 100%
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.2)
+    border-radius: $border-radius
 
 .title-bar
     background: $gray-dark
