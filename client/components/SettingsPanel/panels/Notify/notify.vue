@@ -1,5 +1,5 @@
 <template>
-    <div>Switching between light and dark theme is coming soon...</div>
+    <div>Client notifications coming soon...</div>
 </template>
 
 <script>

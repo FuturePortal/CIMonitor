@@ -5,7 +5,7 @@
         </div>
         <h1>Statuses</h1>
         <p v-if="statuses.length === 0">
-            There are no statuses yet in CIMonitor.<br>
+            There are no statuses yet in CIMonitor.<br />
             Learn how to push statuses in
             <a target="_blank" href="https://cimonitor.readthedocs.io/">the documentation</a>.
         </p>

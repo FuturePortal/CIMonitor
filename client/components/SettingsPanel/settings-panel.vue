@@ -28,6 +28,7 @@
 <script>
 import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
 import PersonalizePanel from './panels/Personalize';
+import NotifyPanel from './panels/Notify';
 import StatusesPanel from './panels/Statuses';
 import Note from './Note';
 
@@ -42,6 +43,12 @@ const tabs = [
         icon: 'fas fa-paint-brush',
         name: 'Personalisation',
         component: PersonalizePanel,
+        localChangesOnly: true,
+    },
+    {
+        icon: 'fas fa-bell',
+        name: 'Notifications',
+        component: NotifyPanel,
         localChangesOnly: true,
     },
 ];
