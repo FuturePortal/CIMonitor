@@ -1,7 +1,10 @@
 <template>
     <div v-if="open" class="overlay" @click="closeOnOutsideClick">
         <div class="settings-panel">
-            <div class="title-bar">Settings</div>
+            <div class="title-bar">
+                Settings
+                <button @click="closePanel" class="close"><i class="fas fa-times"></i></button>
+            </div>
             <div class="body">
                 <div class="menu">
                     <button
@@ -67,6 +70,9 @@ export default {
                 this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
             }
         },
+        closePanel() {
+            this.$store.dispatch(SETTINGS_PANEL_TOGGLE);
+        },
         openSettingsTab(tab) {
             this.openTab = tab;
         },
@@ -105,11 +111,26 @@ $seperator-color: #F0F0F0;
     border-radius: $border-radius
 
 .title-bar
+    position: relative
     background: $gray-dark
     border-radius: $border-radius $border-radius 0 0
     padding: 10px 20px
     color: #fff
     text-align: center
+    font-size: 20px
+
+.close
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    width: 50px
+    height: auto
+    color: $white
+    background: transparent
+    border: 0
+    display: block
+    cursor: pointer
     font-size: 20px
 
 .body
