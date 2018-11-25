@@ -1,4 +1,5 @@
 const validate = require('validate.js');
+
 const Events = require('../Events');
 const Status = require('./Status');
 
