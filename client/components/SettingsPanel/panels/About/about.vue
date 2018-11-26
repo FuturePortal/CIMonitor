@@ -15,7 +15,8 @@
                 <img class="image" :src="contributor.userImage" :alt="contributor.username" />
             </a>
             <div class="info">
-                <div class="name">@{{ contributor.username }}</div>
+                <div class="name">{{ contributor.name }} <span class="username">@{{ contributor.username }}</span></div>
+                <div v-if="contributor.location" class="location">{{ contributor.location }}</div>
                 <div class="contributions">
                     <a :href="getContributionsLink(contributor)" target="_blank">
                         {{ getContributionsText(contributor) }}
@@ -62,13 +63,18 @@ export default {
 .info
     margin-top: 2px
 
+.location,
+.username
+    color: $color-gray
+
 .image
-    height: 50px
-    width: 50px
+    height: 67px
+    width: 67px
     border-radius: 50%
     background: rgba(0, 0, 0, 0.1)
     margin-right: 15px
 
+.location,
 .contributions
     margin-top: 5px
 </style>

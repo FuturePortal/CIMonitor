@@ -3,14 +3,12 @@ const app = (module.exports = express());
 var requestPromise = require('request-promise');
 
 const getContributorsInfo = contributors =>
-    contributors
-        .map(contributor => ({
-            commits: contributor.total,
-            username: contributor.author.login,
-            githubProfile: contributor.author.html_url,
-            userImage: contributor.author.avatar_url,
-        }))
-        .sort((contributorA, contributorB) => contributorB.commits - contributorA.commits);
+    contributors.map(contributor => ({
+        commits: contributor.total,
+        username: contributor.author.login,
+        githubProfile: contributor.author.html_url,
+        userImage: contributor.author.avatar_url,
+    }));
 
 const getRequestObject = uri => ({
     uri,
@@ -42,7 +40,6 @@ app.get('/', (request, response) => {
                         detailedContributors.push({
                             ...simpleContributor,
                             name: userDetails.name,
-                            blog: userDetails.blog,
                             location: userDetails.location,
                         });
                     })
@@ -58,6 +55,8 @@ app.get('/', (request, response) => {
             Promise.all(fetchUserDetailPromises).then(() => {
                 console.log(`[Contributors] Pushing list of the contributors.`);
 
+                detailedContributors.sort((contributorA, contributorB) => contributorB.commits - contributorA.commits);
+
                 response.json({
                     message: 'Showing a list af all contributors to CIMonitor.',
                     contributors: detailedContributors,
@@ -68,28 +67,4 @@ app.get('/', (request, response) => {
             console.log(error);
             return response.json({ message: 'Failed to get a list of contributors from GitHub.' }, 500);
         });
-
-    /*httpRequest(
-        {
-            uri: 'https://api.github.com/repos/CIMonitor/CIMonitor/stats/contributors',
-            headers: {
-                'User-Agent': 'github.com/CIMonitor/CIMonitor',
-                Accept: 'application/json',
-            },
-        },
-        (httpError, httpResponse, httpBody) => {
-            if (httpError) {
-                return response.json({ message: 'Failed to get a list of contributors from GitHub.' }, 500);
-            }
-
-            const contributors = getContributorsInfo(JSON.parse(httpBody));
-
-            // promise all users de moeder
-
-            response.json({
-                message: 'Showing a list af all contributors to CIMonitor.',
-                contributors: contributors,
-            });
-        }
-    );*/
 });
