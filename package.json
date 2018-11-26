@@ -34,7 +34,7 @@
         "laravel-mix": "^2.1.11",
         "moment": "^2.22.2",
         "pi-blaster.js": "^0.1.3",
-        "request": "^2.88.0",
+        "request-promise": "^4.2.2",
         "sass-resources-loader": "^1.3.3",
         "socket.io": "^2.1.1",
         "validate.js": "^0.12.0",
