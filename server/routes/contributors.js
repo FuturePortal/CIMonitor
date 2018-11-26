@@ -6,11 +6,9 @@ const getContributorsInfo = contributors =>
     contributors
         .map(contributor => ({
             commits: contributor.total,
-            contributor: {
-                userName: contributor.author.login,
-                url: contributor.author.html_url,
-                image: contributor.author.avatar_url,
-            },
+            username: contributor.author.login,
+            githubProfile: contributor.author.html_url,
+            userImage: contributor.author.avatar_url,
         }))
         .sort((contributorA, contributorB) => contributorB.commits - contributorA.commits);
 
