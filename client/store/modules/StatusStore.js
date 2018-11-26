@@ -1,5 +1,6 @@
-import { STATUS_GET_GLOBAL_STATE } from '../StaticGetters';
+import { STATUS_GET_GLOBAL_STATE, STATUS_GET_STATUSES_ORDERED } from '../StaticGetters';
 import { STATUS_SET_STATUSES } from '../StaticMutations';
+import moment from 'moment';
 
 const state = {
     statuses: [],
@@ -16,6 +17,15 @@ const getters = {
         }
 
         return 'success';
+    },
+
+    [STATUS_GET_STATUSES_ORDERED]: state => {
+        return state.statuses.sort((statusA, statusB) => {
+            const timeA = moment(statusA.time);
+            const timeB = moment(statusB.time);
+
+            return timeA.isBefore(timeB) ? 1 : -1;
+        });
     },
 };
 

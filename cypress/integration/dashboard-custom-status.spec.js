@@ -16,5 +16,7 @@ context('Custom states', () => {
         cy.pushStatus('custom-status-2-success.json');
         cy.wait(1000);
         cy.pushStatus('custom-status-4-started.json');
+        cy.wait(1000);
+        cy.pushStatus('custom-status-5.json');
     });
 });
