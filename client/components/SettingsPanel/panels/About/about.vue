@@ -15,7 +15,9 @@
                 <img class="image" :src="contributor.userImage" :alt="contributor.username" />
             </a>
             <div class="info">
-                <div class="name">{{ contributor.name }} <span class="username">@{{ contributor.username }}</span></div>
+                <div class="name">
+                    {{ contributor.name }} <span class="username">@{{ contributor.username }}</span>
+                </div>
                 <div v-if="contributor.location" class="location">{{ contributor.location }}</div>
                 <div class="contributions">
                     <a :href="getContributionsLink(contributor)" target="_blank">
