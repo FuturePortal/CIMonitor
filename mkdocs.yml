@@ -8,7 +8,7 @@ pages:
     - Getting started:
           - Setup CIMonitor: setup/CIMonitor.md
           - Configuration: setup/configuration.md
-          - Run a service: setup/run-as-service.md
+          - Run as a service: setup/run-as-service.md
           - Setup Raspberry: setup/Raspberry.md
     - Status API: status-API.md
     - Link a service:
