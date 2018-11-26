@@ -7,6 +7,9 @@
             <a href="https://cimonitor.rtfd.io/" target="_blank">the documentation</a>.
         </p>
         <p>A big thank you to all the contributors of the project:</p>
+        <div v-if="contributors.length === 0">
+            <i class="fas fa-spinner fa-spin"></i> Loading contributors from GitHub.com
+        </div>
         <div v-for="contributor in contributors" class="contributor" :key="contributor.username">
             <a :href="getGitHubLink(contributor)" target="_blank">
                 <img class="image" :src="contributor.userImage" :alt="contributor.username" />
@@ -24,7 +27,13 @@
 </template>
 
 <script>
+import { CONTRIBUTOR_GET_ORDERED } from '../../../../store/StaticGetters';
+import { CONTRIBUTOR_FETCH_CONTRIBUTORS } from '../../../../store/StaticActions';
+
 export default {
+    created() {
+        this.$store.dispatch(CONTRIBUTOR_FETCH_CONTRIBUTORS);
+    },
     methods: {
         getContributionsText(contributor) {
             return `${contributor.commits} contribution${contributor.commits === 1 ? '' : 's'}`;
@@ -38,10 +47,7 @@ export default {
     },
     computed: {
         contributors() {
-            // @todo: Load from store
-            return JSON.parse(
-                '[{"commits":76,"username":"RickvdStaaij","githubProfile":"https://github.com/RickvdStaaij","userImage":"https://avatars0.githubusercontent.com/u/6495166?v=4"},{"commits":9,"username":"eXistenZNL","githubProfile":"https://github.com/eXistenZNL","userImage":"https://avatars3.githubusercontent.com/u/1150201?v=4"},{"commits":2,"username":"syphernl","githubProfile":"https://github.com/syphernl","userImage":"https://avatars1.githubusercontent.com/u/639906?v=4"},{"commits":1,"username":"steefmin","githubProfile":"https://github.com/steefmin","userImage":"https://avatars1.githubusercontent.com/u/5700620?v=4"}]'
-            );
+            return this.$store.getters[CONTRIBUTOR_GET_ORDERED];
         },
     },
 };

@@ -67,7 +67,7 @@ export default {
     data() {
         return {
             tabs,
-            openTab: tabs[3],
+            openTab: tabs[0],
         };
     },
     methods: {
