@@ -19,9 +19,9 @@ class Status {
 
     isOld() {
         const oneWeekAgo = Moment().subtract(1, 'weeks');
-        const statusCreatedTime = Moment(this.data.time);
+        const statusTime = Moment(this.data.time);
 
-        return statusCreatedTime.isBefore(oneWeekAgo);
+        return statusTime.isBefore(oneWeekAgo);
     }
 }
 

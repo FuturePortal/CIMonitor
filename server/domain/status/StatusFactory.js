@@ -164,6 +164,10 @@ class StatusFactory {
     }
 
     static filterUserImage(data) {
+        if (!data.userImage) {
+            return data;
+        }
+
         if (data.userImage.indexOf('gravatar.com') === -1) {
             return data;
         }
