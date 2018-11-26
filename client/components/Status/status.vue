@@ -4,8 +4,8 @@
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
-            <div class="sub-title">
-                <span v-if="status.subTitle">{{ status.subTitle }}</span>
+            <div>
+                <span class="sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
                 <span class="time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
             </div>
         </div>
@@ -90,6 +90,7 @@ $border-bottom: 3px
 
 .sub-title
     font-size: 30px
+    padding-right: 10px
 
 .user-image,
 .image
@@ -105,6 +106,5 @@ $border-bottom: 3px
     margin-right: 20px
 
 .time-ago
-    padding-left: 10px
     font-size: 24px
 </style>

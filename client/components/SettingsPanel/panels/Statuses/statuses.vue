@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { STATUS_GET_STATUSES_ORDERED } from '../../../../store/StaticGetters';
+
 export default {
     data() {
         return {};
@@ -42,7 +44,7 @@ export default {
     },
     computed: {
         statuses() {
-            return this.$store.state.statuses.statuses;
+            return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
         },
     },
 };
