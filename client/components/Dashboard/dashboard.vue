@@ -15,7 +15,7 @@ import Status from '../Status';
 import VideoOverlay from '../VideoOverlay';
 import SettingsPanel from '../SettingsPanel';
 import { STATUS_CONNECTION_LOST, STATUS_NO_STATUSES } from '../Status/staticStatuses';
-import { STATUS_GET_GLOBAL_STATE } from '../../store/StaticGetters';
+import { STATUS_GET_GLOBAL_STATE, STATUS_GET_STATUSES_ORDERED } from '../../store/StaticGetters';
 
 export default {
     components: { ToolBar, Status, VideoOverlay, SettingsPanel },
@@ -48,7 +48,7 @@ export default {
             return this.$store.getters[STATUS_GET_GLOBAL_STATE];
         },
         statuses() {
-            return this.$store.state.statuses.statuses;
+            return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
         },
     },
 };
