@@ -7,7 +7,7 @@
         <p v-if="statuses.length === 0">
             There are no statuses yet in CIMonitor.<br />
             Learn how to push statuses in
-            <a target="_blank" href="https://cimonitor.readthedocs.io/">the documentation</a>.
+            <a target="_blank" href="https://cimonitor.rtfd.io/">the documentation</a>.
         </p>
         <div class="row" v-for="status in statuses" :key="status.key">
             <div class="status" :class="status.state">

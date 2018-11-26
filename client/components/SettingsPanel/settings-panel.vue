@@ -17,7 +17,7 @@
                 </div>
                 <div class="setting-space-wrapper">
                     <note v-if="openTab.localChangesOnly">Changes you make here will only affect you.</note>
-                    <note v-if="!openTab.localChangesOnly" type="warning">
+                    <note v-if="!openTab.localChangesOnly && openTab.localChangesOnly !== null" type="warning">
                         Changes you make here will affect all connected clients.
                     </note>
                     <div class="setting-space"><component :is="openTab.component" /></div>
@@ -32,6 +32,7 @@ import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
 import PersonalizePanel from './panels/Personalize';
 import NotifyPanel from './panels/Notify';
 import StatusesPanel from './panels/Statuses';
+import AboutTab from './panels/About';
 import Note from './Note';
 
 const tabs = [
@@ -52,6 +53,12 @@ const tabs = [
         name: 'Notifications',
         component: NotifyPanel,
         localChangesOnly: true,
+    },
+    {
+        icon: 'fas fa-info-circle',
+        name: 'About',
+        component: AboutTab,
+        localChangesOnly: null,
     },
 ];
 
