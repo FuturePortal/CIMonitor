@@ -18,6 +18,7 @@ const getters = {
 
         return 'success';
     },
+
     [STATUS_GET_STATUSES_ORDERED]: state => {
         return state.statuses.sort((statusA, statusB) => {
             const timeA = moment(statusA.time);
