@@ -8,8 +8,8 @@
                     <i :class="stateToIcon(job.state)" /> {{ job.name }}
                 </div>
             </div>
-            <div class="sub-title">
-                <span v-if="status.subTitle">{{ status.subTitle }}</span>
+            <div class="info">
+                <span class="sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
                 <span class="time-ago" v-if="now"> <i class="far fa-clock" /> {{ timeAgo }} </span>
             </div>
         </div>
@@ -95,6 +95,7 @@ $border-bottom: 3px
 
 .sub-title
     font-size: 30px
+    padding-right: 10px
 
 .user-image,
 .image
@@ -110,7 +111,6 @@ $border-bottom: 3px
     margin-right: 20px
 
 .time-ago
-    padding-left: 10px
     font-size: 20px
 
 .jobs
