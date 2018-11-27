@@ -1,6 +1,6 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image" :src="status.image" class="image" />
+        <img v-if="status.image && this.showImage" :src="status.image" class="image" @error="hideImage();" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
@@ -28,8 +28,17 @@ export default {
             default: null,
         },
     },
+    data: function() {
+        return {
+            showImage: true,
+        };
+    },
     components: { JobsAndStages },
-    methods: {},
+    methods: {
+        hideImage() {
+            this.showImage = false;
+        },
+    },
     computed: {
         timeAgo() {
             if (!this.now) {
