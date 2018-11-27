@@ -1,6 +1,6 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image && this.showImage" :src="status.image" class="image" @error="hideImage();" />
+        <img v-if="status.image && this.showImage" :src="status.image" class="image" @error="hideImage" />
         <div class="details">
             <div class="title">{{ status.title }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
