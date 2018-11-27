@@ -55,11 +55,7 @@ export default {
                 return 'success';
             }
 
-            if (jobsForStage.find(job => job.state === 'pending') || jobsForStage.lenght === 0) {
-                return 'pending';
-            }
-
-            return 'error';
+            return 'pending';
         },
     },
     computed: {
