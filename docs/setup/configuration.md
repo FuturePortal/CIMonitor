@@ -22,15 +22,17 @@ The `server` configuration is required when you're running the `server/server.js
 ```json
 {
     "server": {
-        "port": 9999
+        "port": 9999,
+        "personalAccessTokenGitLab": ""
     },
 ```
 
 The `server` object must be configured as following:
 
-| key    | required? | description                            |
-| ------ | --------- | -------------------------------------- |
-| `port` | yes       | The port you want the server to run on |
+| key                         | required? | description                                                      |
+| --------------------------- | --------- | ---------------------------------------------------------------- |
+| `port`                      | yes       | The port you want the server to run on                           |
+| `personalAccessTokenGitLab` | no        | A GitLab personal access token with `read_repository` permission |
 
 ## Server slave configuration
 

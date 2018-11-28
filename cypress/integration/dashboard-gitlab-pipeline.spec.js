@@ -1,12 +1,14 @@
-context('Gitlab pipeline', () => {
+context('GitLab pipeline tests', () => {
     it('opens the dashboard', () => {
         cy.visit('/');
     });
 
     it('pushes a successful GitLab pipeline', () => {
-        for (let i = 9; i <= 27; i++) {
-            cy.pushGitLabWebhook(`master-pipeline-success/${i}.json`);
-            cy.wait(1000);
+        for (let loopCount = 1; loopCount <= 27; loopCount++) {
+            cy.pushGitLabWebhook(`master-pipeline-success/${loopCount}.json`);
+
+            // Speed up the first 9 pipeline events, they're not interesting for us
+            cy.wait(loopCount < 9 ? 100 : 1000);
         }
     });
 });

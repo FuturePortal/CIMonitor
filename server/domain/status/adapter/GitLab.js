@@ -1,5 +1,6 @@
 const StatusFactory = require('../StatusFactory');
 const StatusManager = require('../StatusManager');
+const Config = require('../../../config/Config');
 
 class StatusAdapterGitLab {
     processWebHook(data) {
@@ -22,7 +23,7 @@ class StatusAdapterGitLab {
             state: this.pipelineStatusToState(data.object_attributes.status),
             title: data.project.path_with_namespace,
             subTitle: data.object_attributes.ref,
-            image: data.project.avatar_url,
+            image: this.getProjectAvatar(data),
             userImage: data.user.avatar_url,
             stages: data.object_attributes.stages,
             jobs: data.builds.map(build => {
@@ -33,6 +34,16 @@ class StatusAdapterGitLab {
                 };
             }),
         });
+    }
+
+    getProjectAvatar(data) {
+        const personalAccessToken = Config.getPersonalAccessTokenGitLab();
+
+        if (personalAccessToken) {
+            return `${data.project.avatar_url}?private_token=${personalAccessToken}`;
+        }
+
+        return data.project.avatar_url;
     }
 
     processBuildEvent(data) {

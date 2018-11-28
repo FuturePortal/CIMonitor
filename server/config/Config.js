@@ -44,6 +44,10 @@ class Config {
         return this.server.port;
     }
 
+    getPersonalAccessTokenGitLab() {
+        return this.server.personalAccessTokenGitLab;
+    }
+
     getServerSlaveMaster() {
         return this.serverSlave.master;
     }
