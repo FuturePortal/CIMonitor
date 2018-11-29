@@ -1,5 +1,4 @@
 let mix = require('laravel-mix');
-const Config = require('./server/config/Config');
 
 mix.js('client/client.js', 'dist');
 
@@ -22,6 +21,7 @@ mix.copy('client/static/', 'dist/');
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
 
+    const Config = require('./server/config/Config');
     mix.browserSync({
         proxy: `localhost:${Config.getServerPort()}`,
         injectChanges: false,
