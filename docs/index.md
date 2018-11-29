@@ -1,6 +1,10 @@
 # CIMonitor
 
-![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+[
+    ![release](https://img.shields.io/github/release/CIMonitor/CIMonitor.svg)
+    ![MIT](https://img.shields.io/github/license/CIMonitor/CIMonitor.svg)
+    ![stars](https://img.shields.io/github/stars/CIMonitor/CIMonitor.svg)
+](https://github.com/CIMonitor/CIMonitor)
 ![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 

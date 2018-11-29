@@ -1,8 +1,10 @@
 # [![image](https://avatars2.githubusercontent.com/u/18479455?s=60&v=4)](https://cimonitor.readthedocs.io) CIMonitor
 
 [
+    ![release](https://img.shields.io/github/release/CIMonitor/CIMonitor.svg)
+    ![MIT](https://img.shields.io/github/license/CIMonitor/CIMonitor.svg)
+    ![stars](https://img.shields.io/github/stars/CIMonitor/CIMonitor.svg)
     ![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
-    ![code-style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 ](https://cimonitor.readthedocs.io)
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
