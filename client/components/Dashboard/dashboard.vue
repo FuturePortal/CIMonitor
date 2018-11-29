@@ -16,9 +16,17 @@ import VideoOverlay from '../VideoOverlay';
 import SettingsPanel from '../SettingsPanel';
 import { STATUS_CONNECTION_LOST, STATUS_NO_STATUSES } from '../Status/staticStatuses';
 import { STATUS_GET_GLOBAL_STATE, STATUS_GET_STATUSES_ORDERED } from '../../store/StaticGetters';
+import VersionChecker from './VersionChecker';
+import EventManager from '../EventManager';
 
 export default {
     components: { ToolBar, Status, VideoOverlay, SettingsPanel },
+    props: {
+        version: {
+            type: String,
+            default: null,
+        },
+    },
     data() {
         return {
             now: this.getCurrentTimestamp(),
@@ -28,8 +36,13 @@ export default {
     },
     created() {
         setInterval(this.setNow, 5000);
+
+        EventManager.watch(EventManager.events.socketConnected, () => this.checkForNewVersion());
     },
     methods: {
+        checkForNewVersion() {
+            VersionChecker.checkForNewVersion(this.version);
+        },
         getCurrentTimestamp: function() {
             return new Date().getTime();
         },
