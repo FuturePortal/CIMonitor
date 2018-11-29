@@ -11,7 +11,7 @@ class VersionChecker {
     constructor() {
         this.lastVersionCheck = null;
         this.statusKey = 'cimonitor-status-check';
-        this.currentVersion = this.getCurrentVersion();
+        this.currentVersion = this.getCurrentVersionFromPackage();
     }
 
     getLatestVersion() {
@@ -20,7 +20,7 @@ class VersionChecker {
         });
     }
 
-    getCurrentVersion() {
+    getCurrentVersionFromPackage() {
         const root = path.resolve(`${__dirname}/../../../`);
         this.packageFile = `${root}/package.json`;
 
@@ -28,6 +28,10 @@ class VersionChecker {
         console.log(`[VersionChecker] Currently running CIMonitor version ${currentVersion}.`);
 
         return currentVersion;
+    }
+
+    getCurrentVersion() {
+        return this.currentVersion;
     }
 
     pushNewVersionStatus(latestVersion) {
