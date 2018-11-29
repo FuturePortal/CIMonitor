@@ -49,12 +49,12 @@ class VersionChecker {
         this.getLatestVersion()
             .then(latestVersion => {
                 const currentVersion = this.currentVersion;
+                this.lastVersionCheck = moment().format();
 
                 // Is current version older than the latest version
                 if (semver.lt(currentVersion, latestVersion)) {
                     console.log(`[VersionChecker] New version ${latestVersion} is available!`);
                     this.pushNewVersionStatus(latestVersion);
-                    this.lastVersionCheck = moment().format();
                     return;
                 }
 
@@ -73,10 +73,10 @@ class VersionChecker {
             return true;
         }
 
-        const shouldCheckTime = moment().subtract(6, 'hours');
+        const sixHoursAgo = moment().subtract(6, 'hours');
         const lastCheck = moment(this.lastVersionCheck);
 
-        return lastCheck.isBefore(shouldCheckTime);
+        return lastCheck.isBefore(sixHoursAgo);
     }
 
     scheduleVersionChecks() {
@@ -84,7 +84,7 @@ class VersionChecker {
             if (this.isTimeToCheck()) {
                 this.checkVersion();
             }
-        }, moment.duration(5, 'minutes').asMilliseconds());
+        }, moment.duration(30, 'seconds').asMilliseconds());
 
         this.checkVersion();
     }
