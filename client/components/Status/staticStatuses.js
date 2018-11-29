@@ -4,7 +4,8 @@ export const STATUS_CONNECTION_LOST = {
     key: 'not-connected',
     state: 'error',
     title: 'Not connected',
-    subTitle: 'There is no socket connection with the server, new statuses wont be shown.',
+    subTitle: 'There is no connection with the server.',
+    image: 'https://image.flaticon.com/icons/svg/497/497738.svg',
 };
 
 export const STATUS_NO_STATUSES = {
