@@ -84,7 +84,7 @@ class VersionChecker {
             if (this.isTimeToCheck()) {
                 this.checkVersion();
             }
-        }, moment.duration(30, 'seconds').asMilliseconds());
+        }, moment.duration(5, 'minutes').asMilliseconds());
 
         this.checkVersion();
     }
