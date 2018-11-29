@@ -29,13 +29,14 @@ git-hooks: intro do-install-git-hooks
 build-production: intro do-build-production
 
 build-docs: intro do-build-docs
+preview-docs: intro do-preview-docs
 
 dev-server: intro do-dev-server
 dev-server-slave: intro do-dev-server-slave
 dev-client: intro do-dev-client
 
 build-container: intro do-backup-dependencies do-build-production do-build-container do-restore-dependencies do-run-updates
-dev-container: intro do-dev-container
+run-container: intro do-run-container
 
 test: intro do-test-eslint-prettier
 cypress: do-cypress-open
@@ -57,14 +58,15 @@ do-show-commands:
 	@echo "\nLocal installation:"
 	@echo "    make build-production       Build all the files required for production."
 	@echo "\nDocumentation:"
-	@echo "    make build-docs             Build a preview of the documentation."
+	@echo "    make build-docs             Build the documentation."
+	@echo "    make preview-docs           Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server             Run the development server."
 	@echo "    make dev-server-slave       Run the development slave server, listening to a master."
 	@echo "    make dev-client             Build, run and watch the development dashboard."
 	@echo "\nDocker container:"
 	@echo "    make build-container        Build production assets and a Docker container."
-	@echo "    make dev-container          Run the built Docker container."
+	@echo "    make run-container          Run the built Docker container."
 	@echo "\nTests:"
 	@echo "    make test                   Run the test suite."
 	@echo "    make cypress                Open Cypress dashboard for quick testing."
@@ -137,18 +139,22 @@ do-cypress-run:
 	./node_modules/.bin/cypress run
 
 do-build-docs:
-	@echo "\n=== Building docs with mkdocs ===\n"
-	@echo "Check the documentation at http://localhost:9998/"
-	@docker run -ti --rm -p 9998:9998 -v $$PWD:/documents moird/mkdocs
+	@echo "\n=== Building documentation with mkdocs ===\n"
+	@docker run -ti --rm -p 9998:9998 -v $$PWD:/docs/src cogset/mkdocs -b
 
-do-dev-container:
-	@echo "\n=== Running dev container ===\n"
-	docker run -ti --rm -p9999:9999 cimonitor/cimonitor:latest
+do-preview-docs:
+	@echo "\n=== Running live documentation preview ===\n"
+	@echo "Check the documentation at http://localhost:8000/"
+	@docker run -ti --rm -p 8000:8000 -v $$PWD:/docs/src cogset/mkdocs -s
 
 do-build-container:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
 	docker build -t cimonitor/cimonitor:latest .
+
+do-run-container:
+	@echo "\n=== Running dev container ===\n"
+	docker run -ti --rm -p9999:9999 cimonitor/cimonitor:latest
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"

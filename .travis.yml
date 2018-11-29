@@ -4,8 +4,23 @@ node_js:
 
 cache: yarn
 
+services:
+    - docker
+
+env:
+    global:
+        - secure: "kUuRzcdRpAwMSiOY2CgaLeX//CQGD8jeefVwi+DxXH3TPhwCtm1UPnQRhcZ5Z58JtM9aPs+9CTmPnLutKRty04JDFVrz8vs9eB1b2KNn6tlk/KX54n0bh3WUyms1xOHHXyLOjn+yxK0DlftmPtEk7AJvF11+55w4QUKprDUCjUaLQWpIgbohuqgrS0nahvACB36bU0nRHr6Tt06jk25fu7C06XnC/ZSIn9R1/aOBedYVJkGxR2ZCAuDhg0xQX+TLo8BC2iQsb/hAOCSM55OT9OARvb2YPM0gfvUbc2/3CYR+d3PjyEv3nFoLHGRXRH3N4Mv7yFZ5NvYmv0b+lJ/GkfPIBTA3xSFNB8A8WU8GQZQSoaeYN2SskVprbWKqAm2Bfl6kxPFViROqIM6ZghpJWOmV6v62YOgRQ5tH5gr7Dyv1eReN8vTDwgIHWqpUMJLBbQTH0g+284g+qLu4uTAJg4JlwJMFols6EfeiSVfSa4FqzzyqvfTZrsiOQWDTY+q8261ZZOo9fqNCIOBGv0p6uROu6rAtXFiIJksm2gl70zw4HC1S29G+K19cdkWke1QLtbgHen/Y6n9YzCRfm1y8EgAUa/KS5kCwAVFKgsw/lppW+PW5eKWcEjATLB6HWa3b7Zc+TScFDOPABo+KySS9s1foAKgWDbHS4lPWpKAGXNA="
+
 script:
     - make test
+    - make build-docs
+
+after_success:
+    - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "build-docker-container" ]]; then
+        make build-container;
+        docker login -u="cimonitor" -p="$DOCKER_PASSWORD";
+        docker push cimonitor/cimonitor:latest;
+        fi
 
 notifications:
     webhooks:
