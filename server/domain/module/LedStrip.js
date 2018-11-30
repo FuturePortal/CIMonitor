@@ -23,7 +23,7 @@ class LedStrip extends AbstractModule {
             },
             warning: {
                 r: 255,
-                g: 50,
+                g: 130,
                 b: 0,
                 intensity: 100,
             },
