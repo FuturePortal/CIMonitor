@@ -10,7 +10,7 @@ const GitHubApi = require('./GitHubApi');
 class VersionChecker {
     constructor() {
         this.lastVersionCheck = null;
-        this.statusKey = 'cimonitor-status-check';
+        this.statusKey = 'cimonitor-version-check';
         this.currentVersion = this.getCurrentVersionFromPackage();
     }
 
