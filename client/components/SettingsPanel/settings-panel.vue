@@ -37,6 +37,12 @@ import Note from './Note';
 
 const tabs = [
     {
+        icon: 'fas fa-info-circle',
+        name: 'About',
+        component: AboutTab,
+        localChangesOnly: null,
+    },
+    {
         icon: 'fas fa-th-list',
         name: 'Statuses',
         component: StatusesPanel,
@@ -53,12 +59,6 @@ const tabs = [
         name: 'Notifications',
         component: NotifyPanel,
         localChangesOnly: true,
-    },
-    {
-        icon: 'fas fa-info-circle',
-        name: 'About',
-        component: AboutTab,
-        localChangesOnly: null,
     },
 ];
 
@@ -100,7 +100,7 @@ $seperator-color: $color-gray-lighter
     display: flex
     align-items: center
     justify-content: center
-    background: rgba(0, 0, 0, 0.8)
+    background: rgba(0, 0, 0, 0.3)
     padding: 0 20px
     top: 0
     left: 0

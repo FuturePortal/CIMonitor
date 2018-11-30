@@ -1,10 +1,12 @@
 <template>
-    <div class="dashboard" :class="theme">
-        <status v-if="isNotConnected" :status="noConnectionStatus" />
-        <status v-if="hasNoStatuses" :status="noStatusesStatus" />
-        <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
-        <video-overlay />
-        <tool-bar :state="globalState" />
+    <div>
+        <div class="dashboard" :class="theme">
+            <status v-if="isNotConnected" :status="noConnectionStatus" />
+            <status v-if="hasNoStatuses" :status="noStatusesStatus" />
+            <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
+            <video-overlay />
+            <tool-bar :state="globalState" />
+        </div>
         <settings-panel />
     </div>
 </template>
