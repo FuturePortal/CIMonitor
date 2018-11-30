@@ -9,9 +9,6 @@ class VersionChecker {
     checkForNewVersion(currentVersion) {
         this.currentVersion = currentVersion;
 
-        console.log('Checking for a new server version...');
-        console.log(`Dashboard running on version ${currentVersion}`);
-
         this.xmlHttp = new XMLHttpRequest();
         this.xmlHttp.onreadystatechange = () => this.onVersionResult();
         this.xmlHttp.open('GET', '/version', true);
@@ -19,21 +16,30 @@ class VersionChecker {
     }
 
     onVersionResult() {
-        if (this.xmlHttp.readyState == 4 && this.xmlHttp.status == 200) {
-            const result = JSON.parse(this.xmlHttp.responseText);
-            console.log(`Server running on version ${result.version}`);
-
-            if (semver.lt(this.currentVersion, result.version)) {
-                this.refreshDashboard();
-                return;
-            }
-            console.log(`Dashboard still up-to-date!`);
+        if (this.xmlHttp.readyState !== 4) {
+            return;
         }
+
+        if (this.xmlHttp.status !== 200) {
+            console.log(`Failed to fetch the CIMonitor server version.`);
+            return;
+        }
+
+        const result = JSON.parse(this.xmlHttp.responseText);
+
+        if (semver.lt(this.currentVersion, result.version)) {
+            this.refreshDashboard(result.version);
+            return;
+        }
+
+        console.log(`Dashboard version ${this.version} up-to-date with server version ${result.version}.`);
     }
 
-    refreshDashboard() {
-        console.log('Refreshing in 10 seconds to be up-to-date');
+    refreshDashboard(serverVersion) {
+        console.log(`Dashboard version ${serverVersion} available, currently on ${this.currentVersion}.`);
+        console.log('Refreshing in 10 seconds to get the latest update.');
         console.log('Stuck in a loop? run on the server: make build-production');
+
         setTimeout(() => location.reload(), 10000);
     }
 }
