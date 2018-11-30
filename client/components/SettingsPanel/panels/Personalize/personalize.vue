@@ -2,10 +2,7 @@
     <div>
         <div v-for="theme in themes" :key="theme.slug" class="theme">
             <strong>
-                {{ theme.name }}
-                <span v-if="isCurrentTheme(theme)">
-                    <i class="far fa-check-circle"></i>
-                </span>
+                {{ theme.name }} <span v-if="isCurrentTheme(theme)"><i class="far fa-check-circle"></i></span>
             </strong>
             <button class="preview" @click="setTheme(theme);" :class="getThemeClass(theme)">
                 <div class="status" />
@@ -72,4 +69,5 @@ export default {
     .status
         width: 18%
         height: 60px
+        margin-top: 0
 </style>
