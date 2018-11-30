@@ -7,8 +7,17 @@ const statusManager = require('../status/StatusManager');
 class SocketConnectionManager {
     constructor() {
         this.io = null;
+        this.socketId = 0;
+        this.socketConnections = 0;
 
         this.setListeners();
+    }
+
+    getNewSocketId() {
+        this.socketId++;
+        this.socketConnections++;
+
+        return this.socketId;
     }
 
     setListeners() {
@@ -26,9 +35,23 @@ class SocketConnectionManager {
         this.io = SocketServer(server);
 
         this.io.on('connect', socket => {
-            console.log('[SocketConnectionManager] A client connected.');
+            const socketId = this.getNewSocketId();
+            console.log(
+                `[SocketConnectionManager] Client ${socketId} connected. Currently ${
+                    this.socketConnections
+                } connection${this.socketConnections === 1 ? '' : 's'} open.`
+            );
 
             socket.emit(socketEvents.statusesUpdated, statusManager.getRawStatuses());
+
+            socket.on('disconnect', () => {
+                this.socketConnections--;
+                console.log(
+                    `[SocketConnectionManager] Client ${socketId} disconnected, ${this.socketConnections} connection${
+                        this.socketConnections === 1 ? '' : 's'
+                    } left open.`
+                );
+            });
         });
     }
 

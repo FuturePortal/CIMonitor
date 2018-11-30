@@ -1,15 +1,15 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image && this.showImage" :src="status.image" class="image" @error="hideImage" />
-        <div class="details">
-            <div class="title">{{ status.title }}</div>
+        <img v-if="status.image && this.showImage" :src="status.image" class="status__image" @error="hideImage" />
+        <div class="status__details">
+            <div class="status__title">{{ status.title }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
             <div>
-                <span class="sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
-                <span class="time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
+                <span class="status__sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
+                <span class="status__time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
             </div>
         </div>
-        <img v-if="status.userImage" :src="status.userImage" class="user-image" />
+        <img v-if="status.userImage" :src="status.userImage" class="status__user-image" />
     </div>
 </template>
 
@@ -63,8 +63,6 @@ $border-bottom: 3px
     position: relative
     color: $color-white
     background: $color-info
-    border-top: $border-top solid $color-info-light
-    border-bottom: $border-bottom solid $color-info-dark
     margin-top: 10px
     padding: 20px 0
     overflow: hidden
@@ -76,44 +74,38 @@ $border-bottom: 3px
 
     &.success
         background: $color-success
-        border-top: $border-top solid $color-success-light
-        border-bottom: $border-bottom solid $color-success-dark
 
     &.warning
         background: $color-warning
-        border-top: $border-top solid $color-warning-light
-        border-bottom: $border-bottom solid $color-warning-dark
 
     &.error
         background: $color-error
-        border-top: $border-top solid $color-error-light
-        border-bottom: $border-bottom solid $color-error-dark
 
-.details
+.status__details
     min-height: 100px
     flex-grow: 1
     margin: 0 20px
 
-.title
+.status__title
     font-size: 50px
 
-.sub-title
+.status__sub-title
     font-size: 30px
     padding-right: 10px
 
-.user-image,
-.image
+.status__user-image,
+.status__image
     height: 100px
 
-.image
+.status__image
     border-radius: 3px
     margin-left: 20px
 
-.user-image
+.status__user-image
     border-radius: 50%
     background-color: rgba(0, 0, 0, 0.1)
     margin-right: 20px
 
-.time-ago
+.status__time-ago
     font-size: 24px
 </style>

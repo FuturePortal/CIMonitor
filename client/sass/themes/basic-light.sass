@@ -1,0 +1,26 @@
+$border-top: 2px
+$border-bottom: 3px
+
+.theme__basic-light
+    background: #f0f0f0
+
+    .status
+        color: $color-white
+        background: $color-info
+        border-top: $border-top solid $color-info-light
+        border-bottom: $border-bottom solid $color-info-dark
+
+        &.success
+            background: $color-success
+            border-top: $border-top solid $color-success-light
+            border-bottom: $border-bottom solid $color-success-dark
+
+        &.warning
+            background: $color-warning
+            border-top: $border-top solid $color-warning-light
+            border-bottom: $border-bottom solid $color-warning-dark
+
+        &.error
+            background: $color-error
+            border-top: $border-top solid $color-error-light
+            border-bottom: $border-bottom solid $color-error-dark

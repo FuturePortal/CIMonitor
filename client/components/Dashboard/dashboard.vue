@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div class="dashboard" :class="theme">
         <status v-if="isNotConnected" :status="noConnectionStatus" />
         <status v-if="hasNoStatuses" :status="noStatusesStatus" />
         <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
@@ -50,8 +50,14 @@ export default {
         statuses() {
             return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
         },
+        theme() {
+            return `theme__${this.$store.state.settings.theme}`;
+        },
     },
 };
 </script>
 
-<style lang="sass" rel="stylesheet/sass" scoped></style>
+<style lang="sass" rel="stylesheet/sass" scoped>
+.dashboard
+    min-height: 100vh
+</style>
