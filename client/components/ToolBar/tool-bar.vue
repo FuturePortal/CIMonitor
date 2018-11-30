@@ -54,6 +54,8 @@ export default {
     color: $color-white
     border-radius: 20px 20px 0 0
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.2)
+    display: flex
+    justify-content: space-between
 
 button
     width: 90px
@@ -70,7 +72,6 @@ button
         background-color: lighten($color-gray-darker, 5%)
 
     &:first-child
-        margin-right: 76px
         border-top-left-radius: 20px
 
     &:last-child
