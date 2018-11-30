@@ -19,6 +19,7 @@ SocketConnectionManager.startSocketServer(server);
 ModuleManager.initModulesFromConfig();
 
 StatusPersister.loadSavedStatuses();
+StatusPersister.saveStatusesOnChange();
 
 VersionChecker.scheduleVersionChecks();
 

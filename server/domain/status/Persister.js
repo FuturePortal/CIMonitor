@@ -7,8 +7,6 @@ const StatusFactory = require('../status/StatusFactory');
 
 class Persister {
     constructor() {
-        Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
-
         const filename = `saved-statuses.json`;
         const logPath = path.resolve(`${__dirname}/../../config/`);
 
@@ -25,6 +23,10 @@ class Persister {
 
             console.log(`[Persister] Statuses are saved to ${this.statusesFile}.`);
         });
+    }
+
+    saveStatusesOnChange() {
+        Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
     }
 
     loadSavedStatuses() {
