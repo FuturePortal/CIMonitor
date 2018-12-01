@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>CIMonitor version 2</h1>
+        <h1>CIMonitor version {{ version }}</h1>
         <p>
             In the past, deployments were scary. That shouldn't be the case anymore! CIMonitor helps you to achieve more
             fun setting up your tests and deployments. Find more information about the features in
@@ -51,6 +51,9 @@ export default {
     computed: {
         contributors() {
             return this.$store.getters[CONTRIBUTOR_GET_ORDERED];
+        },
+        version() {
+            return window.CIMonitorVersion;
         },
     },
 };

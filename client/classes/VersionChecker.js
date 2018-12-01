@@ -6,8 +6,8 @@ class VersionChecker {
         this.xmlHttp = null;
     }
 
-    checkForNewVersion(currentVersion) {
-        this.currentVersion = currentVersion;
+    checkForNewVersion() {
+        this.currentVersion = window.CIMonitorVersion;
 
         this.xmlHttp = new XMLHttpRequest();
         this.xmlHttp.onreadystatechange = () => this.onVersionResult();
@@ -32,7 +32,7 @@ class VersionChecker {
             return;
         }
 
-        console.log(`Dashboard version ${this.version} up-to-date with server version ${result.version}.`);
+        console.log(`Dashboard version ${this.currentVersion} up-to-date with server version ${result.version}.`);
     }
 
     refreshDashboard(serverVersion) {

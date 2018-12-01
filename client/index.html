@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>CIMonitor • ---version---</title>
+        <title>CIMonitor</title>
         <link rel="stylesheet" href="/dashboard.css?bust=---bust---" type="text/css" />
         <link
             rel="stylesheet"
@@ -15,10 +15,12 @@
         <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet" />
         <link rel="shortcut icon" type="image/png" href="/images/favicon/success.png" />
     </head>
-
     <body>
-        <div id="app"><dashboard version="---version---"></dashboard></div>
+        <div id="app"><dashboard></dashboard></div>
 
+        <script type="text/javascript">
+            window.CIMonitorVersion = '---version---';
+        </script>
         <script type="text/javascript" src="/client.js?bust=---bust---"></script>
     </body>
 </html>
