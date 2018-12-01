@@ -32,19 +32,24 @@ $border-bottom: 3px
             border-bottom: $border-bottom solid $color-error-dark
 
     .status__image-container
-        // left column container
+        padding: 20px 0 20px 20px
 
     .status__image-container--no-image
-        // added to image-container when no image is present
+        display: none
 
     .status__image
-        // image in the image-container
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: contain
+        border-radius: 3px
 
     .status__image--no-image
         // added to image when no image is present
 
     .status__detail-container
-        // wrapper for the center section of the status
+        padding: 20px
 
     .status__detail-title
         // pimary title
@@ -70,7 +75,7 @@ $border-bottom: 3px
             content: "\f2f9"
 
         &.pending
-            opacity: 0.5
+            opacity: 0.3
 
             &::before
                 content: "\f3c5"
@@ -88,19 +93,28 @@ $border-bottom: 3px
         // Secondary title (can be a text too)
 
     .status__time-ago
-        // stand alone display for the time ago
+        position: absolute
+        right: 0
+        bottom: 5px
+        text-align: center
+        width: 160px
 
     .status__time-ago--no-user-image
-        // stand alone display for the time ago
+        // can stay at the bottom
 
     .status__user-image-container
-        // user image container
+        padding: 10px 30px 35px 0
 
     .status__user-image-container--no-image
-        // added to the user image container when no user image is present
+        width: 100px
 
     .status__user-image
-        // user image
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: cover
+        border-radius: 50%
 
     .status__user-image--no-image
-        // added to the user image when no user image is present
+        display: none

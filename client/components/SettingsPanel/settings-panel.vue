@@ -67,7 +67,7 @@ export default {
     data() {
         return {
             tabs,
-            openTab: tabs[0],
+            openTab: tabs[2], // @todo: Switch back to 0
         };
     },
     methods: {

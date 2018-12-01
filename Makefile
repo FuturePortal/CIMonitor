@@ -106,9 +106,14 @@ do-build-production:
 
 do-test-eslint-prettier:
 	@echo "\n=== ESlint + Prettier code style check ===\n"
-	@echo "To fix most errors automatically, run: make fix"
-	@echo "\nWrongly formatted files:"
-	@node_modules/.bin/eslint --ext .js,.vue,.json . && echo "None ❤️"
+	@echo "Checking code style..."
+	@node_modules/.bin/eslint --ext .js,.vue,.json . || \
+	(\
+		echo "Codestyle issues detected! Please run: \n" &&\
+		echo "    make fix \n" &&\
+		echo "to clean your code before you commit. \n" &&\
+		exit 1\
+	)
 
 do-fix-eslint-prettier:
 	@echo "\n=== ESlint + Prettier code style fixer ===\n"
