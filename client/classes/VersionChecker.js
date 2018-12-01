@@ -16,12 +16,13 @@ class VersionChecker {
     }
 
     onVersionResult() {
+        // readyState 4 means the response is complete
         if (this.xmlHttp.readyState !== 4) {
             return;
         }
 
         if (this.xmlHttp.status !== 200) {
-            console.log(`Failed to fetch the CIMonitor server version.`);
+            console.log('Failed to fetch the CIMonitor server version.');
             return;
         }
 
