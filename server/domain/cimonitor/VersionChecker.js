@@ -3,10 +3,6 @@ const semver = require('semver');
 const fileSystem = require('fs');
 const path = require('path');
 
-const StatusManager = require('../status/StatusManager');
-const StatusFactory = require('../status/StatusFactory');
-const GitHubApi = require('./GitHubApi');
-
 class VersionChecker {
     constructor() {
         this.lastVersionCheck = null;
@@ -15,6 +11,8 @@ class VersionChecker {
     }
 
     getLatestVersion() {
+        const GitHubApi = require('./GitHubApi');
+
         return GitHubApi.call('repos/CIMonitor/CIMonitor/releases/latest').then(latestVersionInfo => {
             return latestVersionInfo.tag_name;
         });
@@ -25,7 +23,7 @@ class VersionChecker {
         this.packageFile = `${root}/package.json`;
 
         const currentVersion = JSON.parse(fileSystem.readFileSync(this.packageFile)).version;
-        console.log(`[VersionChecker] Currently running CIMonitor version ${currentVersion}.`);
+        console.log(`[VersionChecker] CIMonitor server version ${currentVersion}.`);
 
         return currentVersion;
     }
@@ -35,6 +33,8 @@ class VersionChecker {
     }
 
     pushNewVersionStatus(latestVersion) {
+        const StatusFactory = require('../status/StatusFactory');
+
         StatusFactory.createStatus({
             key: this.statusKey,
             title: `CIMonitor`,
@@ -59,6 +59,8 @@ class VersionChecker {
                 }
 
                 console.log(`[VersionChecker] Already on the latest version ${latestVersion}.`);
+                const StatusManager = require('../status/StatusManager');
+
                 if (StatusManager.getStatusByKey(this.statusKey)) {
                     StatusManager.removeStatus(this.statusKey);
                 }

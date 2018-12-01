@@ -44,22 +44,23 @@ mix.then(() => {
         { key: 'version', value: VersionChecker.getCurrentVersion() },
     ];
 
-    fileSystem.readFile('client/index.html', `utf8`, (err, data) => {
-        if (err) {
-            console.error(`Could not load the source index file.`, err);
+    fileSystem.readFile('client/index.html', 'utf8', (error, data) => {
+        if (error) {
+            console.error('Could not load the source index file.', error);
             return;
         }
 
         for (let index in replacements) {
-            data = data.replace(new RegExp(`---${replacements[index].key}---`, `g`), replacements[index].value);
+            data = data.replace(new RegExp(`---${replacements[index].key}---`, 'g'), replacements[index].value);
         }
 
-        fileSystem.writeFile(`dist/index.html`, data, err => {
-            if (err) {
-                console.error(`Could not save the new index.`, err);
+        fileSystem.writeFile('dist/index.html', data, error => {
+            if (error) {
+                console.error('Could not save the new index.', error);
+                return;
             }
 
-            console.log(`Index successfully updated and busted.`);
+            console.log('Index successfully updated and busted.');
         });
     });
 });
