@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>CIMonitor</title>
-        <link rel="stylesheet" href="/dashboard.css" type="text/css" />
+        <link rel="stylesheet" href="/dashboard.css?bust=---bust---" type="text/css" />
         <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -15,10 +15,12 @@
         <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet" />
         <link rel="shortcut icon" type="image/png" href="/images/favicon/success.png" />
     </head>
-
     <body>
         <div id="app"><dashboard></dashboard></div>
 
-        <script type="text/javascript" src="/client.js"></script>
+        <script type="text/javascript">
+            window.CIMonitorVersion = '---version---';
+        </script>
+        <script type="text/javascript" src="/client.js?bust=---bust---"></script>
     </body>
 </html>

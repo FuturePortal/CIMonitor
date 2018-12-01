@@ -35,7 +35,8 @@ dev-client: intro do-dev-client
 build-production: intro do-build-production
 
 test: intro do-test-eslint-prettier
-pre-commit: intro do-fix-eslint-prettier do-commit-intro
+pre-commit: intro do-test-eslint-prettier do-commit-intro
+fix: intro do-fix-eslint-prettier
 
 cypress: do-cypress-open
 cypress-run: do-cypress-run
@@ -58,6 +59,7 @@ do-show-commands:
 	@echo "make build-production       Build all the files required for production."
 	@echo "make build-docs             Build a preview of the documentation."
 	@echo "make test                   Run the testsuite."
+	@echo "make fix                    Fix most of the codestyle errors."
 	@echo "make cypress                Open Cypress dashboard for quick testing."
 	@echo "make cypress-run            Run the cypress tests in the background."
 
@@ -104,7 +106,8 @@ do-build-production:
 
 do-test-eslint-prettier:
 	@echo "\n=== ESlint + Prettier code style check ===\n"
-	@echo "Wrongly formatted files:"
+	@echo "To fix most errors automatically, run: make fix"
+	@echo "\nWrongly formatted files:"
 	@node_modules/.bin/eslint --ext .js,.vue,.json . && echo "None ❤️"
 
 do-fix-eslint-prettier:

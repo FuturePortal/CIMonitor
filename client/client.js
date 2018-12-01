@@ -8,6 +8,7 @@ import Store from './store';
 import socketEvents from '../shared/socketEvents';
 import { STATUS_SET_STATUSES } from './store/StaticMutations';
 import { STATUS_GET_GLOBAL_STATE } from './store/StaticGetters';
+import VersionChecker from './classes/VersionChecker';
 
 Vue.use(VueSocketIo, io());
 Vue.use(Vuex);
@@ -33,6 +34,9 @@ new Vue({
         connect() {
             console.log('Socket connected.');
             this.isConnected = true;
+
+            // Check if the (re-)connect happened because of a server update
+            VersionChecker.checkForNewVersion();
         },
         disconnect() {
             console.log('Socket disconnected :(');
