@@ -1,5 +1,6 @@
 $border-top: 2px
 $border-bottom: 3px
+$darken-warning: 5%
 
 .theme__basic-light
     background: #f0f0f0
@@ -10,7 +11,6 @@ $border-bottom: 3px
         border-top: $border-top solid $color-info-light
         border-bottom: $border-bottom solid $color-info-dark
         margin-top: 10px
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1)
 
         &:first-child
             margin-top: 0
@@ -21,9 +21,9 @@ $border-bottom: 3px
             border-bottom: $border-bottom solid $color-success-dark
 
         &.warning
-            background: $color-warning
-            border-top: $border-top solid $color-warning-light
-            border-bottom: $border-bottom solid $color-warning-dark
+            background: darken($color-warning, $darken-warning)
+            border-top: $border-top solid  darken($color-warning-light, $darken-warning)
+            border-bottom: $border-bottom solid  darken($color-warning-dark, $darken-warning)
 
         &.error
             background: $color-error
