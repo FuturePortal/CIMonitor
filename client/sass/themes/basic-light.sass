@@ -5,15 +5,17 @@ $darken-warning: 5%
 .theme__basic-light
     background: #f0f0f0
 
-    .status
+    .status__container
         color: $color-white
-        background: $color-info
-        border-top: $border-top solid $color-info-light
-        border-bottom: $border-bottom solid $color-info-dark
         margin-top: 10px
 
         &:first-child
             margin-top: 0
+
+        &.info
+            background: $color-info
+            border-top: $border-top solid $color-info-light
+            border-bottom: $border-bottom solid $color-info-dark
 
         &.success
             background: $color-success
@@ -29,3 +31,77 @@ $darken-warning: 5%
             background: $color-error
             border-top: $border-top solid $color-error-light
             border-bottom: $border-bottom solid $color-error-dark
+
+    .status__image-container
+        // left column container
+
+    .status__image-container--no-image
+        // added to image-container when no image is present
+
+    .status__image
+        // image in the image-container
+
+    .status__image--no-image
+        // added to image when no image is present
+
+    .status__detail-container
+        // wrapper for the center section of the status
+
+    .status__detail-title
+        // pimary title
+
+    .status__detail-stages
+        // list of stages
+
+    .status__detail-jobs
+        // list of relevant jobs
+
+    .status__detail-stage,
+    .status__detail-job
+        &::before
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+
+        &.error::before
+            content: "\f00d"
+
+        &.running::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
+
+        &.pending
+            opacity: 0.5
+
+            &::before
+                content: "\f3c5"
+
+        &.success::before
+            content: "\f00c"
+
+        &.warning::before
+            content: "\f071"
+
+        &.info::before
+            content: "\f05a"
+
+    .status__detail-sub-title
+        // Secondary title (can be a text too)
+
+    .status__time-ago
+        // stand alone display for the time ago
+
+    .status__time-ago--no-user-image
+        // stand alone display for the time ago
+
+    .status__user-image-container
+        // user image container
+
+    .status__user-image-container--no-image
+        // added to the user image container when no user image is present
+
+    .status__user-image
+        // user image
+
+    .status__user-image--no-image
+        // added to the user image when no user image is present

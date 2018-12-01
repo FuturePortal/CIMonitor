@@ -1,13 +1,18 @@
 <template>
     <div>
-        <div class="stages" v-if="stages.length > 0">
-            <div class="stage" :class="getStageStatus(stage)" v-for="(stage, index) in stages" :key="index">
-                <i :class="stateToIcon(getStageStatus(stage))" /> {{ stage }}
+        <div class="status__detail-stages" v-if="stages.length > 0">
+            <div
+                class="status__detail-stage"
+                :class="getStageStatus(stage)"
+                v-for="(stage, index) in stages"
+                :key="index"
+            >
+                {{ stage }}
             </div>
         </div>
-        <div class="jobs" v-if="interestingJobs.length > 0">
-            <div class="job" v-for="(job, index) in interestingJobs" :key="index">
-                <i :class="stateToIcon(job.state)" /> {{ job.name }}
+        <div class="status__detail-jobs" v-if="interestingJobs.length > 0">
+            <div class="status__detail-job" v-for="(job, index) in interestingJobs" :class="job.state" :key="index">
+                {{ job.name }}
             </div>
         </div>
     </div>
@@ -26,16 +31,6 @@ export default {
         },
     },
     methods: {
-        stateToIcon(state) {
-            return {
-                error: 'fas fa-times',
-                running: 'fas fa-redo-alt fa-spin',
-                pending: 'fas fa-map-marker-alt',
-                success: 'fas fa-check',
-                warning: 'fas fa-exclamation-triangle',
-                info: 'fas fa-info-circle',
-            }[state];
-        },
         getStageStatus(stage) {
             const jobsForStage = this.jobs.filter(job => job.stage && job.stage === stage);
 
@@ -71,17 +66,13 @@ export default {
 </script>
 
 <style lang="sass" rel="stylesheet/sass" scoped>
-.jobs,
-.stages
+.status__detail-jobs,
+.status__detail-stages
     margin-top: 10px
     font-size: 26px
 
-.job,
-.stage
+.status__detail-job,
+.status__detail-stage
     display: inline-block
     margin: 0 20px 10px 0
-    border-radius: 5px
-
-    &.pending
-        opacity: 0.5
 </style>

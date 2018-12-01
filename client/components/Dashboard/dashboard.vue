@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="dashboard" :class="theme">
-            <div class="statuses">
+            <div class="statuses__container">
                 <status v-if="isNotConnected" :status="noConnectionStatus" />
                 <status v-if="hasNoStatuses" :status="noStatusesStatus" />
                 <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />

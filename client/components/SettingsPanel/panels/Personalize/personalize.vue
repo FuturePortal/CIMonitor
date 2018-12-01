@@ -5,12 +5,13 @@
                 {{ theme.name }} <span v-if="isCurrentTheme(theme)"><i class="far fa-check-circle"></i></span>
             </strong>
             <button class="preview" @click="setTheme(theme);" :class="getThemeClass(theme)">
-                <div class="status" />
-                <div class="status success" />
-                <div class="status warning" />
-                <div class="status error" />
+                <div class="status__container info" />
+                <div class="status__container success" />
+                <div class="status__container warning" />
+                <div class="status__container error" />
             </button>
         </div>
+        <button @click="setTheme({ slug: 'none' });">no theme</button>
     </div>
 </template>
 
@@ -66,7 +67,7 @@ export default {
     border: 0
     cursor: pointer
 
-    .status
+    .status__container
         width: 18%
         height: 60px
         margin-top: 0
