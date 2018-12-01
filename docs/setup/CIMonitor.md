@@ -49,4 +49,21 @@ $ node server/server.js
 
 You can now visit the dashboard via the browser at the given URL, or push statuses directly to the configured port.
 
-If you want to run the application as a service, check out the [run as a service page](run-as-service.md). This way the monitor will keep running without having to keep a terminal open.
+If you want to run the application as a service, check out the [run as a service page](run-as-service.md). This way the
+monitor will keep running without having to keep a terminal open.
+
+# Updating server application
+
+Easiest update would be using git, where you can just pull the latest version from master. If you downloaded a zip
+file, make sure you copy the following files to the new files:
+
+-   `server/config/config.json`
+-   `server/config/saved-statuses.json`
+
+**Note:** After you pulled the updates, always run the production build again:
+
+```sh
+$ make build-production
+```
+
+Restart your server application and that's it!
