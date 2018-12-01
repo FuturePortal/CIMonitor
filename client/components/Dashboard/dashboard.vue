@@ -19,12 +19,6 @@ import { STATUS_GET_GLOBAL_STATE, STATUS_GET_STATUSES_ORDERED } from '../../stor
 
 export default {
     components: { ToolBar, Status, VideoOverlay, SettingsPanel },
-    props: {
-        version: {
-            type: String,
-            default: null,
-        },
-    },
     data() {
         return {
             now: this.getCurrentTimestamp(),
