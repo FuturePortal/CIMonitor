@@ -1,15 +1,28 @@
 <template>
     <div class="status" :class="status.state">
-        <img v-if="status.image && this.showImage" :src="status.image" class="status__image" @error="hideImage" />
-        <div class="status__details">
+        <div class="image-resolver"><img v-if="status.image" :src="status.image" @error="hideImage" /></div>
+        <div class="status__image-container" :class="{ 'status__image-container--none': !showImage || !status.image }">
+            <div
+                class="status__image"
+                :class="{ 'status__image--none': !showImage || !status.image }"
+                :style="imageStyle"
+            />
+        </div>
+        <div class="status__detail-container">
             <div class="status__title">{{ status.title }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
             <div>
                 <span class="status__sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
-                <span class="status__time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
             </div>
         </div>
-        <img v-if="status.userImage" :src="status.userImage" class="status__user-image" />
+        <div class="status__user-image-container" :class="{ 'status__user-image-container--none': !status.userImage }">
+            <div
+                class="status__user-image"
+                :class="{ 'status__user-image--none': !status.userImage }"
+                :style="userImageStyle"
+            />
+            <div class="status__time-ago" v-if="now">{{ timeAgo }}</div>
+        </div>
     </div>
 </template>
 
@@ -40,16 +53,34 @@ export default {
         },
     },
     computed: {
+        imageStyle() {
+            if (!this.status.image || !this.showImage) {
+                return {};
+            }
+
+            return {
+                backgroundImage: `url(${this.status.image})`,
+            };
+        },
+        userImageStyle() {
+            if (!this.status.userImage) {
+                return {};
+            }
+
+            return {
+                backgroundImage: `url(${this.status.userImage})`,
+            };
+        },
         timeAgo() {
             if (!this.now) {
                 return 'never';
             }
 
-            var timeAgo = moment(this.status.time).from(this.now);
+            let timeAgo = moment(this.status.time).from(this.now);
             if (timeAgo === 'a few seconds ago' || timeAgo === 'in a few seconds') {
                 return 'just now';
             }
-            return timeAgo;
+            return timeAgo.replace('minutes', 'min');
         },
     },
 };
@@ -64,10 +95,9 @@ $border-bottom: 3px
     color: $color-white
     background: $color-info
     margin-top: 10px
-    padding: 20px 0
     overflow: hidden
     display: flex
-    flex-direction: row
+    align-items: stretch
 
     &:first-child
         margin-top: 0
@@ -81,30 +111,25 @@ $border-bottom: 3px
     &.error
         background: $color-error
 
-.status__details
+.status__detail-container
     flex-grow: 1
-    margin: 0 20px
 
 .status__title
     font-size: 50px
 
 .status__sub-title
     font-size: 30px
-    padding-right: 10px
 
-.status__user-image,
-.status__image
-    height: 100px
-
-.status__image
-    border-radius: 3px
-    margin-left: 20px
-
-.status__user-image
-    border-radius: 50%
-    background-color: rgba(0, 0, 0, 0.1)
-    margin-right: 20px
+.status__image-container,
+.status__user-image-container
+    flex-shrink: 0
 
 .status__time-ago
     font-size: 24px
+
+.image-resolver
+    visibility: 0
+    height: 0
+    width: 0
+    overflow: hidden
 </style>
