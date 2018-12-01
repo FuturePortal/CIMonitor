@@ -113,7 +113,7 @@ do-test-eslint-prettier:
 		echo "    make fix \n" &&\
 		echo "to clean your code before you commit. \n" &&\
 		exit 1\
-	)
+	) && echo "All good! ❤️"
 
 do-fix-eslint-prettier:
 	@echo "\n=== ESlint + Prettier code style fixer ===\n"
