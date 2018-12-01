@@ -4,7 +4,7 @@
 # Default: help section
 # ===========================
 
-info: intro do-show-commands
+info: intro do-show-commands outro
 intro:
 	@echo ""
 	@echo " .d8888b. 8888888 888b     d888                   d8b 888"
@@ -15,31 +15,33 @@ intro:
 	@echo "888    888  888   888  Y8P  888 888  888 888  888 888 888   888  888 888"
 	@echo "Y88b  d88P  888   888   \"   888 Y88..88P 888  888 888 Y88b. Y88..88P 888"
 	@echo " \"Y8888P\" 8888888 888       888  \"Y88P\"  888  888 888  \"Y888 \"Y88P\"  888"
+outro:
+	@echo "\n=== Make CIMonitor ==="
 
 # ===========================
 # Main commands
 # ===========================
 
-init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands
+init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands outro
 
-github: intro do-checkout-pr do-run-updates
-update-project: intro do-run-updates
-update: intro do-switch-branch do-run-updates
-git-hooks: intro do-install-git-hooks
+github: intro do-checkout-pr do-run-updates outro
+update-project: intro do-run-updates outro
+update: intro do-switch-branch do-run-updates outro
+git-hooks: intro do-install-git-hooks outro
 
-build-docs: intro do-build-docs
+build-docs: intro do-build-docs outro
 
-dev-server: intro do-dev-server
-dev-server-slave: intro do-dev-server-slave
-dev-client: intro do-dev-client
-build-production: intro do-build-production
+dev-server: intro do-dev-server outro
+dev-server-slave: intro do-dev-server-slave outro
+dev-client: intro do-dev-client outro
+build-production: intro do-build-production outro
 
-test: intro do-test-eslint-prettier
-pre-commit: intro do-test-eslint-prettier do-commit-intro
-fix: intro do-fix-eslint-prettier
+test: intro do-test-eslint-prettier outro
+pre-commit: intro do-test-eslint-prettier do-commit-intro outro
+fix: intro do-fix-eslint-prettier outro
 
 cypress: do-cypress-open
-cypress-run: do-cypress-run
+cypress-run: do-cypress-run outro
 
 # ===========================
 # Recipes
@@ -105,7 +107,7 @@ do-build-production:
 	yarn production
 
 do-test-eslint-prettier:
-	@echo "\n=== ESlint + Prettier code style check ===\n"
+	@echo "\n=== Code style check ===\n"
 	@echo "Checking code style..."
 	@node_modules/.bin/eslint --ext .js,.vue,.json . || \
 	(\
@@ -116,8 +118,9 @@ do-test-eslint-prettier:
 	) && echo "All good! ❤️"
 
 do-fix-eslint-prettier:
-	@echo "\n=== ESlint + Prettier code style fixer ===\n"
-	@node_modules/.bin/eslint --fix --ext .js,.vue,.json . && echo "Code style is cleaned ❤️"
+	@echo "\n=== Code style fixer ===\n"
+	@(node_modules/.bin/eslint --fix --ext .js,.vue,.json . && echo "Code style is cleaned ❤️") ||\
+	echo "\nNot everything could be fixed automatically, please check the errors above."
 
 do-commit-intro:
 	@echo "\n=== Committing ===\n"
