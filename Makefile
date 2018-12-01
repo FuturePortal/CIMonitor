@@ -37,7 +37,7 @@ dev-client: intro do-dev-client outro
 build-production: intro do-build-production outro
 
 test: intro do-test-eslint-prettier outro
-pre-commit: intro do-test-eslint-prettier do-commit-intro outro
+pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
 cypress: do-cypress-open
