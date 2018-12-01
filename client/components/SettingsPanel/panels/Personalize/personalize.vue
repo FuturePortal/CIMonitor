@@ -31,10 +31,6 @@ export default {
                     slug: 'basic-dark',
                 },
                 {
-                    name: 'Basic light',
-                    slug: 'basic-light',
-                },
-                {
                     name: 'Material design',
                     slug: 'material-design',
                 },

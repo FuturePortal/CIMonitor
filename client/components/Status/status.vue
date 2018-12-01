@@ -16,9 +16,6 @@
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
             <div class="status__detail-sub-title" v-if="status.subTitle">{{ status.subTitle }}</div>
         </div>
-        <div class="status__time-ago" v-if="now" :class="{ 'status__time-ago--no-user-image': !status.userImage }">
-            {{ timeAgo }}
-        </div>
         <div
             class="status__user-image-container"
             :class="{ 'status__user-image-container--no-image': !status.userImage }"
@@ -28,6 +25,9 @@
                 :class="{ 'status__user-image--no-image': !status.userImage }"
                 :style="userImageStyle"
             />
+        </div>
+        <div class="status__time-ago" v-if="now" :class="{ 'status__time-ago--no-user-image': !status.userImage }">
+            {{ timeAgo }}
         </div>
     </div>
 </template>

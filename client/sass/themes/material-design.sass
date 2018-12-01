@@ -1,48 +1,71 @@
+$top-bar-height: 34px
+
 .theme__material-design
     background: #607D8B
     font-family: 'Roboto', sans-serif
 
     .statuses__container
-        padding: 15px
 
     .status__container
         color: $color-white
         margin-top: 15px
+        padding-top: $top-bar-height
+
+        &::before
+            content: ' '
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: $top-bar-height
 
         &:first-child
             margin-top: 0
 
         &.info
             background: #2196F3
-            border-top: 15px solid #1976D2
+
+            &::before
+                background: #1976D2
 
         &.success
             background: #4CAF50
-            border-top: 15px solid #388E3C
+
+            &::before
+                background: #388E3C
 
         &.warning
             background: #FFC107
-            border-top: 15px solid #FFA000
             color: #212121
+
+            &::before
+                background: #FFA000
 
         &.error
             background: #F44336
-            border-top: 15px solid #D32F2F
+
+            &::before
+                background: #D32F2F
 
     .status__image-container
-        // left column container
+        padding: 15px 0 15px 15px
 
     .status__image-container--no-image
-        // added to image-container when no image is present
+        display: none
 
     .status__image
-        // image in the image-container
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: contain
+        border-radius: 3px
 
     .status__image--no-image
         // added to image when no image is present
 
     .status__detail-container
-        // wrapper for the center section of the status
+        padding: 10px 15px 15px 15px
 
     .status__detail-title
         // pimary title
@@ -55,43 +78,57 @@
 
     .status__detail-stage,
     .status__detail-job
-        // job or stage detail
+        &::before
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
 
-        &.error
-            // error state
+        &.error::before
+            content: "\f00d"
 
-        &.running
-            // running state
+        &.running::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
 
         &.pending
-            // pending state
+            opacity: 0.3
 
-        &.success
-            // success state
+            &::before
+                content: "\f3c5"
 
-        &.warning
-            // warning state
+        &.success::before
+            content: "\f00c"
 
-        &.info
-            // info state
+        &.warning::before
+            content: "\f071"
+
+        &.info::before
+            content: "\f05a"
 
     .status__detail-sub-title
         // Secondary title (can be a text too)
 
     .status__time-ago
-        // stand alone display for the time ago
+        position: absolute
+        right: 10px
+        top: 2px
 
     .status__time-ago--no-user-image
-        // stand alone display for the time ago
+        // can stay at the bottom
 
     .status__user-image-container
-        // user image container
+        padding: 15px 15px 15px 0
 
     .status__user-image-container--no-image
-        // added to the user image container when no user image is present
+        width: 100px
 
     .status__user-image
-        // user image
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: cover
+        border-radius: 50%
 
     .status__user-image--no-image
-        // added to the user image when no user image is present
+        display: none
