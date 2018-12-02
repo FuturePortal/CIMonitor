@@ -2,11 +2,11 @@
     <div>
         <div class="dashboard" :class="theme">
             <div class="statuses__container">
-                <status v-if="isNotConnected" :status="noConnectionStatus" />
-                <status v-if="hasNoStatuses" :status="noStatusesStatus" />
                 <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
             </div>
+            <empty-board v-if="hasNoStatuses" />
             <video-overlay />
+            <no-connection v-if="isNotConnected" />
             <tool-bar :state="globalState" />
         </div>
         <settings-panel />
@@ -18,16 +18,15 @@ import ToolBar from '../ToolBar';
 import Status from '../Status';
 import VideoOverlay from '../VideoOverlay';
 import SettingsPanel from '../SettingsPanel';
-import { STATUS_CONNECTION_LOST, STATUS_NO_STATUSES } from '../Status/staticStatuses';
 import { STATUS_GET_GLOBAL_STATE, STATUS_GET_STATUSES_ORDERED } from '../../store/StaticGetters';
+import EmptyBoard from '../EmptyBoard';
+import NoConnection from '../NoConnection';
 
 export default {
-    components: { ToolBar, Status, VideoOverlay, SettingsPanel },
+    components: { ToolBar, Status, VideoOverlay, SettingsPanel, EmptyBoard, NoConnection },
     data() {
         return {
             now: this.getCurrentTimestamp(),
-            noConnectionStatus: STATUS_CONNECTION_LOST,
-            noStatusesStatus: STATUS_NO_STATUSES,
         };
     },
     created() {
