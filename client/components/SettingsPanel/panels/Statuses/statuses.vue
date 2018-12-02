@@ -5,11 +5,11 @@
         </div>
         <h1>Statuses</h1>
         <p v-if="statuses.length === 0">
-            There are no statuses yet in CIMonitor.<br />
-            Learn how to push statuses in <a target="_blank" href="https://cimonitor.rtfd.io/">the documentation</a>.
+            There are no statuses yet in CIMonitor. <br />Learn how to push statuses in
+            <a target="_blank" href="https://cimonitor.rtfd.io/">the documentation</a>.
         </p>
         <div class="row" v-for="status in statuses" :key="status.key">
-            <div class="status" :class="status.state">
+            <div class="panel-status" :class="status.state">
                 <div class="title">
                     {{ status.title }}
                     <div v-if="status.subTitle" class="sub-title">{{ status.subTitle }}</div>
@@ -57,7 +57,7 @@ export default {
     border-top: 2px solid $color-gray-lighter
     padding-bottom: 10px
 
-.status
+.panel-status
     display: flex
     padding-left: 10px
     border-left: 5px solid $color-info

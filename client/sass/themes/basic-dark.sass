@@ -1,0 +1,124 @@
+$border-top: 2px
+$border-bottom: 3px
+
+.theme__basic-dark
+    background: $color-antracite
+
+    .status__container
+        color: $color-gray-darker
+        margin-top: 10px
+
+        &:first-child
+            margin-top: 0
+
+        &.info
+            background: $color-info
+            border-top: $border-top solid $color-info-light
+            border-bottom: $border-bottom solid $color-info-dark
+
+        &.success
+            background: $color-success
+            border-top: $border-top solid $color-success-light
+            border-bottom: $border-bottom solid $color-success-dark
+
+        &.warning
+            background: $color-warning
+            border-top: $border-top solid $color-warning-light
+            border-bottom: $border-bottom solid $color-warning-dark
+
+        &.error
+            background: $color-error
+            border-top: $border-top solid $color-error-light
+            border-bottom: $border-bottom solid $color-error-dark
+
+    .status__image-container
+        padding: 20px 0 20px 20px
+
+    .status__image-container--no-image
+        display: none
+
+    .status__image
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: contain
+            repeat: no-repeat
+        border-radius: 3px
+
+    .status__image--no-image
+        // added to image when no image is present
+
+    .status__detail-container
+        padding: 20px
+        min-width: 0
+
+    .status__detail-title
+        // pimary title
+
+    .status__detail-stages,
+    .status__detail-jobs
+        margin-top: 10px
+
+    .status__detail-stage,
+    .status__detail-job
+        display: inline-block
+        margin: 0 20px 10px 0
+
+        &::before
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+
+        &.error::before
+            content: "\f00d"
+
+        &.running::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
+
+        &.pending
+            opacity: 0.3
+
+            &::before
+                content: "\f3c5"
+
+        &.success::before
+            content: "\f00c"
+
+        &.warning::before
+            content: "\f071"
+
+        &.info::before
+            content: "\f05a"
+
+    .status__detail-sub-title
+        // Secondary title (can be a text too)
+
+    .status__time-ago
+        position: absolute
+        right: 0
+        bottom: 5px
+        text-align: center
+        width: 160px
+
+    .status__time-ago--no-user-image
+        // can stay at the bottom
+
+    .status__user-image-container
+        padding: 10px 30px 35px 0
+
+    .status__user-image-container--no-image
+        width: 100px
+
+    .status__user-image
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: cover
+            repeat: no-repeat
+        border-radius: 50%
+
+    .status__user-image--no-image
+        display: none

@@ -1,25 +1,30 @@
 import { SETTINGS_PANEL_TOGGLE } from '../StaticActions';
-import { SETTINGS_PANEL_SET_OPEN, SETTINGS_PANEL_SET_CLOSED } from '../StaticMutations';
+import { SETTINGS_SET_PANEL_OPEN, SETTINGS_SET_PANEL_CLOSED, SETTINGS_SET_THEME } from '../StaticMutations';
 
 const state = {
     settingsPanelOpen: false,
+    theme: 'basic-dark',
 };
 
 const getters = {};
 
 const actions = {
     [SETTINGS_PANEL_TOGGLE]({ commit, state }) {
-        commit(state.settingsPanelOpen ? SETTINGS_PANEL_SET_CLOSED : SETTINGS_PANEL_SET_OPEN);
+        commit(state.settingsPanelOpen ? SETTINGS_SET_PANEL_CLOSED : SETTINGS_SET_PANEL_OPEN);
     },
 };
 
 const mutations = {
-    [SETTINGS_PANEL_SET_OPEN](state) {
+    [SETTINGS_SET_PANEL_OPEN](state) {
         state.settingsPanelOpen = true;
     },
 
-    [SETTINGS_PANEL_SET_CLOSED](state) {
+    [SETTINGS_SET_PANEL_CLOSED](state) {
         state.settingsPanelOpen = false;
+    },
+
+    [SETTINGS_SET_THEME](state, theme) {
+        state.theme = theme;
     },
 };
 

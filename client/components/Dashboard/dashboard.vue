@@ -1,10 +1,14 @@
 <template>
-    <div class="dashboard">
-        <status v-if="isNotConnected" :status="noConnectionStatus" />
-        <status v-if="hasNoStatuses" :status="noStatusesStatus" />
-        <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
-        <video-overlay />
-        <tool-bar :state="globalState" />
+    <div>
+        <div class="dashboard" :class="theme">
+            <div class="statuses__container">
+                <status v-if="isNotConnected" :status="noConnectionStatus" />
+                <status v-if="hasNoStatuses" :status="noStatusesStatus" />
+                <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
+            </div>
+            <video-overlay />
+            <tool-bar :state="globalState" />
+        </div>
         <settings-panel />
     </div>
 </template>
@@ -50,8 +54,14 @@ export default {
         statuses() {
             return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
         },
+        theme() {
+            return `theme__${this.$store.state.settings.theme}`;
+        },
     },
 };
 </script>
 
-<style lang="sass" rel="stylesheet/sass" scoped></style>
+<style lang="sass" rel="stylesheet/sass" scoped>
+.dashboard
+    min-height: 100vh
+</style>

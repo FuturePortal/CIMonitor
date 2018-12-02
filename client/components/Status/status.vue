@@ -1,15 +1,34 @@
 <template>
-    <div class="status" :class="status.state">
-        <img v-if="status.image && this.showImage" :src="status.image" class="image" @error="hideImage" />
-        <div class="details">
-            <div class="title">{{ status.title }}</div>
-            <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
-            <div>
-                <span class="sub-title" v-if="status.subTitle">{{ status.subTitle }}</span>
-                <span class="time-ago" v-if="now"> <i class="fas fa-history" /> {{ timeAgo }} </span>
-            </div>
+    <div class="status__container" :class="status.state">
+        <div class="image-resolver"><img v-if="status.image" :src="status.image" @error="hideImage" /></div>
+        <div
+            class="status__image-container"
+            :class="{ 'status__image-container--no-image': !showImage || !status.image }"
+        >
+            <div
+                class="status__image"
+                :class="{ 'status__image--no-image': !showImage || !status.image }"
+                :style="imageStyle"
+            />
         </div>
-        <img v-if="status.userImage" :src="status.userImage" class="user-image" />
+        <div class="status__detail-container">
+            <div class="status__detail-title">{{ status.title }}</div>
+            <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
+            <div class="status__detail-sub-title" v-if="status.subTitle">{{ status.subTitle }}</div>
+        </div>
+        <div
+            class="status__user-image-container"
+            :class="{ 'status__user-image-container--no-image': !status.userImage }"
+        >
+            <div
+                class="status__user-image"
+                :class="{ 'status__user-image--no-image': !status.userImage }"
+                :style="userImageStyle"
+            />
+        </div>
+        <div class="status__time-ago" v-if="now" :class="{ 'status__time-ago--no-user-image': !status.userImage }">
+            {{ timeAgo }}
+        </div>
     </div>
 </template>
 
@@ -40,16 +59,34 @@ export default {
         },
     },
     computed: {
+        imageStyle() {
+            if (!this.status.image || !this.showImage) {
+                return {};
+            }
+
+            return {
+                backgroundImage: `url(${this.status.image})`,
+            };
+        },
+        userImageStyle() {
+            if (!this.status.userImage) {
+                return {};
+            }
+
+            return {
+                backgroundImage: `url(${this.status.userImage})`,
+            };
+        },
         timeAgo() {
             if (!this.now) {
                 return 'never';
             }
 
-            var timeAgo = moment(this.status.time).from(this.now);
+            let timeAgo = moment(this.status.time).from(this.now);
             if (timeAgo === 'a few seconds ago' || timeAgo === 'in a few seconds') {
                 return 'just now';
             }
-            return timeAgo;
+            return timeAgo.replace('minutes', 'min');
         },
     },
 };
@@ -59,61 +96,31 @@ export default {
 $border-top: 2px
 $border-bottom: 3px
 
-.status
+.status__container
     position: relative
-    color: $color-white
-    background: $color-info
-    border-top: $border-top solid $color-info-light
-    border-bottom: $border-bottom solid $color-info-dark
-    margin-top: 10px
-    padding: 20px 0
     overflow: hidden
     display: flex
-    flex-direction: row
+    align-items: stretch
 
-    &:first-child
-        margin-top: 0
-
-    &.success
-        background: $color-success
-        border-top: $border-top solid $color-success-light
-        border-bottom: $border-bottom solid $color-success-dark
-
-    &.warning
-        background: $color-warning
-        border-top: $border-top solid $color-warning-light
-        border-bottom: $border-bottom solid $color-warning-dark
-
-    &.error
-        background: $color-error
-        border-top: $border-top solid $color-error-light
-        border-bottom: $border-bottom solid $color-error-dark
-
-.details
-    min-height: 100px
+.status__detail-container
     flex-grow: 1
-    margin: 0 20px
 
-.title
+.status__detail-title
     font-size: 50px
 
-.sub-title
+.status__detail-sub-title
     font-size: 30px
-    padding-right: 10px
 
-.user-image,
-.image
-    height: 100px
+.status__image-container,
+.status__user-image-container
+    flex-shrink: 0
 
-.image
-    border-radius: 3px
-    margin-left: 20px
-
-.user-image
-    border-radius: 50%
-    background-color: rgba(0, 0, 0, 0.1)
-    margin-right: 20px
-
-.time-ago
+.status__time-ago
     font-size: 24px
+
+.image-resolver
+    visibility: 0
+    height: 0
+    width: 0
+    overflow: hidden
 </style>
