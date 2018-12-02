@@ -1,89 +1,160 @@
-// space for theme variables
-
-.theme__basic-dark
-    // statuses wrapper
+.theme__color-stages
+    background: $color-antracite
 
     .statuses__container
-        // container for all statuses
+        padding: 20px
 
     .status__container
-        // single status container
+        margin-top: 20px
+        color: #333
+        border-radius: 10px
+
+        &:first-child
+            margin-top: 0
 
         &.info
-            // info state
+            background: transparentize($color-info, 0.6)
+
+            .status__image-container,
+            .status__user-image-container
+                background: $color-info
+
+            .status__detail-title,
+            .status__detail-sub-title
+                color: $color-info
 
         &.success
-            // success state
+            background: transparentize($color-success, 0.6)
+
+            .status__image-container,
+            .status__user-image-container
+                background: $color-success
+
+            .status__detail-title,
+            .status__detail-sub-title
+                color: $color-success
 
         &.warning
-            // warning state
+            background: transparentize($color-warning, 0.6)
+
+            .status__image-container,
+            .status__user-image-container
+                background: $color-warning
+
+            .status__detail-title,
+            .status__detail-sub-title
+                color: $color-warning
 
         &.error
-            // error state
+            background: transparentize($color-error, 0.6)
+
+            .status__image-container,
+            .status__user-image-container
+                background: $color-error
+
+            .status__detail-title,
+            .status__detail-sub-title
+                color: $color-error
 
     .status__image-container
-        // left column container
+        padding: 20px
+        margin-right: 5px
 
     .status__image-container--no-image
-        // added to image-container when no image is present
+        display: none
 
     .status__image
-        // image in the image-container
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: contain
+            repeat: no-repeat
+        border-radius: 3px
 
     .status__image--no-image
-        // added to image when no image is present
+        display: none
 
     .status__detail-container
-        // wrapper for the center section of the status
+        display: flex
+        flex-direction: column
 
     .status__detail-title
-        // pimary title
+        order: 1
+        padding: 10px 15px 5px
+        flex-grow: 1
 
-    .status__detail-stages
-        // list of stages
+    .status__detail-sub-title
+        order: 2
+        padding: 0 15px 10px
+        flex-grow: 10
 
+    .status__detail-jobs-and-stages
+        order: 3
+
+    .status__detail-stages,
     .status__detail-jobs
-        // list of relevant jobs
+        display: flex
+        margin-top: 5px
+        width: 100%
 
     .status__detail-stage,
     .status__detail-job
-        // job or stage detail
+        flex: 1
+        margin-left: 5px
+        padding: 5px 15px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+        &:first-child
+            margin-left: 0
 
         &.error
-            // error state
+            background: $color-error
 
         &.running
-            // running state
+            background: $color-warning
 
         &.pending
-            // pending state
+            background: $color-warning
+            opacity: 0.3
 
         &.success
-            // success state
+            background: $color-success
 
         &.warning
-            // warning state
+            background: $color-warning
 
         &.info
-            // info state
-
-    .status__detail-sub-title
-        // Secondary title (can be a text too)
+            background: $color-info
 
     .status__time-ago
-        // stand alone display for the time ago
+        position: absolute
+        right: 0
+        bottom: 5px
+        text-align: center
+        width: 160px
 
     .status__time-ago--no-user-image
         // stand alone display for the time ago
 
     .status__user-image-container
-        // user image container
+        padding: 10px 30px 35px
+        width: 100px
+        margin-left: 5px
 
     .status__user-image-container--no-image
         // added to the user image container when no user image is present
 
     .status__user-image
-        // user image
+        width: 100px
+        height: 100px
+        background:
+            position: center
+            size: cover
+            repeat: no-repeat
+        border-radius: 50%
 
     .status__user-image--no-image
-        // added to the user image when no user image is present
+        display: none

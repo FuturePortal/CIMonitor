@@ -98,20 +98,9 @@ $border-bottom: 3px
 
 .status__container
     position: relative
-    color: $color-white
-    background: $color-info
     overflow: hidden
     display: flex
     align-items: stretch
-
-    &.success
-        background: $color-success
-
-    &.warning
-        background: $color-warning
-
-    &.error
-        background: $color-error
 
 .status__detail-container
     flex-grow: 1

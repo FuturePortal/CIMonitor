@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="status__detail-jobs-and-stages">
         <div class="status__detail-stages" v-if="stages.length > 0">
             <div
                 class="status__detail-stage"
@@ -68,11 +68,5 @@ export default {
 <style lang="sass" rel="stylesheet/sass" scoped>
 .status__detail-jobs,
 .status__detail-stages
-    margin-top: 10px
     font-size: 26px
-
-.status__detail-job,
-.status__detail-stage
-    display: inline-block
-    margin: 0 20px 10px 0
 </style>

@@ -16,7 +16,7 @@ intro:
 	@echo "Y88b  d88P  888   888   \"   888 Y88..88P 888  888 888 Y88b. Y88..88P 888"
 	@echo " \"Y8888P\" 8888888 888       888  \"Y88P\"  888  888 888  \"Y888 \"Y88P\"  888"
 outro:
-	@echo "\n=== Make CIMonitor ==="
+	@echo "\n=-- Make CIMonitor --="
 
 # ===========================
 # Main commands
@@ -40,8 +40,8 @@ test: intro do-test-eslint-prettier outro
 pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
-cypress: do-cypress-open
-cypress-run: do-cypress-run outro
+cypress: intro do-cypress-open
+cypress-run: intro do-cypress-run outro
 
 # ===========================
 # Recipes
