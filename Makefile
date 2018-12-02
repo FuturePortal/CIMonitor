@@ -6,8 +6,7 @@
 
 info: intro do-show-commands outro
 intro:
-	@echo ""
-	@echo " .d8888b. 8888888 888b     d888                   d8b 888"
+	@echo "\n .d8888b. 8888888 888b     d888                   d8b 888"
 	@echo "d88P  Y88b  888   8888b   d8888                   Y8P 888"
 	@echo "888    888  888   88888b.d88888                       888"
 	@echo "888         888   888Y88888P888  .d88b.  88888b.  888 888888 .d88b.  888d888"
@@ -16,7 +15,7 @@ intro:
 	@echo "Y88b  d88P  888   888   \"   888 Y88..88P 888  888 888 Y88b. Y88..88P 888"
 	@echo " \"Y8888P\" 8888888 888       888  \"Y88P\"  888  888 888  \"Y888 \"Y88P\"  888"
 outro:
-	@echo "\n=-- Make CIMonitor --="
+	@echo ""
 
 # ===========================
 # Main commands
