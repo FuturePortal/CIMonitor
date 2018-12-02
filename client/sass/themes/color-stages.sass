@@ -2,10 +2,10 @@
     background: $color-antracite
 
     .statuses__container
-        padding: 20px
+        padding: 10px
 
     .status__container
-        margin-top: 20px
+        margin-top: 10px
         color: #333
         border-radius: 10px
 
@@ -13,52 +13,61 @@
             margin-top: 0
 
         &.info
-            background: transparentize($color-info, 0.6)
+            background: transparentize($color-info, 0.8)
 
             .status__image-container,
-            .status__user-image-container
+            .status__user-image-container,
+            .status__detail-title,
+            .status__detail-sub-title
                 background: $color-info
 
-            .status__detail-title,
-            .status__detail-sub-title
-                color: $color-info
+            .status__detail-stage.pending,
+            .status__detail-job.pending
+                background: $color-info
 
         &.success
-            background: transparentize($color-success, 0.6)
+            background: transparentize($color-success, 0.8)
 
             .status__image-container,
-            .status__user-image-container
+            .status__user-image-container,
+            .status__detail-title,
+            .status__detail-sub-title
                 background: $color-success
 
-            .status__detail-title,
-            .status__detail-sub-title
-                color: $color-success
+            .status__detail-stage.pending,
+            .status__detail-job.pending
+                background: $color-success
 
         &.warning
-            background: transparentize($color-warning, 0.6)
+            background: transparentize($color-warning, 0.8)
 
             .status__image-container,
-            .status__user-image-container
+            .status__user-image-container,
+            .status__detail-title,
+            .status__detail-sub-title
                 background: $color-warning
 
-            .status__detail-title,
-            .status__detail-sub-title
-                color: $color-warning
+            .status__detail-stage.pending,
+            .status__detail-job.pending
+                background: $color-warning
 
         &.error
-            background: transparentize($color-error, 0.6)
+            background: transparentize($color-error, 0.8)
 
             .status__image-container,
-            .status__user-image-container
-                background: $color-error
-
+            .status__user-image-container,
             .status__detail-title,
             .status__detail-sub-title
-                color: $color-error
+                background: $color-error
+
+            .status__detail-stage.pending,
+            .status__detail-job.pending
+                background: $color-error
 
     .status__image-container
         padding: 20px
-        margin-right: 5px
+        margin-right: 3px
+        flex-shrink: 0
 
     .status__image-container--no-image
         display: none
@@ -78,6 +87,7 @@
     .status__detail-container
         display: flex
         flex-direction: column
+        min-width: 0
 
     .status__detail-title
         order: 1
@@ -95,17 +105,18 @@
     .status__detail-stages,
     .status__detail-jobs
         display: flex
-        margin-top: 5px
+        margin-top: 3px
         width: 100%
 
     .status__detail-stage,
     .status__detail-job
         flex: 1
-        margin-left: 5px
+        margin-left: 3px
         padding: 5px 15px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
+        min-width: 0
 
         &:first-child
             margin-left: 0
@@ -117,8 +128,8 @@
             background: $color-warning
 
         &.pending
-            background: $color-warning
-            opacity: 0.3
+            // color in top status states
+            opacity: 0.5
 
         &.success
             background: $color-success
@@ -142,7 +153,8 @@
     .status__user-image-container
         padding: 10px 30px 35px
         width: 100px
-        margin-left: 5px
+        margin-left: 3px
+        flex-shrink: 0
 
     .status__user-image-container--no-image
         // added to the user image container when no user image is present

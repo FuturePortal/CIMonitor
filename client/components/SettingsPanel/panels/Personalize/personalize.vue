@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p><strong>Select font-size:</strong></p>
-        <p>@Todo</p>
+        <p><strong>Font size:</strong></p>
+        <p>@todo</p>
         <hr />
         <p><strong>Select a theme:</strong></p>
         <button
@@ -13,9 +13,6 @@
         >
             {{ theme.name }}
         </button>
-        <hr />
-        <button @click="setTheme({ slug: 'none' });">no theme</button
-        ><!-- @todo: remove -->
     </div>
 </template>
 

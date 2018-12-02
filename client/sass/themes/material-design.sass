@@ -9,7 +9,7 @@ $top-bar-height: 34px
 
     .status__container
         color: $color-white
-        margin-top: 0
+        margin-top: 15px
         padding-top: $top-bar-height
 
         &::before
@@ -70,7 +70,7 @@ $top-bar-height: 34px
                 content: "\e000"
 
     .status__image-container
-        padding: 15px 0 15px 15px
+        padding: 15px 0 15px 20px
 
     .status__image-container--no-image
         display: none
@@ -88,7 +88,8 @@ $top-bar-height: 34px
         // added to image when no image is present
 
     .status__detail-container
-        padding: 10px 15px 15px 15px
+        padding: 10px 20px 15px
+        min-width: 0
 
     .status__detail-title
         // pimary title
@@ -155,7 +156,7 @@ $top-bar-height: 34px
         // can stay at the bottom
 
     .status__user-image-container
-        padding: 15px 15px 15px 0
+        padding: 15px 20px 15px 0
 
     .status__user-image-container--no-image
         width: 100px
