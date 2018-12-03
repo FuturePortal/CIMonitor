@@ -45,8 +45,6 @@ test: intro do-test-eslint-prettier outro
 cypress: intro do-cypress-open
 cypress-run: intro do-cypress-run outro
 
-pre-commit: intro do-fix-eslint-prettier do-commit-intro
-
 # ===========================
 # Recipes
 # ===========================
