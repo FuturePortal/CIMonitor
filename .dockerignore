@@ -2,8 +2,8 @@
 **
 
 # Allow files and directories
-!/client
 !/dist
 !/node_modules
 !/shared
 !/server
+!package.json
