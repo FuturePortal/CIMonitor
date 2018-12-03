@@ -16,9 +16,9 @@ script:
     - make build-docs
 
 after_success:
-    - if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "master" || "$TRAVIS_TAG != "") ]]; then
-      DOCKER_TAG=$([ "$TRAVIS_TAG == "" ] && echo "latest" || echo "$TRAVIS_TAG")
-      make build-containers;
+    - if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "master" || "$TRAVIS_TAG" != "") ]]; then
+      DOCKER_TAG=$([ "$TRAVIS_TAG" == "" ] && echo "latest" || echo "$TRAVIS_TAG");
+      make build-containers DOCKER_TAG="$DOCKER_TAG";
       docker login -u="cimonitor" -p="$DOCKER_PASSWORD";
       docker push cimonitor/cimonitor:$DOCKER_TAG;
       docker push cimonitor/cimonitor-slave:$DOCKER_TAG;

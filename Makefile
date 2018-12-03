@@ -1,6 +1,12 @@
 .PHONY: all
 
 # ===========================
+# Variables
+# ===========================
+
+DOCKER_TAG="latest"
+
+# ===========================
 # Default: help section
 # ===========================
 
@@ -168,12 +174,12 @@ do-build-containers:
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
 	cp dev/docker/server-slave/Dockerfile Dockerfile
 	cp dev/docker/server-slave/.dockerignore .dockerignore
-	docker build -t cimonitor/cimonitor-slave:latest .
+	docker build -t cimonitor/cimonitor-slave:$$DOCKER_TAG .
 	rm Dockerfile
 	rm .dockerignore
 	cp dev/docker/server/Dockerfile Dockerfile
 	cp dev/docker/server/.dockerignore .dockerignore
-	docker build -t cimonitor/cimonitor:latest .
+	docker build -t cimonitor/cimonitor:$$DOCKER_TAG .
 	rm Dockerfile
 	rm .dockerignore
 
