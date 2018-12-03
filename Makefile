@@ -35,8 +35,9 @@ dev-server-slave: intro do-dev-server-slave outro
 dev-client: intro do-dev-client outro
 build-production: intro do-build-production outro
 
-build-container: intro do-backup-dependencies do-build-production do-build-container do-restore-dependencies do-run-updates outro
+build-container: intro do-backup-dependencies do-build-production do-build-container do-restore-dependencies outro
 run-container: intro do-run-container outro
+inspect-container: intro do-inspect-container outro
 
 pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
@@ -52,28 +53,29 @@ cypress-run: intro do-cypress-run outro
 do-show-commands:
 	@echo "\n=== Make commands ===\n"
 	@echo "Project:"
-	@echo "    make init                   Initialise the project for development."
-	@echo "    make update-project         Install all dependencies and generate required files."
-	@echo "    make update BRANCH=<branch> Switch to a branch and run update-project."
-	@echo "    make github PR=<number>     Check out a PR from github and update the project."
-	@echo "    make git-hooks              Install the available git hooks."
-	@echo "    make fix                    Fix most of the codestyle errors."
+	@echo "    make init                     Initialise the project for development."
+	@echo "    make update-project           Install all dependencies and generate required files."
+	@echo "    make update BRANCH=<branch>   Switch to a branch and run update-project."
+	@echo "    make github PR=<number>       Check out a PR from github and update the project."
+	@echo "    make git-hooks                Install the available git hooks."
+	@echo "    make fix                      Fix most of the codestyle errors."
 	@echo "\nLocal installation:"
-	@echo "    make build-production       Build all the files required for production."
+	@echo "    make build-production         Build all the files required for production."
 	@echo "\nDocumentation:"
-	@echo "    make build-docs             Build the documentation."
-	@echo "    make preview-docs           Run a live preview of the documentation."
+	@echo "    make build-docs               Build the documentation."
+	@echo "    make preview-docs             Run a live preview of the documentation."
 	@echo "\nDevelopment:"
-	@echo "    make dev-server             Run the development server."
-	@echo "    make dev-server-slave       Run the development slave server, listening to a master."
-	@echo "    make dev-client             Build, run and watch the development dashboard."
+	@echo "    make dev-server               Run the development server."
+	@echo "    make dev-server-slave         Run the development slave server, listening to a master."
+	@echo "    make dev-client               Build, run and watch the development dashboard."
 	@echo "\nDocker container:"
-	@echo "    make build-container        Build production assets and a Docker container."
-	@echo "    make run-container          Run the built Docker container."
+	@echo "    make build-container          Builds a Docker container."
+	@echo "    make run-container            Run the built Docker container."
+	@echo "    make inspect-container        Run the built Docker container in its shell."
 	@echo "\nTests:"
-	@echo "    make test                   Run the test suite."
-	@echo "    make cypress                Open Cypress dashboard for quick testing."
-	@echo "    make cypress-run            Run the cypress tests in the background."
+	@echo "    make test                     Run the test suite."
+	@echo "    make cypress                  Open Cypress dashboard for quick testing."
+	@echo "    make cypress-run              Run the cypress tests in the background."
 
 do-pre-init:
 	cp -n server/config/config.example.json server/config/config.json
@@ -163,8 +165,12 @@ do-build-container:
 	docker build -t cimonitor/cimonitor:latest .
 
 do-run-container:
-	@echo "\n=== Running dev container ===\n"
-	docker run -ti --rm -p9999:9999 cimonitor/cimonitor:latest
+	@echo "\n=== Running container ===\n"
+	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor:latest
+
+do-inspect-container:
+	@echo "\n=== Running container shell ===\n"
+	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"
