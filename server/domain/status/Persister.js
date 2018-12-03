@@ -7,8 +7,6 @@ const StatusFactory = require('../status/StatusFactory');
 
 class Persister {
     constructor() {
-        Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
-
         const filename = `saved-statuses.json`;
         const logPath = path.resolve(`${__dirname}/../../config/`);
 
@@ -27,6 +25,10 @@ class Persister {
         });
     }
 
+    saveStatusesOnChange() {
+        Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
+    }
+
     loadSavedStatuses() {
         console.log('[Persister] Loading saved statuses if any...');
 
@@ -35,12 +37,17 @@ class Persister {
             return;
         }
 
-        const rawStatuses = JSON.parse(fileSystem.readFileSync(this.statusesFile));
-        const statuses = rawStatuses.map(rawStatus => StatusFactory.hydrateStatus(rawStatus));
+        try {
+            const rawStatuses = JSON.parse(fileSystem.readFileSync(this.statusesFile));
+            const statuses = rawStatuses.map(rawStatus => StatusFactory.hydrateStatus(rawStatus));
 
-        StatusManager.overwriteStatuses(statuses);
+            StatusManager.overwriteStatuses(statuses);
 
-        console.log(`[Persister] Load ${statuses.length} statuses from ${this.statusesFile}...`);
+            console.log(`[Persister] Load ${statuses.length} statuses from ${this.statusesFile}...`);
+        } catch (error) {
+            console.log(`[Persister] Failed to load the saved statuses...`);
+            console.log(error);
+        }
     }
 }
 

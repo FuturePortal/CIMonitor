@@ -1,24 +1,27 @@
 <html>
     <head>
         <title>CIMonitor</title>
-        <link rel="stylesheet" href="/dashboard.css" type="text/css" />
+        <link rel="stylesheet" href="/dashboard.css?bust=---bust---" type="text/css" />
         <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
             integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
             crossorigin="anonymous"
         />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=2"
         />
-        <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Heebo|Roboto" rel="stylesheet" />
         <link rel="shortcut icon" type="image/png" href="/images/favicon/success.png" />
     </head>
-
     <body>
         <div id="app"><dashboard></dashboard></div>
 
-        <script type="text/javascript" src="/client.js"></script>
+        <script type="text/javascript">
+            window.CIMonitorVersion = '---version---';
+        </script>
+        <script type="text/javascript" src="/client.js?bust=---bust---"></script>
     </body>
 </html>
