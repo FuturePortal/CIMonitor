@@ -39,6 +39,7 @@ build-containers: intro do-backup-dependencies do-build-production do-build-cont
 run-container: intro do-run-container outro
 run-container-slave: intro do-run-container-slave outro
 inspect-container: intro do-inspect-container outro
+inspect-container-slave: intro do-inspect-container-slave outro
 
 pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
@@ -177,15 +178,31 @@ do-build-containers:
 
 do-run-container:
 	@echo "\n=== Running container ===\n"
-	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor:latest
+	@docker run -ti --rm -p 9999:9999 \
+		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/cimonitor:latest
 
 do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
-	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor-slave:latest
+	@docker run -ti --rm \
+		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/cimonitor-slave:latest
 
 do-inspect-container:
-	@echo "\n=== Running container shell ===\n"
-	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor:latest /bin/sh
+	@echo "\n=== Inspect server container shell ===\n"
+	@docker run -ti --rm -p 9999:9999 \
+		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/cimonitor:latest /bin/sh
+
+do-inspect-container-slave:
+	@echo "\n=== Inspect server slave container shell ===\n"
+	@docker run -ti --rm \
+		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/cimonitor-slave:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"
