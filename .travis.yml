@@ -16,11 +16,12 @@ script:
     - make build-docs
 
 after_success:
-    - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "build-docker-container" ]]; then
+    - if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "master" || "$TRAVIS_TAG != "") ]]; then
+      DOCKER_TAG=$([ "$TRAVIS_TAG == "" ] && echo "latest" || echo "$TRAVIS_TAG")
       make build-containers;
       docker login -u="cimonitor" -p="$DOCKER_PASSWORD";
-      docker push cimonitor/cimonitor:latest;
-      docker push cimonitor/cimonitor-slave:latest;
+      docker push cimonitor/cimonitor:$DOCKER_TAG;
+      docker push cimonitor/cimonitor-slave:$DOCKER_TAG;
       fi
 
 notifications:
