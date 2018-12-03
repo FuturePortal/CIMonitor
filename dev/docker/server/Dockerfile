@@ -6,4 +6,4 @@ COPY . /CIMonitor/
 
 WORKDIR /CIMonitor
 
-CMD ["dumb-init", "node", "/opt/server/server.js"]
+CMD ["dumb-init", "node", "/CIMonitor/server/server.js"]

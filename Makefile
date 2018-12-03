@@ -35,8 +35,9 @@ dev-server-slave: intro do-dev-server-slave outro
 dev-client: intro do-dev-client outro
 build-production: intro do-build-production outro
 
-build-container: intro do-backup-dependencies do-build-production do-build-container do-restore-dependencies outro
+build-containers: intro do-backup-dependencies do-build-production do-build-containers do-restore-dependencies outro
 run-container: intro do-run-container outro
+run-container-slave: intro do-run-container-slave outro
 inspect-container: intro do-inspect-container outro
 
 pre-commit: intro do-test-eslint-prettier do-commit-intro
@@ -69,8 +70,9 @@ do-show-commands:
 	@echo "    make dev-server-slave         Run the development slave server, listening to a master."
 	@echo "    make dev-client               Build, run and watch the development dashboard."
 	@echo "\nDocker container:"
-	@echo "    make build-container          Builds a Docker container."
+	@echo "    make build-containers         Builds the Docker containers."
 	@echo "    make run-container            Run the built Docker container."
+	@echo "    make run-container-slave      Run the built Docker slave container."
 	@echo "    make inspect-container        Run the built Docker container in its shell."
 	@echo "\nTests:"
 	@echo "    make test                     Run the test suite."
@@ -159,14 +161,27 @@ do-preview-docs:
 	@echo "Check the documentation at http://localhost:8000/"
 	@docker run -ti --rm -p 8000:8000 -v $$PWD:/docs/src cogset/mkdocs -s
 
-do-build-container:
+do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
+	cp dev/docker/server-slave/Dockerfile Dockerfile
+	cp dev/docker/server-slave/.dockerignore .dockerignore
+	docker build -t cimonitor/cimonitor-slave:latest .
+	rm Dockerfile
+	rm .dockerignore
+	cp dev/docker/server/Dockerfile Dockerfile
+	cp dev/docker/server/.dockerignore .dockerignore
 	docker build -t cimonitor/cimonitor:latest .
+	rm Dockerfile
+	rm .dockerignore
 
 do-run-container:
 	@echo "\n=== Running container ===\n"
 	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor:latest
+
+do-run-container-slave:
+	@echo "\n=== Running container slave ===\n"
+	docker run -ti --rm -p 9999:9999 cimonitor/cimonitor-slave:latest
 
 do-inspect-container:
 	@echo "\n=== Running container shell ===\n"
