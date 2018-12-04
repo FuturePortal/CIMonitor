@@ -20,9 +20,7 @@ stages:
 jobs:
   include:
     - stage: test
-      script: |
-        make test
-        make build-docs
+      script: make test build-docs
 
     - &build
       if: branch = testbuild
@@ -31,13 +29,13 @@ jobs:
         - DOCKER_TAG=latest
       script: |
         cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
-        docker build -t cimonitor/cimonitor:$(DOCKER_TAG) .
+        docker build -t cimonitor/cimonitor:$DOCKER_TAG .
         cp dev/docker/server-slave/Dockerfile dev/docker/server-slave/.dockerignore .
-        docker build -t cimonitor/cimonitor-slave:$(DOCKER_TAG) .
+        docker build -t cimonitor/cimonitor-slave:$DOCKER_TAG .
       after_success: |
-        docker login -u="$(DOCKER_USERNAME)" -p="$(DOCKER_PASSWORD)";
-        docker push cimonitor/cimonitor:$(DOCKER_TAG)
-        docker push cimonitor/cimonitor-slave:$(DOCKER_TAG)
+        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        docker push cimonitor/cimonitor:$DOCKER_TAG
+        docker push cimonitor/cimonitor-slave:$DOCKER_TAG
       cache:
         directories:
           - ~/.npm
