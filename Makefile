@@ -194,7 +194,6 @@ do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
 		cimonitor/cimonitor-slave:latest
 
 do-inspect-container:
@@ -208,7 +207,6 @@ do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
 		cimonitor/cimonitor-slave:latest /bin/sh
 
 do-backup-dependencies:
