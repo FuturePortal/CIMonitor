@@ -172,6 +172,7 @@ do-preview-docs:
 do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
+	mv -n server/config/config.example.json server/config/config.json
 	cp dev/docker/server-slave/Dockerfile Dockerfile
 	cp dev/docker/server-slave/.dockerignore .dockerignore
 	docker build -t cimonitor/cimonitor-slave:$$DOCKER_TAG .
