@@ -9,7 +9,7 @@
             browser settings. You can dissable the dashboard notifications any time you like below.
         </p>
         <button class="option" @click="dissableNotifications" :class="{ current: !pushNotifications }">
-            No desktop notifications
+            Dissable desktop notifications
         </button>
         <button class="option" @click="enableNotifications" :class="{ current: pushNotifications }">
             Enable desktop notifications
