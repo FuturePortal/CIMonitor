@@ -186,27 +186,27 @@ do-build-containers:
 do-run-container:
 	@echo "\n=== Running container ===\n"
 	@docker run -ti --rm -p 9999:9999 \
-		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
 		cimonitor/cimonitor:latest
 
 do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
-		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
 		cimonitor/cimonitor-slave:latest
 
 do-inspect-container:
 	@echo "\n=== Inspect server container shell ===\n"
 	@docker run -ti --rm -p 9999:9999 \
-		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/CIMonitor/server/config/saved-statuses.json \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
 		cimonitor/cimonitor:latest /bin/sh
 
 do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
-		-v $$PWD/server/config/config.json:/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
 		cimonitor/cimonitor-slave:latest /bin/sh
 
 do-backup-dependencies:

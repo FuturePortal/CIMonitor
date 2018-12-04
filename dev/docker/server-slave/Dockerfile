@@ -2,8 +2,8 @@ FROM node:10-alpine
 
 RUN apk -U add dumb-init --no-cache
 
-COPY . /CIMonitor/
+COPY . /opt/CIMonitor/
 
-WORKDIR /CIMonitor
+WORKDIR /opt/CIMonitor
 
-CMD ["dumb-init", "node", "/CIMonitor/server/server-slave.js"]
+CMD ["dumb-init", "node", "/opt/CIMonitor/server/server-slave.js"]
