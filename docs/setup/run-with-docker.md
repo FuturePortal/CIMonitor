@@ -6,10 +6,10 @@ find all available tags on the [docker hub](https://hub.docker.com/u/cimonitor/)
 ## Running the docker container
 
 To run CIMonitor there is one file you need to prepare, being the config file. Make sure you've set up the configuration file
-as described on the configuration page.
+as described on [the configuration page](./configuration.md).
 
 Optionally, you can provide another json file to store CIMonitor's statuses in. This can be an empty json file, that will be filled
-by the container once it's running.
+by the container once it's running. This way the statuses won't be lost when you restart the container.
 
 Open your terminal in a folder with a `config.json` file and optionally a `saved-statuses.json` file and run the following command:
 
@@ -40,7 +40,7 @@ Main difference is that the server slave doesn't need a saved statuses file.
 
 We have also prepared a docker container that can run on ARM systems (a Raspberry pi for example). Check if your ARM device
 is running at 64 bits or 32 bits, and append the following to your docker-tag accordingly: `-arm64` or `-arm32`. So running
-the latest version of CIMonitor on a 64 Raspberry pi 3 will look like the following:
+the latest version of CIMonitor on a Raspberry pi 3 will look like the following:
 
 ```bash
 docker run \
