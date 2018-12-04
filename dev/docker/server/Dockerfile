@@ -1,9 +1,5 @@
-FROM node:10-alpine
-
-RUN apk -U add dumb-init --no-cache
+FROM node:8-jessie-slim
 
 COPY . /opt/CIMonitor/
 
-WORKDIR /opt/CIMonitor
-
-CMD ["dumb-init", "node", "/opt/CIMonitor/server/server.js"]
+CMD ["node", "/opt/CIMonitor/server/server.js"]
