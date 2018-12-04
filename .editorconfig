@@ -14,3 +14,7 @@ trim_trailing_whitespace = true
 # Makefiles must have tabs
 [Makefile]
 indent_style = tab
+
+# The Travis configuration file
+[.travis.yml]
+indent_size = 2
