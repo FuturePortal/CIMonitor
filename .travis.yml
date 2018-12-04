@@ -43,8 +43,8 @@ jobs:
         - DOCKER_TAG=latest-arm32
       before_script: |
         docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm32v7/node:8-jessie-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm32v7/node:8-jessie-slim#' dev/docker/server-slave/Dockerfile
+        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server/Dockerfile
+        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
       if: branch = testbuild
@@ -52,8 +52,8 @@ jobs:
         - DOCKER_TAG=latest-arm64
       before_script: |
         docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm64v8/node:8-jessie-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm64v8/node:8-jessie-slim#' dev/docker/server-slave/Dockerfile
+        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server/Dockerfile
+        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
       if: tag IS present
@@ -66,8 +66,8 @@ jobs:
         - DOCKER_TAG=$TRAVIS_TAG-arm32
       before_script: |
         docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm32v7/node:8-jessie-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm32v7/node:8-jessie-slim#' dev/docker/server-slave/Dockerfile
+        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server/Dockerfile
+        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
       if: tag IS present
@@ -75,8 +75,8 @@ jobs:
         - DOCKER_TAG=$TRAVIS_TAG-arm64
       before_script: |
         docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm64v8/node:8-jessie-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm64v8/node:8-jessie-slim#' dev/docker/server-slave/Dockerfile
+        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server/Dockerfile
+        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server-slave/Dockerfile
 
 notifications:
   webhooks:
