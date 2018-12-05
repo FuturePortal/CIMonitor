@@ -9,6 +9,7 @@ import socketEvents from '../shared/socketEvents';
 import { STATUS_SET_STATUSES } from './store/StaticMutations';
 import { STATUS_GET_GLOBAL_STATE } from './store/StaticGetters';
 import VersionChecker from './classes/VersionChecker';
+import CIMonitorLogo from './components/EmptyBoard/logo.png';
 
 Vue.use(VueSocketIo, io());
 Vue.use(Vuex);
@@ -29,6 +30,20 @@ new Vue({
                 .querySelector('link[rel="shortcut icon"]')
                 .setAttribute('href', `/images/favicon/${globalState}.png`);
         },
+        pushNotification(status) {
+            if (!this.$store.state.settings.pushNotifications) {
+                return;
+            }
+
+            try {
+                new Notification(`CIMonitor • ${status.state}`, {
+                    body: `${status.title}${status.subTitle ? ` • ${status.subTitle}` : ''}: ${status.state}`,
+                    icon: CIMonitorLogo,
+                });
+            } catch (error) {
+                // do nothing.
+            }
+        },
     },
     sockets: {
         connect() {
@@ -46,6 +61,9 @@ new Vue({
             this.$store.commit(STATUS_SET_STATUSES, statuses);
 
             this.updateFavicon(this.$store.getters[STATUS_GET_GLOBAL_STATE]);
+        },
+        [socketEvents.eventTriggerStatus](status) {
+            this.pushNotification(status);
         },
     },
 });
