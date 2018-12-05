@@ -175,12 +175,12 @@ do-build-containers:
 	mv -n server/config/config.example.json server/config/config.json
 	cp dev/docker/server-slave/Dockerfile Dockerfile
 	cp dev/docker/server-slave/.dockerignore .dockerignore
-	docker build -t cimonitor/cimonitor-slave:$$DOCKER_TAG .
+	docker build -t cimonitor/cimonitor-slave:$(DOCKER_TAG) .
 	rm Dockerfile
 	rm .dockerignore
 	cp dev/docker/server/Dockerfile Dockerfile
 	cp dev/docker/server/.dockerignore .dockerignore
-	docker build -t cimonitor/cimonitor:$$DOCKER_TAG .
+	docker build -t cimonitor/cimonitor:$(DOCKER_TAG) .
 	rm Dockerfile
 	rm .dockerignore
 
