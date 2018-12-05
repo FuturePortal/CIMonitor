@@ -1,5 +1,5 @@
 <template>
-    <div class="status__container" :class="status.state">
+    <div class="status__container" :class="status.state" :style="statusCustomColor">
         <div class="image-resolver"><img v-if="status.image" :src="status.image" @error="hideImage" /></div>
         <div
             class="status__image-container"
@@ -75,6 +75,17 @@ export default {
 
             return {
                 backgroundImage: `url(${this.status.userImage})`,
+            };
+        },
+        statusCustomColor() {
+            if (!this.status.customColor) {
+                return {};
+            }
+
+            return {
+                background: `${this.status.customColor}`,
+                borderTop: `${this.status.customColor}`,
+                borderBottomColor: `${this.status.customColor}`,
             };
         },
         timeAgo() {
