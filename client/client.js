@@ -31,13 +31,15 @@ new Vue({
                 .setAttribute('href', `/images/favicon/${globalState}.png`);
         },
         pushNotification(status) {
+            if (!this.$store.state.settings.pushNotifications) {
+                return;
+            }
+
             try {
-                if (this.$store.state.settings.pushNotifications) {
-                    new Notification(`CIMonitor • ${status.state}`, {
-                        body: `${status.title} • ${status.subTitle}: ${status.state}`,
-                        icon: CIMonitorLogo,
-                    });
-                }
+                new Notification(`CIMonitor • ${status.state}`, {
+                    body: `${status.title} • ${status.subTitle}: ${status.state}`,
+                    icon: CIMonitorLogo,
+                });
             } catch (error) {
                 // do nothing.
             }
