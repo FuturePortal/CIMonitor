@@ -30,6 +30,18 @@ new Vue({
                 .querySelector('link[rel="shortcut icon"]')
                 .setAttribute('href', `/images/favicon/${globalState}.png`);
         },
+        pushNotification(status) {
+            try {
+                if (this.$store.state.settings.pushNotifications) {
+                    new Notification(`CIMonitor • ${status.state}`, {
+                        body: `${status.title} • ${status.subTitle}: ${status.state}`,
+                        icon: CIMonitorLogo,
+                    });
+                }
+            } catch (error) {
+                // do nothing.
+            }
+        },
     },
     sockets: {
         connect() {
@@ -49,14 +61,7 @@ new Vue({
             this.updateFavicon(this.$store.getters[STATUS_GET_GLOBAL_STATE]);
         },
         [socketEvents.eventTriggerStatus](status) {
-            try {
-                new Notification(`CIMonitor • ${status.state}`, {
-                    body: `${status.title} • ${status.subTitle}: ${status.state}`,
-                    icon: CIMonitorLogo,
-                });
-            } catch (error) {
-                // do nothing.
-            }
+            this.pushNotification(status);
         },
     },
 });
