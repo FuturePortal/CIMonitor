@@ -4,7 +4,10 @@ language: node_js
 node_js:
   - '8'
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 services:
   - docker
@@ -35,10 +38,6 @@ jobs:
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         docker push cimonitor/cimonitor:$DOCKER_TAG
         docker push cimonitor/cimonitor-slave:$DOCKER_TAG
-      cache:
-        directories:
-          - ~/.npm
-          - node_modules
 
     - <<: *build
       if: branch = build-docker-container
