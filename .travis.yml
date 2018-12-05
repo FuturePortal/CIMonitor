@@ -19,12 +19,14 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = master
+      if: branch = build-docker-container
       stage: build
       env:
         - DOCKER_TAG=latest
       script: |
-        make build-production
+        yarn install --production
+        yarn production
+        yarn remove babel-cli laravel-mix sass-resources-loader --production
         cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
         docker build -t cimonitor/cimonitor:$DOCKER_TAG .
         cp dev/docker/server-slave/Dockerfile dev/docker/server-slave/.dockerignore .
@@ -39,7 +41,7 @@ jobs:
           - node_modules
 
     - <<: *build
-      if: branch = master
+      if: branch = build-docker-container
       env:
         - DOCKER_TAG=latest-arm32
       before_script: |
@@ -48,7 +50,7 @@ jobs:
         sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
-      if: branch = master
+      if: branch = build-docker-container
       env:
         - DOCKER_TAG=latest-arm64
       before_script: |
@@ -88,3 +90,4 @@ notifications:
     on_start: always
     on_cancel: always
     on_error: always
+

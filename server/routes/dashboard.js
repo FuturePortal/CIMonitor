@@ -3,7 +3,7 @@ const app = (module.exports = express());
 const path = require('path');
 
 // Listen to all the statically generated files
-app.use(express.static('dist'));
+app.use(express.static(path.resolve(__dirname + '/../../dist')));
 
 // When directly opening the applications index, show the dashboard
 app.get('/', (request, response) => {
