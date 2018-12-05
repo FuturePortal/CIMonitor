@@ -24,6 +24,7 @@ jobs:
       env:
         - DOCKER_TAG=latest
       script: |
+        make build-production
         cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
         docker build -t cimonitor/cimonitor:$DOCKER_TAG .
         cp dev/docker/server-slave/Dockerfile dev/docker/server-slave/.dockerignore .
