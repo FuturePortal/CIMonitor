@@ -22,7 +22,7 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = master
+      if: branch = build-docker-container
       stage: build
       env:
         - DOCKER_TAG=latest
@@ -40,7 +40,6 @@ jobs:
         docker push cimonitor/cimonitor-slave:$DOCKER_TAG
 
     - <<: *build
-      if: branch = master
       env:
         - DOCKER_TAG=latest-arm32
       before_script: |
@@ -49,7 +48,6 @@ jobs:
         sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
-      if: branch = master
       env:
         - DOCKER_TAG=latest-arm64
       before_script: |
