@@ -19,7 +19,7 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = testbuild
+      if: branch = master
       stage: build
       env:
         - DOCKER_TAG=latest
@@ -39,7 +39,7 @@ jobs:
           - node_modules
 
     - <<: *build
-      if: branch = testbuild
+      if: branch = master
       env:
         - DOCKER_TAG=latest-arm32
       before_script: |
@@ -48,7 +48,7 @@ jobs:
         sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
 
     - <<: *build
-      if: branch = testbuild
+      if: branch = master
       env:
         - DOCKER_TAG=latest-arm64
       before_script: |
