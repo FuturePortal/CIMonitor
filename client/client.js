@@ -37,7 +37,7 @@ new Vue({
 
             try {
                 new Notification(`CIMonitor • ${status.state}`, {
-                    body: `${status.title} • ${status.subTitle}: ${status.state}`,
+                    body: `${status.title}${status.subTitle ? ` • ${status.subTitle}` : ''}: ${status.state}`,
                     icon: CIMonitorLogo,
                 });
             } catch (error) {
