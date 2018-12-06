@@ -3,7 +3,7 @@ ARG QEMU_BINARY=notset
 
 #--- Intermediate build
 
-FROM node:8-slim as intermediate
+FROM node:8-slim
 
 COPY ./${QEMU_BINARY}* /usr/bin/
 
@@ -15,7 +15,7 @@ RUN echo "deb http://deb.debian.org/debian unstable main contrib non-free" >> /e
 
 FROM node:8-slim
 
-COPY --from=intermediate /usr/bin/dumb-init /usr/bin/dumb-init
+COPY --from=0 /usr/bin/dumb-init /usr/bin/dumb-init
 COPY . /opt/CIMonitor/
 
 WORKDIR /opt/CIMonitor/
