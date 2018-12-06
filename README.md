@@ -3,6 +3,7 @@
 [
     ![release](https://img.shields.io/github/release/CIMonitor/CIMonitor.svg)
     ![MIT](https://img.shields.io/github/license/CIMonitor/CIMonitor.svg)
+    ![docker pulls](https://img.shields.io/docker/pulls/cimonitor/server.svg)
     ![stars](https://img.shields.io/github/stars/CIMonitor/CIMonitor.svg)
     ![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
 ](https://cimonitor.readthedocs.io)
