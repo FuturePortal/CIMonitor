@@ -9,7 +9,11 @@
     "subTitle": "master",
     "state": "success",
     "image": "https://avatars2.githubusercontent.com/u/18479455?s=200&v=4",
-    "userImage": "https://avatars3.githubusercontent.com/u/6495166?s=460&v=4"
+    "userImage": "https://avatars3.githubusercontent.com/u/6495166?s=460&v=4",
+    "style": {
+      "background": "lime",
+      "color": "#fff"
+    },
 }
 ```
 
@@ -21,6 +25,7 @@
 | `state`     | yes       | Must be: `info`, `warning`, `error`, or `success`                        |
 | `image`     | no        | An URL to an image representing the status                               |
 | `userImage` | no        | An URL to an image showing the user who triggered the status             |
+| `style`     | no        | A object of custom CSS styles to apply to the status container           |
 
 @todo: Explain that you can remove statues using `DELETE /status/:status-key`
 
