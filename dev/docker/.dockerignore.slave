@@ -1,0 +1,8 @@
+# Ignore everything
+**
+
+# Allow files and directories
+!/node_modules
+!/shared
+!/server
+!/qemu-*-static

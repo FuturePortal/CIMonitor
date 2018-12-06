@@ -1,6 +1,12 @@
 .PHONY: all
 
 # ===========================
+# Variables
+# ===========================
+
+DOCKER_TAG=latest
+
+# ===========================
 # Default: help section
 # ===========================
 
@@ -22,23 +28,29 @@ outro:
 # ===========================
 
 init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands outro
-
-github: intro do-checkout-pr do-run-updates outro
 update-project: intro do-run-updates outro
 update: intro do-switch-branch do-run-updates outro
+github: intro do-checkout-pr do-run-updates outro
 git-hooks: intro do-install-git-hooks outro
 
 build-docs: intro do-build-docs outro
+preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
 dev-server-slave: intro do-dev-server-slave outro
 dev-client: intro do-dev-client outro
 build-production: intro do-build-production outro
 
-test: intro do-test-eslint-prettier outro
+build-containers: intro do-backup-dependencies do-build-production do-build-containers do-restore-dependencies outro
+run-container: intro do-run-container outro
+run-container-slave: intro do-run-container-slave outro
+inspect-container: intro do-inspect-container outro
+inspect-container-slave: intro do-inspect-container-slave outro
+
 pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
+test: intro do-test-eslint-prettier outro
 cypress: intro do-cypress-open
 cypress-run: intro do-cypress-run outro
 
@@ -47,22 +59,33 @@ cypress-run: intro do-cypress-run outro
 # ===========================
 
 do-show-commands:
-	@echo "\n=== Make CIMonitor ===\n"
-	@echo "make                        Show the make commands you can run."
-	@echo "make init                   Initialise the project for development."
-	@echo "make update-project         Install all dependencies and generate required files."
-	@echo "make update BRANCH=<branch> Switch to a branch and run update-project."
-	@echo "make github PR=<number>     Check out a PR from github and update the project."
-	@echo "make git-hooks              Install the available git hooks."
-	@echo "make dev-server             Run the development server."
-	@echo "make dev-server-slave       Run the development slave server, listening to a master."
-	@echo "make dev-client             Build, run and watch the development dashboard."
-	@echo "make build-production       Build all the files required for production."
-	@echo "make build-docs             Build a preview of the documentation."
-	@echo "make test                   Run the testsuite."
-	@echo "make fix                    Fix most of the codestyle errors."
-	@echo "make cypress                Open Cypress dashboard for quick testing."
-	@echo "make cypress-run            Run the cypress tests in the background."
+	@echo "\n=== Make commands ===\n"
+	@echo "Project:"
+	@echo "    make init                       Initialise the project for development."
+	@echo "    make update-project             Install all dependencies and generate required files."
+	@echo "    make update BRANCH=<branch>     Switch to a branch and run update-project."
+	@echo "    make github PR=<number>         Check out a PR from github and update the project."
+	@echo "    make git-hooks                  Install the available git hooks."
+	@echo "    make fix                        Fix most of the codestyle errors."
+	@echo "\nLocal installation:"
+	@echo "    make build-production           Build all the files required for production."
+	@echo "\nDocumentation:"
+	@echo "    make build-docs                 Build the documentation."
+	@echo "    make preview-docs               Run a live preview of the documentation."
+	@echo "\nDevelopment:"
+	@echo "    make dev-server                 Run the development server."
+	@echo "    make dev-server-slave           Run the development slave server, listening to a master."
+	@echo "    make dev-client                 Build, run and watch the development dashboard."
+	@echo "\nDocker containers:"
+	@echo "    make build-containers           Builds the Docker containers."
+	@echo "    make run-container              Run the built Docker container."
+	@echo "    make run-container-slave        Run the built Docker slave container."
+	@echo "    make inspect-container          Run a shell on the built Docker container."
+	@echo "    make inspect-container-slave    Run a shell on the built Docker slave container."
+	@echo "\nTests:"
+	@echo "    make test                       Run the test suite."
+	@echo "    make cypress                    Open Cypress dashboard for quick testing."
+	@echo "    make cypress-run                Run the cypress tests in the background."
 
 do-pre-init:
 	cp -n server/config/config.example.json server/config/config.json
@@ -138,6 +161,57 @@ do-cypress-run:
 	./node_modules/.bin/cypress run
 
 do-build-docs:
-	@echo "\n=== Building docs with mkdocs ===\n"
-	@echo "Check the documentation at http://localhost:9998/"
-	@docker run -ti --rm -p 9998:9998 -v $$PWD:/documents moird/mkdocs
+	@echo "\n=== Building documentation with mkdocs ===\n"
+	@docker run -ti --rm -p 9998:9998 -v $$PWD:/docs/src cogset/mkdocs -b
+
+do-preview-docs:
+	@echo "\n=== Running live documentation preview ===\n"
+	@echo "Check the documentation at http://localhost:8000/"
+	@docker run -ti --rm -p 8000:8000 -v $$PWD:/docs/src cogset/mkdocs -s
+
+do-build-containers:
+	@echo "\n=== Building Docker container ===\n"
+	yarn remove babel-cli laravel-mix sass-resources-loader --production
+	mv -n server/config/config.example.json server/config/config.json
+	cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+	docker build -t cimonitor/server:$(DOCKER_TAG) .
+	mv Dockerfile.slave Dockerfile
+	mv .dockerignore.slave .dockerignore
+	docker build -t cimonitor/server-slave:$(DOCKER_TAG) .
+	rm Dockerfile .dockerignore
+
+do-run-container:
+	@echo "\n=== Running container ===\n"
+	@docker run -ti --rm -p 9999:9999 \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/server:latest
+
+do-run-container-slave:
+	@echo "\n=== Running container slave ===\n"
+	@docker run -ti --rm \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		cimonitor/server-slave:latest
+
+do-inspect-container:
+	@echo "\n=== Inspect server container shell ===\n"
+	@docker run -ti --rm -p 9999:9999 \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+		cimonitor/server:latest /bin/sh
+
+do-inspect-container-slave:
+	@echo "\n=== Inspect server slave container shell ===\n"
+	@docker run -ti --rm \
+		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
+		cimonitor/server-slave:latest /bin/sh
+
+do-backup-dependencies:
+	@echo "\n=== Backing up dependencies ===\n"
+	cp package.json package.json.tmp
+	cp yarn.lock yarn.lock.tmp
+
+do-restore-dependencies:
+	@echo "\n=== Restoring dependencies ===\n"
+	mv package.json.tmp package.json
+	mv yarn.lock.tmp yarn.lock

@@ -1,0 +1,10 @@
+# Ignore everything
+**
+
+# Allow files and directories
+!/dist
+!/node_modules
+!/shared
+!/server
+!package.json
+!/qemu-*-static

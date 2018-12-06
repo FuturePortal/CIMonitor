@@ -1,18 +1,97 @@
+sudo: required
+
 language: node_js
 node_js:
-    - "10"
+  - '8'
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
-script:
-    - make test
+services:
+  - docker
+
+stages:
+  - test
+  - build
+
+jobs:
+  include:
+    - stage: test
+      script: make test build-docs
+
+    - &build
+      if: branch = master
+      stage: build
+      env:
+        - DOCKER_TAG=latest
+      before_script:
+        - |
+          if [ -n "$QEMU_ARCH" ]; then
+            wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-$QEMU_ARCH-static.tar.gz
+            tar xfvz x86_64_qemu-$QEMU_ARCH-static.tar.gz
+            export QEMU_BINARY=qemu-$QEMU_ARCH-static
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+          fi
+        - |
+          if [ -n "$BASE_IMAGE" ]; then
+            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/Dockerfile;
+          fi
+      script:
+        - yarn install --production
+        - yarn production
+        - yarn remove babel-cli laravel-mix sass-resources-loader --production
+        - mv server/config/config.example.json server/config/config.json
+        - cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+        - docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - mv Dockerfile.slave Dockerfile
+        - mv .dockerignore.slave .dockerignore
+        - docker build -t cimonitor/server-slave:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - rm Dockerfile .dockerignore
+      after_success:
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - docker push cimonitor/server:$DOCKER_TAG
+        - docker push cimonitor/server-slave:$DOCKER_TAG
+
+    - <<: *build
+      env:
+        - DOCKER_TAG=latest-arm32
+        - QEMU_ARCH=arm
+        - BASE_IMAGE=arm32v7/node:8-slim
+
+    - <<: *build
+      env:
+        - DOCKER_TAG=latest-arm64
+        - QEMU_ARCH=aarch64
+        - BASE_IMAGE=arm64v8/node:8-slim
+
+    - <<: *build
+      if: tag IS present
+      env:
+        - DOCKER_TAG=$TRAVIS_TAG
+
+    - <<: *build
+      if: tag IS present
+      env:
+        - DOCKER_TAG=$TRAVIS_TAG-arm32
+        - QEMU_ARCH=arm
+        - BASE_IMAGE=arm32v7/node:8-slim
+
+    - <<: *build
+      if: tag IS present
+      env:
+        - DOCKER_TAG=$TRAVIS_TAG-arm64
+        - QEMU_ARCH=aarch64
+        - BASE_IMAGE=arm64v8/node:8-slim
 
 notifications:
-    webhooks:
-        urls:
-            - secure: "HQS8wEXDTyjI0DZiLbSuSz9TOnYnFtXPr79t6dSMZfosfcZwbJP4tFZktfC60vMJ8rgOdCr3NWLz1KAW6hFE1/xmNlhsE43n9MaUXoms+dnYRG0X+MmfszzUOpa01+Kw2LRCHh3RJV6Rq/k40zlpk+EVJXt4Ik/uztUgojOQOj/VSduGncI+kkm48IVnBwPPXPDRjQcuRovtnYPRfOIyW7HSnJJikgxnj+axldnK9F768D4Ik+udjCw8R7TY+Qn1GXWn20hQ+auUshGQTbTjZgOf753cR5D57wM5lMnYxfKZSKxrAhaJLqxqNhBSjBemL5h0B0YWOOUffJeEef0lsHL3ycRkmoxxY7wMRR7SL1Vt0aCMylK3waiFCM9wUwlw23R+7QsNuCxTuAXLZuQPhX27eGwLkggffgwtg7lJPh8oObMQiFCQB/rQh18syR5cGEZE5el+hLoxbS4NK+Q123kL7GF2fuUy6q2Vx9wjVqBV7Z0QlOYYMGz0f0Up/JlwFAhprZRX4gyefgYsXXifeLNkqjmren6fVc3K8KfucYnOCH5kFN5OpFZq4pYG3/vSeQJ1/Ph0JyeeGIB45LSSlaNK43T/f+loxIaGermAbDMe2/MpjeT7kd/AAHUL//iBP1Bskx3nHpz68vXpFrFLLH3CI4oPMBmsgmefe0TIn7U="
-        on_success: always
-        on_failure: always
-        on_start: always
-        on_cancel: always
-        on_error: always
+  webhooks:
+    urls:
+      - secure: 'HQS8wEXDTyjI0DZiLbSuSz9TOnYnFtXPr79t6dSMZfosfcZwbJP4tFZktfC60vMJ8rgOdCr3NWLz1KAW6hFE1/xmNlhsE43n9MaUXoms+dnYRG0X+MmfszzUOpa01+Kw2LRCHh3RJV6Rq/k40zlpk+EVJXt4Ik/uztUgojOQOj/VSduGncI+kkm48IVnBwPPXPDRjQcuRovtnYPRfOIyW7HSnJJikgxnj+axldnK9F768D4Ik+udjCw8R7TY+Qn1GXWn20hQ+auUshGQTbTjZgOf753cR5D57wM5lMnYxfKZSKxrAhaJLqxqNhBSjBemL5h0B0YWOOUffJeEef0lsHL3ycRkmoxxY7wMRR7SL1Vt0aCMylK3waiFCM9wUwlw23R+7QsNuCxTuAXLZuQPhX27eGwLkggffgwtg7lJPh8oObMQiFCQB/rQh18syR5cGEZE5el+hLoxbS4NK+Q123kL7GF2fuUy6q2Vx9wjVqBV7Z0QlOYYMGz0f0Up/JlwFAhprZRX4gyefgYsXXifeLNkqjmren6fVc3K8KfucYnOCH5kFN5OpFZq4pYG3/vSeQJ1/Ph0JyeeGIB45LSSlaNK43T/f+loxIaGermAbDMe2/MpjeT7kd/AAHUL//iBP1Bskx3nHpz68vXpFrFLLH3CI4oPMBmsgmefe0TIn7U='
+    on_success: always
+    on_failure: always
+    on_start: always
+    on_cancel: always
+    on_error: always
+
