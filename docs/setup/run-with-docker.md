@@ -18,7 +18,7 @@ docker run \
     -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
     -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
-    cimonitor/cimonitor:latest
+    cimonitor/server:latest
 ```
 
 **Note:** with `-p 9999:9999` you define at what port you want to run your docker container, you can change the first number to anything you like (`-p 4567:9999` for example).
@@ -29,7 +29,7 @@ Pretty much the same goes when you want to run the server-slave application, you
 docker run \
     -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    cimonitor/cimonitor-slave:latest
+    cimonitor/server-slave:latest
 ```
 
 Main difference is that the server slave doesn't need a saved statuses file.
@@ -47,7 +47,7 @@ docker run \
     -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
     -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
-    cimonitor/cimonitor:latest-arm64
+    cimonitor/server:latest-arm64
 ```
 
 Check all available tags on the [docker hub](https://hub.docker.com/u/cimonitor/).
