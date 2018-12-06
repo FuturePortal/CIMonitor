@@ -4,7 +4,7 @@
 # Variables
 # ===========================
 
-DOCKER_TAG="latest"
+DOCKER_TAG=latest
 
 # ===========================
 # Default: help section
@@ -173,13 +173,12 @@ do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
 	mv -n server/config/config.example.json server/config/config.json
-	cp dev/docker/Dockerfile Dockerfile
-	cp dev/docker/.dockerignore .dockerignore
-	docker build -t cimonitor/server:$(DOCKER_TAG) --build-arg COMMAND_FILE=server.js .
-	cp dev/docker/.dockerignore.slave .dockerignore
-	docker build -t cimonitor/server-slave:$(DOCKER_TAG) --build-arg COMMAND_FILE=server-slave.js .
-	rm Dockerfile
-	rm .dockerignore
+	cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+	docker build -t cimonitor/server:$(DOCKER_TAG) .
+	mv Dockerfile.slave Dockerfile
+	mv .dockerignore.slave .dockerignore
+	docker build -t cimonitor/server-slave:$(DOCKER_TAG) .
+	rm Dockerfile .dockerignore
 
 do-run-container:
 	@echo "\n=== Running container ===\n"
