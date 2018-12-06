@@ -175,9 +175,9 @@ do-build-containers:
 	mv -n server/config/config.example.json server/config/config.json
 	cp dev/docker/Dockerfile Dockerfile
 	cp dev/docker/.dockerignore .dockerignore
-	docker build -t cimonitor/cimonitor:$(DOCKER_TAG) --build-arg COMMAND_FILE=server.js .
+	docker build -t cimonitor/server:$(DOCKER_TAG) --build-arg COMMAND_FILE=server.js .
 	cp dev/docker/.dockerignore.slave .dockerignore
-	docker build -t cimonitor/cimonitor-slave:$(DOCKER_TAG) --build-arg COMMAND_FILE=server-slave.js .
+	docker build -t cimonitor/server-slave:$(DOCKER_TAG) --build-arg COMMAND_FILE=server-slave.js .
 	rm Dockerfile
 	rm .dockerignore
 
@@ -186,26 +186,26 @@ do-run-container:
 	@docker run -ti --rm -p 9999:9999 \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
 		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
-		cimonitor/cimonitor:latest
+		cimonitor/server:latest
 
 do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/cimonitor-slave:latest
+		cimonitor/server-slave:latest
 
 do-inspect-container:
 	@echo "\n=== Inspect server container shell ===\n"
 	@docker run -ti --rm -p 9999:9999 \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
 		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
-		cimonitor/cimonitor:latest /bin/sh
+		cimonitor/server:latest /bin/sh
 
 do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/cimonitor-slave:latest /bin/sh
+		cimonitor/server-slave:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"
