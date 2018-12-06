@@ -36,7 +36,7 @@ jobs:
           fi
         - |
           if [ -n "$BASE_IMAGE" ]; then
-            sed -i 's#FROM.*#FROM $BASE_IMAGE#g' dev/docker/Dockerfile;
+            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/Dockerfile;
           fi
       script:
         - yarn install --production
