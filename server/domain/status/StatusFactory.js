@@ -53,9 +53,25 @@ class StatusFactory {
         }
     }
 
+    static stylesValidator(styles) {
+        // Do not care if not set
+        if (!styles) {
+            return;
+        }
+
+        if (!validate.isObject(styles)) {
+            return 'Style must be an object';
+        }
+
+        // @todo: Validate whether the keys are there (background, border-top, border-bottom, color)
+
+        return null;
+    }
+
     static getStatusConstraints() {
         validate.validators.jobsValidator = this.jobsValidator;
         validate.validators.stagesValidator = this.stagesValidator;
+        validate.validators.stylesValidator = this.stylesValidator;
 
         return {
             key: {
@@ -81,6 +97,9 @@ class StatusFactory {
             },
             jobs: {
                 jobsValidator: true,
+            },
+            style: {
+                stylesValidator: true,
             },
         };
     }

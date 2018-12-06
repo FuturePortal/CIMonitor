@@ -1,5 +1,5 @@
 <template>
-    <div class="status__container" :class="status.state" :style="statusCustomColor">
+    <div class="status__container" :class="status.state" :style="{ statusStyle }">
         <div class="image-resolver"><img v-if="status.image" :src="status.image" @error="hideImage" /></div>
         <div
             class="status__image-container"
@@ -77,16 +77,28 @@ export default {
                 backgroundImage: `url(${this.status.userImage})`,
             };
         },
-        statusCustomColor() {
-            if (!this.status.customColor) {
+        statusStyle() {
+            return {
+                backgroundColor: '#fff',
+            };
+
+            /*
+            if (!this.status.style) {
                 return {};
             }
-
+*/
+            /*
+            let returnData = '';
+            for (var k in this.status.style) {
+                returnData += k + ':' + '"' + this.status.style[k] + ';"';
+            }
+            */
+            /*
             return {
-                background: `${this.status.customColor}`,
-                borderTop: `${this.status.customColor}`,
-                borderBottomColor: `${this.status.customColor}`,
+                backgroundColor: this.status.style.background,
             };
+*/
+            //return `${this.status.style}`;
         },
         timeAgo() {
             if (!this.now) {
@@ -117,7 +129,7 @@ $border-bottom: 3px
     flex-grow: 1
 
 .status__detail-title
-    font-size: 50px
+    font-size: 550px
 
 .status__detail-sub-title
     font-size: 30px
