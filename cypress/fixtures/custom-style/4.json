@@ -1,0 +1,11 @@
+{
+    "key": "color-gray",
+    "title": "Gray",
+    "subTitle": "No Gray. No shades of gray. No, no, no, no, no, no, no, no. It don't work like that. No gray",
+    "state": "info",
+    "style": {
+        "background": "#d6d8d9",
+        "border": "#c6c8ca",
+        "color": "#1b1e21"
+    }
+}

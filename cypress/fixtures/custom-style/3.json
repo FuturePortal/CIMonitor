@@ -1,0 +1,11 @@
+{
+    "key": "color-blue",
+    "title": "Blue",
+    "subTitle": "I'm blue da ba dee da ba daa ",
+    "state": "info",
+    "style": {
+    	"background": "#1E90FF",
+    	"border": "#1E90FF",
+    	"color": "white"
+    }
+}

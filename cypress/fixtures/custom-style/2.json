@@ -1,0 +1,10 @@
+{
+    "key": "color-yellow",
+    "title": "Yellow",
+    "subTitle": "I came along. I wrote a song for you. And all the things you do. And it was called Yellow",
+    "state": "info",
+    "style": {
+    	"background": "#FFC859",
+    	"border": "#FFC859"
+    }
+}

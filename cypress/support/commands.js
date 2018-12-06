@@ -41,3 +41,16 @@ Cypress.Commands.add('pushTravisCIWebhook', request => {
         });
     });
 });
+
+Cypress.Commands.add('pushStyledStatus', request => {
+    cy.fixture(`custom-style/${request}`).then(body => {
+        cy.request({
+            url: 'http://localhost:9999/status',
+            method: 'POST',
+            body,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    });
+});

@@ -1,0 +1,11 @@
+{
+    "key": "color-red",
+    "title": "Red",
+    "subTitle": "You took something perfect. And painted it red",
+    "state": "info",
+    "style": {
+    	"background": "#FF0000",
+    	"border": "#FF0000",
+    	"color": "white"
+    }
+}

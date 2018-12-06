@@ -62,10 +62,6 @@ class StatusFactory {
         if (!validate.isObject(styles)) {
             return 'Style must be an object';
         }
-
-        // @todo: Validate whether the keys are there (background, border-top, border-bottom, color)
-
-        return null;
     }
 
     static getStatusConstraints() {
