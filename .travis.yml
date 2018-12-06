@@ -26,28 +26,30 @@ jobs:
       stage: build
       env:
         - DOCKER_TAG=latest
-      before_script: |
-        if [ -n "$QEMU_ARCH" ]; then
-          wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-$QEMU_ARCH-static.tar.gz
-          tar xfz x86_64_qemu-$QEMU_ARCH-static.tar.gz
-          export QEMU_BINARY=qemu-$QEMU_ARCH-static
-          docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        fi
-        if [ -n "$BASE_IMAGE" ]; then
-          sed -i 's#FROM.*#FROM $BASE_IMAGE#g' dev/docker/Dockerfile;
-        fi
-      script: |
-        yarn install --production
-        yarn production
-        yarn remove babel-cli laravel-mix sass-resources-loader --production
-        cp dev/docker/Dockerfile dev/docker/.dockerignore .
-        docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
-        cp dev/docker/.dockerignore.slave .dockerignore
-        docker build -t cimonitor/server-slave:$DOCKER_TAG .
-      after_success: |
-        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-        docker push cimonitor/server:$DOCKER_TAG
-        docker push cimonitor/server-slave:$DOCKER_TAG
+      before_script:
+        - |
+          if [ -n "$QEMU_ARCH" ]; then
+            wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-$QEMU_ARCH-static.tar.gz
+            tar xfvz x86_64_qemu-$QEMU_ARCH-static.tar.gz
+            export QEMU_BINARY=qemu-$QEMU_ARCH-static
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+          fi
+        - |
+          if [ -n "$BASE_IMAGE" ]; then
+            sed -i 's#FROM.*#FROM $BASE_IMAGE#g' dev/docker/Dockerfile;
+          fi
+      script:
+        - yarn install --production
+        - yarn production
+        - yarn remove babel-cli laravel-mix sass-resources-loader --production
+        - cp dev/docker/Dockerfile dev/docker/.dockerignore .
+        - docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - cp dev/docker/.dockerignore.slave .dockerignore
+        - docker build -t cimonitor/server-slave:$DOCKER_TAG .
+      after_success:
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - docker push cimonitor/server:$DOCKER_TAG
+        - docker push cimonitor/server-slave:$DOCKER_TAG
 
     - <<: *build
       env:
