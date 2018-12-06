@@ -42,6 +42,7 @@ jobs:
         - yarn install --production
         - yarn production
         - yarn remove babel-cli laravel-mix sass-resources-loader --production
+        - mv server/config/config.example.json server/config/config.json
         - cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
         - docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
         - mv Dockerfile.slave Dockerfile
