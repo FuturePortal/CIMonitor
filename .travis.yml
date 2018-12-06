@@ -26,12 +26,20 @@ jobs:
       stage: build
       env:
         - DOCKER_TAG=latest
+      before_script: |
+        if [ -n "$QEMU_ARCH" ]; then
+        wget https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-$QEMU_ARCH-static.tar.gz
+        tar xvz x86_64_qemu-$QEMU_ARCH-static.tar.gz
+        export QEMU_BINARY=qemu-$QEMU_ARCH-static
+        docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        fi
+        [ -n "$BASE_IMAGE" ] && sed -i 's#FROM.*#FROM $BASE_IMAGE#g' dev/docker/Dockerfile
       script: |
         yarn install --production
         yarn production
         yarn remove babel-cli laravel-mix sass-resources-loader --production
         cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
-        docker build -t cimonitor/cimonitor:$DOCKER_TAG .
+        docker build -t cimonitor/cimonitor:$DOCKER_TAG --build-arg QEMU_BINARY .
         cp dev/docker/server-slave/Dockerfile dev/docker/server-slave/.dockerignore .
         docker build -t cimonitor/cimonitor-slave:$DOCKER_TAG .
       after_success: |
@@ -42,18 +50,14 @@ jobs:
     - <<: *build
       env:
         - DOCKER_TAG=latest-arm32
-      before_script: |
-        docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
+        - QEMU_ARCH=arm
+        - BASE_IMAGE=arm32v7/node:8-slim
 
     - <<: *build
       env:
         - DOCKER_TAG=latest-arm64
-      before_script: |
-        docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server-slave/Dockerfile
+        - QEMU_ARCH=aarch64
+        - BASE_IMAGE=arm64v8/node:8-slim
 
     - <<: *build
       if: tag IS present
@@ -64,19 +68,15 @@ jobs:
       if: tag IS present
       env:
         - DOCKER_TAG=$TRAVIS_TAG-arm32
-      before_script: |
-        docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm32v7/node:8-slim#' dev/docker/server-slave/Dockerfile
+        - QEMU_ARCH=arm
+        - BASE_IMAGE=arm32v7/node:8-slim
 
     - <<: *build
       if: tag IS present
       env:
         - DOCKER_TAG=$TRAVIS_TAG-arm64
-      before_script: |
-        docker run --rm --privileged multiarch/qemu-user-static:register --reset
-        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server/Dockerfile
-        sed -i 's#FROM.*#FROM arm64v8/node:8-slim#' dev/docker/server-slave/Dockerfile
+        - QEMU_ARCH=aarch64
+        - BASE_IMAGE=arm64v8/node:8-slim
 
 notifications:
   webhooks:
