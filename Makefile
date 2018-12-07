@@ -37,8 +37,8 @@ build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
-dev-server-slave: intro do-dev-server-slave outro
-dev-client: intro do-dev-client outro
+dev-module-client: intro do-dev-module-client outro
+dev-dashboard: intro do-dev-dashboard outro
 build-production: intro do-build-production outro
 
 build-containers: intro do-backup-dependencies do-build-production do-build-containers do-restore-dependencies outro
@@ -74,8 +74,8 @@ do-show-commands:
 	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
-	@echo "    make dev-server-slave           Run the development slave server, listening to a master."
-	@echo "    make dev-client                 Build, run and watch the development dashboard."
+	@echo "    make dev-module-client          Run the development module client, listening to a master."
+	@echo "    make dev-dashboard              Build, run and watch the development dashboard."
 	@echo "\nDocker containers:"
 	@echo "    make build-containers           Builds the Docker containers."
 	@echo "    make run-container              Run the built Docker container."
@@ -88,7 +88,7 @@ do-show-commands:
 	@echo "    make cypress-run                Run the cypress tests in the background."
 
 do-pre-init:
-	cp -n server/config/config.example.json server/config/config.json
+	cp -n config/config.example.json config/config.json
 
 do-switch-branch:
 	@if [ -z $$BRANCH ]; then echo "No branch is set, please run:\nmake update BRANCH=<branch>"; exit 1; fi
@@ -108,18 +108,18 @@ do-run-updates:
 
 do-run-watch:
 	@echo "\n=== Running file watchers ===\n"
-	rm -rf dist/*
+	rm -rf dashboard/*
 	yarn watch
 
 do-dev-server:
 	@echo "\n=== Starting server application ===\n"
-	node server/server.js
+	node back-end/server.js
 
-do-dev-server-slave:
+do-dev-module-client:
 	@echo "\n=== Starting server slave application ===\n"
-	node server/server-slave.js
+	node back-end/module-client.js
 
-do-dev-client:
+do-dev-dashboard:
 	@echo "\n=== Building and watching files ===\n"
 	yarn watch
 
@@ -172,39 +172,38 @@ do-preview-docs:
 do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
-	mv -n server/config/config.example.json server/config/config.json
-	cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+	mv -n config/config.example.json config/config.json
+	cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
 	docker build -t cimonitor/server:$(DOCKER_TAG) .
-	mv Dockerfile.slave Dockerfile
-	mv .dockerignore.slave .dockerignore
-	docker build -t cimonitor/server-slave:$(DOCKER_TAG) .
+	cp dev/docker/module-client/Dockerfile dev/docker/module-client/.dockerignore .
+	docker build -t cimonitor/module-client:$(DOCKER_TAG) .
 	rm Dockerfile .dockerignore
 
 do-run-container:
 	@echo "\n=== Running container ===\n"
 	@docker run -ti --rm -p 9999:9999 \
-		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+		-v $$PWD/config/config.json:/opt/CIMonitor/config/config.json \
+		-v $$PWD/config/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
 		cimonitor/server:latest
 
 do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
-		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/server-slave:latest
+		-v $$PWD/config/config.json:/opt/CIMonitor/config/config.json \
+		cimonitor/module-client:latest
 
 do-inspect-container:
 	@echo "\n=== Inspect server container shell ===\n"
 	@docker run -ti --rm -p 9999:9999 \
-		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		-v $$PWD/server/config/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+		-v $$PWD/config/config.json:/opt/CIMonitor/config/config.json \
+		-v $$PWD/config/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
 		cimonitor/server:latest /bin/sh
 
 do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
-		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/server-slave:latest /bin/sh
+		-v $$PWD/config/config.json:/opt/CIMonitor/config/config.json \
+		cimonitor/module-client:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"

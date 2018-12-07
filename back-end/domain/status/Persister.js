@@ -8,7 +8,7 @@ const StatusFactory = require('../status/StatusFactory');
 class Persister {
     constructor() {
         const filename = `saved-statuses.json`;
-        const logPath = path.resolve(`${__dirname}/../../config/`);
+        const logPath = path.resolve(`${__dirname}/../../../config/`);
 
         this.statusesFile = `${logPath}/${filename}`;
     }

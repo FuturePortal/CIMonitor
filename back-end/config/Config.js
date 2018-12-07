@@ -13,7 +13,7 @@ class Config {
     }
 
     loadConfig() {
-        const configFile = path.resolve(`${__dirname}/config.json`);
+        const configFile = path.resolve(`${__dirname}/../../config/config.json`);
         console.log(`[Config] Loading config from ${configFile}...`);
 
         const config = JSON.parse(fileSystem.readFileSync(configFile));
@@ -23,7 +23,7 @@ class Config {
         this.events = config.events;
         this.modules = config.modules;
         this.server = config.server;
-        this.serverSlave = config.serverSlave;
+        this.moduleClient = config.moduleClient;
 
         console.log('[Config] loaded.');
     }
@@ -48,8 +48,8 @@ class Config {
         return this.server.personalAccessTokenGitLab;
     }
 
-    getServerSlaveMaster() {
-        return this.serverSlave.master;
+    getMaster() {
+        return this.moduleClient.master;
     }
 }
 

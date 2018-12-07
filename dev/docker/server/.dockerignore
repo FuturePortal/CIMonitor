@@ -2,9 +2,10 @@
 **
 
 # Allow files and directories
-!/dist
+!/back-end
+!/config
+!/dashboard
 !/node_modules
-!/shared
-!/server
-!package.json
+!/package.json
 !/qemu-*-static
+!/shared

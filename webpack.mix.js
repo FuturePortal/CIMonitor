@@ -1,15 +1,15 @@
 const fileSystem = require('fs');
 const mix = require('laravel-mix');
 
-const VersionChecker = require('./server/domain/cimonitor/VersionChecker');
+const VersionChecker = require('./back-end/domain/cimonitor/VersionChecker');
 
-mix.js('client/client.js', 'dist');
+mix.js('front-end/dashboard.js', 'dashboard');
 
-mix.sass('client/sass/dashboard.sass', 'dist');
+mix.sass('front-end/sass/dashboard.sass', 'dashboard');
 
 mix.options({
     extractVueStyles: true,
-    globalVueStyles: `./client/sass/globals.sass`,
+    globalVueStyles: `./front-end/sass/globals.sass`,
     // uglify: {
     //     uglifyOptions: {
     //         compress: {
@@ -19,16 +19,16 @@ mix.options({
     // },
 });
 
-mix.copy('client/static/', 'dist/');
+mix.copy('front-end/static/', 'dashboard/');
 
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
 
-    const Config = require('./server/config/Config');
+    const Config = require('./back-end/config/Config');
     mix.browserSync({
         proxy: `localhost:${Config.getServerPort()}`,
         injectChanges: false,
-        files: [`dist/**/*`],
+        files: [`dashboard/**/*`],
     });
 
     mix.disableSuccessNotifications();
@@ -36,7 +36,7 @@ if (!mix.inProduction()) {
 
 mix.version();
 
-mix.setPublicPath(`dist/`);
+mix.setPublicPath(`dashboard/`);
 
 mix.then(() => {
     const replacements = [
@@ -44,7 +44,7 @@ mix.then(() => {
         { key: 'version', value: VersionChecker.getCurrentVersion() },
     ];
 
-    fileSystem.readFile('client/index.html', 'utf8', (error, data) => {
+    fileSystem.readFile('front-end/index.html', 'utf8', (error, data) => {
         if (error) {
             console.error('Could not load the source index file.', error);
             return;
@@ -54,7 +54,7 @@ mix.then(() => {
             data = data.replace(new RegExp(`---${replacements[index].key}---`, 'g'), replacements[index].value);
         }
 
-        fileSystem.writeFile('dist/index.html', data, error => {
+        fileSystem.writeFile('dashboard/index.html', data, error => {
             if (error) {
                 console.error('Could not save the new index.', error);
                 return;

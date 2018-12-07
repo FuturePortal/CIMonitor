@@ -14,22 +14,21 @@ by the container once it's running. This way the statuses won't be lost when you
 Open your terminal in a folder with a `config.json` file and optionally a `saved-statuses.json` file and run the following command:
 
 ```bash
-docker run \
+docker run -ti \
     -p 9999:9999 \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
     cimonitor/server:latest
 ```
 
 **Note:** with `-p 9999:9999` you define at what port you want to run your docker container, you can change the first number to anything you like (`-p 4567:9999` for example).
 
-Pretty much the same goes when you want to run the server-slave application, you can run:
+Pretty much the same goes when you want to run the module-client application, you can run:
 
 ```bash
-docker run \
-    -p 9999:9999 \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    cimonitor/server-slave:latest
+docker run -ti \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
+    cimonitor/module-client:latest
 ```
 
 Main difference is that the server slave doesn't need a saved statuses file.
@@ -43,10 +42,10 @@ is running at 64 bits or 32 bits, and append the following to your docker-tag ac
 the latest version of CIMonitor on a Raspberry pi 3 will look like the following:
 
 ```bash
-docker run \
+docker run -ti \
     -p 9999:9999 \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
     cimonitor/server:latest-arm64
 ```
 

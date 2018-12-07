@@ -21,7 +21,7 @@ In order to use this module, the following requirements must be present:
 
 ### Raspberry-pi
 
-You need to run either the `server` or `server-slave` on a raspberry pi. Configure this module
+You need to run either the `server` or `module-client` on a raspberry pi. Configure this module
 for the application running on the raspberry-pi.
 
 ### pi-blaster
@@ -40,7 +40,7 @@ CIMonitor will use pi-blaster to control the relays though instead of the `gpio`
 
 ## Configuration
 
-To enable this module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `config/config.json`:
 
 ```json
 {

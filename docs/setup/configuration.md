@@ -1,6 +1,6 @@
 # Configuration
 
-The configuration is created in one primary file: `server/config/config.json` in the project directory.
+The configuration is created in one primary file: `config/config.json` in the project directory.
 
 Make sure at least the following configuration is in your config file:
 
@@ -17,7 +17,7 @@ Make sure at least the following configuration is in your config file:
 
 ## Server configuration
 
-The `server` configuration is required when you're running the `server/server.js` application!
+The `server` configuration is required when you're running the `back-end/server.js` application!
 
 ```json
 {
@@ -34,18 +34,18 @@ The `server` object must be configured as following:
 | `port`                      | yes       | The port you want the server to run on                           |
 | `personalAccessTokenGitLab` | no        | A GitLab personal access token with `read_repository` permission |
 
-## Server slave configuration
+## Module client configuration
 
-The `serverSlave` configuration is required when you're running the `server/server-slave.js` application!
+The `moduleClient` configuration is required when you're running the `back-end/module-client.js` application!
 
 ```json
 {
-    "serverSlave": {
+    "moduleClient": {
         "master": "http://localhost:9999/"
     },
 ```
 
-The `serverSlave` object must be configured as following:
+The `moduleClient` object must be configured as following:
 
 | key      | required? | description                                                                            |
 | -------- | --------- | -------------------------------------------------------------------------------------- |

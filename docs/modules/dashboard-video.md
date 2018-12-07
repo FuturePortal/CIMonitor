@@ -8,12 +8,12 @@ will be hidden.
 
 ## Requirements
 
-You can only configure this module for the `server.js`. The `server-slave.js` can't
+You can only configure this module for the `server.js`. The `module-client.js` can't
 push the video to the dashboard, as it doesn't have a socket server.
 
 ## Configuration
 
-To enable this module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `config/config.json`:
 
 ```json
 {

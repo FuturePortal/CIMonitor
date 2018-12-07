@@ -8,7 +8,7 @@ const StatusManager = require('../status/StatusManager');
 
 class SocketListener {
     connectAndListen() {
-        const masterAddress = Config.getServerSlaveMaster();
+        const masterAddress = Config.getMaster();
         const socket = SocketClient(masterAddress);
 
         console.log(`[SocketListener] Connecting to master ${masterAddress}...`);

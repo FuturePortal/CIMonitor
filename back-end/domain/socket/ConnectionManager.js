@@ -89,7 +89,7 @@ class SocketConnectionManager {
     pushVideo(videoDetails) {
         if (!this.io) {
             // No socket connection is established, no need to emit anything
-            console.log(`[SocketConnectionManager] No socket connection. Videos can't be pushed on server-slaves.`);
+            console.log(`[SocketConnectionManager] No socket connection. Videos can't be pushed on module-clients.`);
             return;
         }
 
