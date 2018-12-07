@@ -3,7 +3,7 @@
 /dashboard/
 /node_modules/
 /logs/
-/server/config/saved-statuses.json
-/server/config/config.json
+/back-end/config/saved-statuses.json
+/back-end/config/config.json
 /Dockerfile
 /.dockerignore

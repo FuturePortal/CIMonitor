@@ -1,7 +1,7 @@
 const fileSystem = require('fs');
 const mix = require('laravel-mix');
 
-const VersionChecker = require('./server/domain/cimonitor/VersionChecker');
+const VersionChecker = require('./back-end/domain/cimonitor/VersionChecker');
 
 mix.js('front-end/dashboard.js', 'dashboard');
 
@@ -24,7 +24,7 @@ mix.copy('front-end/static/', 'dashboard/');
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
 
-    const Config = require('./server/config/Config');
+    const Config = require('./back-end/config/Config');
     mix.browserSync({
         proxy: `localhost:${Config.getServerPort()}`,
         injectChanges: false,

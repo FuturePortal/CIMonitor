@@ -1,0 +1,43 @@
+{
+    "server": {
+        "port": 9999,
+        "personalAccessTokenGitLab": "iMJXgg2rcaBnfSQQ8uWh"
+    },
+    "serverSlave": {
+        "master": "https://cimonitor-epic.enrise.com/"
+    },
+    "triggers": [
+        {
+            "on": {
+                "state": "success",
+                "key": "ci-monitor-status-2"
+            },
+            "targetEventName": "celebrate-success"
+        },
+        {
+            "on": {
+                "state": "error"
+            },
+            "targetEventName": "error-sequence"
+        }
+    ],
+    "events": [
+        {
+            "name": "celebrate-success",
+            "modules": [
+                {
+                    "name": "PowerUp",
+                    "push": {
+                        "gpioPin": 3,
+                        "powerForMilliseconds": 3000
+                    }
+                }
+            ]
+        },
+        {
+            "name": "error-sequence",
+            "modules": []
+        }
+    ],
+    "modules": []
+}

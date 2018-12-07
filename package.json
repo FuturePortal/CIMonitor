@@ -5,7 +5,7 @@
         "url": "https://github.com/CIMonitor/CIMonitor/issues"
     },
     "homepage": "https://github.com/CIMonitor/CIMonitor#readme",
-    "main": "server/server.js",
+    "main": "back-end/server.js",
     "contributors": [
         "Rick van der Staaij (https://rick.nu)",
         "Contributors (https://github.com/CIMonitor/CIMonitor/graphs/contributors)"
