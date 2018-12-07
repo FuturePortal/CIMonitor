@@ -3,7 +3,7 @@ const mix = require('laravel-mix');
 
 const VersionChecker = require('./server/domain/cimonitor/VersionChecker');
 
-mix.js('client/client.js', 'dashboard');
+mix.js('client/dashboard.js', 'dashboard');
 
 mix.sass('client/sass/dashboard.sass', 'dashboard');
 
