@@ -3,13 +3,13 @@ const mix = require('laravel-mix');
 
 const VersionChecker = require('./server/domain/cimonitor/VersionChecker');
 
-mix.js('client/dashboard.js', 'dashboard');
+mix.js('front-end/dashboard.js', 'dashboard');
 
-mix.sass('client/sass/dashboard.sass', 'dashboard');
+mix.sass('front-end/sass/dashboard.sass', 'dashboard');
 
 mix.options({
     extractVueStyles: true,
-    globalVueStyles: `./client/sass/globals.sass`,
+    globalVueStyles: `./front-end/sass/globals.sass`,
     // uglify: {
     //     uglifyOptions: {
     //         compress: {
@@ -19,7 +19,7 @@ mix.options({
     // },
 });
 
-mix.copy('client/static/', 'dashboard/');
+mix.copy('front-end/static/', 'dashboard/');
 
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
@@ -44,7 +44,7 @@ mix.then(() => {
         { key: 'version', value: VersionChecker.getCurrentVersion() },
     ];
 
-    fileSystem.readFile('client/index.html', 'utf8', (error, data) => {
+    fileSystem.readFile('front-end/index.html', 'utf8', (error, data) => {
         if (error) {
             console.error('Could not load the source index file.', error);
             return;
