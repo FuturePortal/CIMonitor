@@ -1,6 +1,6 @@
-# Server slave
+# Module client
 
-@todo: Explain that you can run a `module-client.js` application that connects to the `server.js` application socket
+@todo: Explain that you can run a `back-end/module-client.js` application that connects to the `back-end/server.js` application socket
 
 ![](img/master-slave-setup.png)
 
