@@ -22,7 +22,7 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = master
+      if: branch = master AND type = push AND fork = false
       stage: build
       env:
         - DOCKER_TAG=latest
@@ -40,11 +40,10 @@ jobs:
         - yarn production
         - yarn remove babel-cli laravel-mix sass-resources-loader --production
         - mv config/config.example.json config/config.json
-        - cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
+        - cp dev/docker/server/* .
         - docker build -t cimonitor/server:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
-        - cp dev/docker/module-client/Dockerfile dev/docker/module-client/.dockerignore .
+        - cp dev/docker/module-client/* .
         - docker build -t cimonitor/module-client:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
-        - rm Dockerfile .dockerignore
       after_success:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         - docker push cimonitor/server:$DOCKER_TAG
