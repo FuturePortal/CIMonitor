@@ -3,7 +3,7 @@
     "server": {
         "port": 9999
     },
-    "serverSlave": {
+    "moduleClient": {
         "master": "http://localhost:9999/"
     },
     "triggers": [

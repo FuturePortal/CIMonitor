@@ -74,7 +74,7 @@ do-show-commands:
 	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
-	@echo "    make dev-module-client          Run the development slave server, listening to a master."
+	@echo "    make dev-module-client          Run the development module client, listening to a master."
 	@echo "    make dev-dashboard              Build, run and watch the development dashboard."
 	@echo "\nDocker containers:"
 	@echo "    make build-containers           Builds the Docker containers."

@@ -34,18 +34,18 @@ The `server` object must be configured as following:
 | `port`                      | yes       | The port you want the server to run on                           |
 | `personalAccessTokenGitLab` | no        | A GitLab personal access token with `read_repository` permission |
 
-## Server slave configuration
+## Module client configuration
 
-The `serverSlave` configuration is required when you're running the `back-end/module-client.js` application!
+The `moduleClient` configuration is required when you're running the `back-end/module-client.js` application!
 
 ```json
 {
-    "serverSlave": {
+    "moduleClient": {
         "master": "http://localhost:9999/"
     },
 ```
 
-The `serverSlave` object must be configured as following:
+The `moduleClient` object must be configured as following:
 
 | key      | required? | description                                                                            |
 | -------- | --------- | -------------------------------------------------------------------------------------- |
