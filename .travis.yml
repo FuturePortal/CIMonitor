@@ -40,9 +40,9 @@ jobs:
         - yarn production
         - yarn remove babel-cli laravel-mix sass-resources-loader --production
         - mv config/config.example.json config/config.json
-        - cp dev/docker/server/* .
+        - cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
         - docker build -t cimonitor/server:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
-        - cp dev/docker/module-client/* .
+        - cp dev/docker/module-client/Dockerfile dev/docker/module-client/.dockerignore .
         - docker build -t cimonitor/module-client:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
       after_success:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
