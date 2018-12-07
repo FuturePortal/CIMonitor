@@ -43,16 +43,15 @@ jobs:
         - yarn production
         - yarn remove babel-cli laravel-mix sass-resources-loader --production
         - mv server/config/config.example.json server/config/config.json
-        - cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+        - cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
         - docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
-        - mv Dockerfile.slave Dockerfile
-        - mv .dockerignore.slave .dockerignore
-        - docker build -t cimonitor/server-slave:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - cp dev/docker/status-module-client/Dockerfile dev/docker/status-module-client/.dockerignore .
+        - docker build -t cimonitor/status-module-client:$DOCKER_TAG --build-arg QEMU_BINARY .
         - rm Dockerfile .dockerignore
       after_success:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         - docker push cimonitor/server:$DOCKER_TAG
-        - docker push cimonitor/server-slave:$DOCKER_TAG
+        - docker push cimonitor/status-module-client:$DOCKER_TAG
 
     - <<: *build
       env:

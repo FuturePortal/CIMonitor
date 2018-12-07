@@ -37,7 +37,7 @@ build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
-dev-server-slave: intro do-dev-server-slave outro
+dev-status-module-client: intro do-dev-status-module-client outro
 dev-client: intro do-dev-client outro
 build-production: intro do-build-production outro
 
@@ -74,7 +74,7 @@ do-show-commands:
 	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
-	@echo "    make dev-server-slave           Run the development slave server, listening to a master."
+	@echo "    make dev-status-module-client           Run the development slave server, listening to a master."
 	@echo "    make dev-client                 Build, run and watch the development dashboard."
 	@echo "\nDocker containers:"
 	@echo "    make build-containers           Builds the Docker containers."
@@ -115,9 +115,9 @@ do-dev-server:
 	@echo "\n=== Starting server application ===\n"
 	node server/server.js
 
-do-dev-server-slave:
+do-dev-status-module-client:
 	@echo "\n=== Starting server slave application ===\n"
-	node server/server-slave.js
+	node server/status-module-client.js
 
 do-dev-client:
 	@echo "\n=== Building and watching files ===\n"
@@ -173,11 +173,10 @@ do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
 	yarn remove babel-cli laravel-mix sass-resources-loader --production
 	mv -n server/config/config.example.json server/config/config.json
-	cp dev/docker/Dockerfile* dev/docker/.dockerignore* .
+	cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
 	docker build -t cimonitor/server:$(DOCKER_TAG) .
-	mv Dockerfile.slave Dockerfile
-	mv .dockerignore.slave .dockerignore
-	docker build -t cimonitor/server-slave:$(DOCKER_TAG) .
+	cp dev/docker/status-module-client/Dockerfile dev/docker/status-module-client/.dockerignore .
+	docker build -t cimonitor/status-module-client:$(DOCKER_TAG) .
 	rm Dockerfile .dockerignore
 
 do-run-container:
@@ -191,7 +190,7 @@ do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/server-slave:latest
+		cimonitor/status-module-client:latest
 
 do-inspect-container:
 	@echo "\n=== Inspect server container shell ===\n"
@@ -204,7 +203,7 @@ do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/server-slave:latest /bin/sh
+		cimonitor/status-module-client:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"

@@ -23,13 +23,12 @@ docker run \
 
 **Note:** with `-p 9999:9999` you define at what port you want to run your docker container, you can change the first number to anything you like (`-p 4567:9999` for example).
 
-Pretty much the same goes when you want to run the server-slave application, you can run:
+Pretty much the same goes when you want to run the status-module-client application, you can run:
 
 ```bash
 docker run \
-    -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    cimonitor/server-slave:latest
+    cimonitor/status-module-client:latest
 ```
 
 Main difference is that the server slave doesn't need a saved statuses file.

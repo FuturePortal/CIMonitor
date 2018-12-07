@@ -36,7 +36,7 @@ The `server` object must be configured as following:
 
 ## Server slave configuration
 
-The `serverSlave` configuration is required when you're running the `server/server-slave.js` application!
+The `serverSlave` configuration is required when you're running the `server/status-module-client.js` application!
 
 ```json
 {

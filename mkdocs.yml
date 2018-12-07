@@ -22,4 +22,4 @@ pages:
           - Led strip: modules/led-strip.md
           - Power up: modules/power-up.md
           - Traffic light: modules/traffic-light.md
-    - Server slave: server-slave.md
+    - Server slave: status-module-client.md

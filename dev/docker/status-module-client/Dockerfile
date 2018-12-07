@@ -19,4 +19,4 @@ COPY . /opt/CIMonitor/
 
 WORKDIR /opt/CIMonitor/
 
-CMD ["dumb-init", "node", "/opt/CIMonitor/server/server-slave.js"]
+CMD ["dumb-init", "node", "/opt/CIMonitor/server/status-module-client.js"]
