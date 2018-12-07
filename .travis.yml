@@ -26,6 +26,7 @@ jobs:
       stage: build
       env:
         - DOCKER_TAG=latest
+        - BASE_IMAGE=node:8-slim
       before_script:
         - |
           if [ -n "$QEMU_ARCH" ]; then
@@ -34,20 +35,15 @@ jobs:
             export QEMU_BINARY=qemu-$QEMU_ARCH-static
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
           fi
-        - |
-          if [ -n "$BASE_IMAGE" ]; then
-            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/server/Dockerfile;
-            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/module-client/Dockerfile;
-          fi
       script:
         - yarn install --production
         - yarn production
         - yarn remove babel-cli laravel-mix sass-resources-loader --production
         - mv config/config.example.json config/config.json
         - cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
-        - docker build -t cimonitor/server:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - docker build -t cimonitor/server:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
         - cp dev/docker/module-client/Dockerfile dev/docker/module-client/.dockerignore .
-        - docker build -t cimonitor/module-client:$DOCKER_TAG --build-arg QEMU_BINARY .
+        - docker build -t cimonitor/module-client:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .
         - rm Dockerfile .dockerignore
       after_success:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"

@@ -1,8 +1,9 @@
 ARG QEMU_BINARY=notset
+ARG BASE_IMAGE=node:8-slim
 
 #--- Intermediate build
 
-FROM node:8-slim
+FROM ${BASE_IMAGE}
 
 COPY ./${QEMU_BINARY}* /usr/bin/
 
@@ -12,7 +13,7 @@ RUN echo "deb http://deb.debian.org/debian unstable main contrib non-free" >> /e
 
 #--- Final build
 
-FROM node:8-slim
+FROM ${BASE_IMAGE}
 
 COPY --from=0 /usr/bin/dumb-init /usr/bin/dumb-init
 COPY . /opt/CIMonitor/
