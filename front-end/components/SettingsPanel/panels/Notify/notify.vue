@@ -6,10 +6,10 @@
         </p>
         <p>
             <strong>Note:</strong> If you deny the push notification pup-up, you'll have to re-enable them in your
-            browser settings. You can dissable the dashboard notifications any time you like below.
+            browser settings. You can disable the dashboard notifications any time you like below.
         </p>
-        <button class="option" @click="dissableNotifications" :class="{ current: !pushNotifications }">
-            Dissable desktop notifications
+        <button class="option" @click="disableNotifications" :class="{ current: !pushNotifications }">
+            Disable desktop notifications
         </button>
         <button class="option" @click="enableNotifications" :class="{ current: pushNotifications }">
             Enable desktop notifications
@@ -32,7 +32,7 @@ export default {
             });
             this.$store.commit(SETTINGS_SET_NOTIFICATIONS_ON);
         },
-        dissableNotifications() {
+        disableNotifications() {
             this.$store.commit(SETTINGS_SET_NOTIFICATIONS_OFF);
         },
     },
