@@ -8,7 +8,7 @@ will be hidden.
 
 ## Requirements
 
-You can only configure this module for the `server.js`. The `status-module-client.js` can't
+You can only configure this module for the `server.js`. The `module-client.js` can't
 push the video to the dashboard, as it doesn't have a socket server.
 
 ## Configuration

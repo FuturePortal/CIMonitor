@@ -15,7 +15,7 @@ In order to use this module, the following requirements must be present:
 
 ### Raspberry-pi
 
-You need to run either the `server` or `status-module-client` on a raspberry pi. Configure this module
+You need to run either the `server` or `module-client` on a raspberry pi. Configure this module
 for the application running on the raspberry-pi.
 
 ### pi-blaster

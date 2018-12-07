@@ -37,8 +37,8 @@ build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
-dev-status-module-client: intro do-dev-status-module-client outro
-dev-client: intro do-dev-client outro
+dev-module-client: intro do-dev-module-client outro
+dev-dashboard: intro do-dev-dashboard outro
 build-production: intro do-build-production outro
 
 build-containers: intro do-backup-dependencies do-build-production do-build-containers do-restore-dependencies outro
@@ -74,8 +74,8 @@ do-show-commands:
 	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
-	@echo "    make dev-status-module-client           Run the development slave server, listening to a master."
-	@echo "    make dev-client                 Build, run and watch the development dashboard."
+	@echo "    make dev-module-client          Run the development slave server, listening to a master."
+	@echo "    make dev-dashboard              Build, run and watch the development dashboard."
 	@echo "\nDocker containers:"
 	@echo "    make build-containers           Builds the Docker containers."
 	@echo "    make run-container              Run the built Docker container."
@@ -115,11 +115,11 @@ do-dev-server:
 	@echo "\n=== Starting server application ===\n"
 	node server/server.js
 
-do-dev-status-module-client:
+do-dev-module-client:
 	@echo "\n=== Starting server slave application ===\n"
-	node server/status-module-client.js
+	node server/module-client.js
 
-do-dev-client:
+do-dev-dashboard:
 	@echo "\n=== Building and watching files ===\n"
 	yarn watch
 
@@ -175,8 +175,8 @@ do-build-containers:
 	mv -n server/config/config.example.json server/config/config.json
 	cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
 	docker build -t cimonitor/server:$(DOCKER_TAG) .
-	cp dev/docker/status-module-client/Dockerfile dev/docker/status-module-client/.dockerignore .
-	docker build -t cimonitor/status-module-client:$(DOCKER_TAG) .
+	cp dev/docker/module-client/Dockerfile dev/docker/module-client/.dockerignore .
+	docker build -t cimonitor/module-client:$(DOCKER_TAG) .
 	rm Dockerfile .dockerignore
 
 do-run-container:
@@ -190,7 +190,7 @@ do-run-container-slave:
 	@echo "\n=== Running container slave ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/status-module-client:latest
+		cimonitor/module-client:latest
 
 do-inspect-container:
 	@echo "\n=== Inspect server container shell ===\n"
@@ -203,7 +203,7 @@ do-inspect-container-slave:
 	@echo "\n=== Inspect server slave container shell ===\n"
 	@docker run -ti --rm \
 		-v $$PWD/server/config/config.json:/opt/CIMonitor/server/config/config.json \
-		cimonitor/status-module-client:latest /bin/sh
+		cimonitor/module-client:latest /bin/sh
 
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"
