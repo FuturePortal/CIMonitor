@@ -13,7 +13,7 @@ class Config {
     }
 
     loadConfig() {
-        const configFile = path.resolve(`${__dirname}/config.json`);
+        const configFile = path.resolve(`${__dirname}/../../config/config.json`);
         console.log(`[Config] Loading config from ${configFile}...`);
 
         const config = JSON.parse(fileSystem.readFileSync(configFile));

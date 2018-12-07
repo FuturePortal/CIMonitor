@@ -16,8 +16,8 @@ Open your terminal in a folder with a `config.json` file and optionally a `saved
 ```bash
 docker run -ti \
     -p 9999:9999 \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
     cimonitor/server:latest
 ```
 
@@ -27,7 +27,7 @@ Pretty much the same goes when you want to run the module-client application, yo
 
 ```bash
 docker run -ti \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
     cimonitor/module-client:latest
 ```
 
@@ -44,8 +44,8 @@ the latest version of CIMonitor on a Raspberry pi 3 will look like the following
 ```bash
 docker run -ti \
     -p 9999:9999 \
-    -v $PWD/config.json:/opt/CIMonitor/server/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/server/config/saved-statuses.json \
+    -v $PWD/config.json:/opt/CIMonitor/config/config.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
     cimonitor/server:latest-arm64
 ```
 

@@ -1,6 +1,6 @@
 # Configuration
 
-The configuration is created in one primary file: `server/config/config.json` in the project directory.
+The configuration is created in one primary file: `config/config.json` in the project directory.
 
 Make sure at least the following configuration is in your config file:
 
@@ -17,7 +17,7 @@ Make sure at least the following configuration is in your config file:
 
 ## Server configuration
 
-The `server` configuration is required when you're running the `server/server.js` application!
+The `server` configuration is required when you're running the `back-end/server.js` application!
 
 ```json
 {
@@ -36,7 +36,7 @@ The `server` object must be configured as following:
 
 ## Server slave configuration
 
-The `serverSlave` configuration is required when you're running the `server/module-client.js` application!
+The `serverSlave` configuration is required when you're running the `back-end/module-client.js` application!
 
 ```json
 {

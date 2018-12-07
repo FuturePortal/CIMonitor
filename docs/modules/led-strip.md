@@ -36,7 +36,7 @@ See exactly how to do this at:
 
 ## Configuration
 
-To enable this module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `config/config.json`:
 
 ```json
 {

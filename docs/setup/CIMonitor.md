@@ -13,7 +13,7 @@ Clone or download the latest CIMonitor via [github.com/cimonitor/cimonitor](http
 (press the green button).
 
 In the folder you just downloaded, you need to create the primary config file. Create the file
-`server/config/config.json` in the project directory. You could also copy the `config.example.json` file
+`config/config.json` in the project directory. You could also copy the `config.example.json` file
 you find there.
 
 Make sure at least the following configuration is in your config file:
@@ -57,8 +57,8 @@ monitor will keep running without having to keep a terminal open.
 Easiest update would be using git, where you can just pull the latest version from master. If you downloaded a zip
 file, make sure you copy the following files to the new files:
 
--   `server/config/config.json`
--   `server/config/saved-statuses.json`
+-   `config/config.json`
+-   `config/saved-statuses.json`
 
 **Note:** After you pulled the updates, always run the production build again:
 

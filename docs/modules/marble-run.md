@@ -40,7 +40,7 @@ CIMonitor will use pi-blaster to control the relays though instead of the `gpio`
 
 ## Configuration
 
-To enable this module, add the module to the `server/config/config.json`:
+To enable this module, add the module to the `config/config.json`:
 
 ```json
 {
