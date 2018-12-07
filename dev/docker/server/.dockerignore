@@ -5,6 +5,6 @@
 !/dashboard
 !/node_modules
 !/shared
-!/server
+!/back-end
 !package.json
 !/qemu-*-static

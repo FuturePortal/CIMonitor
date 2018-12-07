@@ -4,5 +4,5 @@
 # Allow files and directories
 !/node_modules
 !/shared
-!/server
+!/back-end
 !/qemu-*-static
