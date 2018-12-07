@@ -22,7 +22,7 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = rename-slave
+      if: branch = master
       stage: build
       env:
         - DOCKER_TAG=latest
