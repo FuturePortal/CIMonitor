@@ -22,7 +22,7 @@ jobs:
       script: make test build-docs
 
     - &build
-      if: branch = master
+      if: branch = master AND type = push AND fork = false
       stage: build
       env:
         - DOCKER_TAG=latest
@@ -36,7 +36,8 @@ jobs:
           fi
         - |
           if [ -n "$BASE_IMAGE" ]; then
-            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/Dockerfile;
+            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/server/Dockerfile;
+            sed -i 's#FROM.*#FROM '$BASE_IMAGE'#g' dev/docker/module-client/Dockerfile;
           fi
       script:
         - yarn install --production
