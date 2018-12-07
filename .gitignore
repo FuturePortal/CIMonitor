@@ -1,6 +1,6 @@
 /.idea/
 /cypress/videos/
-/dist/
+/dashboard/
 /node_modules/
 /logs/
 /server/config/saved-statuses.json

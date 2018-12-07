@@ -3,9 +3,9 @@ const mix = require('laravel-mix');
 
 const VersionChecker = require('./server/domain/cimonitor/VersionChecker');
 
-mix.js('client/client.js', 'dist');
+mix.js('client/client.js', 'dashboard');
 
-mix.sass('client/sass/dashboard.sass', 'dist');
+mix.sass('client/sass/dashboard.sass', 'dashboard');
 
 mix.options({
     extractVueStyles: true,
@@ -19,7 +19,7 @@ mix.options({
     // },
 });
 
-mix.copy('client/static/', 'dist/');
+mix.copy('client/static/', 'dashboard/');
 
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
@@ -28,7 +28,7 @@ if (!mix.inProduction()) {
     mix.browserSync({
         proxy: `localhost:${Config.getServerPort()}`,
         injectChanges: false,
-        files: [`dist/**/*`],
+        files: [`dashboard/**/*`],
     });
 
     mix.disableSuccessNotifications();
@@ -36,7 +36,7 @@ if (!mix.inProduction()) {
 
 mix.version();
 
-mix.setPublicPath(`dist/`);
+mix.setPublicPath(`dashboard/`);
 
 mix.then(() => {
     const replacements = [
@@ -54,7 +54,7 @@ mix.then(() => {
             data = data.replace(new RegExp(`---${replacements[index].key}---`, 'g'), replacements[index].value);
         }
 
-        fileSystem.writeFile('dist/index.html', data, error => {
+        fileSystem.writeFile('dashboard/index.html', data, error => {
             if (error) {
                 console.error('Could not save the new index.', error);
                 return;

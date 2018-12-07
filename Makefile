@@ -108,7 +108,7 @@ do-run-updates:
 
 do-run-watch:
 	@echo "\n=== Running file watchers ===\n"
-	rm -rf dist/*
+	rm -rf dashboard/*
 	yarn watch
 
 do-dev-server:
