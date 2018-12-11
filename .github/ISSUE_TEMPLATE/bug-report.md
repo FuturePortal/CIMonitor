@@ -10,8 +10,8 @@ assignees: ''
 
 ### What
 
-Please explain the bug to us here.
+Please explain the bug here.
 
 ### Reproduction scenario
 
-If applicable, please describe how we can reproduce the situation.
+If applicable, please describe how to reproduce the situation.

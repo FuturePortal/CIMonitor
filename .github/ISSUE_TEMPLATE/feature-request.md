@@ -10,8 +10,8 @@ assignees: ''
 
 ### What
 
-Please explain us what you would like.
+Please explain what you would like.
 
 ### Why
 
-Please explain us why you would want this feature.
+Please explain why you would want this feature.
