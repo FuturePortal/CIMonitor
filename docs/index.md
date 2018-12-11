@@ -1,11 +1,10 @@
 # CIMonitor
 
-[
-    ![release](https://img.shields.io/github/release/CIMonitor/CIMonitor.svg)
-    ![MIT](https://img.shields.io/github/license/CIMonitor/CIMonitor.svg)
-    ![stars](https://img.shields.io/github/stars/CIMonitor/CIMonitor.svg)
-](https://github.com/CIMonitor/CIMonitor)
-![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)
+[![release](https://img.shields.io/github/release/CIMonitor/CIMonitor.svg)](https://github.com/CIMonitor/CIMonitor/releases)
+[![MIT](https://img.shields.io/github/license/CIMonitor/CIMonitor.svg)](https://github.com/CIMonitor/CIMonitor/)
+[![docker pulls](https://img.shields.io/docker/pulls/cimonitor/server.svg)](https://hub.docker.com/u/cimonitor/)
+[![stars](https://img.shields.io/github/stars/CIMonitor/CIMonitor.svg)](https://github.com/CIMonitor/CIMonitor/stargazers)
+[![read-the-docs](https://readthedocs.org/projects/cimonitor/badge/?version=latest)](https://cimonitor.readthedocs.io)
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
 CIMonitor is a place where all your statuses come together.
