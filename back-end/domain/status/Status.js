@@ -17,6 +17,14 @@ class Status {
         return this.data.state;
     }
 
+    getJobs() {
+        if (this.data.jobs) {
+            return this.data.jobs;
+        }
+
+        return [];
+    }
+
     isOld() {
         const oneWeekAgo = Moment().subtract(1, 'weeks');
         const statusTime = Moment(this.data.time);
