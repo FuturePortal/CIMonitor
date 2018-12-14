@@ -1,17 +1,12 @@
 <template>
     <div class="status__detail-jobs-and-stages">
         <div class="status__detail-stages" v-if="stages.length > 0">
-            <div
-                class="status__detail-stage"
-                :class="getStageStatus(stage)"
-                v-for="(stage, index) in stages"
-                :key="index"
-            >
+            <div class="status__detail-stage" :class="getStageStatus(stage)" v-for="stage in stages" :key="stage">
                 {{ stage }}
             </div>
         </div>
         <div class="status__detail-jobs" v-if="interestingJobs.length > 0">
-            <div class="status__detail-job" v-for="(job, index) in interestingJobs" :class="job.state" :key="index">
+            <div class="status__detail-job" v-for="job in interestingJobs" :class="job.state" :key="job.name">
                 {{ job.name }}
             </div>
         </div>

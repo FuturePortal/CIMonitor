@@ -131,15 +131,9 @@ class StatusFactory {
             return StatusFactory.hydrateStatus(data);
         }
 
-        const existingJob = data.jobs.find(existingJob => existingJob.name === job.name);
-
-        if (existingJob) {
-            const index = data.jobs.indexOf(existingJob);
-            data.jobs[index] = job;
-            return StatusFactory.hydrateStatus(data);
-        }
-
+        data.jobs = data.jobs.filter(filterJob => filterJob.name !== job.name);
         data.jobs.push(job);
+
         return StatusFactory.hydrateStatus(data);
     }
 

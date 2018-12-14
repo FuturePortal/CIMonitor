@@ -69,7 +69,7 @@ class StatusAdapterGitLab {
         status = StatusFactory.updateJob(status, {
             name: data.build_name,
             stage: data.build_stage,
-            state: this.buildStatusToState(data.build_status),
+            state: this.buildStatusToState(data.build_status, data.build_allow_failure),
         });
         StatusFactory.createStatus(status.getRawData());
     }
@@ -98,7 +98,7 @@ class StatusAdapterGitLab {
         return 'info';
     }
 
-    buildStatusToState(status) {
+    buildStatusToState(status, isFailureAllowed = false) {
         if (status === 'pending' || status === 'created') {
             return 'pending';
         }
@@ -108,7 +108,7 @@ class StatusAdapterGitLab {
         }
 
         if (status === 'failed') {
-            return 'error';
+            return isFailureAllowed ? 'warning' : 'error';
         }
 
         if (status === 'success') {
