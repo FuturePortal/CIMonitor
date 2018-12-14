@@ -7,10 +7,10 @@ class StatusAdapterTravisCI {
 
         // Do not process pull requests
         if (data.type === 'pull_request') {
-            return;
+            return Promise.resolve('no-pull-request');
         }
 
-        StatusFactory.createStatus({
+        return StatusFactory.createStatus({
             key: this.getKeyFromData(data),
             state: this.pipelineStatusToState(data.status_message),
             title: data.repository.owner_name + '/' + data.repository.name,
