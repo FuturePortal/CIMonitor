@@ -12,13 +12,13 @@ app.post('/gitlab', (request, response) => {
         .then(status => {
             if (status === 'ignore') {
                 return response.status(200).json({
-                    message: 'Received your web-hook, thank you for your service. Ignoring status.',
+                    message: 'Received your webhook, thank you for your service. Ignoring status.',
                 });
             }
 
             if (typeof status === 'object') {
                 return response.status(201).json({
-                    message: 'Received your web-hook, thank you for your service.',
+                    message: 'Received your webhook, thank you for your service.',
                     status: status.getRawData(),
                 });
             }
@@ -44,7 +44,7 @@ app.post('/travis', (request, response) => {
             }
 
             return response.status(201).json({
-                message: 'Received your web-hook, thank you for your service.',
+                message: 'Received your webhook, thank you for your service.',
                 status: status.getRawData(),
             });
         })
