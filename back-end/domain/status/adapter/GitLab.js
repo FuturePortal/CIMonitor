@@ -17,6 +17,15 @@ class StatusAdapterGitLab {
     processPipelineEvent(data) {
         console.log('[StatusAdapterGitLab] Processing pipeline into a status...');
         const key = this.getKeyFromPipeline(data);
+        let jobs = [];
+
+        // Clear the jobs when the pipeline status is pending (indicating a fresh pipeline)
+        if (data.object_attributes.status !== 'pending') {
+            const existingStatus = StatusManager.getStatusByKey(key);
+            if (existingStatus) {
+                jobs = existingStatus.getJobs();
+            }
+        }
 
         StatusFactory.createStatus({
             key,
@@ -26,13 +35,7 @@ class StatusAdapterGitLab {
             image: this.getProjectAvatar(data),
             userImage: data.user.avatar_url,
             stages: data.object_attributes.stages,
-            jobs: data.builds.map(build => {
-                return {
-                    name: build.name,
-                    stage: build.stage,
-                    state: this.buildStatusToState(build.status),
-                };
-            }),
+            jobs,
         });
     }
 
