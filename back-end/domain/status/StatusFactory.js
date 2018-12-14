@@ -131,7 +131,9 @@ class StatusFactory {
             return StatusFactory.hydrateStatus(data);
         }
 
+        // Trash all jobs where the replacement job is pushed for
         data.jobs = data.jobs.filter(filterJob => filterJob.name !== job.name);
+        // Push updated job to the jobs list
         data.jobs.push(job);
 
         return StatusFactory.hydrateStatus(data);
