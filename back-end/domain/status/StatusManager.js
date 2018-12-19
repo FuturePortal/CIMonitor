@@ -52,7 +52,7 @@ class StatusManager {
      * @return {Status}
      */
     getStatusByKey(statusKey) {
-        return this.statuses.find(status => status.getKey() === statusKey);
+        return this.statuses.find(status => status.getKey() === statusKey.toLowerCase());
     }
 
     getGlobalState() {
