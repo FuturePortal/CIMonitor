@@ -16,7 +16,8 @@ $color-stages-gutter: 5px
             .status__image-container,
             .status__user-image-container,
             .status__detail-title,
-            .status__detail-sub-title
+            .status__detail-sub-title,
+            .status__detail-jobs-and-stages
                 background: $color-info
 
             .status__detail-stage.pending,
@@ -27,7 +28,8 @@ $color-stages-gutter: 5px
             .status__image-container,
             .status__user-image-container,
             .status__detail-title,
-            .status__detail-sub-title
+            .status__detail-sub-title,
+            .status__detail-jobs-and-stages
                 background: $color-success
 
             .status__detail-stage.pending,
@@ -38,7 +40,8 @@ $color-stages-gutter: 5px
             .status__image-container,
             .status__user-image-container,
             .status__detail-title,
-            .status__detail-sub-title
+            .status__detail-sub-title,
+            .status__detail-jobs-and-stages
                 background: $color-warning
 
             .status__detail-stage.pending,
@@ -49,7 +52,8 @@ $color-stages-gutter: 5px
             .status__image-container,
             .status__user-image-container,
             .status__detail-title,
-            .status__detail-sub-title
+            .status__detail-sub-title,
+            .status__detail-jobs-and-stages
                 background: $color-error
 
             .status__detail-stage.pending,
@@ -80,6 +84,7 @@ $color-stages-gutter: 5px
         display: flex
         flex-direction: column
         min-width: 0
+        color: #000
 
     .status__detail-title
         order: 1
@@ -103,34 +108,36 @@ $color-stages-gutter: 5px
     .status__detail-stage,
     .status__detail-job
         flex: 1
-        margin-left: $color-stages-gutter
+        margin: $color-stages-gutter
+        border-style: none
         padding: 5px 15px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
         min-width: 0
+        border-radius: 5px
 
         &:first-child
-            margin-left: 0
+            margin-left: $color-stages-gutter
 
         &.error
-            background: $color-error
+            background: $color-status-error
 
         &.running
-            background: $color-warning
+            background: $color-status-warning
 
         &.pending
             // color in top status states
             opacity: 0.5
 
         &.success
-            background: $color-success
+            background: $color-status-success 
 
         &.warning
-            background: $color-warning
+            background: $color-status-warning
 
         &.info
-            background: $color-info
+            background: $color-status-info
 
     .status__time-ago
         position: absolute
