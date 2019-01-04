@@ -62,7 +62,6 @@ $color-stages-gutter: 5px
 
     .status__image-container
         padding: 20px
-        margin-right: $color-stages-gutter
         flex-shrink: 0
 
     .status__image-container--no-image
@@ -116,6 +115,7 @@ $color-stages-gutter: 5px
         text-overflow: ellipsis
         min-width: 0
         border-radius: 5px
+        box-shadow: 4px 4px 5px grey
 
         &:first-child
             margin-left: $color-stages-gutter
@@ -131,7 +131,7 @@ $color-stages-gutter: 5px
             opacity: 0.5
 
         &.success
-            background: $color-status-success 
+            background: $color-status-success
 
         &.warning
             background: $color-status-warning
@@ -152,7 +152,6 @@ $color-stages-gutter: 5px
     .status__user-image-container
         padding: 10px 30px 35px
         width: 100px
-        margin-left: $color-stages-gutter
         flex-shrink: 0
 
     .status__user-image-container--no-image
