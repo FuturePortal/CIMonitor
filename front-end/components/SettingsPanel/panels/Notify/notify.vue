@@ -14,12 +14,23 @@
         <button class="option" @click="enableNotifications" :class="{ current: pushNotifications }">
             Enable desktop notifications
         </button>
+        <ul id="statusSelector">
+            <li v-for="(enabled, status) in notificationStatuses" :key="status">
+                <button class="sub-option" @click="toggleNotificationStatus(status);" :class="{ current: enabled }">
+                    Show {{ status }} statuses
+                </button>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
 import CIMonitorLogo from '../../../EmptyBoard/logo.png';
-import { SETTINGS_SET_NOTIFICATIONS_ON, SETTINGS_SET_NOTIFICATIONS_OFF } from '../../../../store/StaticMutations';
+import {
+    SETTINGS_SET_NOTIFICATIONS_ON,
+    SETTINGS_SET_NOTIFICATIONS_OFF,
+    SETTINGS_SET_NOTIFICATION_STATUSES,
+} from '../../../../store/StaticMutations';
 
 export default {
     methods: {
@@ -35,10 +46,18 @@ export default {
         dissableNotifications() {
             this.$store.commit(SETTINGS_SET_NOTIFICATIONS_OFF);
         },
+        toggleNotificationStatus(status) {
+            let statuses = this.$store.state.settings.notificationStatuses;
+            statuses[status] = !statuses[status];
+            this.$store.commit(SETTINGS_SET_NOTIFICATION_STATUSES, statuses);
+        },
     },
     computed: {
         pushNotifications() {
             return this.$store.state.settings.pushNotifications;
+        },
+        notificationStatuses() {
+            return this.$store.state.settings.notificationStatuses;
         },
     },
 };
@@ -48,6 +67,13 @@ export default {
 .option
     @extend %radio-option
 
+.sub-option
+    @extend %check-box
+
 hr
     @extend %line-break
+
+li
+    list-style-type: none
+    padding-left: 20px
 </style>

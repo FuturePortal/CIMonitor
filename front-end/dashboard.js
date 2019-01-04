@@ -35,6 +35,10 @@ new Vue({
                 return;
             }
 
+            if (!this.$store.state.settings.notificationStatuses[status.state]) {
+                return;
+            }
+
             try {
                 new Notification(`CIMonitor • ${status.state}`, {
                     body: `${status.title}${status.subTitle ? ` • ${status.subTitle}` : ''}: ${status.state}`,
