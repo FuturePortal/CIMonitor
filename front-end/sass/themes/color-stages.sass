@@ -1,5 +1,10 @@
 $color-stages-gutter: 5px
 
+$color-status-info: #5087b9
+$color-status-error: #b75950
+$color-status-warning: #f2a900
+$color-status-success: #60873e
+
 .theme__color-stages
     background: $color-antracite
 
@@ -83,7 +88,6 @@ $color-stages-gutter: 5px
         display: flex
         flex-direction: column
         min-width: 0
-        color: #000
 
     .status__detail-title
         order: 1
@@ -108,14 +112,13 @@ $color-stages-gutter: 5px
     .status__detail-job
         flex: 1
         margin: $color-stages-gutter
-        border-style: none
         padding: 5px 15px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
         min-width: 0
         border-radius: 5px
-        box-shadow: 4px 4px 5px grey
+        box-shadow: 4px 4px 5px $color-gray-dark
 
         &:first-child
             margin-left: $color-stages-gutter
