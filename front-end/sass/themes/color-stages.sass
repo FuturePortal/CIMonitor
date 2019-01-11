@@ -1,5 +1,10 @@
 $color-stages-gutter: 5px
 
+$color-status-info: darken($color-info, 15%)
+$color-status-error: darken($color-error, 15%)
+$color-status-warning: darken($color-warning, 15%)
+$color-status-success: darken($color-success, 15%)
+
 .theme__color-stages
     background: $color-antracite
 
@@ -13,52 +18,36 @@ $color-stages-gutter: 5px
             margin-top: 0
 
         &.info
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title
-                background: $color-info
+            background: $color-info
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-info
+                background: rgba($color-status-info, .5)
 
         &.success
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title
-                background: $color-success
+            background: $color-success
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-success
+                background: rgba($color-status-success, .5)
 
         &.warning
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title
-                background: $color-warning
+            background: $color-warning
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-warning
+                background: rgba($color-status-warning, .5)
 
         &.error
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title
-                background: $color-error
+            background: $color-error
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-error
+                background: rgba($color-status-error, .5)
+
 
     .status__image-container
         padding: 20px
-        margin-right: $color-stages-gutter
         flex-shrink: 0
 
     .status__image-container--no-image
@@ -97,40 +86,36 @@ $color-stages-gutter: 5px
     .status__detail-stages,
     .status__detail-jobs
         display: flex
-        margin-top: $color-stages-gutter
         width: 100%
 
     .status__detail-stage,
     .status__detail-job
         flex: 1
-        margin-left: $color-stages-gutter
+        margin: $color-stages-gutter
         padding: 5px 15px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
         min-width: 0
+        border-radius: 5px
 
         &:first-child
-            margin-left: 0
+            margin-left: $color-stages-gutter
 
         &.error
-            background: $color-error
+            background: $color-status-error
 
         &.running
-            background: $color-warning
-
-        &.pending
-            // color in top status states
-            opacity: 0.5
+            background: $color-status-warning
 
         &.success
-            background: $color-success
+            background: $color-status-success
 
         &.warning
-            background: $color-warning
+            background: $color-status-warning
 
         &.info
-            background: $color-info
+            background: $color-status-info
 
     .status__time-ago
         position: absolute
@@ -145,7 +130,6 @@ $color-stages-gutter: 5px
     .status__user-image-container
         padding: 10px 30px 35px
         width: 100px
-        margin-left: $color-stages-gutter
         flex-shrink: 0
 
     .status__user-image-container--no-image
