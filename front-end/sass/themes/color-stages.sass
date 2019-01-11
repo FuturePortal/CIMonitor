@@ -1,9 +1,9 @@
 $color-stages-gutter: 5px
 
-$color-status-info: #5087b9
-$color-status-error: #b75950
-$color-status-warning: #f2a900
-$color-status-success: #60873e
+$color-status-info: darken($color-info, 15%)
+$color-status-error: darken($color-error, 15%)
+$color-status-warning: darken($color-warning, 15%)
+$color-status-success: darken($color-success, 15%)
 
 .theme__color-stages
     background: $color-antracite
@@ -18,52 +18,33 @@ $color-status-success: #60873e
             margin-top: 0
 
         &.info
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title,
-            .status__detail-jobs-and-stages
-                background: $color-info
+            background: $color-info
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-info
+                background: rgba($color-status-info, .5)
 
         &.success
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title,
-            .status__detail-jobs-and-stages
-                background: $color-success
+            background: $color-success
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-success
+                background: rgba($color-status-success, .5)
 
         &.warning
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title,
-            .status__detail-jobs-and-stages
-                background: $color-warning
+            background: $color-warning
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-warning
+                background: rgba($color-status-warning, .5)
 
         &.error
-            .status__image-container,
-            .status__user-image-container,
-            .status__detail-title,
-            .status__detail-sub-title,
-            .status__detail-jobs-and-stages
-                background: $color-error
+            background: $color-error
 
             .status__detail-stage.pending,
             .status__detail-job.pending
-                background: $color-error
+                background: rgba($color-status-error, .5)
+
 
     .status__image-container
         padding: 20px
@@ -117,7 +98,6 @@ $color-status-success: #60873e
         text-overflow: ellipsis
         min-width: 0
         border-radius: 5px
-        box-shadow: 4px 4px 5px $color-gray-dark
 
         &:first-child
             margin-left: $color-stages-gutter
@@ -127,10 +107,6 @@ $color-status-success: #60873e
 
         &.running
             background: $color-status-warning
-
-        &.pending
-            // color in top status states
-            opacity: 0.5
 
         &.success
             background: $color-status-success
