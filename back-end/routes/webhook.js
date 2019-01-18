@@ -2,6 +2,7 @@ const express = require('express');
 const app = (module.exports = express());
 const StatusAdapterGitLab = require('../domain/status/adapter/GitLab');
 const StatusAdapterTravisCI = require('../domain/status/adapter/TravisCI');
+const StatusAdapterDeployer = require('../domain/status/adapter/Deployer');
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -40,6 +41,27 @@ app.post('/travis', (request, response) => {
             if (status === 'no-pull-request') {
                 return response.status(422).json({
                     message: 'Not processing PR builds.',
+                });
+            }
+
+            return response.status(201).json({
+                message: 'Received your webhook, thank you for your service.',
+                status: status.getRawData(),
+            });
+        })
+        .catch(error => {
+            response.status(500).json(error);
+        });
+});
+
+app.post('/deployer', (request, response) => {
+    console.log('/webhook/deployer [POST]');
+
+    StatusAdapterDeployer.processWebHook(request.body.payload)
+        .then(status => {
+            if (status === 'unknown-status') {
+                return response.status(422).json({
+                    message: 'Not processing unknown statuses.',
                 });
             }
 

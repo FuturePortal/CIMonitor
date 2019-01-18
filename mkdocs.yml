@@ -15,6 +15,7 @@ pages:
     - Link a service:
           - GitLab: services/GitLab.md
           - Travis CI: services/Travis-CI.md
+          - Deployer: services/Deployer.md
     - Modules:
           - Marble run: modules/marble-run.md
           - Dashboard video: modules/dashboard-video.md

@@ -41,3 +41,18 @@ Cypress.Commands.add('pushTravisCIWebhook', request => {
         });
     });
 });
+
+Cypress.Commands.add('pushDeployerWebhook', request => {
+    cy.fixture(`deployer-recipe/${request}`).then(body => {
+        cy.request({
+            url: 'http://localhost:9999/webhook/deployer',
+            method: 'POST',
+            body: {
+                payload: JSON.stringify(body),
+            },
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    });
+});
