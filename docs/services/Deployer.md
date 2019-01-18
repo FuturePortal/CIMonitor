@@ -21,7 +21,6 @@ composer require deployer/recipes --dev
 require 'recipe/cimonitor.php';
 ```
 
-
 ### Minimal setup
 For minimum setup, you need to set the host and endpoint of you CIMonitor server in your deploy.php. Deployer will send 
 the updates to this location. 
