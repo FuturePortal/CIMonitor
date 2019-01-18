@@ -37,7 +37,7 @@ before('deploy', 'cimonitor:notify');
 ```
 
 Secondly define the updates on succes and failure of the deployment (recommended):
-```$xslt
+```
 after('success', 'cimonitor:notify:success');
 after('deploy:failed', 'cimonitor:notify:failure');
 ```
