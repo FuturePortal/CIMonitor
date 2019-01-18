@@ -13,8 +13,8 @@ const state = {
     theme: 'basic-dark',
     pushNotifications: false,
     notificationStatuses: {
-        info: false,
-        warning: false,
+        info: true,
+        warning: true,
         error: true,
         success: true,
     },
@@ -29,10 +29,6 @@ const actions = {
 
     [SETTINGS_TOGGLE_NOTIFICATIONS]({ commit, state }) {
         commit(state.pushNotifications ? SETTINGS_SET_NOTIFICATIONS_OFF : SETTINGS_SET_NOTIFICATIONS_ON);
-    },
-
-    [SETTINGS_SET_NOTIFICATION_STATUSES]({ commit, state }) {
-        commit(state.notificationStatuses);
     },
 };
 

@@ -14,10 +14,10 @@
         <button class="option" @click="enableNotifications" :class="{ current: pushNotifications }">
             Enable desktop notifications
         </button>
-        <ul id="statusSelector">
+        <ul id="statusSelector" v-if="pushNotifications">
             <li v-for="(enabled, status) in notificationStatuses" :key="status">
                 <button class="sub-option" @click="toggleNotificationStatus(status);" :class="{ current: enabled }">
-                    Show {{ status }} statuses
+                    Show {{ status }}
                 </button>
             </li>
         </ul>
@@ -75,5 +75,5 @@ hr
 
 li
     list-style-type: none
-    padding-left: 20px
+    padding-left: 35px
 </style>
