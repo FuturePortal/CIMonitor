@@ -1,0 +1,17 @@
+{
+    "state": "error",
+    "branch": "deployer-adapter",
+    "title": "steefmin/CIMonitor",
+    "user": {
+        "name": "Steef Min",
+        "email": "smin@enrise.com"
+    },
+    "stages": [
+        "Production"
+    ],
+    "jobs": [{
+        "name": "Deploy",
+        "stage": "",
+        "state": "error"
+    }]
+}

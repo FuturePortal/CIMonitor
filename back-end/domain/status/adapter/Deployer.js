@@ -16,13 +16,14 @@ class StatusAdapterDeployer {
             state: data.state,
             title: data.title,
             subTitle: data.branch,
-            stage: data.stage,
+            stages: data.stages,
+            jobs: data.jobs,
             userImage: gravatar.url(data.user.email, null, true),
         });
     }
 
     getKeyFromData(data) {
-        return `deployer-${data.title}-${data.branch}-${data.stage}-${data.user.name}`;
+        return `deployer-${data.title}-${data.branch}-${data.user.name}`.replace(/[^\w-]/g, '-');
     }
 }
 
