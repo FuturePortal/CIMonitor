@@ -5,12 +5,19 @@ import {
     SETTINGS_SET_THEME,
     SETTINGS_SET_NOTIFICATIONS_ON,
     SETTINGS_SET_NOTIFICATIONS_OFF,
+    SETTINGS_SET_NOTIFICATION_STATUSES,
 } from '../StaticMutations';
 
 const state = {
     settingsPanelOpen: false,
     theme: 'basic-dark',
     pushNotifications: false,
+    notificationStatuses: {
+        info: true,
+        warning: true,
+        error: true,
+        success: true,
+    },
 };
 
 const getters = {};
@@ -44,6 +51,10 @@ const mutations = {
 
     [SETTINGS_SET_THEME](state, theme) {
         state.theme = theme;
+    },
+
+    [SETTINGS_SET_NOTIFICATION_STATUSES](state, statuses) {
+        state.notificationStatuses = statuses;
     },
 };
 
