@@ -5,9 +5,7 @@ deployments that are issued with this tool.
 
 ## Setup deployer recipe
 
-Note: at time of writing the recipe for CIMonitor is in review stage. Documentation can be found at 
-https://github.com/steefmin/recipes/blob/40b2950b9178c6c291b3583477ccbc4bdb5160d5/docs/cimonitor.md. When/if it is 
-approved, it can be found at https://deployer.org/recipes. 
+Documentation for setting up the deployer recipe can be found at https://deployer.org/recipes/cimonitor.
 
 ### Installing
 
