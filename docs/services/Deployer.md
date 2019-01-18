@@ -3,6 +3,8 @@
 [Deployer](https://deployer.org) is a deployment tool for PHP projects. CIMonitor can support updates from the 
 deployments that are issued with this tool.
 
+![DeployerStatuses](img/deployer.gif)
+
 ## Setup deployer recipe
 
 Documentation for setting up the deployer recipe can be found at https://deployer.org/recipes/cimonitor.
