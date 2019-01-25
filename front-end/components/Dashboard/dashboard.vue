@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="dashboard" :class="theme">
+        <div class="dashboard">
             <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
             <empty-board v-if="hasNoStatuses" />
             <video-overlay />
@@ -50,9 +50,6 @@ export default {
         },
         statuses() {
             return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
-        },
-        theme() {
-            return `theme__${this.$store.state.settings.theme}`;
         },
     },
 };
