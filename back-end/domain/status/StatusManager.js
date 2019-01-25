@@ -6,6 +6,8 @@ class StatusManager {
         this.statuses = [];
 
         this.setListeners();
+
+        setInterval(() => this.removeOldStatuses(), 1000 * 60 * 60);
     }
 
     setListeners() {
@@ -68,7 +70,15 @@ class StatusManager {
     }
 
     removeOldStatuses() {
+        const statusCount = this.statuses.length;
+
         this.statuses = this.statuses.filter(status => !status.isOld());
+
+        // If statuses are removed, push that the statuses are updated
+        if (this.statuses.length < statusCount) {
+            console.log('[StatusManager] Old statuses have been removed.');
+            Events.push(Events.event.statusesUpdated);
+        }
     }
 
     /**
@@ -78,8 +88,6 @@ class StatusManager {
         console.log('[StatusManager] Received new status.');
 
         this.processStatus(status);
-
-        this.removeOldStatuses();
 
         Events.push(Events.event.statusesUpdated);
     }
@@ -96,8 +104,6 @@ class StatusManager {
     }
 
     removeStatus(statusKey) {
-        this.removeOldStatuses();
-
         const existingStatus = this.statuses.find(existingStatus => existingStatus.getKey() === statusKey);
 
         if (existingStatus) {

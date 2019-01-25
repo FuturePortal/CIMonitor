@@ -24,6 +24,9 @@ new Vue({
             isConnected: false,
         };
     },
+    created() {
+        document.title = `CIMonitor | ${location.host}`;
+    },
     methods: {
         updateFavicon(globalState) {
             document
@@ -32,6 +35,10 @@ new Vue({
         },
         pushNotification(status) {
             if (!this.$store.state.settings.pushNotifications) {
+                return;
+            }
+
+            if (!this.$store.state.settings.notificationStatuses[status.state]) {
                 return;
             }
 

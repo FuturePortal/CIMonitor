@@ -1,9 +1,7 @@
 <template>
     <div>
-        <div class="dashboard" :class="theme">
-            <div class="statuses__container">
-                <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
-            </div>
+        <div class="dashboard">
+            <status v-for="status in statuses" :status="status" :key="status.key" :now="now" />
             <empty-board v-if="hasNoStatuses" />
             <video-overlay />
             <no-connection v-if="isNotConnected" />
@@ -53,9 +51,6 @@ export default {
         statuses() {
             return this.$store.getters[STATUS_GET_STATUSES_ORDERED];
         },
-        theme() {
-            return `theme__${this.$store.state.settings.theme}`;
-        },
     },
 };
 </script>
@@ -63,4 +58,5 @@ export default {
 <style lang="sass" rel="stylesheet/sass" scoped>
 .dashboard
     min-height: 100vh
+    background: $color-antracite
 </style>
