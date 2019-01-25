@@ -27,16 +27,24 @@ class StatusAdapterGitLab {
             }
         }
 
-        return StatusFactory.createStatus({
+        const newStatus = {
             key,
             state: this.pipelineStatusToState(data.object_attributes.status),
             title: data.project.path_with_namespace,
             subTitle: data.object_attributes.ref,
-            image: this.getProjectAvatar(data),
             userImage: data.user.avatar_url,
             stages: data.object_attributes.stages,
             jobs,
-        });
+        };
+
+        const image = this.getProjectAvatar(data);
+        if (image) {
+            newStatus.image = image;
+        }
+
+        return StatusFactory.createStatus(newStatus).catch(error =>
+            console.log('[StatusAdapterGitLab] Creating status failed!', error)
+        );
     }
 
     processBuildEvent(data) {
@@ -61,10 +69,17 @@ class StatusAdapterGitLab {
             stage: data.build_stage,
             state: this.buildStatusToState(data.build_status, data.build_allow_failure),
         });
-        return StatusFactory.createStatus(status.getRawData());
+
+        return StatusFactory.createStatus(status.getRawData()).catch(error =>
+            console.log('[StatusAdapterGitLab] Creating status failed!', error)
+        );
     }
 
     getProjectAvatar(data) {
+        if (!data.project.avatar_url) {
+            return null;
+        }
+
         const personalAccessToken = Config.getPersonalAccessTokenGitLab();
 
         if (personalAccessToken) {
