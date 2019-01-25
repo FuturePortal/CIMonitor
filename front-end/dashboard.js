@@ -25,7 +25,7 @@ new Vue({
         };
     },
     created() {
-        document.title = document.title + ' | ' + location.host;
+        document.title = `CIMonitor | ${location.host}`;
     },
     methods: {
         updateFavicon(globalState) {
