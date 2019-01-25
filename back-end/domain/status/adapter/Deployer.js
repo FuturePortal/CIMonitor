@@ -3,7 +3,6 @@ const gravatar = require('gravatar');
 
 class StatusAdapterDeployer {
     processWebHook(data) {
-        data = JSON.parse(data);
         var statuses = ['info', 'warning', 'error', 'success'];
 
         // Do not process unknown statuses

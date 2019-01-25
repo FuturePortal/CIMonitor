@@ -57,7 +57,7 @@ app.post('/travis', (request, response) => {
 app.post('/deployer', (request, response) => {
     console.log('/webhook/deployer [POST]');
 
-    StatusAdapterDeployer.processWebHook(request.body.payload)
+    StatusAdapterDeployer.processWebHook(request.body)
         .then(status => {
             if (status === 'unknown-status') {
                 return response.status(422).json({
