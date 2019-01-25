@@ -2,7 +2,6 @@ import { SETTINGS_PANEL_TOGGLE, SETTINGS_TOGGLE_NOTIFICATIONS } from '../StaticA
 import {
     SETTINGS_SET_PANEL_OPEN,
     SETTINGS_SET_PANEL_CLOSED,
-    SETTINGS_SET_THEME,
     SETTINGS_SET_NOTIFICATIONS_ON,
     SETTINGS_SET_NOTIFICATIONS_OFF,
     SETTINGS_SET_NOTIFICATION_STATUSES,
@@ -10,7 +9,6 @@ import {
 
 const state = {
     settingsPanelOpen: false,
-    theme: 'basic-dark',
     pushNotifications: false,
     notificationStatuses: {
         info: true,
@@ -47,10 +45,6 @@ const mutations = {
 
     [SETTINGS_SET_NOTIFICATIONS_OFF](state) {
         state.pushNotifications = false;
-    },
-
-    [SETTINGS_SET_THEME](state, theme) {
-        state.theme = theme;
     },
 
     [SETTINGS_SET_NOTIFICATION_STATUSES](state, statuses) {
