@@ -92,15 +92,39 @@ $color-status-success: darken($color-success, 15%)
     .status__detail-job
         flex: 1
         margin: $color-stages-gutter
-        padding: 5px 15px
+        padding: 5px 10px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
         min-width: 0
         border-radius: 5px
 
-        &:first-child
-            margin-left: $color-stages-gutter
+        &::before
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+
+        &.error::before
+            content: "\f00d"
+
+        &.running::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
+
+        &.pending
+            opacity: 0.3
+
+            &::before
+                content: "\f3c5"
+
+        &.success::before
+            content: "\f00c"
+
+        &.warning::before
+            content: "\f071"
+
+        &.info::before
+            content: "\f05a"
 
         &.error
             background: $color-status-error
