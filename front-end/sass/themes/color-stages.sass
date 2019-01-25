@@ -14,9 +14,6 @@ $color-status-success: darken($color-success, 15%)
         margin-top: 10px
         color: #333
 
-        &:first-child
-            margin-top: 0
-
         &.info
             background: $color-info
 
@@ -100,7 +97,34 @@ $color-status-success: darken($color-success, 15%)
         border-radius: 5px
 
         &:first-child
-            margin-left: $color-stages-gutter
+            margin-top: 0
+
+        &::before
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+
+        &.error::before
+            content: "\f00d"
+
+        &.running::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
+
+        &.pending
+            opacity: 0.3
+
+            &::before
+                content: "\f3c5"
+
+        &.success::before
+            content: "\f00c"
+
+        &.warning::before
+            content: "\f071"
+
+        &.info::before
+            content: "\f05a"
 
         &.error
             background: $color-status-error
