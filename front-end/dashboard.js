@@ -24,6 +24,9 @@ new Vue({
             isConnected: false,
         };
     },
+    created() {
+        document.title = document.title + ' | ' + location.host;
+    },
     methods: {
         updateFavicon(globalState) {
             document
