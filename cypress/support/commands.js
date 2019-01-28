@@ -47,9 +47,7 @@ Cypress.Commands.add('pushDeployerWebhook', request => {
         cy.request({
             url: 'http://localhost:9999/webhook/deployer',
             method: 'POST',
-            body: {
-                payload: JSON.stringify(body),
-            },
+            body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json',
             },
