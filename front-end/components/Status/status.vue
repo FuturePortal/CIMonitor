@@ -4,15 +4,17 @@
         <div class="image-container" :class="{ 'image-container--no-image': !showImage || !status.image }">
             <div class="image" :style="imageStyle" />
         </div>
-        <div class="detail-container">
+        <div class="build-details">
             <div class="detail-title">{{ status.title }}</div>
             <div class="detail-sub-title" v-if="status.subTitle">{{ status.subTitle }}</div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
         </div>
-        <div class="user-image-container">
-            <div class="user-image" :class="{ 'user-image--no-image': !status.userImage }" :style="userImageStyle" />
+        <div class="submit-details">
+            <div class="user-image-container" :class="{ 'user-image--no-image': !status.userImage }">
+                <div class="user-image" :style="userImageStyle" />
+            </div>
+            <div class="time-ago" v-if="now">{{ timeAgo }}</div>
         </div>
-        <div class="time-ago" v-if="now">{{ timeAgo }}</div>
     </div>
 </template>
 
@@ -85,6 +87,9 @@ export default {
     margin-top: 10px
     color: #333
 
+    @media (max-width: $responsive-breakpoint)
+        flex-wrap: wrap
+
     &:first-child
         margin-top: 0
 
@@ -113,8 +118,12 @@ export default {
             background: rgba($color-error-darker, .5)
 
 .image-container
-    padding: 20px
+    padding: 15px
     flex-shrink: 0
+
+    @media (max-width: $responsive-breakpoint)
+        order: 2
+        padding: 5px
 
 .image-container--no-image
     display: none
@@ -128,29 +137,40 @@ export default {
         repeat: no-repeat
     border-radius: 3px
 
-.detail-container
+    @media (max-width: $responsive-breakpoint)
+        width: 40px
+        height: 40px
+
+.build-details
     min-width: 0
     flex-grow: 1
+
+    @media (max-width: $responsive-breakpoint)
+        width: 100%
+        order: 1
 
 .detail-title
     font-size: 50px
     padding: 10px 15px 5px
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+
+    @media (max-width: $responsive-breakpoint)
+        font-size: 32px
+        padding: 10px 5px 5px
 
 .detail-sub-title
     font-size: 30px
     padding: 0 15px 10px
 
-.image-container,
-.user-image-container
-    flex-shrink: 0
+    @media (max-width: $responsive-breakpoint)
+        font-size: 26px
+        padding: 0 5px 5px
 
-.time-ago
-    font-size: 24px
-    position: absolute
-    right: 0
-    bottom: 5px
-    text-align: center
-    width: 160px
+.image-container,
+.submit-details
+    flex-shrink: 0
 
 .image-resolver
     visibility: 0
@@ -158,20 +178,49 @@ export default {
     width: 0
     overflow: hidden
 
-.user-image-container
-    padding: 10px 30px 35px
-    width: 100px
+.submit-details
+    padding: 10px
     flex-shrink: 0
+    display: flex
+    flex-direction: column
+
+    @media (max-width: $responsive-breakpoint)
+        flex-direction: row
+        align-items: center
+        order: 3
+        padding: 5px
+
+.user-image-container
+    flex-grow: 1
+    margin: 0 20px
+
+    @media (max-width: $responsive-breakpoint)
+        flex-grow: 0
+        margin: 0
 
 .user-image
-    width: 100px
     height: 100px
+    width: 100px
     background:
         position: center
         size: cover
         repeat: no-repeat
     border-radius: 50%
+    margin-bottom: 10px
+
+    @media (max-width: $responsive-breakpoint)
+        width: 40px
+        height: 40px
+        margin-bottom: 0
+        margin-right: 10px
 
 .user-image--no-image
     display: none
+
+.time-ago
+    font-size: 24px
+    text-align: center
+
+    @media (max-width: $responsive-breakpoint)
+        flex-grow: 1
 </style>

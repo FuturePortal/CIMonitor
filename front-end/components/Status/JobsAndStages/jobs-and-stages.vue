@@ -67,6 +67,9 @@ export default {
     display: flex
     width: 100%
 
+    @media (max-width: $responsive-breakpoint)
+        font-size: 18px
+
 .detail-stage
     margin: 5px 0
 
@@ -93,6 +96,9 @@ export default {
     text-overflow: ellipsis
     min-width: 0
     flex-shrink: 1
+
+    @media (max-width: $responsive-breakpoint)
+        padding: 5px
 
     &::before
         font-family: "Font Awesome 5 Free"
