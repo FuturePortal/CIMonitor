@@ -1,12 +1,18 @@
 <template>
     <div class="detail-jobs-and-stages">
-        <div class="detail-stages" v-if="stages.length > 0">
-            <div class="detail-stage" :class="getStageStatus(stage)" v-for="stage in stages" :key="stage">
+        <div class="detail-stages" v-if="stages.length > 0" @mouseleave="clearSelectedStage">
+            <div
+                class="detail-stage"
+                :class="getStageClasses(stage)"
+                v-for="stage in stages"
+                :key="stage"
+                @mouseenter="selectStage(stage);"
+            >
                 {{ stage }}
             </div>
         </div>
         <div class="detail-jobs" v-if="interestingJobs.length > 0">
-            <div class="detail-job" v-for="job in interestingJobs" :class="job.state" :key="job.name">
+            <div class="detail-job" v-for="job in interestingJobs" :class="getJobClasses(job)" :key="job.name">
                 {{ job.name }}
             </div>
         </div>
@@ -15,6 +21,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            selectedStage: null,
+        };
+    },
     props: {
         jobs: {
             type: Array,
@@ -26,6 +37,12 @@ export default {
         },
     },
     methods: {
+        getStageClasses(stage) {
+            return this.selectedStage === stage ? `selected ${this.getStageStatus(stage)}` : this.getStageStatus(stage);
+        },
+        getJobClasses(job) {
+            return this.selectedStage ? `selected ${job.state}` : job.state;
+        },
         getStageStatus(stage) {
             const jobsForStage = this.jobs.filter(job => job.stage && job.stage === stage);
 
@@ -47,11 +64,21 @@ export default {
 
             return 'pending';
         },
+        clearSelectedStage() {
+            this.selectedStage = null;
+        },
+        selectStage(stage) {
+            this.selectedStage = stage;
+        },
     },
     computed: {
         interestingJobs() {
             if (!this.jobs) {
                 return [];
+            }
+
+            if (this.selectedStage) {
+                return this.jobs.filter(job => job.stage === this.selectedStage);
             }
 
             return this.jobs.filter(job => ['running', 'error', 'warning'].indexOf(job.state) !== -1);
@@ -98,41 +125,45 @@ export default {
         font-family: "Font Awesome 5 Free"
         font-weight: 900
 
-    &.error::before
-        content: "\f00d"
-
-    &.running::before
-        animation: fa-spin 2s infinite linear
-        display: inline-block
-        content: "\f2f9"
-
     &.pending
         opacity: 0.7
 
         &::before
             content: "\f3c5"
 
-    &.success::before
-        content: "\f00c"
-
-    &.warning::before
-        content: "\f071"
-
-    &.info::before
-        content: "\f05a"
-
     &.error
         background: $color-error-darker
+
+        &::before
+            content: "\f00d"
 
     &.running
         background: $color-warning-darker
 
+        &::before
+            animation: fa-spin 2s infinite linear
+            display: inline-block
+            content: "\f2f9"
+
     &.success
         background: $color-success-darker
+
+        &::before
+            content: "\f00c"
 
     &.warning
         background: $color-warning-darker
 
+        &::before
+            content: "\f071"
+
     &.info
         background: $color-info-darker
+
+        &::before
+            content: "\f05a"
+
+    &.selected
+        background: $color-gray-darker
+        color: $color-gray-lighter
 </style>
