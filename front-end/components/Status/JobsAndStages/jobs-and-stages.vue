@@ -1,6 +1,6 @@
 <template>
-    <div class="detail-jobs-and-stages">
-        <div class="detail-stages" v-if="stages.length > 0" @mouseleave="clearSelectedStage">
+    <div class="detail-jobs-and-stages" @mouseleave="clearSelectedStage">
+        <div class="detail-stages" v-if="stages.length > 0">
             <div
                 class="detail-stage"
                 :class="getStageClasses(stage)"
@@ -97,6 +97,9 @@ export default {
     @media (max-width: $responsive-breakpoint)
         font-size: 18px
 
+.detail-jobs
+    flex-wrap: wrap
+
 .detail-stage
     margin: 5px 0
 
@@ -113,6 +116,7 @@ export default {
 .detail-job
     border-radius: 5px
     margin: 5px
+    min-width: 250px
 
 .detail-stage,
 .detail-job
