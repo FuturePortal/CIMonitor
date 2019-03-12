@@ -116,7 +116,7 @@ export default {
 .detail-job
     border-radius: 5px
     margin: 5px
-    min-width: 250px
+    min-width: 250px !important
 
 .detail-stage,
 .detail-job
