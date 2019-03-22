@@ -88,48 +88,32 @@ export default {
 </script>
 
 <style lang="sass" rel="stylesheet/sass" scoped>
-.detail-jobs,
 .detail-stages
-    font-size: 26px
     display: flex
     width: 100%
 
-    @media (max-width: $responsive-breakpoint)
-        font-size: 18px
-
 .detail-jobs
-    flex-wrap: wrap
-
-.detail-stage
-    margin: 5px 0
-
-    &:first-child
-        margin-left: 5px
-        border-top-left-radius: 5px
-        border-bottom-left-radius: 5px
-
-    &:last-child
-        margin-right: 5px
-        border-top-right-radius: 5px
-        border-bottom-right-radius: 5px
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+    grid-gap: 5px
+    margin: 5px
 
 .detail-job
     border-radius: 5px
-    margin: 5px
-    min-width: 250px !important
+    max-width: 100%
+    white-space: nowrap
 
 .detail-stage,
 .detail-job
-    flex: 1
+    font-size: 26px
     padding: 5px 10px
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
-    min-width: 0
-    flex-shrink: 1
 
     @media (max-width: $responsive-breakpoint)
         padding: 5px
+        font-size: 18px
 
     &::before
         font-family: "Font Awesome 5 Free"
@@ -172,6 +156,22 @@ export default {
 
         &::before
             content: "\f05a"
+
+.detail-stage
+    flex: 1
+    margin: 5px 0
+    min-width: 0
+    flex-shrink: 1
+
+    &:first-child
+        margin-left: 5px
+        border-top-left-radius: 5px
+        border-bottom-left-radius: 5px
+
+    &:last-child
+        margin-right: 5px
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px
 
     &.selected
         background: $color-gray-darker
