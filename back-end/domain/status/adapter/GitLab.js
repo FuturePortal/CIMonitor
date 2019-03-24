@@ -1,6 +1,6 @@
 const StatusFactory = require('../StatusFactory');
 const StatusManager = require('../StatusManager');
-const Config = require('../../../config/Config');
+const Config = require('../../../config/LoaderFactory').getLoader();
 
 class StatusAdapterGitLab {
     processWebHook(data) {

@@ -2,27 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 
-const Config = require('./config/Config');
-const router = require('./routes');
+const Config = require('./config/LoaderFactory').getLoader();
 const ModuleManager = require('./domain/module/ModuleManager');
 const SocketConnectionManager = require('./domain/socket/ConnectionManager');
-const StatusPersister = require('./domain/status/Persister');
+const Status = require('./domain/status/PersisterFactory').getPersister();
 const VersionChecker = require('./domain/cimonitor/VersionChecker');
+const router = require('./routes');
 
-const app = express();
-app.use(bodyParser.json());
-app.use(router);
-const server = http.createServer(app);
+(async () => {
+    await Config.loadConfig();
+    await ModuleManager.initModulesFromConfig();
+    await Status.loadSavedStatuses();
 
-SocketConnectionManager.startSocketServer(server);
+    const app = express();
+    app.use(bodyParser.json());
+    app.use(router);
+    const server = http.createServer(app);
 
-ModuleManager.initModulesFromConfig();
+    SocketConnectionManager.startSocketServer(server);
 
-StatusPersister.loadSavedStatuses();
-StatusPersister.saveStatusesOnChange();
+    VersionChecker.scheduleVersionChecks();
 
-VersionChecker.scheduleVersionChecks();
-
-server.listen(Config.getServerPort(), () => {
-    console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
-});
+    server.listen(Config.getServerPort(), () => {
+        console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
+    });
+})();

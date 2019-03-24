@@ -1,12 +1,14 @@
 const fileSystem = require('fs');
 const path = require('path');
 
-const Events = require('../Events');
-const StatusManager = require('../status/StatusManager');
-const StatusFactory = require('../status/StatusFactory');
+const AbstractPersister = require('./AbstractPersister');
+const StatusFactory = require('../StatusFactory');
+const StatusManager = require('../StatusManager');
 
-class Persister {
+class Filesystem extends AbstractPersister {
     constructor() {
+        super();
+
         const filename = `saved-statuses.json`;
         const logPath = path.resolve(`${__dirname}/../../../config/`);
 
@@ -25,12 +27,8 @@ class Persister {
         });
     }
 
-    saveStatusesOnChange() {
-        Events.watch(Events.event.statusesUpdated, () => this.onStatusesUpdated());
-    }
-
     loadSavedStatuses() {
-        console.log('[Persister] Loading saved statuses if any...');
+        console.log('[Persister] Loading saved statuses from disk if any...');
 
         if (!fileSystem.existsSync(this.statusesFile)) {
             console.log('[Persister] No saved statuses file found.');
@@ -51,4 +49,4 @@ class Persister {
     }
 }
 
-module.exports = new Persister();
+module.exports = new Filesystem();
