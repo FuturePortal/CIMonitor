@@ -117,7 +117,7 @@ Install unclutter so we can hide the mouse:
 @xset -dpms
 @xset s noblank
 @unclutter
-@chromium-browser --incognito --kiosk http://localhost:3000/
+@chromium-browser --enable-experimental-web-platform-features --kiosk --app=http://localhost:3000/
 ```
 
 ## Done!
