@@ -1,18 +1,21 @@
 const AbstractLoader = require('./AbstractLoader');
-const Firebase = require('../../storage/Firebase');
+const Config = require('../Config');
+const FirebaseStorage = require('../../storage/Firebase');
 
-class Config extends AbstractLoader {
+class Firebase extends AbstractLoader {
     async loadConfig() {
         console.log('[Config] Loading config from Firebase...');
 
         try {
             const config = await this.loadConfigFromFirebase();
 
-            this.triggers = config.triggers;
-            this.events = config.events;
-            this.modules = config.modules;
-            this.server = config.server;
-            this.moduleClient = config.moduleClient;
+            this.config = new Config(
+                config.triggers,
+                config.events,
+                config.modules,
+                config.server,
+                config.moduleClient,
+            );
 
             console.log('[Config] Loaded config.');
         } catch (error) {
@@ -22,7 +25,7 @@ class Config extends AbstractLoader {
     }
 
     async loadConfigFromFirebase() {
-        return await Firebase.load('config').then(function(data) {
+        return await FirebaseStorage.load('config').then(function(data) {
             data = data.toJSON();
             if (typeof data.triggers === 'undefined') {
                 data.triggers = [];
@@ -34,14 +37,14 @@ class Config extends AbstractLoader {
                 data.modules = [];
             }
             if (typeof data.server === 'undefined') {
-                data.server = [];
+                data.server = {};
             }
             if (typeof data.moduleClient === 'undefined') {
-                data.moduleClient = [];
+                data.moduleClient = {};
             }
             return data;
         });
     }
 }
 
-module.exports = new Config();
+module.exports = new Firebase();

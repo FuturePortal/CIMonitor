@@ -2,19 +2,23 @@ const fileSystem = require('fs');
 const path = require('path');
 
 const AbstractLoader = require('./AbstractLoader');
+const Config = require('../Config');
 
 class Filesystem extends AbstractLoader {
     async loadConfig() {
         console.log('[Config] Loading config from filesystem...');
 
         try {
+
             const config = this.loadConfigFromFilesystem();
 
-            this.triggers = config.triggers;
-            this.events = config.events;
-            this.modules = config.modules;
-            this.server = config.server;
-            this.moduleClient = config.moduleClient;
+            this.config = new Config(
+                config.triggers,
+                config.events,
+                config.modules,
+                config.server,
+                config.moduleClient,
+            );
 
             console.log('[Config] Loaded config.');
         } catch (error) {

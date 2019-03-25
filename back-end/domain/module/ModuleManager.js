@@ -1,4 +1,4 @@
-const Config = require('../../config/LoaderFactory').getLoader();
+const ConfigLoader = require('../../config/LoaderFactory').getLoader();
 
 class ModuleManager {
     constructor() {
@@ -6,7 +6,8 @@ class ModuleManager {
     }
 
     initModulesFromConfig() {
-        const configuredModules = Config.getModules();
+        const config = ConfigLoader.getConfig();
+        const configuredModules = config.getModules();
         console.log('[ModuleManager] Setting up all configured modules...');
         configuredModules.forEach(module => this.initializeModule(module.name, module.config));
     }
