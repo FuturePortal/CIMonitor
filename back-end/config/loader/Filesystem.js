@@ -9,7 +9,6 @@ class Filesystem extends AbstractLoader {
         console.log('[Config] Loading config from filesystem...');
 
         try {
-
             const config = this.loadConfigFromFilesystem();
 
             this.config = new Config(
@@ -17,7 +16,7 @@ class Filesystem extends AbstractLoader {
                 config.events,
                 config.modules,
                 config.server,
-                config.moduleClient,
+                config.moduleClient
             );
 
             console.log('[Config] Loaded config.');

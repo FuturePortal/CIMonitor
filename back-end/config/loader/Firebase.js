@@ -14,7 +14,7 @@ class Firebase extends AbstractLoader {
                 config.events,
                 config.modules,
                 config.server,
-                config.moduleClient,
+                config.moduleClient
             );
 
             console.log('[Config] Loaded config.');

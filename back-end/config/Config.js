@@ -1,11 +1,5 @@
 class Config {
-    constructor(
-        triggers,
-        events,
-        modules,
-        server,
-        moduleClient
-    ) {
+    constructor(triggers, events, modules, server, moduleClient) {
         this.triggers = triggers;
         this.events = events;
         this.modules = modules;
