@@ -12,6 +12,8 @@ Setting up CIMonitor is quick and easy. You need to have the following packages 
 Clone or download the latest CIMonitor via [github.com/cimonitor/cimonitor](https://github.com/cimonitor/cimonitor)
 (press the green button).
 
+
+## Configuration
 In the folder you just downloaded, you need to create the primary config file. Create the file
 `config/config.json` in the project directory. You could also copy the `config.example.json` file
 you find there.
@@ -30,6 +32,8 @@ Make sure at least the following configuration is in your config file:
 ```
 
 For advanced configuration options, check out [the configuration page](configuration.md).
+To store the config in Google Firebase instead of a local JSON file, see [the Firebase page](firebase.md).
+
 
 Open your terminal in the folder you just downloaded, and run the following command:
 
