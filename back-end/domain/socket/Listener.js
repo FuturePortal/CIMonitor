@@ -1,13 +1,14 @@
 const SocketClient = require('socket.io-client');
 
 const socketEvents = require('../../../shared/socketEvents');
-const Config = require('../../config/Config');
+const ConfigLoader = require('../../config/ConfigLoaderFactory').getLoader();
 const EventTrigger = require('../event/EventTrigger');
 const StatusFactory = require('../status/StatusFactory');
 const StatusManager = require('../status/StatusManager');
 
 class SocketListener {
     connectAndListen() {
+        const Config = ConfigLoader.getConfig();
         const masterAddress = Config.getMaster();
         const socket = SocketClient(masterAddress);
 
