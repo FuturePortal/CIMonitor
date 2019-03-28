@@ -1,4 +1,4 @@
-class AbstractLoader {
+class AbstractConfigLoader {
     constructor() {
         this.config = undefined;
     }
@@ -12,4 +12,4 @@ class AbstractLoader {
     }
 }
 
-module.exports = AbstractLoader;
+module.exports = AbstractConfigLoader;

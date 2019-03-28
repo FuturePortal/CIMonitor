@@ -1,4 +1,4 @@
-const ConfigLoader = require('../../config/LoaderFactory').getLoader();
+const ConfigLoader = require('../../config/ConfigLoaderFactory').getLoader();
 
 class ModuleManager {
     constructor() {

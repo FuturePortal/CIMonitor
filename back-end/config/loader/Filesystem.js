@@ -1,10 +1,10 @@
 const fileSystem = require('fs');
 const path = require('path');
 
-const AbstractLoader = require('./AbstractLoader');
+const AbstractConfigLoader = require('./AbstractConfigLoader');
 const Config = require('../Config');
 
-class Filesystem extends AbstractLoader {
+class Filesystem extends AbstractConfigLoader {
     async loadConfig() {
         console.log('[Config] Loading config from filesystem...');
 

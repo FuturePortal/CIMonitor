@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 
-const ConfigLoader = require('./config/LoaderFactory').getLoader();
+const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
 const ModuleManager = require('./domain/module/ModuleManager');
 const SocketConnectionManager = require('./domain/socket/ConnectionManager');
 const StatusPersister = require('./domain/status/PersisterFactory').getPersister();

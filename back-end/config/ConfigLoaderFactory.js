@@ -1,12 +1,12 @@
-const AbstractLoader = require('./loader/AbstractLoader');
+const AbstractConfigLoader = require('./loader/AbstractConfigLoader');
 
-class LoaderFactory {
+class ConfigLoaderFactory {
     constructor() {
         this.loader = undefined;
     }
 
     getLoader() {
-        if (this.loader instanceof AbstractLoader) {
+        if (this.loader instanceof AbstractConfigLoader) {
             return this.loader;
         }
 
@@ -24,4 +24,4 @@ class LoaderFactory {
     }
 }
 
-module.exports = new LoaderFactory();
+module.exports = new ConfigLoaderFactory();

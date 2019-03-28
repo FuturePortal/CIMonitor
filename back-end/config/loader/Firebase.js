@@ -1,8 +1,8 @@
-const AbstractLoader = require('./AbstractLoader');
+const AbstractConfigLoader = require('./AbstractConfigLoader');
 const Config = require('../Config');
 const FirebaseStorage = require('../../storage/Firebase');
 
-class Firebase extends AbstractLoader {
+class Firebase extends AbstractConfigLoader {
     async loadConfig() {
         console.log('[Config] Loading config from Firebase...');
 
@@ -25,24 +25,19 @@ class Firebase extends AbstractLoader {
     }
 
     async loadConfigFromFirebase() {
-        return await FirebaseStorage.load('config').then(function(data) {
+        return await FirebaseStorage.load('config').then(data => {
+            let config = {
+                triggers: [],
+                events: [],
+                modules: [],
+                server: {},
+                moduleClient: {},
+            };
             data = data.toJSON();
-            if (typeof data.triggers === 'undefined') {
-                data.triggers = [];
-            }
-            if (typeof data.events === 'undefined') {
-                data.events = [];
-            }
-            if (typeof data.modules === 'undefined') {
-                data.modules = [];
-            }
-            if (typeof data.server === 'undefined') {
-                data.server = {};
-            }
-            if (typeof data.moduleClient === 'undefined') {
-                data.moduleClient = {};
-            }
-            return data;
+
+            Object.keys(data).map(e => (config[e] = data[e]));
+
+            return config;
         });
     }
 }
