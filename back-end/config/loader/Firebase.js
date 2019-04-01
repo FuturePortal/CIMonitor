@@ -35,7 +35,18 @@ class Firebase extends AbstractConfigLoader {
             };
             data = data.toJSON();
 
-            Object.keys(data).map(e => (config[e] = data[e]));
+            /**
+             * Firebase always returns an object, even if we stored an array. To get back to
+             * the original data structure we check in the config stub above if we want an
+             * array or an object for each key, and if necessary convert the object.
+             */
+            Object.keys(data).map(e => {
+                if (Array.isArray(config[e])) {
+                    config[e] = Object.values(data[e]);
+                } else {
+                    config[e] = data[e];
+                }
+            });
 
             return config;
         });

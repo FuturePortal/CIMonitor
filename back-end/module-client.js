@@ -1,9 +1,10 @@
-const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
-const ModuleManager = require('./domain/module/ModuleManager');
-const SocketListener = require('./domain/socket/Listener');
-
 (async () => {
+    const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
     await ConfigLoader.loadConfig();
-    ModuleManager.initModulesFromConfig();
+
+    const ModuleManager = require('./domain/module/ModuleManager');
+    await ModuleManager.initModulesFromConfig();
+
+    const SocketListener = require('./domain/socket/Listener');
     SocketListener.connectAndListen();
 })();
