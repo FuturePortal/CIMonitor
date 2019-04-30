@@ -20,12 +20,14 @@
         "browser-sync": "^2.26.3",
         "browser-sync-webpack-plugin": "2.0.1",
         "cypress": "^3.2.0",
-        "eslint": "^5.9.0",
+        "eslint": "^5.16.0",
         "eslint-config-prettier": "^3.3.0",
         "eslint-plugin-cypress": "^2.1.2",
+        "eslint-plugin-jest": "^22.5.1",
         "eslint-plugin-json": "^1.2.1",
         "eslint-plugin-prettier": "^3.0.0",
-        "eslint-plugin-vue": "^4.7.1"
+        "eslint-plugin-vue": "^4.7.1",
+        "jest": "^24.7.1"
     },
     "scripts": {
         "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

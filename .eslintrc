@@ -2,14 +2,15 @@
     "env": {
         "amd": true,
         "node": true,
-        "cypress/globals": true
+        "cypress/globals": true,
+        "jest/globals": true
     },
     "extends": ["eslint:recommended", "plugin:vue/strongly-recommended", "prettier"],
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": ["cypress", "json", "prettier", "vue"],
+    "plugins": ["cypress", "jest", "json", "prettier", "vue"],
     "rules": {
         "prettier/prettier": "error",
         "vue/html-indent": [
@@ -40,6 +41,11 @@
                 }
             }
         ],
-        "vue/html-self-closing": "off"
+        "vue/html-self-closing": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
     }
 }

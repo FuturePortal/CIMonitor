@@ -11,6 +11,8 @@ class Filesystem extends AbstractConfigLoader {
         try {
             const config = this.loadConfigFromFilesystem();
 
+            this.validateConfig(config);
+
             this.config = new Config(
                 config.triggers,
                 config.events,
@@ -21,13 +23,14 @@ class Filesystem extends AbstractConfigLoader {
 
             console.log('[Config] Loaded config.');
         } catch (error) {
-            console.error('[Config] Unable to load config.');
+            console.error('[Config] Unable to load config. ' + error.toString());
             process.exit(1);
         }
     }
 
     loadConfigFromFilesystem() {
         const configFile = path.resolve(`${__dirname}/../../../config/config.json`);
+
         return JSON.parse(fileSystem.readFileSync(configFile));
     }
 }
