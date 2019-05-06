@@ -7,3 +7,4 @@
 /config/config.json
 /Dockerfile
 /.dockerignore
+/docker-compose.yml
