@@ -24,19 +24,23 @@
         </script>
         <script type="text/javascript" src="/dashboard.js?bust=---bust---"></script>
         <script type="text/javascript">
-            let cursorTimer;
-            document.body.addEventListener("mousemove", function (e) {
-                if (e.movementY > 0 || e.movementX > 0) {
-                    window.clearTimeout(cursorTimer);
-                    document.body.style.cursor = null;
-                    cursorTimer = window.setTimeout(function() {
-                        document.body.style.cursor = 'none';
-                    }, 5000)
-                }
-            });
-            cursorTimer = window.setTimeout(function() {
-                document.body.style.cursor = 'none';
-            }, 5000)
+            (function() {
+                'use strict';
+
+                let cursorTimer;
+                document.body.addEventListener("mousemove", function (e) {
+                    if (e.movementY > 0 || e.movementX > 0) {
+                        window.clearTimeout(cursorTimer);
+                        document.body.style.cursor = null;
+                        cursorTimer = window.setTimeout(function() {
+                            document.body.style.cursor = 'none';
+                        }, 5000)
+                    }
+                });
+                cursorTimer = window.setTimeout(function() {
+                    document.body.style.cursor = 'none';
+                }, 5000)
+            })();
         </script>
     </body>
 </html>
