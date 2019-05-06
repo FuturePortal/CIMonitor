@@ -26,6 +26,7 @@ new Vue({
     },
     created() {
         document.title = `CIMonitor | ${location.host}`;
+        this.cursorHide();
     },
     methods: {
         updateFavicon(globalState) {
@@ -50,6 +51,31 @@ new Vue({
             } catch (error) {
                 // do nothing.
             }
+        },
+        cursorHide() {
+            let cursorTimer;
+            document.body.addEventListener(
+                'mousemove',
+                function(e) {
+                    if (e.movementY > 0 || e.movementX > 0) {
+                        window.clearTimeout(cursorTimer);
+                        document.body.style.cursor = null;
+                        if (this.$store.state.settings.cursorHidden) {
+                            cursorTimer = window.setTimeout(function() {
+                                document.body.style.cursor = 'none';
+                            }, this.$store.state.settings.cursorHiddenTimeout);
+                        }
+                    }
+                }.bind(this)
+            );
+            cursorTimer = window.setTimeout(
+                function() {
+                    if (this.$store.state.settings.cursorHidden) {
+                        document.body.style.cursor = 'none';
+                    }
+                }.bind(this),
+                this.$store.state.settings.cursorHiddenTimeout
+            );
         },
     },
     sockets: {
