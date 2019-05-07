@@ -7,15 +7,14 @@
         </p>
         <p><strong>Hide cursor:</strong></p>
         <button class="option" @click="disableCursorHide" :class="{ current: !cursorHidden }">Don't hide cursor</button>
-        <button class="option" @click="enableCursorHide" :class="{ current: cursorHidden }">Hide cursor after:</button>
+        <button class="option" @click="enableCursorHide" :class="{ current: cursorHidden }">Hide cursor</button>
         <div id="cursorHiddenTimeout" v-if="cursorHidden">
-            <input v-model.number="cursorHiddenTimeout" type="number" class="text" /> Miliseconds
+            Hide after <input v-model.number="cursorHiddenTimeout" type="number" class="text" /> miliseconds
         </div>
     </div>
 </template>
 
 <script>
-import CIMonitorLogo from '../../../EmptyBoard/logo.png';
 import {
     SETTINGS_SET_CURSORHIDDEN_ON,
     SETTINGS_SET_CURSORHIDDEN_OFF,
@@ -25,21 +24,9 @@ import {
 export default {
     methods: {
         enableCursorHide() {
-            Notification.requestPermission().then(() => {
-                new Notification(`CIMonitor`, {
-                    body: `Hiding of cursor enabled!`,
-                    icon: CIMonitorLogo,
-                });
-            });
             this.$store.commit(SETTINGS_SET_CURSORHIDDEN_ON);
         },
         disableCursorHide() {
-            Notification.requestPermission().then(() => {
-                new Notification(`CIMonitor`, {
-                    body: `Hiding of cursor enabled!`,
-                    icon: CIMonitorLogo,
-                });
-            });
             this.$store.commit(SETTINGS_SET_CURSORHIDDEN_OFF);
         },
     },

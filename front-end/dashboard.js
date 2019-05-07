@@ -54,28 +54,22 @@ new Vue({
         },
         cursorHide() {
             let cursorTimer;
-            document.body.addEventListener(
-                'mousemove',
-                function(e) {
-                    if (e.movementY > 0 || e.movementX > 0) {
-                        window.clearTimeout(cursorTimer);
-                        document.body.style.cursor = null;
-                        if (this.$store.state.settings.cursorHidden) {
-                            cursorTimer = window.setTimeout(function() {
-                                document.body.style.cursor = 'none';
-                            }, this.$store.state.settings.cursorHiddenTimeout);
-                        }
-                    }
-                }.bind(this)
-            );
-            cursorTimer = window.setTimeout(
-                function() {
+            document.body.addEventListener('mousemove', event => {
+                if (event.movementY > 0 || event.movementX > 0) {
+                    window.clearTimeout(cursorTimer);
+                    document.body.style.cursor = null;
                     if (this.$store.state.settings.cursorHidden) {
-                        document.body.style.cursor = 'none';
+                        cursorTimer = window.setTimeout(function() {
+                            document.body.style.cursor = 'none';
+                        }, this.$store.state.settings.cursorHiddenTimeout);
                     }
-                }.bind(this),
-                this.$store.state.settings.cursorHiddenTimeout
-            );
+                }
+            });
+            cursorTimer = window.setTimeout(() => {
+                if (this.$store.state.settings.cursorHidden) {
+                    document.body.style.cursor = 'none';
+                }
+            }, this.$store.state.settings.cursorHiddenTimeout);
         },
     },
     sockets: {
