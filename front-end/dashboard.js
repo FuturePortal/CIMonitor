@@ -59,7 +59,7 @@ new Vue({
                     window.clearTimeout(cursorTimer);
                     document.body.style.cursor = null;
                     if (this.$store.state.settings.cursorHidden) {
-                        cursorTimer = window.setTimeout(function() {
+                        cursorTimer = window.setTimeout(() => {
                             document.body.style.cursor = 'none';
                         }, this.$store.state.settings.cursorHiddenTimeout);
                     }
