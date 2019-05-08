@@ -7,3 +7,5 @@
 /config/config.json
 /Dockerfile
 /.dockerignore
+/docker-compose.yml
+/yarn-error.log
