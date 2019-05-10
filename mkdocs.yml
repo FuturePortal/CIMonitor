@@ -6,21 +6,22 @@ dev_addr: 0.0.0.0:9998
 pages:
     - Home: index.md
     - Getting started:
-          - Setup CIMonitor: setup/CIMonitor.md
-          - Configuration: setup/configuration.md
-          - Run as a service: setup/run-as-service.md
-          - Run with Docker: setup/run-with-docker.md
-          - Setup Raspberry: setup/Raspberry.md
+        - Setup CIMonitor: setup/CIMonitor.md
+        - Configuration: setup/configuration.md
+        - Firebase: setup/Firebase.md
+        - Run as a service: setup/run-as-service.md
+        - Run with Docker: setup/run-with-docker.md
+        - Setup Raspberry: setup/Raspberry.md
     - Status API: status-API.md
     - Link a service:
-          - GitLab: services/GitLab.md
-          - Travis CI: services/Travis-CI.md
-          - Deployer: services/Deployer.md
+        - GitLab: services/GitLab.md
+        - Travis CI: services/Travis-CI.md
+        - Deployer: services/Deployer.md
     - Modules:
-          - Marble run: modules/marble-run.md
-          - Dashboard video: modules/dashboard-video.md
-          - Hue light: modules/hue-light.md
-          - Led strip: modules/led-strip.md
-          - Power up: modules/power-up.md
-          - Traffic light: modules/traffic-light.md
+        - Marble run: modules/marble-run.md
+        - Dashboard video: modules/dashboard-video.md
+        - Hue light: modules/hue-light.md
+        - Led strip: modules/led-strip.md
+        - Power up: modules/power-up.md
+        - Traffic light: modules/traffic-light.md
     - Module client: module-client.md

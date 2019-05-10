@@ -1,4 +1,6 @@
-const Config = require('../../config/Config');
+const Config = require('../../config/ConfigLoaderFactory')
+    .getLoader()
+    .getConfig();
 const ModuleManager = require('../module/ModuleManager');
 const Events = require('../Events');
 

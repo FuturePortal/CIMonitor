@@ -50,7 +50,7 @@ inspect-container-slave: intro do-inspect-container-slave outro
 pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
-test: intro do-test-eslint-prettier outro
+test: intro do-test-eslint-prettier do-test-jest outro
 cypress: intro do-cypress-open
 cypress-run: intro do-cypress-run outro
 
@@ -138,6 +138,11 @@ do-test-eslint-prettier:
 		echo "to clean your code before you commit. \n" &&\
 		exit 1\
 	) && echo "All good! ❤️"
+
+do-test-jest:
+	@echo "\n=== Running Jest unit tests ===\n"
+	@echo "Running unit tests..."
+	@node_modules/.bin/jest
 
 do-fix-eslint-prettier:
 	@echo "\n=== Code style fixer ===\n"

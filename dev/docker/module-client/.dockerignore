@@ -7,3 +7,7 @@
 !/node_modules
 !/qemu-*-static
 !/shared
+
+# Finally ignore all Jest files
+**/__mocks__
+**/*.test.js

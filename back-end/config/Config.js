@@ -1,31 +1,10 @@
-const fileSystem = require('fs');
-const path = require('path');
-
 class Config {
-    constructor() {
-        this.triggers = [];
-        this.events = [];
-        this.modules = [];
-        this.server = {};
-        this.serverSlave = {};
-
-        this.loadConfig();
-    }
-
-    loadConfig() {
-        const configFile = path.resolve(`${__dirname}/../../config/config.json`);
-        console.log(`[Config] Loading config from ${configFile}...`);
-
-        const config = JSON.parse(fileSystem.readFileSync(configFile));
-
-        // @todo: validation via promises
-        this.triggers = config.triggers;
-        this.events = config.events;
-        this.modules = config.modules;
-        this.server = config.server;
-        this.moduleClient = config.moduleClient;
-
-        console.log('[Config] loaded.');
+    constructor(triggers, events, modules, server, moduleClient) {
+        this.triggers = triggers;
+        this.events = events;
+        this.modules = modules;
+        this.server = server;
+        this.moduleClient = moduleClient;
     }
 
     getTriggers() {
@@ -53,4 +32,4 @@ class Config {
     }
 }
 
-module.exports = new Config();
+module.exports = Config;
