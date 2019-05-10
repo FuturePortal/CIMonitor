@@ -46,6 +46,6 @@
                 }
             }
         ],
-        "vue/html-self-closing": "off",
+        "vue/html-self-closing": "off"
     }
 }
