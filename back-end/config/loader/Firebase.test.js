@@ -1,9 +1,16 @@
-const FilesystemConfigLoader = require('../../../../back-end/config/loader/Filesystem');
-const Config = require('../../../../back-end/config/Config');
-
 let mockConfig;
+let FirebaseStorage;
+let FirebaseConfigLoader;
+
+beforeAll(() => {
+    process.env['FIREBASE_URL'] = 'test.firebaseio.com';
+    process.env['FIREBASE_PRIVATE_KEY_FILE'] = 'tests/_data/firebase-private-key-file.json';
+});
 
 beforeEach(() => {
+    jest.resetModules();
+    jest.mock('../../storage/Firebase');
+
     console.log = jest.fn();
     console.error = jest.fn();
     process.exit = jest.fn();
@@ -15,13 +22,16 @@ beforeEach(() => {
         server: {},
         moduleClient: {},
     };
+
+    FirebaseStorage = require('../../storage/Firebase');
+    FirebaseConfigLoader = require('../../config/loader/Firebase');
 });
 
 test('An error is thrown if the data is not a valid object', async () => {
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue('test');
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue('test');
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith('[Config] Unable to load config. Error: Loaded config is not an object');
     expect(process.exit).toHaveBeenCalledWith(1);
@@ -30,10 +40,10 @@ test('An error is thrown if the data is not a valid object', async () => {
 test('An error is thrown if the data has invalid triggers', async () => {
     mockConfig.triggers = undefined;
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith(
         '[Config] Unable to load config. Error: Loaded config section invalid: triggers'
@@ -44,10 +54,10 @@ test('An error is thrown if the data has invalid triggers', async () => {
 test('An error is thrown if the data has invalid events', async () => {
     mockConfig.events = new Object();
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith(
         '[Config] Unable to load config. Error: Loaded config section invalid: events'
@@ -58,10 +68,10 @@ test('An error is thrown if the data has invalid events', async () => {
 test('An error is thrown if the data has invalid modules', async () => {
     mockConfig.modules = 'test';
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith(
         '[Config] Unable to load config. Error: Loaded config section invalid: modules'
@@ -72,10 +82,10 @@ test('An error is thrown if the data has invalid modules', async () => {
 test('An error is thrown if the data has invalid server config', async () => {
     mockConfig.server = [];
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith(
         '[Config] Unable to load config. Error: Loaded config section invalid: server'
@@ -86,10 +96,10 @@ test('An error is thrown if the data has invalid server config', async () => {
 test('An error is thrown if the data has invalid moduleClient config', async () => {
     mockConfig.moduleClient = [];
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+    await FirebaseConfigLoader.loadConfig();
+    FirebaseConfigLoader.getConfig();
 
     expect(console.error).toHaveBeenCalledWith(
         '[Config] Unable to load config. Error: Loaded config section invalid: moduleClient'
@@ -98,15 +108,28 @@ test('An error is thrown if the data has invalid moduleClient config', async () 
 });
 
 test('The Config object is valid if the data is correct', async () => {
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+    let mockObject = {
+        toJSON: jest.fn(() => {
+            console.log('returning the mock config');
+            console.log(mockConfig);
+            return mockConfig;
+        }),
+    };
 
-    await FilesystemConfigLoader.loadConfig();
-    const config = FilesystemConfigLoader.getConfig();
+    FirebaseStorage.load = jest.fn().mockReturnValue(
+        new Promise(resolve => {
+            resolve(mockObject);
+        })
+    );
+
+    await FirebaseConfigLoader.loadConfig();
+    const config = FirebaseConfigLoader.getConfig();
 
     expect(console.error).not.toHaveBeenCalled();
     expect(process.exit).not.toHaveBeenCalled();
 
-    expect(config).toBeInstanceOf(Config);
+    // Check on instanceof does not work, see https://github.com/facebook/jest/issues/2549
+    expect(config.constructor.name).toBe('Config');
     expect(config.triggers).toEqual([]);
     expect(config.events).toEqual([]);
     expect(config.modules).toEqual([]);

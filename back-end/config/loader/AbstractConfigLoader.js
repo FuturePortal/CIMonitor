@@ -8,7 +8,6 @@ class AbstractConfigLoader {
     }
 
     validateConfig(config) {
-        console.log(typeof config);
         if (typeof config !== 'object' || config === null) {
             throw new Error('Loaded config is not an object');
         }
