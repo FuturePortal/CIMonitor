@@ -3,12 +3,12 @@ const FirebaseAdmin = require('firebase-admin');
 class Firebase {
     constructor() {
         if (!process.env.FIREBASE_URL) {
-            console.error('Missing environment variable FIREBASE_URL');
+            console.error('[Firebase] Missing environment variable FIREBASE_URL');
             process.exit(1);
         }
 
         if (!process.env.FIREBASE_PRIVATE_KEY_FILE) {
-            console.error('Missing environment variable FIREBASE_PRIVATE_KEY_FILE');
+            console.error('[Firebase] Missing environment variable FIREBASE_PRIVATE_KEY_FILE');
             process.exit(1);
         }
 
@@ -26,7 +26,7 @@ class Firebase {
                 return data;
             });
         } catch (error) {
-            console.error(error);
+            console.error(`[Firebase] ${error}`);
         }
     }
 
@@ -34,7 +34,7 @@ class Firebase {
         try {
             return await this.database.ref(ref).set(data);
         } catch (error) {
-            console.error(error);
+            console.error(`[Firebase] ${error}`);
         }
     }
 }
