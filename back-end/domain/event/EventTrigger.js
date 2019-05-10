@@ -43,6 +43,10 @@ class EventTrigger {
 
         const event = Config.getEventByName(eventName);
 
+        if (!Array.isArray(event.modules)) {
+            return;
+        }
+
         event.modules.forEach(module => ModuleManager.fireModuleEvent(module.name, module.push, status));
     }
 }

@@ -33,14 +33,14 @@ CIMonitor needs three environment variables to connect to Firebase:
 | environment variable        | description                                                |
 | --------------------------- | -----------------------------------------------------------|
 | `STORAGE`                   | Set this to `firebase` to make use of Firebase.            |
-| `FIREBASE_DATABASE_URL`     | This url can be found above the database view in Firebase. |
+| `FIREBASE_URL`              | This url can be found above the database view in Firebase. |
 | `FIREBASE_PRIVATE_KEY_FILE` | The location of the downloaded private key JSON file.      |
 
 Prepend these environment variables before the command to start CIMonitor:
 
 ```
 $ STORAGE="firebase" \
-    FIREBASE_DATABASE_URL="https://cimonitor-12345.firebaseio.com/" \
+    FIREBASE_URL="https://cimonitor-12345.firebaseio.com/" \
     FIREBASE_PRIVATE_KEY_FILE="/path/to/firebase-private-key.json" \
     /opt/cimonitor/app/server.js
 ```
@@ -52,7 +52,7 @@ Simply pass on the environment variables to the docker container, like so:
 ```
 $ docker run --name=cimonitor -d \
     -e STORAGE="firebase" \
-    -e FIREBASE_DATABASE_URL="https://cimonitor-12345.firebaseio.com/" \
+    -e FIREBASE_URL="https://cimonitor-12345.firebaseio.com/" \
     -e FIREBASE_PRIVATE_KEY_FILE="/path/to/firebase-private-key.json" \
     cimonitor/server:latest
 ```
@@ -87,7 +87,7 @@ spec:
     env:
     - name: STORAGE
       value: "firebase"
-    - name: FIREBASE_DATABASE_URL
+    - name: FIREBASE_URL
       value: "https://cimonitor-12345.firebaseio.com/"
     - name: FIREBASE_PRIVATE_KEY_FILE
       value: "/etc/firebase-secrets/firebase-private-key.json"
