@@ -5,7 +5,12 @@
         "cypress/globals": true,
         "jest/globals": true
     },
-    "extends": ["eslint:recommended", "plugin:vue/strongly-recommended", "prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/strongly-recommended",
+        "plugin:jest/recommended",
+        "prettier"
+    ],
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
@@ -42,10 +47,5 @@
             }
         ],
         "vue/html-self-closing": "off",
-        "jest/no-disabled-tests": "warn",
-        "jest/no-focused-tests": "error",
-        "jest/no-identical-title": "error",
-        "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error"
     }
 }
