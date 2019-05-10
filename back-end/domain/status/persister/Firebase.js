@@ -10,10 +10,10 @@ class Firebase extends AbstractPersister {
         console.log('[FirebasePersister] Saving statuses to Firebase...');
 
         FirebaseStorage.save('statuses', statuses)
-            .then(function() {
+            .then(() => {
                 console.log(`[FirebasePersister] Statuses are saved to Firebase.`);
             })
-            .error(function() {
+            .catch(() => {
                 console.error(`[FirebasePersister] Failed saving statuses to Firebase.`);
             });
     }
@@ -28,7 +28,7 @@ class Firebase extends AbstractPersister {
                 console.log(`[FirebasePersister] No previous statuses in Firebase...`);
                 return;
             }
-            const statuses = data.map(rawStatus => StatusFactory.hydrateStatus(rawStatus));
+            const statuses = Object.values(data).map(rawStatus => StatusFactory.hydrateStatus(rawStatus));
             StatusManager.overwriteStatuses(statuses);
             console.log(`[FirebasePersister] Loaded ${statuses.length} statuses from Firebase...`);
         } catch (error) {

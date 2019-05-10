@@ -25,6 +25,7 @@ const http = require('http');
 
     SocketConnectionManager.startSocketServer(server);
     VersionChecker.scheduleVersionChecks();
+    StatusPersister.saveStatusesOnChange();
 
     server.listen(Config.getServerPort(), () => {
         console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);
