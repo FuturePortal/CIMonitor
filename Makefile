@@ -37,6 +37,7 @@ build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
+dev-server: intro do-dev-server-firebase outro
 dev-module-client: intro do-dev-module-client outro
 dev-dashboard: intro do-dev-dashboard outro
 build-production: intro do-build-production outro
@@ -74,6 +75,7 @@ do-show-commands:
 	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
+	@echo "    make dev-server                 Run the development server with Firebase backend."
 	@echo "    make dev-module-client          Run the development module client, listening to a master."
 	@echo "    make dev-dashboard              Build, run and watch the development dashboard."
 	@echo "\nDocker containers:"
@@ -115,6 +117,13 @@ do-dev-server:
 	@echo "\n=== Starting server application ===\n"
 	node back-end/server.js
 
+do-dev-server-firebase:
+	@echo "\n=== Starting server application ===\n"
+	STORAGE=firebase \
+	FIREBASE_URL=https://cimonitor-e63e1.firebaseio.com/ \
+	FIREBASE_PRIVATE_KEY_FILE=$$(pwd)/config/serviceAccountKey.json \
+	node back-end/server.js
+
 do-dev-module-client:
 	@echo "\n=== Starting server slave application ===\n"
 	node back-end/module-client.js
@@ -140,9 +149,9 @@ do-test-eslint-prettier:
 	) && echo "All good! ❤️"
 
 do-test-jest:
-	@echo "\n=== Jest ===\n"
+	@echo "\n=== Running Jest unit tests ===\n"
 	@echo "Running unit tests..."
-	@node_modules/.bin/jest tests
+	@node_modules/.bin/jest
 
 do-fix-eslint-prettier:
 	@echo "\n=== Code style fixer ===\n"
