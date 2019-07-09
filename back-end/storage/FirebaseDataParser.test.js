@@ -1,4 +1,4 @@
-const FirebaseDataParser = require('./FirebaseConfigParser.js');
+const FirebaseDataParser = require('./FirebaseDataParser.js');
 
 const data = [
     {
