@@ -17,11 +17,11 @@ class FirebaseDataParser {
         return data;
     }
 
-    shouldObjectBeArray(firebaseObject) {
+    shouldObjectBeArray(dataObject) {
         let arrayKeyCount = 0;
         let shouldBeArray = true;
 
-        Object.keys(firebaseObject).map(objectKey => {
+        Object.keys(dataObject).map(objectKey => {
             if (isNaN(parseInt(objectKey)) || parseInt(objectKey) !== arrayKeyCount) {
                 shouldBeArray = false;
             }
@@ -31,11 +31,11 @@ class FirebaseDataParser {
         return shouldBeArray;
     }
 
-    convertObjectToArray(objectArray) {
+    convertObjectToArray(arrayObject) {
         const actualArray = [];
 
-        Object.keys(objectArray).map(objectKey => {
-            actualArray.push(objectArray[objectKey]);
+        Object.keys(arrayObject).map(objectKey => {
+            actualArray.push(arrayObject[objectKey]);
         });
 
         return actualArray;
