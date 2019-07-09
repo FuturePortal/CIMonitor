@@ -1,28 +1,28 @@
-class FirebaseConfigParser {
-    convertArrayObjectsToArrays(firebaseObject) {
-        if (typeof firebaseObject !== 'object') {
-            return firebaseObject;
+class FirebaseDataParser {
+    convertObjectArraysToArrays(data) {
+        if (typeof data !== 'object') {
+            return data;
         }
 
-        if (this.objectShouldBeArray(firebaseObject)) {
-            const actualArray = this.convertObjectArrayToArray(firebaseObject);
+        if (this.shouldObjectBeArray(data)) {
+            const actualArray = this.convertObjectToArray(data);
 
-            return actualArray.map(arrayItem => this.convertArrayObjectsToArrays(arrayItem));
+            return actualArray.map(arrayItem => this.convertObjectArraysToArrays(arrayItem));
         }
 
-        Object.keys(firebaseObject).map(objectKey => {
-            firebaseObject[objectKey] = this.convertArrayObjectsToArrays(firebaseObject[objectKey]);
+        Object.keys(data).map(objectKey => {
+            data[objectKey] = this.convertObjectArraysToArrays(data[objectKey]);
         });
 
-        return firebaseObject;
+        return data;
     }
 
-    objectShouldBeArray(firebaseObject) {
+    shouldObjectBeArray(firebaseObject) {
         let arrayKeyCount = 0;
         let shouldBeArray = true;
 
         Object.keys(firebaseObject).map(objectKey => {
-            if (shouldBeArray && (isNaN(parseInt(objectKey)) || parseInt(objectKey) !== arrayKeyCount)) {
+            if (isNaN(parseInt(objectKey)) || parseInt(objectKey) !== arrayKeyCount) {
                 shouldBeArray = false;
             }
             arrayKeyCount++;
@@ -31,7 +31,7 @@ class FirebaseConfigParser {
         return shouldBeArray;
     }
 
-    convertObjectArrayToArray(objectArray) {
+    convertObjectToArray(objectArray) {
         const actualArray = [];
 
         Object.keys(objectArray).map(objectKey => {
@@ -42,4 +42,4 @@ class FirebaseConfigParser {
     }
 }
 
-module.exports = new FirebaseConfigParser();
+module.exports = new FirebaseDataParser();

@@ -75,6 +75,6 @@ const expectedConfigs = [
 
 test('Test should verify that firebase array objects are parsed to native arrays', () => {
     expectedConfigs.forEach(config => {
-        expect(FirebaseConfigParser.convertArrayObjectsToArrays(config.in)).toEqual(config.out);
+        expect(FirebaseConfigParser.convertObjectArraysToArrays(config.in)).toEqual(config.out);
     });
 });
