@@ -1,6 +1,6 @@
-const FirebaseConfigParser = require('./FirebaseConfigParser.js');
+const FirebaseDataParser = require('./FirebaseConfigParser.js');
 
-const expectedConfigs = [
+const data = [
     {
         in: {
             0: 'test',
@@ -74,7 +74,7 @@ const expectedConfigs = [
 ];
 
 test('Test should verify that firebase array objects are parsed to native arrays', () => {
-    expectedConfigs.forEach(config => {
-        expect(FirebaseConfigParser.convertObjectArraysToArrays(config.in)).toEqual(config.out);
+    data.forEach(data => {
+        expect(FirebaseDataParser.convertObjectArraysToArrays(data.in)).toEqual(data.out);
     });
 });
