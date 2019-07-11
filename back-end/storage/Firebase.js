@@ -1,4 +1,5 @@
 const FirebaseAdmin = require('firebase-admin');
+const FirebaseDataParser = require('./FirebaseDataParser');
 
 class Firebase {
     constructor() {
@@ -24,6 +25,8 @@ class Firebase {
         try {
             return await this.database.ref(ref).once('value', function(data) {
                 return data;
+            }).then(data => {
+                return FirebaseDataParser.convertObjectArraysToArrays(data.toJSON());
             });
         } catch (error) {
             console.error(`[Firebase] ${error}`);

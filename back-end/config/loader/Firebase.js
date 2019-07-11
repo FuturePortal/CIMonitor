@@ -7,7 +7,11 @@ class Firebase extends AbstractConfigLoader {
         console.log('[Config] Loading config from Firebase...');
 
         try {
-            const config = await this.loadConfigFromFirebase();
+            const config = await FirebaseStorage.load('config');
+
+            config.triggers = config.triggers || [];
+            config.events = config.events || [];
+            config.modules = config.modules || [];
 
             this.validateConfig(config);
 
@@ -24,34 +28,6 @@ class Firebase extends AbstractConfigLoader {
             console.error('[Config] Unable to load config. ' + error.toString());
             process.exit(1);
         }
-    }
-
-    async loadConfigFromFirebase() {
-        return await FirebaseStorage.load('config').then(firebaseConfig => {
-            let config = {
-                triggers: [],
-                events: [],
-                modules: [],
-                server: {},
-                moduleClient: {},
-            };
-            firebaseConfig = firebaseConfig.toJSON();
-
-            /**
-             * Firebase always returns an object, even if we stored an array. To get back to
-             * the original data structure we check in the config stub above if we want an
-             * array or an object for each key, and if necessary convert the object.
-             */
-            Object.keys(firebaseConfig).forEach(key => {
-                if (Array.isArray(config[key])) {
-                    config[key] = Object.values(firebaseConfig[key]);
-                    return;
-                }
-                config[key] = firebaseConfig[key];
-            });
-
-            return config;
-        });
     }
 }
 

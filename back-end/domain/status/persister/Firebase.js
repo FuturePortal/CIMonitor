@@ -23,7 +23,6 @@ class Firebase extends AbstractPersister {
 
         try {
             let data = await FirebaseStorage.load('statuses');
-            data = data.toJSON();
             if (data === null) {
                 console.log(`[FirebasePersister] No previous statuses in Firebase...`);
                 return;
