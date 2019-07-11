@@ -24,9 +24,8 @@ mix.copy('front-end/static/', 'dashboard/');
 if (!mix.inProduction()) {
     mix.webpackConfig({ devtool: `inline-source-map` });
 
-    const Config = require('./back-end/config/Config');
     mix.browserSync({
-        proxy: `localhost:${Config.getServerPort()}`,
+        proxy: `localhost:9999`,
         injectChanges: false,
         files: [`dashboard/**/*`],
     });
