@@ -23,11 +23,14 @@ class Firebase {
 
     async load(ref) {
         try {
-            return await this.database.ref(ref).once('value', function(data) {
-                return data;
-            }).then(data => {
-                return FirebaseDataParser.convertObjectArraysToArrays(data.toJSON());
-            });
+            return await this.database
+                .ref(ref)
+                .once('value', function(data) {
+                    return data;
+                })
+                .then(data => {
+                    return FirebaseDataParser.convertObjectArraysToArrays(data.toJSON());
+                });
         } catch (error) {
             console.error(`[Firebase] ${error}`);
         }

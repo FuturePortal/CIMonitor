@@ -73,9 +73,8 @@ const data = [
     },
     {
         in: null,
-        out: null
+        out: null,
     },
-
 ];
 
 test('Test should verify that firebase array objects are parsed to native arrays', () => {
