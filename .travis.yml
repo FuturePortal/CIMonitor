@@ -5,7 +5,7 @@ node_js:
   - '8'
 
 cache:
-  yarn: true
+  npm: true
   directories:
     - node_modules
 
@@ -36,9 +36,9 @@ jobs:
             docker run --rm --privileged multiarch/qemu-user-static:register --reset
           fi
       script:
-        - yarn install --production
-        - yarn production
-        - yarn remove babel-cli laravel-mix sass-resources-loader --production
+        - npm install
+        - npm run production
+        - npm remove babel-cli laravel-mix sass-resources-loader --production
         - mv config/config.example.json config/config.json
         - cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
         - docker build -t cimonitor/server:$DOCKER_TAG --build-arg BASE_IMAGE --build-arg QEMU_BINARY .

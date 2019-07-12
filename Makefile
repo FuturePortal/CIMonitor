@@ -104,12 +104,12 @@ do-checkout-pr:
 
 do-run-updates:
 	@echo "\n=== Updating project ===\n"
-	yarn install
+	npm install
 
 do-run-watch:
 	@echo "\n=== Running file watchers ===\n"
 	rm -rf dashboard/*
-	yarn watch
+	npm run watch
 
 do-dev-server:
 	@echo "\n=== Starting server application ===\n"
@@ -121,12 +121,12 @@ do-dev-module-client:
 
 do-dev-dashboard:
 	@echo "\n=== Building and watching files ===\n"
-	yarn watch
+	npm run watch
 
 do-build-production:
 	@echo "\n=== Building files for production ===\n"
-	yarn install --production
-	yarn production
+	npm install
+	npm run production
 
 do-test-eslint-prettier:
 	@echo "\n=== Code style check ===\n"
@@ -176,7 +176,7 @@ do-preview-docs:
 
 do-build-containers:
 	@echo "\n=== Building Docker container ===\n"
-	yarn remove babel-cli laravel-mix sass-resources-loader --production
+	npm uninstall babel-cli laravel-mix sass-resources-loader
 	mv -n config/config.example.json config/config.json
 	cp dev/docker/server/Dockerfile dev/docker/server/.dockerignore .
 	docker build -t cimonitor/server:$(DOCKER_TAG) .
@@ -213,9 +213,9 @@ do-inspect-container-slave:
 do-backup-dependencies:
 	@echo "\n=== Backing up dependencies ===\n"
 	cp package.json package.json.tmp
-	cp yarn.lock yarn.lock.tmp
+	cp package-lock.json package-lock.json.tmp
 
 do-restore-dependencies:
 	@echo "\n=== Restoring dependencies ===\n"
 	mv package.json.tmp package.json
-	mv yarn.lock.tmp yarn.lock
+	mv package-lock.json.tmp package-lock.json

@@ -1,19 +1,27 @@
 <template>
     <div class="status" :class="status.state">
-        <div class="image-resolver"><img v-if="status.image" :src="status.image" @error="hideImage" /></div>
+        <div class="image-resolver">
+            <img v-if="status.image" :src="status.image" @error="hideImage" />
+        </div>
         <div class="image-container" :class="{ 'image-container--no-image': !showImage || !status.image }">
             <div class="image" :style="imageStyle" />
         </div>
         <div class="build-details">
-            <div class="detail-title">{{ status.title }}</div>
-            <div class="detail-sub-title" v-if="status.subTitle">{{ status.subTitle }}</div>
+            <div class="detail-title">
+                {{ status.title }}
+            </div>
+            <div class="detail-sub-title" v-if="status.subTitle">
+                {{ status.subTitle }}
+            </div>
             <jobs-and-stages :jobs="status.jobs" :stages="status.stages" />
         </div>
         <div class="submit-details">
             <div class="user-image-container" :class="{ 'user-image--no-image': !status.userImage }">
                 <div class="user-image" :style="userImageStyle" />
             </div>
-            <div class="time-ago" v-if="now">{{ timeAgo }}</div>
+            <div class="time-ago" v-if="now">
+                {{ timeAgo }}
+            </div>
         </div>
     </div>
 </template>
