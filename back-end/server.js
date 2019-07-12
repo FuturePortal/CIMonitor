@@ -16,7 +16,7 @@ const http = require('http');
     const VersionChecker = require('./domain/cimonitor/VersionChecker');
     const router = require('./routes');
 
-    const Config = ConfigLoader.getConfig();
+    const Config = await ConfigLoader.getConfig();
 
     const app = express();
     app.use(bodyParser.json());

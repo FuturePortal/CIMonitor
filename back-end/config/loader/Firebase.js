@@ -7,12 +7,9 @@ class Firebase extends AbstractConfigLoader {
         console.log('[Config] Loading config from Firebase...');
 
         try {
-            const config = await FirebaseStorage.load('config');
+            const config = await this.loadConfigFromFirebase();
 
-            config.triggers = config.triggers || [];
-            config.events = config.events || [];
-            config.modules = config.modules || [];
-
+            this.setConfigDefaults(config);
             this.validateConfig(config);
 
             this.config = new Config(
@@ -28,6 +25,10 @@ class Firebase extends AbstractConfigLoader {
             console.error('[Config] Unable to load config. ' + error.toString());
             process.exit(1);
         }
+    }
+
+    async loadConfigFromFirebase() {
+        return await FirebaseStorage.load('config');
     }
 }
 
