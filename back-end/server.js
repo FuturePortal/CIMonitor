@@ -2,6 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 
+try {
+    require('dotenv').config();
+} catch (e) {
+    // No dotenv package found...
+}
+
 (async () => {
     const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
     await ConfigLoader.loadConfig();

@@ -25,6 +25,7 @@
         "browser-sync": "^2.26.3",
         "browser-sync-webpack-plugin": "2.0.1",
         "cypress": "^3.2.0",
+        "dotenv": "^8.0.0",
         "eslint": "^5.16.0",
         "eslint-config-prettier": "^3.3.0",
         "eslint-plugin-cypress": "^2.1.2",

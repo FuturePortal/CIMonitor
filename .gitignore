@@ -9,3 +9,5 @@
 /.dockerignore
 /docker-compose.yml
 /yarn-error.log
+.env
+config/serviceAccountKey.json
