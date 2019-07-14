@@ -27,7 +27,7 @@ test.each(invalidObjects)('An error is thrown if the config is %s', async (descr
 
     await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith('[Config] Unable to load config. Error: Loaded config is not an object');
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
@@ -83,9 +83,7 @@ test('An error is thrown if the data has invalid server config', async () => {
 
     await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: server'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
@@ -96,9 +94,7 @@ test('An error is thrown if the data has invalid moduleClient config', async () 
 
     await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: moduleClient'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 

@@ -36,7 +36,7 @@ test.each(invalidObjects)('An error is thrown if the config is %s', async (descr
     await FirebaseConfigLoader.loadConfig();
     FirebaseConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith('[Config] Unable to load config. Error: Loaded config is not an object');
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
@@ -48,7 +48,6 @@ test.each(invalidArrays)(
         FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
         await FirebaseConfigLoader.loadConfig();
-        FirebaseConfigLoader.getConfig();
 
         expect(console.error).not.toHaveBeenCalled();
         expect(process.exit).not.toHaveBeenCalled();
@@ -64,7 +63,6 @@ test.each(invalidArrays)(
         FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
         await FirebaseConfigLoader.loadConfig();
-        FirebaseConfigLoader.getConfig();
 
         expect(console.error).not.toHaveBeenCalled();
         expect(process.exit).not.toHaveBeenCalled();
@@ -80,7 +78,6 @@ test.each(invalidArrays)(
         FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
         await FirebaseConfigLoader.loadConfig();
-        FirebaseConfigLoader.getConfig();
 
         expect(console.error).not.toHaveBeenCalled();
         expect(process.exit).not.toHaveBeenCalled();
@@ -88,17 +85,25 @@ test.each(invalidArrays)(
     }
 );
 
+test.each(invalidObjects)('An error is thrown if server config is %s', async (description, invalidObject) => {
+    mockConfig.server = invalidObject;
+
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
+
+    await FirebaseConfigLoader.loadConfig();
+
+    expect(console.error).toHaveBeenCalled();
+    expect(process.exit).toHaveBeenCalledWith(1);
+});
+
 test.each(invalidObjects)('An error is thrown if moduleClient config is %s', async (description, invalidObject) => {
     mockConfig.moduleClient = invalidObject;
 
     FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
     await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: moduleClient'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
