@@ -27,7 +27,7 @@ outro:
 # Main commands
 # ===========================
 
-init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands outro
+init: intro do-pre-init do-run-updates do-show-commands outro
 update-project: intro do-run-updates outro
 update: intro do-switch-branch do-run-updates outro
 github: intro do-checkout-pr do-run-updates outro
