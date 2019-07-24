@@ -54,6 +54,15 @@ To start development run:
 
 Note: The server needs to run in order to display the dashboard.
 
+### Using Firebase as a backend
+
+To start development when using Firebase as a backend:
+
+-   Set up a Firebase database (see the online documentation)
+-   Store the generated JSON file in `config/serviceAccountKey.json`
+-   Copy .env.example to .env and update with the right values
+-   Start the server as normal, it will now use Firebase as storage backend
+
 ## Running production
 
 To start the production build:

@@ -1,8 +1,4 @@
-try {
-    require('dotenv').config();
-} catch (error) {
-    // No dotenv package found...
-}
+require('dotenv').config();
 
 (async () => {
     const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
