@@ -12,7 +12,7 @@ pages:
         - Run as a service: setup/run-as-service.md
         - Run with Docker: setup/run-with-docker.md
         - Setup Raspberry: setup/Raspberry.md
-    - Status API: status-API.md
+    - CIMonitor API: API.md
     - Link a service:
         - GitLab: services/GitLab.md
         - Travis CI: services/Travis-CI.md
