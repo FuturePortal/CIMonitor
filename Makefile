@@ -46,7 +46,6 @@ run-container-slave: intro do-run-container-slave outro
 inspect-container: intro do-inspect-container outro
 inspect-container-slave: intro do-inspect-container-slave outro
 
-pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
 test: intro do-test-eslint-prettier do-test-jest outro
@@ -146,9 +145,6 @@ do-fix-eslint-prettier:
 	@echo "\n=== Code style fixer ===\n"
 	@(node_modules/.bin/eslint --fix --ext .js,.vue,.json . && echo "Code style is cleaned ❤️") ||\
 	echo "\nNot everything could be fixed automatically, please check the errors above."
-
-do-commit-intro:
-	@echo "\n=== Committing ===\n"
 
 do-cypress-open:
 	@echo "\n=== Opening Cypress dashboard ===\n"
