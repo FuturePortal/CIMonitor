@@ -12,6 +12,7 @@ class AbstractModule {
     }
 
     /**
+     * @param config
      * @param {Status} status
      */
     fireEvent(config, status) {
