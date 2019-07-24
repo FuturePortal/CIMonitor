@@ -1,7 +1,9 @@
-const FilesystemConfigLoader = require('./Filesystem');
-const Config = require('../Config');
-
 let mockConfig;
+let Config;
+let FilesystemConfigLoader;
+
+const invalidObjects = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an empty array', []]];
+const invalidArrays = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an object', {}]];
 
 beforeEach(() => {
     console.log = jest.fn();
@@ -15,59 +17,64 @@ beforeEach(() => {
         server: {},
         moduleClient: {},
     };
+
+    Config = require('../Config');
+    FilesystemConfigLoader = require('./Filesystem');
 });
 
-test('An error is thrown if the data is not a valid object', async () => {
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue('test');
+test.each(invalidObjects)('An error is thrown if the config is %s', async (description, invalidObject) => {
+    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(invalidObject);
 
     await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith('[Config] Unable to load config. Error: Loaded config is not an object');
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
-test('An error is thrown if the data has invalid triggers', async () => {
-    mockConfig.triggers = undefined;
+test.each(invalidArrays)(
+    'Triggers config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.triggers = invalidArray;
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+        FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+        await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: triggers'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.triggers).toEqual([]);
+    }
+);
 
-test('An error is thrown if the data has invalid events', async () => {
-    mockConfig.events = new Object();
+test.each(invalidArrays)(
+    'Events config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.events = invalidArray;
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+        FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+        await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: events'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.events).toEqual([]);
+    }
+);
 
-test('An error is thrown if the data has invalid modules', async () => {
-    mockConfig.modules = 'test';
+test.each(invalidArrays)(
+    'Modules config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.modules = invalidArray;
 
-    FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
+        FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
 
-    await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
+        await FilesystemConfigLoader.loadConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: modules'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.modules).toEqual([]);
+    }
+);
 
 test('An error is thrown if the data has invalid server config', async () => {
     mockConfig.server = [];
@@ -75,11 +82,8 @@ test('An error is thrown if the data has invalid server config', async () => {
     FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
 
     await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: server'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
@@ -89,11 +93,8 @@ test('An error is thrown if the data has invalid moduleClient config', async () 
     FilesystemConfigLoader.loadConfigFromFilesystem = jest.fn().mockReturnValue(mockConfig);
 
     await FilesystemConfigLoader.loadConfig();
-    FilesystemConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: moduleClient'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 

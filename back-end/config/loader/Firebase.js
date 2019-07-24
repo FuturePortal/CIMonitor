@@ -9,6 +9,7 @@ class Firebase extends AbstractConfigLoader {
         try {
             const config = await this.loadConfigFromFirebase();
 
+            this.setConfigDefaults(config);
             this.validateConfig(config);
 
             this.config = new Config(
@@ -27,31 +28,7 @@ class Firebase extends AbstractConfigLoader {
     }
 
     async loadConfigFromFirebase() {
-        return await FirebaseStorage.load('config').then(firebaseConfig => {
-            let config = {
-                triggers: [],
-                events: [],
-                modules: [],
-                server: {},
-                moduleClient: {},
-            };
-            firebaseConfig = firebaseConfig.toJSON();
-
-            /**
-             * Firebase always returns an object, even if we stored an array. To get back to
-             * the original data structure we check in the config stub above if we want an
-             * array or an object for each key, and if necessary convert the object.
-             */
-            Object.keys(firebaseConfig).forEach(key => {
-                if (Array.isArray(config[key])) {
-                    config[key] = Object.values(firebaseConfig[key]);
-                    return;
-                }
-                config[key] = firebaseConfig[key];
-            });
-
-            return config;
-        });
+        return await FirebaseStorage.load('config');
     }
 }
 

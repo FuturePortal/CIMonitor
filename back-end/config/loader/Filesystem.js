@@ -11,6 +11,7 @@ class Filesystem extends AbstractConfigLoader {
         try {
             const config = this.loadConfigFromFilesystem();
 
+            this.setConfigDefaults(config);
             this.validateConfig(config);
 
             this.config = new Config(

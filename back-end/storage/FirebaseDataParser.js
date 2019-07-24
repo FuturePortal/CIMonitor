@@ -1,6 +1,6 @@
 class FirebaseDataParser {
     convertObjectArraysToArrays(data) {
-        if (typeof data !== 'object') {
+        if (data === null || typeof data !== 'object') {
             return data;
         }
 

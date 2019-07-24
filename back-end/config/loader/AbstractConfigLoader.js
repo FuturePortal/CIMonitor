@@ -7,44 +7,60 @@ class AbstractConfigLoader {
         throw new Error('Implement loadConfig()');
     }
 
-    validateConfig(config) {
-        if (typeof config !== 'object' || config === null) {
+    getConfig() {
+        return this.config;
+    }
+
+    setConfigDefaults(config) {
+        if (this.isNotAnObject(config)) {
             throw new Error('Loaded config is not an object');
         }
 
-        if (!('triggers' in config) || !Array.isArray(config.triggers)) {
+        if (this.isNotanArray(config.triggers)) {
+            config.triggers = [];
+        }
+
+        if (this.isNotanArray(config.events)) {
+            config.events = [];
+        }
+
+        if (this.isNotanArray(config.modules)) {
+            config.modules = [];
+        }
+    }
+
+    validateConfig(config) {
+        if (this.isNotAnObject(config)) {
+            throw new Error('Loaded config is not an object');
+        }
+
+        if (this.isNotanArray(config.triggers)) {
             throw new Error('Loaded config section invalid: triggers');
         }
 
-        if (!('events' in config) || !Array.isArray(config.events)) {
+        if (this.isNotanArray(config.events)) {
             throw new Error('Loaded config section invalid: events');
         }
 
-        if (!('modules' in config) || !Array.isArray(config.modules)) {
+        if (this.isNotanArray(config.modules)) {
             throw new Error('Loaded config section invalid: modules');
         }
 
-        if (
-            !('server' in config) ||
-            Array.isArray(config.server) ||
-            typeof config.server !== 'object' ||
-            config.server === null
-        ) {
+        if (this.isNotAnObject(config.server)) {
             throw new Error('Loaded config section invalid: server');
         }
 
-        if (
-            !('moduleClient' in config) ||
-            Array.isArray(config.moduleClient) ||
-            typeof config.moduleClient !== 'object' ||
-            config.moduleClient === null
-        ) {
+        if (this.isNotAnObject(config.moduleClient)) {
             throw new Error('Loaded config section invalid: moduleClient');
         }
     }
 
-    getConfig() {
-        return this.config;
+    isNotAnObject(value) {
+        return typeof value !== 'object' || value === null || Array.isArray(value);
+    }
+
+    isNotanArray(value) {
+        return !Array.isArray(value);
     }
 }
 

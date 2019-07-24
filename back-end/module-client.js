@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 (async () => {
     const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
     await ConfigLoader.loadConfig();

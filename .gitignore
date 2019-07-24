@@ -9,3 +9,7 @@
 /.dockerignore
 /docker-compose.yml
 /yarn-error.log
+
+# Files needed to use Firebase as a backend. See the README for more info.
+.env
+config/serviceAccountKey.json

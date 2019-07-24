@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 
+require('dotenv').config();
+
 (async () => {
     const ConfigLoader = require('./config/ConfigLoaderFactory').getLoader();
     await ConfigLoader.loadConfig();

@@ -2,6 +2,9 @@ let mockConfig;
 let FirebaseStorage;
 let FirebaseConfigLoader;
 
+const invalidObjects = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an empty array', []]];
+const invalidArrays = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an object', {}]];
+
 beforeAll(() => {
     process.env['FIREBASE_URL'] = 'test.firebaseio.com';
     process.env['FIREBASE_PRIVATE_KEY_FILE'] = 'tests/_data/firebase-private-key-file.json';
@@ -27,98 +30,87 @@ beforeEach(() => {
     FirebaseConfigLoader = require('../../config/loader/Firebase');
 });
 
-test('An error is thrown if the data is not a valid object', async () => {
-    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue('test');
+test.each(invalidObjects)('An error is thrown if the config is %s', async (description, invalidObject) => {
+    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(invalidObject);
 
     await FirebaseConfigLoader.loadConfig();
     FirebaseConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith('[Config] Unable to load config. Error: Loaded config is not an object');
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
-test('An error is thrown if the data has invalid triggers', async () => {
-    mockConfig.triggers = undefined;
+test.each(invalidArrays)(
+    'Triggers config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.triggers = invalidArray;
+
+        FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
+
+        await FirebaseConfigLoader.loadConfig();
+
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.triggers).toEqual([]);
+    }
+);
+
+test.each(invalidArrays)(
+    'Events config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.events = invalidArray;
+
+        FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
+
+        await FirebaseConfigLoader.loadConfig();
+
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.events).toEqual([]);
+    }
+);
+
+test.each(invalidArrays)(
+    'Modules config is converted to an empty array if it is %s',
+    async (description, invalidArray) => {
+        mockConfig.modules = invalidArray;
+
+        FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
+
+        await FirebaseConfigLoader.loadConfig();
+
+        expect(console.error).not.toHaveBeenCalled();
+        expect(process.exit).not.toHaveBeenCalled();
+        expect(mockConfig.modules).toEqual([]);
+    }
+);
+
+test.each(invalidObjects)('An error is thrown if server config is %s', async (description, invalidObject) => {
+    mockConfig.server = invalidObject;
 
     FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
     await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: triggers'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
-test('An error is thrown if the data has invalid events', async () => {
-    mockConfig.events = new Object();
+test.each(invalidObjects)('An error is thrown if moduleClient config is %s', async (description, invalidObject) => {
+    mockConfig.moduleClient = invalidObject;
 
     FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
 
     await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
 
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: events'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
-
-test('An error is thrown if the data has invalid modules', async () => {
-    mockConfig.modules = 'test';
-
-    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
-
-    await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
-
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: modules'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
-
-test('An error is thrown if the data has invalid server config', async () => {
-    mockConfig.server = [];
-
-    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
-
-    await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
-
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: server'
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
-});
-
-test('An error is thrown if the data has invalid moduleClient config', async () => {
-    mockConfig.moduleClient = [];
-
-    FirebaseConfigLoader.loadConfigFromFirebase = jest.fn().mockReturnValue(mockConfig);
-
-    await FirebaseConfigLoader.loadConfig();
-    FirebaseConfigLoader.getConfig();
-
-    expect(console.error).toHaveBeenCalledWith(
-        '[Config] Unable to load config. Error: Loaded config section invalid: moduleClient'
-    );
+    expect(console.error).toHaveBeenCalled();
     expect(process.exit).toHaveBeenCalledWith(1);
 });
 
 test('The Config object is valid if the data is correct', async () => {
-    let mockObject = {
-        toJSON: jest.fn(() => {
-            console.log('returning the mock config');
-            console.log(mockConfig);
-            return mockConfig;
-        }),
-    };
-
     FirebaseStorage.load = jest.fn().mockReturnValue(
         new Promise(resolve => {
-            resolve(mockObject);
+            resolve(mockConfig);
         })
     );
 
