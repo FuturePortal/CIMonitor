@@ -31,7 +31,6 @@ init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands out
 update-project: intro do-run-updates outro
 update: intro do-switch-branch do-run-updates outro
 github: intro do-checkout-pr do-run-updates outro
-git-hooks: intro do-install-git-hooks outro
 
 build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
@@ -65,7 +64,6 @@ do-show-commands:
 	@echo "    make update-project             Install all dependencies and generate required files."
 	@echo "    make update BRANCH=<branch>     Switch to a branch and run update-project."
 	@echo "    make github PR=<number>         Check out a PR from github and update the project."
-	@echo "    make git-hooks                  Install the available git hooks."
 	@echo "    make fix                        Fix most of the codestyle errors."
 	@echo "\nLocal installation:"
 	@echo "    make build-production           Build all the files required for production."
@@ -151,11 +149,6 @@ do-fix-eslint-prettier:
 
 do-commit-intro:
 	@echo "\n=== Committing ===\n"
-
-do-install-git-hooks:
-	@echo "\n=== Installing git hooks ===\n"
-	cp dev/git-hooks/* .git/hooks
-	chmod +x .git/hooks/*
 
 do-cypress-open:
 	@echo "\n=== Opening Cypress dashboard ===\n"
