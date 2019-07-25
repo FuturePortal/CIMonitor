@@ -27,11 +27,10 @@ outro:
 # Main commands
 # ===========================
 
-init: intro do-pre-init do-install-git-hooks do-run-updates do-show-commands outro
+init: intro do-pre-init do-run-updates do-show-commands outro
 update-project: intro do-run-updates outro
 update: intro do-switch-branch do-run-updates outro
 github: intro do-checkout-pr do-run-updates outro
-git-hooks: intro do-install-git-hooks outro
 
 build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
@@ -47,7 +46,6 @@ run-container-slave: intro do-run-container-slave outro
 inspect-container: intro do-inspect-container outro
 inspect-container-slave: intro do-inspect-container-slave outro
 
-pre-commit: intro do-test-eslint-prettier do-commit-intro
 fix: intro do-fix-eslint-prettier outro
 
 test: intro do-test-eslint-prettier do-test-jest outro
@@ -65,7 +63,6 @@ do-show-commands:
 	@echo "    make update-project             Install all dependencies and generate required files."
 	@echo "    make update BRANCH=<branch>     Switch to a branch and run update-project."
 	@echo "    make github PR=<number>         Check out a PR from github and update the project."
-	@echo "    make git-hooks                  Install the available git hooks."
 	@echo "    make fix                        Fix most of the codestyle errors."
 	@echo "\nLocal installation:"
 	@echo "    make build-production           Build all the files required for production."
@@ -148,14 +145,6 @@ do-fix-eslint-prettier:
 	@echo "\n=== Code style fixer ===\n"
 	@(node_modules/.bin/eslint --fix --ext .js,.vue,.json . && echo "Code style is cleaned ❤️") ||\
 	echo "\nNot everything could be fixed automatically, please check the errors above."
-
-do-commit-intro:
-	@echo "\n=== Committing ===\n"
-
-do-install-git-hooks:
-	@echo "\n=== Installing git hooks ===\n"
-	cp dev/git-hooks/* .git/hooks
-	chmod +x .git/hooks/*
 
 do-cypress-open:
 	@echo "\n=== Opening Cypress dashboard ===\n"
