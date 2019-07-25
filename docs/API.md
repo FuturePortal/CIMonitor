@@ -49,6 +49,6 @@ You can directly trigger an event (configured in the configuration) via `POST /e
 }
 ```
 
-| key         | required? | description                                                              |
-| ----------- | --------- | ------------------------------------------------------------------------ |
-| `event`     | yes       | They configuration key that used for the event that should be triggered. |
+| key         | required? | description                                                                |
+| ----------- | --------- | -------------------------------------------------------------------------- |
+| `event`     | yes       | The configuration key that is used for the event that should be triggered. |
