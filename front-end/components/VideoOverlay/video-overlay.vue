@@ -76,7 +76,7 @@ export default {
     padding-bottom: 56.25%
     height: 0
 
-    /deep/ iframe
+    ::v-deep iframe
         position: absolute
         left: 0
         top: 0

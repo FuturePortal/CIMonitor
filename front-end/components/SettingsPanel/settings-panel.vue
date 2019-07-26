@@ -2,13 +2,16 @@
     <div v-if="open" class="overlay" @click="closeOnOutsideClick">
         <div class="settings-panel">
             <div class="title-bar">
-                Settings <button @click="closePanel" class="close"><i class="fas fa-times"></i></button>
+                Settings
+                <button @click="closePanel" class="close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="body">
                 <div class="menu">
                     <button
                         v-for="tab in tabs"
-                        @click="openSettingsTab(tab);"
+                        @click="openSettingsTab(tab)"
                         :key="tab.name"
                         :class="{ active: tab === openTab }"
                     >
@@ -16,11 +19,15 @@
                     </button>
                 </div>
                 <div class="setting-space-wrapper">
-                    <note v-if="openTab.localChangesOnly">Changes you make here will only affect you.</note>
+                    <note v-if="openTab.localChangesOnly">
+                        Changes you make here will only affect you.
+                    </note>
                     <note v-if="!openTab.localChangesOnly && openTab.localChangesOnly !== null" type="warning">
                         Changes you make here will affect all connected clients.
                     </note>
-                    <div class="setting-space"><component :is="openTab.component" /></div>
+                    <div class="setting-space">
+                        <component :is="openTab.component" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -186,7 +193,7 @@ $seperator-color: $color-gray-lighter
 .setting-space
     padding: 20px
 
-    /deep/ h1,
-    /deep/ p
+    ::v-deep h1,
+    ::v-deep p
         margin-bottom: 15px
 </style>

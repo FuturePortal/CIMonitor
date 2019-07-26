@@ -6,8 +6,12 @@
             -`.
         </p>
         <p><strong>Hide cursor:</strong></p>
-        <button class="option" @click="disableCursorHide" :class="{ current: !cursorHidden }">Don't hide cursor</button>
-        <button class="option" @click="enableCursorHide" :class="{ current: cursorHidden }">Hide cursor</button>
+        <button class="option" @click="disableCursorHide" :class="{ current: !cursorHidden }">
+            Don't hide cursor
+        </button>
+        <button class="option" @click="enableCursorHide" :class="{ current: cursorHidden }">
+            Hide cursor
+        </button>
         <div id="cursorHiddenTimeout" v-if="cursorHidden">
             Hide after <input v-model.number="cursorHiddenTimeout" type="number" class="text" /> miliseconds
         </div>

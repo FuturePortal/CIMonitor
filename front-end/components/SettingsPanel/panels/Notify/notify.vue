@@ -16,7 +16,7 @@
         </button>
         <ul id="statusSelector" v-if="pushNotifications">
             <li v-for="(enabled, status) in notificationStatuses" :key="status">
-                <button class="sub-option" @click="toggleNotificationStatus(status);" :class="{ current: enabled }">
+                <button class="sub-option" @click="toggleNotificationStatus(status)" :class="{ current: enabled }">
                     Show {{ status }}
                 </button>
             </li>

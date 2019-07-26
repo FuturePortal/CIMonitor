@@ -18,7 +18,9 @@
                 <div class="name">
                     {{ contributor.name }} <span class="username">@{{ contributor.username }}</span>
                 </div>
-                <div v-if="contributor.location" class="location">{{ contributor.location }}</div>
+                <div v-if="contributor.location" class="location">
+                    {{ contributor.location }}
+                </div>
                 <div class="contributions">
                     <a :href="getContributionsLink(contributor)" target="_blank">
                         {{ getContributionsText(contributor) }}
