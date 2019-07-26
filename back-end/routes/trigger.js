@@ -1,5 +1,5 @@
 const app = (module.exports = require('express')());
-const ConnectionManager = require('../domain/socket/ConnectionManager');
+const SocketConnectionManager = require('../domain/socket/ConnectionManager');
 const Events = require('../domain/Events.js');
 
 app.post('/event', (request, response) => {
@@ -14,7 +14,7 @@ app.post('/event', (request, response) => {
     }
 
     Events.push(Events.event.triggerEvent, eventName);
-    ConnectionManager.pushEventTrigger(eventName);
+    SocketConnectionManager.pushEventTrigger(eventName);
 
     return response.json({
         message: 'The event has been triggered and pushed to clients.',
@@ -36,7 +36,7 @@ app.post('/module', (request, response) => {
         name: moduleName,
         push: pushConfig,
     });
-    ConnectionManager.pushModuleTrigger(moduleName, pushConfig);
+    SocketConnectionManager.pushModuleTrigger(moduleName, pushConfig);
 
     return response.json({
         message: 'The module has been triggered and pushed to clients.',
