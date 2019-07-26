@@ -17,7 +17,6 @@ require('dotenv').config();
     const SocketConnectionManager = require('./domain/socket/ConnectionManager');
     const VersionChecker = require('./domain/cimonitor/VersionChecker');
     const router = require('./routes');
-    const TriggerListener = require('./domain/cimonitor/TriggerListener.js');
 
     const Config = await ConfigLoader.getConfig();
 
@@ -29,7 +28,6 @@ require('dotenv').config();
     SocketConnectionManager.startSocketServer(server);
     VersionChecker.scheduleVersionChecks();
     StatusPersister.saveStatusesOnChange();
-    TriggerListener.listenToEvents();
 
     server.listen(Config.getServerPort(), () => {
         console.log(`[server] Running and listening on port ${Config.getServerPort()}...`);

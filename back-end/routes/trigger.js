@@ -1,6 +1,6 @@
 const app = (module.exports = require('express')());
 const SocketConnectionManager = require('../domain/socket/ConnectionManager');
-const Events = require('../domain/Events.js');
+const Trigger = require('../domain/cimonitor/Trigger.js');
 
 app.post('/event', (request, response) => {
     console.log('/trigger/event [POST]');
@@ -13,7 +13,7 @@ app.post('/event', (request, response) => {
         });
     }
 
-    Events.push(Events.event.triggerEvent, eventName);
+    Trigger.event(eventName);
     SocketConnectionManager.pushEventTrigger(eventName);
 
     return response.json({
@@ -32,10 +32,7 @@ app.post('/module', (request, response) => {
         });
     }
 
-    Events.push(Events.event.triggerModule, {
-        name: moduleName,
-        push: pushConfig,
-    });
+    Trigger.module(moduleName, pushConfig);
     SocketConnectionManager.pushModuleTrigger(moduleName, pushConfig);
 
     return response.json({

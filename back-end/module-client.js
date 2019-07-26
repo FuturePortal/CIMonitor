@@ -9,7 +9,4 @@ require('dotenv').config();
 
     const SocketListener = require('./domain/socket/Listener');
     SocketListener.connectAndListen();
-
-    const TriggerListener = require('./domain/cimonitor/TriggerListener.js');
-    TriggerListener.listenToEvents();
 })();

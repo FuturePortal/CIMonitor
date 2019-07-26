@@ -3,9 +3,9 @@ const SocketClient = require('socket.io-client');
 const socketEvents = require('../../../shared/socketEvents');
 const ConfigLoader = require('../../config/ConfigLoaderFactory').getLoader();
 const EventTrigger = require('../event/EventTrigger');
-const Events = require('../Events.js');
 const StatusFactory = require('../status/StatusFactory');
 const StatusManager = require('../status/StatusManager');
+const Trigger = require('../cimonitor/Trigger.js');
 
 class SocketListener {
     connectAndListen() {
@@ -39,13 +39,13 @@ class SocketListener {
     triggerEvent(eventName) {
         console.log(`[SocketListener] Received event trigger for event ${eventName}.`);
 
-        Events.push(Events.event.triggerEvent, eventName);
+        Trigger.event(eventName);
     }
 
     triggerModule(module) {
         console.log(`[SocketListener] Received module trigger for module ${module.name}.`);
 
-        Events.push(Events.event.triggerModule, module);
+        Trigger.module(module.name, module.push);
     }
 }
 

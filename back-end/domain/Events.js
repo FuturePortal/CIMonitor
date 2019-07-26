@@ -11,8 +11,6 @@ class Events {
             newStatus: 'new-status',
             statusesUpdated: 'statuses-updated',
             eventTriggerStatus: 'event-trigger-status',
-            triggerEvent: 'trigger-event',
-            triggerModule: 'trigger-module',
         };
     }
 
