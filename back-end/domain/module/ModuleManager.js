@@ -26,6 +26,10 @@ class ModuleManager {
         }
     }
 
+    isModuleInitialized(moduleName) {
+        return !!this.modules[moduleName];
+    }
+
     /**
      * @param {Status} status
      */
