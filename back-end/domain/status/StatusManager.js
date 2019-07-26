@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const Events = require('../Events');
 const EventTrigger = require('../event/EventTrigger');
 
@@ -46,7 +48,7 @@ class StatusManager {
                 // Get raw data only
                 .map(status => status.getRawData())
                 // Newest updates first
-                .sort((statusA, statusB) => statusA.time < statusB.time)
+                .sort((statusA, statusB) => moment(statusA.time).isBefore(statusB.time))
         );
     }
 
