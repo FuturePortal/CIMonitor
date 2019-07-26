@@ -1,4 +1,5 @@
 const validate = require('validate.js');
+const moment = require('moment');
 
 const Events = require('../Events');
 const Status = require('./Status');
@@ -99,7 +100,10 @@ class StatusFactory {
         return validate
             .async(data, this.getStatusConstraints())
             .then(data => {
-                data = { ...data, time: new Date() };
+                data = {
+                    ...data,
+                    time: moment().format(),
+                };
                 const newStatus = new Status(data);
 
                 Events.push(Events.event.newStatus, newStatus);
