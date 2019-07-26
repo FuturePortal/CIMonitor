@@ -12,10 +12,12 @@
             <div class="panel-status" :class="status.state">
                 <div class="title">
                     {{ status.title }}
-                    <div v-if="status.subTitle" class="sub-title">{{ status.subTitle }}</div>
+                    <div v-if="status.subTitle" class="sub-title">
+                        {{ status.subTitle }}
+                    </div>
                 </div>
                 <div class="actions">
-                    <button class="remove" @click="remove(status.key);"><i class="fas fa-ban" /> remove</button>
+                    <button class="remove" @click="remove(status.key)"><i class="fas fa-ban" /> remove</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 <template>
-    <div class="no-connection">no connection with the server</div>
+    <div class="no-connection">
+        no connection with the server
+    </div>
 </template>
 
 <script>

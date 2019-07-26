@@ -52,9 +52,7 @@ class LedStrip extends AbstractModule {
 
         if (typeof this.config.colors !== 'undefined') {
             for (let overWriteColor in this.config.colors) {
-                if (this.config.colors.hasOwnProperty(overWriteColor)) {
-                    this.colors[overWriteColor] = this.config.colors[overWriteColor];
-                }
+                this.colors[overWriteColor] = this.config.colors[overWriteColor];
             }
         }
 

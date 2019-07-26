@@ -6,7 +6,7 @@
                 :class="getStageClasses(stage)"
                 v-for="stage in stages"
                 :key="stage"
-                @mouseenter="selectStage(stage);"
+                @mouseenter="selectStage(stage)"
             >
                 {{ stage }}
             </div>

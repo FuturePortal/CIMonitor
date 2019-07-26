@@ -2,9 +2,15 @@
     <div>
         <div class="light" :class="state" />
         <div class="toolbar">
-            <button @click="openGitHub();"><i class="fab fa-github" /></button>
-            <div class="logo"><img :src="trafficLightImage" alt="logo" /></div>
-            <button @click="openSettings();"><i class="fas fa-cog" /></button>
+            <button @click="openGitHub()">
+                <i class="fab fa-github" />
+            </button>
+            <div class="logo">
+                <img :src="trafficLightImage" alt="logo" />
+            </div>
+            <button @click="openSettings()">
+                <i class="fas fa-cog" />
+            </button>
         </div>
     </div>
 </template>
