@@ -95,6 +95,30 @@ class SocketConnectionManager {
 
         this.io.sockets.emit(socketEvents.playVideo, videoDetails);
     }
+
+    /**
+     * Push a trigger to start an event on module clients
+     *
+     * @param {String} eventName
+     */
+    pushEventTrigger(eventName) {
+        this.io.sockets.emit(socketEvents.triggerEvent, eventName);
+        console.log(`[SocketConnectionManager] Pushed event ${eventName} to the clients.`);
+    }
+
+    /**
+     * Push a trigger to start a module on module clients
+     *
+     * @param {String} moduleName
+     * @param {Object} pushConfig
+     */
+    pushModuleTrigger(moduleName, pushConfig) {
+        this.io.sockets.emit(socketEvents.triggerModule, {
+            name: moduleName,
+            push: pushConfig,
+        });
+        console.log(`[SocketConnectionManager] Pushed module ${moduleName} to the clients.`);
+    }
 }
 
 module.exports = new SocketConnectionManager();

@@ -1,9 +1,6 @@
 const app = (module.exports = require('express')());
-const EventTrigger = require('../domain/event/EventTrigger.js');
-const ModuleManager = require('../domain/module/ModuleManager');
-const Config = require('../config/ConfigLoaderFactory')
-    .getLoader()
-    .getConfig();
+const ConnectionManager = require('../domain/socket/ConnectionManager');
+const Events = require('../domain/Events.js');
 
 app.post('/event', (request, response) => {
     console.log('/trigger/event [POST]');
@@ -16,16 +13,11 @@ app.post('/event', (request, response) => {
         });
     }
 
-    if (Config.getEventByName(eventName)) {
-        EventTrigger.fireModulesForEvent(eventName, null);
+    Events.push(Events.event.triggerEvent, eventName);
+    ConnectionManager.pushEventTrigger(eventName);
 
-        return response.json({
-            message: 'Event has been triggered!',
-        });
-    }
-
-    return response.status(404).json({
-        message: `The given event name "${eventName}" is not found.`,
+    return response.json({
+        message: 'The event has been triggered and pushed to clients.',
     });
 });
 
@@ -40,14 +32,13 @@ app.post('/module', (request, response) => {
         });
     }
 
-    if (ModuleManager.isModuleInitialized(moduleName)) {
-        ModuleManager.fireModuleEvent(moduleName, pushConfig, null);
-        return response.json({
-            message: 'Module has been triggered!',
-        });
-    }
+    Events.push(Events.event.triggerModule, {
+        name: moduleName,
+        push: pushConfig,
+    });
+    ConnectionManager.pushModuleTrigger(moduleName, pushConfig);
 
-    return response.status(404).json({
-        message: `The given module with name "${moduleName}" doesn't exist or isn't initialized.`,
+    return response.json({
+        message: 'The module has been triggered and pushed to clients.',
     });
 });
