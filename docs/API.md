@@ -1,7 +1,7 @@
 # API
 
 - [Statuses](#statuses)
-- [Events](#events)
+- [Trigger events and modules](#trigger-events-and-modules)
 
 ## Statuses
 
@@ -37,11 +37,11 @@
 
 @todo: Explain that yo can remove all statuses using `GET /status/clear-all`
 
-## Events
+## Trigger events and modules
 
-### POST /event
+### POST /trigger/event
 
-You can directly trigger an event (configured in the configuration) via `POST /event`.
+You can directly trigger an event (configured in the configuration) via `POST /trigger/event`.
 
 ```json
 {
@@ -49,6 +49,27 @@ You can directly trigger an event (configured in the configuration) via `POST /e
 }
 ```
 
-| key         | required? | description                                                                |
-| ----------- | --------- | -------------------------------------------------------------------------- |
-| `event`     | yes       | The configuration key that is used for the event that should be triggered. |
+| key         | required? | description                                                               |
+| ----------- | --------- | ------------------------------------------------------------------------- |
+| `event`     | yes       | The configuration key that is used for the event that should be triggered |
+
+### POST /trigger/module
+
+You can directly trigger an module via `POST /trigger/module`. Note that the module must be initialized by
+enabling it in the CIMonitor configuration before you can trigger it.
+
+```json
+{
+    "name": "DashboardVideo",
+    "push": {
+        "youtubeKey": "ZTOIEz7p2KU",
+        "startAt": 20,
+        "duration": 20
+    }
+}
+```
+
+| key        | required? | description                                            |
+| ---------- | --------- | ------------------------------------------------------ |
+| `name`     | yes       | The name of the initialized module you want to trigger |
+| `push`     | yes       | The configuration you want to push to the module       |
