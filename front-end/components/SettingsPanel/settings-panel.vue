@@ -8,7 +8,7 @@
                 <div class="menu">
                     <button
                         v-for="tab in tabs"
-                        @click="openSettingsTab(tab);"
+                        @click="openSettingsTab(tab)"
                         :key="tab.name"
                         :class="{ active: tab === openTab }"
                     >
@@ -186,7 +186,7 @@ $seperator-color: $color-gray-lighter
 .setting-space
     padding: 20px
 
-    /deep/ h1,
-    /deep/ p
+    ::v-deep h1,
+    ::v-deep p
         margin-bottom: 15px
 </style>

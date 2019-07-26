@@ -96,25 +96,25 @@ export default {
     &.info
         background: $color-info
 
-        /deep/ .detail-stage.pending
+        ::v-deep .detail-stage.pending
             background: rgba($color-info-darker, .5)
 
     &.success
         background: $color-success
 
-        /deep/ .detail-stage.pending
+        ::v-deep .detail-stage.pending
             background: rgba($color-success-darker, .5)
 
     &.warning
         background: $color-warning
 
-        /deep/ .detail-stage.pending
+        ::v-deep .detail-stage.pending
             background: rgba($color-warning-darker, .5)
 
     &.error
         background: $color-error
 
-        /deep/ .detail-stage.pending
+        ::v-deep .detail-stage.pending
             background: rgba($color-error-darker, .5)
 
 .image-container
