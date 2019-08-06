@@ -17,7 +17,7 @@ Open your terminal in a folder with a `config.json` file and optionally a `saved
 docker run -ti \
     -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/back-end/config/saved-statuses.json \
     cimonitor/server:latest
 ```
 
@@ -45,7 +45,7 @@ the latest version of CIMonitor on a Raspberry pi 3 will look like the following
 docker run -ti \
     -p 9999:9999 \
     -v $PWD/config.json:/opt/CIMonitor/config/config.json \
-    -v $PWD/saved-statuses.json:/opt/CIMonitor/config/saved-statuses.json \
+    -v $PWD/saved-statuses.json:/opt/CIMonitor/back-end/config/saved-statuses.json \
     cimonitor/server:latest-arm64
 ```
 
