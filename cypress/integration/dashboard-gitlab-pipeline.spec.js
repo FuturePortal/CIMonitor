@@ -8,7 +8,7 @@ context('GitLab pipeline tests', () => {
             cy.pushGitLabWebhook(`master-pipeline-success/${loopCount}.json`);
 
             // Speed up the first 9 pipeline events, they're not interesting for us
-            cy.wait(loopCount < 9 ? 100 : 1000);
+            cy.wait(loopCount < 9 ? 10 : 800);
         }
     });
 });
