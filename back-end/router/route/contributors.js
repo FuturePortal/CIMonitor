@@ -1,6 +1,6 @@
 const express = require('express');
 const app = (module.exports = express());
-const Contributors = require('../domain/cimonitor/Contributors');
+const Contributors = require('../../domain/cimonitor/Contributors');
 
 app.get('/', (request, response) => {
     console.log('/contributors [GET]');

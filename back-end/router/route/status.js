@@ -1,6 +1,6 @@
 const app = (module.exports = require('express')());
-const StatusFactory = require('../domain/status/StatusFactory');
-const StatusManager = require('../domain/status/StatusManager');
+const StatusFactory = require('../../domain/status/StatusFactory');
+const StatusManager = require('../../domain/status/StatusManager');
 
 app.post('/', (request, response) => {
     console.log('/status [POST]');

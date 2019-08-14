@@ -16,13 +16,12 @@ require('dotenv').config();
 
     const SocketConnectionManager = require('./domain/socket/ConnectionManager');
     const VersionChecker = require('./domain/cimonitor/VersionChecker');
-    const router = require('./routes');
 
     const Config = await ConfigLoader.getConfig();
 
     const app = express();
     app.use(bodyParser.json());
-    app.use(router);
+    app.use(require('./router/index.js'));
     const server = http.createServer(app);
 
     SocketConnectionManager.startSocketServer(server);
