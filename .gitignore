@@ -1,5 +1,6 @@
 /.idea/
 /cypress/videos/
+/cypress/screenshots/
 /dashboard/
 /node_modules/
 /logs/
