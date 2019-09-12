@@ -59,7 +59,7 @@ const tabs = [
         icon: 'fas fa-paint-brush',
         name: 'Personalisation',
         component: PersonalizePanel,
-        localChangesOnly: null,
+        localChangesOnly: true,
     },
     {
         icon: 'fas fa-bell',
