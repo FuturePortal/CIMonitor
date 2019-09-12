@@ -42,6 +42,7 @@ export default {
             xhttp.onreadystatechange = () => {
                 if (xhttp.readyState == 4 && (xhttp.status == 401 || xhttp.status == 403)) {
                     this.$store.commit(SETTINGS_CLEAR_PASSWORD);
+                    alert('Wrong password!');
                 }
             };
             xhttp.send();

@@ -37,4 +37,7 @@ export default {
 <style lang="sass" rel="stylesheet/sass" scoped>
 .text
     @extend %input-text
+
+button
+    @extend %input-button
 </style>
