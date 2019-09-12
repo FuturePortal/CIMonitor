@@ -1,4 +1,8 @@
-import { SETTINGS_PANEL_TOGGLE, SETTINGS_TOGGLE_NOTIFICATIONS } from '../StaticActions';
+import {
+    SETTINGS_PANEL_TOGGLE,
+    SETTINGS_TOGGLE_NOTIFICATIONS,
+    SETTINGS_CHECK_AND_SET_PASSWORD,
+} from '../StaticActions';
 import {
     SETTINGS_SET_PANEL_OPEN,
     SETTINGS_SET_PANEL_CLOSED,
@@ -8,6 +12,8 @@ import {
     SETTINGS_SET_CURSORHIDDEN_ON,
     SETTINGS_SET_CURSORHIDDEN_OFF,
     SETTINGS_SET_CURSORHIDDEN_TIMEOUT,
+    SETTINGS_SET_PASSWORD,
+    SETTINGS_CLEAR_PASSWORD,
 } from '../StaticMutations';
 
 const state = {
@@ -21,6 +27,7 @@ const state = {
     },
     cursorHidden: false,
     cursorHiddenTimeout: 5000,
+    password: null,
 };
 
 const getters = {};
@@ -33,6 +40,19 @@ const actions = {
     [SETTINGS_TOGGLE_NOTIFICATIONS]({ commit, state }) {
         commit(state.pushNotifications ? SETTINGS_SET_NOTIFICATIONS_OFF : SETTINGS_SET_NOTIFICATIONS_ON);
     },
+
+    [SETTINGS_CHECK_AND_SET_PASSWORD]({ commit }, password) {
+        // TODO: Validate if the password is correct!
+
+        // const xmlHttp = new XMLHttpRequest();
+        // xmlHttp.onreadystatechange = () => {
+        //     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        commit(SETTINGS_SET_PASSWORD, password);
+        //     }
+        // };
+        // xmlHttp.open('POST', '/check-password', true);
+        // xmlHttp.send(null);
+    },
 };
 
 const mutations = {
@@ -42,6 +62,14 @@ const mutations = {
 
     [SETTINGS_SET_PANEL_CLOSED](state) {
         state.settingsPanelOpen = false;
+    },
+
+    [SETTINGS_SET_PASSWORD](state, password) {
+        state.password = password;
+    },
+
+    [SETTINGS_CLEAR_PASSWORD](state) {
+        state.password = null;
     },
 
     [SETTINGS_SET_NOTIFICATIONS_ON](state) {
