@@ -5,7 +5,10 @@ const Config = require('../config/ConfigLoaderFactory')
 const protectedRoutes = ['/webhook', '/status', '/trigger', '/debug'];
 
 const getAuthorizationPassword = request => {
-    const headers = ['X-Gitlab-Token', 'Authorization', 'token'];
+    const headers = ['x-gitlab-token', 'authorization', 'token'];
+
+    console.log(request.headers);
+    console.log(request.query);
 
     for (let header of headers) {
         if (request.headers[header]) {

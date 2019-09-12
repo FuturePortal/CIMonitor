@@ -29,6 +29,7 @@
 <script>
 import PasswordProtected from '../../../password-protected.vue';
 import { STATUS_GET_STATUSES_ORDERED } from '../../../../store/StaticGetters';
+import { SETTINGS_CLEAR_PASSWORD } from '../../../../store/StaticMutations';
 
 export default {
     data() {
@@ -36,15 +37,24 @@ export default {
     },
     components: { PasswordProtected },
     methods: {
+        processRequest(xhttp) {
+            xhttp.setRequestHeader('Authorization', this.$store.state.settings.password);
+            xhttp.onreadystatechange = () => {
+                if (xhttp.readyState == 4 && (xhttp.status == 401 || xhttp.status == 403)) {
+                    this.$store.commit(SETTINGS_CLEAR_PASSWORD);
+                }
+            };
+            xhttp.send();
+        },
         remove(statusKey) {
             const xhttp = new XMLHttpRequest();
             xhttp.open('DELETE', `/status/${statusKey}`, true);
-            xhttp.send();
+            this.processRequest(xhttp);
         },
         removeAll() {
             const xhttp = new XMLHttpRequest();
             xhttp.open('GET', '/status/clear-all', true);
-            xhttp.send();
+            this.processRequest(xhttp);
         },
     },
     computed: {
