@@ -8,6 +8,7 @@
                 <input v-model="password" type="password" class="text" />
                 <button @click="unlock">unlock</button>
             </p>
+            <div v-if="error" class="error-message">{{ error }}</div>
         </div>
     </div>
 </template>
@@ -19,12 +20,17 @@ export default {
     data() {
         return {
             password: '',
+            error: null,
         };
     },
     methods: {
         unlock() {
             this.$store.dispatch(SETTINGS_CHECK_AND_SET_PASSWORD, this.password).catch(error => {
-                alert(error.message); // TODO: make pretty error message
+                this.error = error.message;
+
+                setTimeout(() => {
+                    this.error = '';
+                }, 5000);
             });
         },
     },
@@ -39,6 +45,12 @@ export default {
 <style lang="sass" rel="stylesheet/sass" scoped>
 .text
     @extend %input-text
+
+.error-message
+    padding: 10px
+    color: $color-white
+    background: $color-error
+    border-radius: 6px
 
 button
     @extend %input-button
