@@ -1,7 +1,7 @@
 import HttpClient from 'axios';
 
 import Store from '../store/Store.js';
-import { SETTINGS_CLEAR_PASSWORD } from '../store/StaticMutations';
+import { SETTINGS_CLEAR_PASSWORD, SETTINGS_SET_PASSWORD_REQUIRED } from '../store/StaticMutations';
 
 class API {
     constructor() {
@@ -69,6 +69,7 @@ class API {
         console.log(`[API] ${method} ${url} OK:${response.status}`);
 
         return {
+            message: response.data.message,
             data: response.data,
             status: response.status,
         };
@@ -89,6 +90,7 @@ class API {
         if (error.response.status === 401 || error.response.status === 403) {
             console.log(`[API] Cleared the store password since it was invalid.`);
             Store.commit(SETTINGS_CLEAR_PASSWORD);
+            Store.commit(SETTINGS_SET_PASSWORD_REQUIRED, true);
         }
 
         throw {

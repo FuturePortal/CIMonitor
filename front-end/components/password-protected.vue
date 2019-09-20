@@ -1,6 +1,7 @@
 <template>
     <div>
-        <slot v-if="hasValidPassword" />
+        <p v-if="!checkedForPasswordRequirement">Checking if a password is required...</p>
+        <slot v-else-if="!passwordRequired || hasValidPassword" />
         <div v-else>
             <p>Sorry, this part is password protected.</p>
             <p>
@@ -14,7 +15,7 @@
 </template>
 
 <script>
-import { SETTINGS_CHECK_AND_SET_PASSWORD } from '../store/StaticActions';
+import { SETTINGS_CHECK_AND_SET_PASSWORD, SETTINGS_CHECK_PASSWORD_REQUIREMENT } from '../store/StaticActions';
 
 export default {
     data() {
@@ -22,6 +23,9 @@ export default {
             password: '',
             error: null,
         };
+    },
+    created() {
+        this.$store.dispatch(SETTINGS_CHECK_PASSWORD_REQUIREMENT);
     },
     methods: {
         unlock() {
@@ -36,7 +40,13 @@ export default {
     },
     computed: {
         hasValidPassword() {
-            return this.$store.state.settings.password !== null;
+            return this.passwordRequired && this.$store.state.settings.password !== null;
+        },
+        passwordRequired() {
+            return this.$store.state.settings.passwordRequired;
+        },
+        checkedForPasswordRequirement() {
+            return this.$store.state.settings.passwordRequired !== null;
         },
     },
 };

@@ -6,9 +6,10 @@ export const SETTINGS_SET_NOTIFICATION_STATUSES = 'settingsSetNotificationStatus
 export const SETTINGS_SET_CURSORHIDDEN_ON = 'settingsSetCursorHiddenOn';
 export const SETTINGS_SET_CURSORHIDDEN_OFF = 'settingsSetCursorHiddenOff';
 export const SETTINGS_SET_CURSORHIDDEN_TIMEOUT = 'settingsSetCursorHiddenTimeout';
-export const SETTINGS_SET_PASSWORD = 'SettingsSetPassword';
-export const SETTINGS_CLEAR_PASSWORD = 'SettingsClearPassword';
+export const SETTINGS_SET_PASSWORD = 'settingsSetPassword';
+export const SETTINGS_CLEAR_PASSWORD = 'settingsClearPassword';
+export const SETTINGS_SET_PASSWORD_REQUIRED = 'settingsSetPasswordRequired';
 
 export const STATUS_SET_STATUSES = 'statusSetStatuses';
 
-export const CONTRIBUTOR_SET_CONTRIBUTORS = 'ContributorSetContributors';
+export const CONTRIBUTOR_SET_CONTRIBUTORS = 'contributorSetContributors';

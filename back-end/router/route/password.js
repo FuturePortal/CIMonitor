@@ -20,3 +20,15 @@ app.post('/', (request, response) => {
         message: 'Invalid password provided.',
     });
 });
+
+app.get('/', (request, response) => {
+    console.log('/password [GET]');
+
+    const serverPassword = Config.getServerPassword();
+    const hasServerPassword = serverPassword !== '';
+
+    return response.json({
+        message: `A password ${hasServerPassword ? 'is' : `isn't`} set for this CIMonitor.`,
+        passwordProtected: hasServerPassword,
+    });
+});

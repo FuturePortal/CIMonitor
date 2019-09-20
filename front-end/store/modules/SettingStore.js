@@ -2,6 +2,7 @@ import {
     SETTINGS_PANEL_TOGGLE,
     SETTINGS_TOGGLE_NOTIFICATIONS,
     SETTINGS_CHECK_AND_SET_PASSWORD,
+    SETTINGS_CHECK_PASSWORD_REQUIREMENT,
 } from '../StaticActions';
 import {
     SETTINGS_SET_PANEL_OPEN,
@@ -14,6 +15,7 @@ import {
     SETTINGS_SET_CURSORHIDDEN_TIMEOUT,
     SETTINGS_SET_PASSWORD,
     SETTINGS_CLEAR_PASSWORD,
+    SETTINGS_SET_PASSWORD_REQUIRED,
 } from '../StaticMutations';
 import API from '../../classes/api.js';
 
@@ -28,6 +30,7 @@ const state = {
     },
     cursorHidden: false,
     cursorHiddenTimeout: 5000,
+    passwordRequired: null,
     password: null,
 };
 
@@ -51,6 +54,16 @@ const actions = {
                 throw error;
             });
     },
+
+    [SETTINGS_CHECK_PASSWORD_REQUIREMENT]({ commit }) {
+        return API.get('/password')
+            .then(response => {
+                commit(SETTINGS_SET_PASSWORD_REQUIRED, response.data.passwordProtected);
+            })
+            .catch(() => {
+                commit(SETTINGS_SET_PASSWORD_REQUIRED, null);
+            });
+    },
 };
 
 const mutations = {
@@ -68,6 +81,10 @@ const mutations = {
 
     [SETTINGS_CLEAR_PASSWORD](state) {
         state.password = null;
+    },
+
+    [SETTINGS_SET_PASSWORD_REQUIRED](state, passwordRequired) {
+        state.passwordRequired = passwordRequired;
     },
 
     [SETTINGS_SET_NOTIFICATIONS_ON](state) {
