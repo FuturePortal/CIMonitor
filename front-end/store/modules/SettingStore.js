@@ -42,16 +42,19 @@ const actions = {
     },
 
     [SETTINGS_CHECK_AND_SET_PASSWORD]({ commit }, password) {
-        // TODO: Validate if the password is correct!
-
-        // const xmlHttp = new XMLHttpRequest();
-        // xmlHttp.onreadystatechange = () => {
-        //     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-        commit(SETTINGS_SET_PASSWORD, password);
-        //     }
-        // };
-        // xmlHttp.open('POST', '/check-password', true);
-        // xmlHttp.send(null);
+        const xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = () => {
+            if (xmlHttp.readyState == 4) {
+                if (xmlHttp.status == 200) {
+                    commit(SETTINGS_SET_PASSWORD, password);
+                } else {
+                    alert('phail');
+                    throw 'Invalid password provided.'; // TODO: this doesn't work, need axios...
+                }
+            }
+        };
+        xmlHttp.open('POST', '/check-password', true);
+        xmlHttp.send(null);
     },
 };
 

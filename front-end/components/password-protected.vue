@@ -23,7 +23,9 @@ export default {
     },
     methods: {
         unlock() {
-            this.$store.dispatch(SETTINGS_CHECK_AND_SET_PASSWORD, this.password);
+            this.$store.dispatch(SETTINGS_CHECK_AND_SET_PASSWORD, this.password).catch(error => {
+                alert(`Failed authentication :( ${error}`); // TODO: make pretty error message
+            });
         },
     },
     computed: {
