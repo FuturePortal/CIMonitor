@@ -50,7 +50,7 @@ class Contributors {
     }
 
     removeBots(contributors) {
-        return contributors.filter(contributor => contributor.username !== 'T-888');
+        return contributors.filter(contributor => !['T-888', 'dependabot'].includes(contributor.username));
     }
 }
 

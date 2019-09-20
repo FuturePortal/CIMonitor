@@ -13,6 +13,6 @@ app.get('/', (request, response) => {
             });
         })
         .catch(() => {
-            return response.json({ message: 'Failed to get a list of contributors from GitHub.' }, 500);
+            return response.status(500).json({ message: 'Failed to get a list of contributors from GitHub.' });
         });
 });
