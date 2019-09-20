@@ -15,6 +15,7 @@ import {
     SETTINGS_SET_PASSWORD,
     SETTINGS_CLEAR_PASSWORD,
 } from '../StaticMutations';
+import API from '../../classes/api.js';
 
 const state = {
     settingsPanelOpen: false,
@@ -42,19 +43,13 @@ const actions = {
     },
 
     [SETTINGS_CHECK_AND_SET_PASSWORD]({ commit }, password) {
-        const xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4) {
-                if (xmlHttp.status == 200) {
-                    commit(SETTINGS_SET_PASSWORD, password);
-                } else {
-                    alert('phail');
-                    throw 'Invalid password provided.'; // TODO: this doesn't work, need axios...
-                }
-            }
-        };
-        xmlHttp.open('POST', '/check-password', true);
-        xmlHttp.send(null);
+        return API.post('/password', { password })
+            .then(() => {
+                commit(SETTINGS_SET_PASSWORD, password);
+            })
+            .catch(error => {
+                throw error;
+            });
     },
 };
 
