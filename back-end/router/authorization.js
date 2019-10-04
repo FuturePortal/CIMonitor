@@ -7,9 +7,6 @@ const protectedRoutes = ['/webhook', '/status', '/trigger', '/debug'];
 const getAuthorizationPassword = request => {
     const headers = ['x-gitlab-token', 'authorization', 'token'];
 
-    console.log(request.headers);
-    console.log(request.query);
-
     for (let header of headers) {
         if (request.headers[header]) {
             return request.headers[header];

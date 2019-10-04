@@ -23,7 +23,8 @@ The `server` configuration is required when you're running the `back-end/server.
 {
     "server": {
         "port": 9999,
-        "personalAccessTokenGitLab": ""
+        "personalAccessTokenGitLab": "",
+        "password": "p4ssw0rd"
     },
 ```
 
@@ -33,6 +34,7 @@ The `server` object must be configured as following:
 | --------------------------- | --------- | ---------------------------------------------------------------- |
 | `port`                      | yes       | The port you want the server to run on                           |
 | `personalAccessTokenGitLab` | no        | A GitLab personal access token with `read_repository` permission |
+| `password`                  | no        | Read more in [password protection](./password-projection)        |
 
 ## Module client configuration
 

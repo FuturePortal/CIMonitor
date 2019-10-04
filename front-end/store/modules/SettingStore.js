@@ -46,13 +46,9 @@ const actions = {
     },
 
     [SETTINGS_CHECK_AND_SET_PASSWORD]({ commit }, password) {
-        return API.post('/password', { password })
-            .then(() => {
-                commit(SETTINGS_SET_PASSWORD, password);
-            })
-            .catch(error => {
-                throw error;
-            });
+        return API.post('/password', { password }).then(() => {
+            commit(SETTINGS_SET_PASSWORD, password);
+        });
     },
 
     [SETTINGS_CHECK_PASSWORD_REQUIREMENT]({ commit }) {
