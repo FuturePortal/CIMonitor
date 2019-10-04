@@ -23,6 +23,14 @@ class Config {
         return this.server.port;
     }
 
+    getServerPassword() {
+        if (this.server.password) {
+            return this.server.password;
+        }
+
+        return '';
+    }
+
     getPersonalAccessTokenGitLab() {
         return this.server.personalAccessTokenGitLab;
     }

@@ -1,6 +1,6 @@
 const app = (module.exports = require('express')());
-const SocketConnectionManager = require('../domain/socket/ConnectionManager');
-const Trigger = require('../domain/cimonitor/Trigger.js');
+const SocketConnectionManager = require('../../domain/socket/ConnectionManager');
+const Trigger = require('../../domain/cimonitor/Trigger.js');
 
 app.post('/event', (request, response) => {
     console.log('/trigger/event [POST]');

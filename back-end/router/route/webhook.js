@@ -1,8 +1,8 @@
 const express = require('express');
 const app = (module.exports = express());
-const StatusAdapterGitLab = require('../domain/status/adapter/GitLab');
-const StatusAdapterTravisCI = require('../domain/status/adapter/TravisCI');
-const StatusAdapterDeployer = require('../domain/status/adapter/Deployer');
+const StatusAdapterGitLab = require('../../domain/status/adapter/GitLab');
+const StatusAdapterTravisCI = require('../../domain/status/adapter/TravisCI');
+const StatusAdapterDeployer = require('../../domain/status/adapter/Deployer');
 
 app.use(express.urlencoded({ extended: true }));
 

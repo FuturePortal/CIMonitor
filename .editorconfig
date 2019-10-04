@@ -15,6 +15,6 @@ trim_trailing_whitespace = true
 [Makefile]
 indent_style = tab
 
-# The Travis configuration file
-[.travis.yml]
+# Yaml files indent with 2 spaces due to their weird array syntax
+[{*.yaml,*.yml}]
 indent_size = 2

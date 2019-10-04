@@ -1,7 +1,8 @@
 {
     "_comment": "Learn how to configure CIMonitor at https://cimonitor.readthedocs.io",
     "server": {
-        "port": 9999
+        "port": 9999,
+        "password": ""
     },
     "moduleClient": {
         "master": "http://localhost:9999/"

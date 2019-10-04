@@ -4,7 +4,7 @@ class Contributors {
     getContributors() {
         return GitHubApi.call(`repos/CIMonitor/CIMonitor/stats/contributors`)
             .then(contributors => this.cleanContributorsResponse(contributors))
-            .then(contributors => this.removeT888(contributors))
+            .then(contributors => this.removeBots(contributors))
             .then(contributors => this.getContributorDetails(contributors))
             .then(contributors => this.sortContributorsByCommits(contributors));
     }
@@ -49,8 +49,8 @@ class Contributors {
         return contributors.sort((contributorA, contributorB) => contributorB.commits - contributorA.commits);
     }
 
-    removeT888(contributors) {
-        return contributors.filter(contributor => contributor.username !== 'T-888');
+    removeBots(contributors) {
+        return contributors.filter(contributor => !['T-888', 'dependabot'].includes(contributor.username));
     }
 }
 

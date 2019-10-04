@@ -1,6 +1,6 @@
 const express = require('express');
 const app = (module.exports = express());
-const Contributors = require('../domain/cimonitor/Contributors');
+const Contributors = require('../../domain/cimonitor/Contributors');
 
 app.get('/', (request, response) => {
     console.log('/contributors [GET]');
@@ -13,6 +13,6 @@ app.get('/', (request, response) => {
             });
         })
         .catch(() => {
-            return response.json({ message: 'Failed to get a list of contributors from GitHub.' }, 500);
+            return response.status(500).json({ message: 'Failed to get a list of contributors from GitHub.' });
         });
 });
