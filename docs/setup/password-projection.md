@@ -1,6 +1,6 @@
 # Password protection
 
-If you host your CIMonitor on the public internet, you want to use password projection. Without password protection
+If you host your CIMonitor on the public internet, you want to use password protection. Without password protection
 everyone is able to submit events to your CIMonitor, and remove them.
 
 All status manipulating actions (adding, removing, editing) will require a password when set. Fetching the latest
@@ -18,7 +18,7 @@ below:
     },
 ```
 
-It's up to you what password you use, just remember that it should be safe to use in an URL, and should not contain
+It's up to you what password you use, just remember that it should be safe to use in a URL, and should not contain
 weird characters.
 
 ## Submit password in API calls
