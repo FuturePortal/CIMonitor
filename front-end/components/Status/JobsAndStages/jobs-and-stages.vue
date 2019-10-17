@@ -1,12 +1,12 @@
 <template>
-    <div class="detail-jobs-and-stages" @mouseleave="clearSelectedStage">
+    <div class="detail-jobs-and-stages">
         <div class="detail-stages" v-if="stages.length > 0">
             <div
                 class="detail-stage"
                 :class="getStageClasses(stage)"
                 v-for="stage in stages"
                 :key="stage"
-                @mouseenter="selectStage(stage)"
+                @click="toggleStage(stage)"
             >
                 {{ stage }}
             </div>
@@ -64,10 +64,11 @@ export default {
 
             return 'pending';
         },
-        clearSelectedStage() {
-            this.selectedStage = null;
-        },
-        selectStage(stage) {
+        toggleStage(stage) {
+            if (this.selectedStage === stage) {
+                return (this.selectedStage = null);
+            }
+
             this.selectedStage = stage;
         },
     },
@@ -162,6 +163,7 @@ export default {
     margin: 5px 0
     min-width: 0
     flex-shrink: 1
+    cursor: pointer
 
     &:first-child
         margin-left: 5px
