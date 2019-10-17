@@ -28,9 +28,8 @@ outro:
 # ===========================
 
 init: intro do-pre-init do-run-updates do-show-commands outro
-update-project: intro do-run-updates outro
 update: intro do-switch-branch do-run-updates outro
-github: intro do-checkout-pr do-run-updates outro
+pr: intro do-checkout-pr do-run-updates outro
 
 build-docs: intro do-build-docs outro
 preview-docs: intro do-preview-docs outro
@@ -60,9 +59,9 @@ do-show-commands:
 	@echo "\n=== Make commands ===\n"
 	@echo "Project:"
 	@echo "    make init                       Initialise the project for development."
-	@echo "    make update-project             Install all dependencies and generate required files."
-	@echo "    make update BRANCH=<branch>     Switch to a branch and run update-project."
-	@echo "    make github PR=<number>         Check out a PR from github and update the project."
+	@echo "    make update                     Install all dependencies and generate required files."
+	@echo "    make update BRANCH=<branch>     Switch to a branch and run update."
+	@echo "    make pr                         Check out a PR from github and update the project."
 	@echo "    make fix                        Fix most of the codestyle errors."
 	@echo "\nLocal installation:"
 	@echo "    make build-production           Build all the files required for production."
@@ -88,16 +87,22 @@ do-pre-init:
 	cp -n config/config.example.json config/config.json
 
 do-switch-branch:
-	@if [ -z $$BRANCH ]; then echo "No branch is set, please run:\nmake update BRANCH=<branch>"; exit 1; fi
-	@echo "\n=== Switching to and updating $$BRANCH ===\n"
-	git checkout $$BRANCH
-	git pull upstream $$BRANCH
+	@if [ -z $$BRANCH ]; then \
+	    echo "\n=== Running updates for the current branch ===\n"; \
+	    echo "No branch is set, run: 'make update BRANCH=<branch>' to checkout and update a branch"; \
+	else \
+	    echo "\n=== Switching to and updating $$BRANCH ===\n"; \
+	    git checkout $$BRANCH; \
+	    git pull upstream $$BRANCH; \
+	fi
 
 do-checkout-pr:
-	@if [ -z $$PR ]; then echo "No PR number is set, please run:\nmake github PR=<number>"; exit 1; fi
-	@echo "\n=== Checking out Pull Request $$PR ===\n"
-	git fetch upstream refs/pull/$$PR/head:refs/remotes/upstream/pr/$$PR
-	git checkout upstream/pr/$$PR
+	@echo "\n=== GitLab Merge Request ===\n"
+	@echo "What is the PR number you want to check?\n" \
+	    && read -p "https://github.com/CIMonitor/CIMonitor/pull/" PR \
+	    && echo "\n=== Checking out Pull Request $$PR ===\n" \
+	    && git fetch upstream refs/pull/$$PR/head:refs/remotes/upstream/pr/$$PR \
+	    && git checkout upstream/pr/$$PR
 
 do-run-updates:
 	@echo "\n=== Updating project ===\n"
