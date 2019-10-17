@@ -97,7 +97,7 @@ do-switch-branch:
 	fi
 
 do-checkout-pr:
-	@echo "\n=== GitLab Merge Request ===\n"
+	@echo "\n=== GitHub Pull Request ===\n"
 	@echo "What is the PR number you want to check?\n" \
 	    && read -p "https://github.com/CIMonitor/CIMonitor/pull/" PR \
 	    && echo "\n=== Checking out Pull Request $$PR ===\n" \
