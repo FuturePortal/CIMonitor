@@ -24,8 +24,9 @@ jobs:
     - stage: test
       script: make test build-docs
 
+
+
     - &build
-      if: branch = node12
       stage: build
       env:
         - DOCKER_TAG=latest
