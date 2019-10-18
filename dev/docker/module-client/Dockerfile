@@ -1,5 +1,5 @@
 ARG QEMU_BINARY=notset
-ARG BASE_IMAGE=node:8-slim
+ARG BASE_IMAGE=node:10-slim
 
 #--- Intermediate build
 
