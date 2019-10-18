@@ -1,8 +1,16 @@
 sudo: required
 
 language: node_js
-node_js:
-  - '8'
+
+matrix:
+  fast_finish: true
+  include:
+    - node_js: 8
+      env: BASE_IMAGE=node:8-slim
+    - node_js: 10
+      env: BASE_IMAGE=node:10-slim
+    - node_js: 12
+      env: BASE_IMAGE=node:12-slim
 
 cache:
   yarn: true
@@ -26,7 +34,6 @@ jobs:
       stage: build
       env:
         - DOCKER_TAG=latest
-        - BASE_IMAGE=node:8-slim
       before_script:
         - |
           if [ -n "$QEMU_ARCH" ]; then
@@ -53,13 +60,13 @@ jobs:
       env:
         - DOCKER_TAG=latest-arm32
         - QEMU_ARCH=arm
-        - BASE_IMAGE=arm32v7/node:8-slim
+        - BASE_IMAGE=arm32v7/$BASE_IMAGE
 
     - <<: *build
       env:
         - DOCKER_TAG=latest-arm64
         - QEMU_ARCH=aarch64
-        - BASE_IMAGE=arm64v8/node:8-slim
+        - BASE_IMAGE=arm64v8/$BASE_IMAGE
 
     - <<: *build
       if: tag IS present
@@ -71,14 +78,14 @@ jobs:
       env:
         - DOCKER_TAG=$TRAVIS_TAG-arm32
         - QEMU_ARCH=arm
-        - BASE_IMAGE=arm32v7/node:8-slim
+        - BASE_IMAGE=arm32v7/$BASE_IMAGE
 
     - <<: *build
       if: tag IS present
       env:
         - DOCKER_TAG=$TRAVIS_TAG-arm64
         - QEMU_ARCH=aarch64
-        - BASE_IMAGE=arm64v8/node:8-slim
+        - BASE_IMAGE=arm64v8/$BASE_IMAGE
 
 notifications:
   webhooks:
