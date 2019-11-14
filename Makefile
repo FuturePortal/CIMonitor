@@ -115,11 +115,11 @@ do-run-watch:
 
 do-dev-server:
 	@echo "\n=== Starting server application ===\n"
-	node back-end/server.js
+	./node_modules/.bin/nodemon back-end/server.js
 
 do-dev-module-client:
 	@echo "\n=== Starting server slave application ===\n"
-	node back-end/module-client.js
+	./node_modules/.bin/nodemon back-end/module-client.js
 
 do-dev-dashboard:
 	@echo "\n=== Building and watching files ===\n"
