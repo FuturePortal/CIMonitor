@@ -45,4 +45,4 @@ class VersionChecker {
     }
 }
 
-export default (VersionChecker = new VersionChecker()); // eslint-disable-line no-class-assign
+export default VersionChecker = new VersionChecker(); // eslint-disable-line no-class-assign
