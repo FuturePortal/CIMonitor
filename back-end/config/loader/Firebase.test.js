@@ -2,8 +2,18 @@ let mockConfig;
 let FirebaseStorage;
 let FirebaseConfigLoader;
 
-const invalidObjects = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an empty array', []]];
-const invalidArrays = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an object', {}]];
+const invalidObjects = [
+    ['undefined', undefined],
+    ['null', null],
+    ['a test string', 'test'],
+    ['an empty array', []],
+];
+const invalidArrays = [
+    ['undefined', undefined],
+    ['null', null],
+    ['a test string', 'test'],
+    ['an object', {}],
+];
 
 beforeAll(() => {
     process.env['FIREBASE_URL'] = 'test.firebaseio.com';

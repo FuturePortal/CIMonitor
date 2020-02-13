@@ -2,8 +2,18 @@ let mockConfig;
 let Config;
 let FilesystemConfigLoader;
 
-const invalidObjects = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an empty array', []]];
-const invalidArrays = [['undefined', undefined], ['null', null], ['a test string', 'test'], ['an object', {}]];
+const invalidObjects = [
+    ['undefined', undefined],
+    ['null', null],
+    ['a test string', 'test'],
+    ['an empty array', []],
+];
+const invalidArrays = [
+    ['undefined', undefined],
+    ['null', null],
+    ['a test string', 'test'],
+    ['an object', {}],
+];
 
 beforeEach(() => {
     console.log = jest.fn();

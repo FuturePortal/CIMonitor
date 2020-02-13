@@ -100,4 +100,4 @@ class API {
     }
 }
 
-export default (API = new API()); // eslint-disable-line no-class-assign
+export default API = new API(); // eslint-disable-line no-class-assign
