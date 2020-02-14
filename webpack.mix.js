@@ -5,7 +5,11 @@ const VersionChecker = require('./back-end/domain/cimonitor/VersionChecker');
 
 mix.js('front-end/dashboard.js', 'dashboard');
 
-mix.sass('front-end/sass/dashboard.sass', 'dashboard');
+mix.sass('front-end/sass/dashboard.sass', 'dashboard', {
+    sassOptions: {
+        indentedSyntax: true,
+    },
+});
 
 mix.options({
     extractVueStyles: true,
