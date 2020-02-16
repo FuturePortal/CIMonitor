@@ -20,10 +20,10 @@
         <div class="setting">
             <p><strong>Toolbar style:</strong></p>
             <button class="option" @click="setToolbarLarge" :class="{ current: !isToolbarSmall }">
-                Regular size
+                Large
             </button>
             <button class="option" @click="setToolbarSmall" :class="{ current: isToolbarSmall }">
-                Mini size
+                Small
             </button>
         </div>
     </div>

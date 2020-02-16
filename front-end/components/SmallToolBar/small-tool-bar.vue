@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import TrafficLightGreen from './traffic-light-green.svg';
-import TrafficLightOrange from './traffic-light-orange.svg';
-import TrafficLightRed from './traffic-light-red.svg';
+import TrafficLightGreen from './circle-green.svg';
+import TrafficLightOrange from './circle-orange.svg';
+import TrafficLightRed from './circle-red.svg';
 import { SETTINGS_PANEL_TOGGLE } from '../../store/StaticActions';
 
 export default {
