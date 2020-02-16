@@ -76,12 +76,6 @@ button
     &:hover
         background-color: lighten($color-gray-darker, 5%)
 
-    &:first-child
-        border-top-left-radius: 20px
-
-    &:last-child
-        border-top-right-radius: 20px
-
 .logo
     height: 20px
     width: 20px
