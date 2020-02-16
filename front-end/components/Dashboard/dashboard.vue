@@ -5,7 +5,8 @@
             <empty-board v-if="hasNoStatuses" />
             <video-overlay />
             <no-connection v-if="isNotConnected" />
-            <tool-bar :state="globalState" />
+            <tool-bar v-if="!isToolbarSmall" :state="globalState" />
+            <small-tool-bar v-if="isToolbarSmall" :state="globalState" />
         </div>
         <settings-panel />
     </div>
@@ -13,6 +14,7 @@
 
 <script>
 import ToolBar from '../ToolBar';
+import SmallToolBar from '../SmallToolBar';
 import Status from '../Status';
 import VideoOverlay from '../VideoOverlay';
 import SettingsPanel from '../SettingsPanel';
@@ -21,7 +23,7 @@ import EmptyBoard from '../EmptyBoard';
 import NoConnection from '../NoConnection';
 
 export default {
-    components: { ToolBar, Status, VideoOverlay, SettingsPanel, EmptyBoard, NoConnection },
+    components: { ToolBar, SmallToolBar, Status, VideoOverlay, SettingsPanel, EmptyBoard, NoConnection },
     data() {
         return {
             now: this.getCurrentTimestamp(),
@@ -44,6 +46,9 @@ export default {
         },
         hasNoStatuses() {
             return this.statuses.length === 0;
+        },
+        isToolbarSmall() {
+            return this.$store.state.settings.smallToolbar;
         },
         globalState() {
             return this.$store.getters[STATUS_GET_GLOBAL_STATE];
