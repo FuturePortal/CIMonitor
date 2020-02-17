@@ -1,3 +1,8 @@
 {
-    "ignore": ["config/saved-statuses.json"]
+    "ignore": [
+        "config/saved-statuses.json",
+        "front-end/*",
+        "dashboard/*",
+        "cypress/*"
+    ]
 }
