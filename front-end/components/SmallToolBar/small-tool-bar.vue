@@ -1,5 +1,5 @@
 <template>
-    <div class="toolbar">
+    <div class="toolbar" :class="state">
         <div class="logo">
             <img :src="trafficLightImage" alt="logo" />
         </div>
@@ -46,6 +46,11 @@ export default {
 </script>
 
 <style lang="sass" rel="stylesheet/sass" scoped>
+
+$light-transparancy: 0.5
+$light-distance: 30px
+$light-spread: 15px
+
 .toolbar
     position: fixed
     bottom: 0
@@ -57,6 +62,13 @@ export default {
     display: flex
     flex-direction: row
     transition: right 300ms
+    box-shadow: 0 0 $light-distance $light-spread rgba($color-success, $light-transparancy)
+
+    &.warning
+        box-shadow: 0 0 $light-distance $light-spread rgba($color-warning, $light-transparancy)
+
+    &.error
+        box-shadow: 0 0 $light-distance $light-spread rgba($color-error, $light-transparancy)
 
     &:hover
         right: 0
