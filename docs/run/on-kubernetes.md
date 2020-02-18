@@ -57,7 +57,7 @@ metadata:
   name: cimonitor-server-service
   namespace: cimonitor
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 80
       targetPort: 9999
