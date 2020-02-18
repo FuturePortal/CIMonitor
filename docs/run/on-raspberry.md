@@ -1,4 +1,4 @@
-# Installing raspberry PI 3 model B
+# Installing Raspberry Pi 3 model B
 
 To start off, we expect you to have Raspbian installed. This can easily be done via
 NOOBS from https://www.raspberrypi.org/downloads/noobs/. Handy video for that:

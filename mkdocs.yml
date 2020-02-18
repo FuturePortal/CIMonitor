@@ -13,7 +13,7 @@ pages:
         - Password protection: advanced/password-protection.md
     - Run CIMonitor:
         - As a service: run/as-service.md
-        - On a Raspberry: run/on-raspberry.md
+        - On a Raspberry Pi: run/on-raspberry.md
         - On Docker: run/on-docker.md
         - On Kubernetes: run/on-kubernetes.md
     - Link a service:

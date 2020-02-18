@@ -7,10 +7,10 @@ There are multiple ways you can run CIMonitor. The quickest and easiest is runni
 You can very easily run CIMonitor if you have docker installed. See how to do that at
 [running CIMonitor on docker](../run/on-docker.md).
 
-## Run on a Raspberry-pi (recommended when using modules)
+## Run on a Raspberry Pi (recommended when using modules)
 
 If you want to use some of the awesome modules that are build for CIMonitor, then
-[running CIMonitor on a Raspberry-pi](../run/on-raspberry.md) is most suited for you.
+[running CIMonitor on a Raspberry Pi](../run/on-raspberry.md) is most suited for you.
 
 ## Run as a service (build it yourself)
 
