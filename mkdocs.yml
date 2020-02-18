@@ -8,16 +8,19 @@ pages:
     - Getting started:
         - Setup CIMonitor: setup/CIMonitor.md
         - Configuration: setup/configuration.md
-        - Firebase: setup/Firebase.md
-        - Run as a service: setup/run-as-service.md
-        - Run with Docker: setup/run-with-docker.md
-        - Setup Raspberry: setup/Raspberry.md
-        - Password protection: setup/password-protection.md
-    - CIMonitor API: API.md
+    - Advanced configuration:
+        - Firebase: advanced/firebase.md
+        - Password protection: advanced/password-protection.md
+    - Run CIMonitor:
+        - As a service: run/as-service.md
+        - On a Raspberry: run/on-raspberry.md
+        - On Docker: run/on-docker.md
+        - On Kubernetes: run/on-kubernetes.md
     - Link a service:
         - GitLab: services/GitLab.md
         - Travis CI: services/Travis-CI.md
         - Deployer: services/Deployer.md
+    - Connect to the API: API.md
     - Modules:
         - Marble run: modules/marble-run.md
         - Dashboard video: modules/dashboard-video.md

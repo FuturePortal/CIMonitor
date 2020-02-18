@@ -6,7 +6,7 @@ find all available tags on the [docker hub](https://hub.docker.com/u/cimonitor/)
 ## Running the docker container
 
 To run CIMonitor there is one file you need to prepare, being the config file. Make sure you've set up the configuration file
-as described on [the configuration page](./configuration.md).
+as described on [the configuration page](../setup/configuration.md).
 
 Optionally, you can provide another json file to store CIMonitor's statuses in. This can be an empty json file, that will be filled
 by the container once it's running. This way the statuses won't be lost when you restart the container.

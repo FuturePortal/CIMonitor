@@ -46,10 +46,9 @@ export default {
 </script>
 
 <style lang="sass" rel="stylesheet/sass" scoped>
-
 $light-transparancy: 0.5
-$light-distance: 30px
-$light-spread: 15px
+$light-distance: 40px
+$light-spread: 10px
 
 .toolbar
     position: fixed
