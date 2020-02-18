@@ -31,13 +31,13 @@ init: intro do-pre-init do-run-updates do-show-commands outro
 update: intro do-switch-branch do-run-updates outro
 pr: intro do-checkout-pr do-run-updates outro
 
+build-production: intro do-build-production outro
 build-docs: intro do-build-docs outro
-preview-docs: intro do-preview-docs outro
 
 dev-server: intro do-dev-server outro
 dev-module-client: intro do-dev-module-client outro
 dev-dashboard: intro do-dev-dashboard outro
-build-production: intro do-build-production outro
+dev-docs: intro do-preview-docs outro
 
 build-containers: intro do-backup-dependencies do-build-production do-build-containers do-restore-dependencies outro
 run-container: intro do-run-container outro
@@ -65,13 +65,12 @@ do-show-commands:
 	@echo "    make fix                        Fix most of the codestyle errors."
 	@echo "\nLocal installation:"
 	@echo "    make build-production           Build all the files required for production."
-	@echo "\nDocumentation:"
 	@echo "    make build-docs                 Build the documentation."
-	@echo "    make preview-docs               Run a live preview of the documentation."
 	@echo "\nDevelopment:"
 	@echo "    make dev-server                 Run the development server."
 	@echo "    make dev-module-client          Run the development module client, listening to a master."
 	@echo "    make dev-dashboard              Build, run and watch the development dashboard."
+	@echo "    make dev-docs                   Run a live preview of the documentation."
 	@echo "\nDocker containers:"
 	@echo "    make build-containers           Builds the Docker containers."
 	@echo "    make run-container              Run the built Docker container."
