@@ -32,7 +32,7 @@ Make sure at least the following configuration is in your config file:
 ```
 
 For advanced configuration options, check out [the configuration page](configuration.md).
-To store the config in Google Firebase instead of a local JSON file, see [the Firebase page](../advanced/Firebase.md).
+To store the config in Google Firebase instead of a local JSON file, see [the Firebase page](../advanced/firebase.md).
 
 Open your terminal in the folder you just downloaded, and run the following command:
 

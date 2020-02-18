@@ -28,4 +28,6 @@ pages:
         - Led strip: modules/led-strip.md
         - Power up: modules/power-up.md
         - Traffic light: modules/traffic-light.md
-    - Module client: module-client.md
+    - Extra features:
+        - Compact modus: feature/compact-mode.md
+        - Linking multiple CIMonitors: feature/linking-cimonitors.md
