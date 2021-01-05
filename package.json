@@ -44,7 +44,7 @@
         "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "babel-cli": "^6.26.0",
         "body-parser": "^1.19.0",
         "dotenv": "^8.0.0",
