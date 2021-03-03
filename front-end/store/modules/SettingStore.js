@@ -30,7 +30,7 @@ const state = {
         error: true,
         success: true,
     },
-    sound: window.isCypress ? false : true,
+    sound: window.Cypress ? false : true,
     cursorHidden: false,
     cursorHiddenTimeout: 5000,
     passwordRequired: null,
