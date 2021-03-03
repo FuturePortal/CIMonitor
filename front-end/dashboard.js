@@ -57,21 +57,23 @@ new Vue({
                 // do nothing.
             }
         },
+        play(sound) {
+            console.log(`Play ${sound}.`);
+            this.sounds[sound].play();
+        },
         playSound(status) {
             if (!this.$store.state.settings.sound) {
+                console.log('not playing sound');
                 return;
             }
 
             switch (status.state) {
                 case 'success':
-                    this.sounds.success.play();
-                    break;
+                    return this.play('success');
                 case 'error':
-                    this.sounds.error.play();
-                    break;
+                    return this.play('error');
                 case 'warning':
-                    this.sounds.start.play();
-                    break;
+                    return this.play('start');
             }
         },
         cursorHide() {
