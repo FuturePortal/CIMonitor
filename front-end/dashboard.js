@@ -22,6 +22,11 @@ new Vue({
     data() {
         return {
             isConnected: false,
+            sounds: {
+                success: new Audio('/sounds/success.mp3'),
+                start: new Audio('/sounds/start.mp3'),
+                error: new Audio('/sounds/error.mp3'),
+            },
         };
     },
     created() {
@@ -50,6 +55,19 @@ new Vue({
                 });
             } catch (error) {
                 // do nothing.
+            }
+        },
+        playSound(status) {
+            switch (status.state) {
+                case 'success':
+                    this.sounds.success.play();
+                    break;
+                case 'error':
+                    this.sounds.error.play();
+                    break;
+                case 'warning':
+                    this.sounds.start.play();
+                    break;
             }
         },
         cursorHide() {
@@ -91,6 +109,7 @@ new Vue({
         },
         [socketEvents.eventTriggerStatus](status) {
             this.pushNotification(status);
+            this.playSound(status);
         },
     },
 });
