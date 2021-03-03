@@ -11,6 +11,8 @@ export const SETTINGS_CLEAR_PASSWORD = 'settingsClearPassword';
 export const SETTINGS_SET_PASSWORD_REQUIRED = 'settingsSetPasswordRequired';
 export const SETTINGS_SET_SOUND_ON = 'settingsSetSoundOn';
 export const SETTINGS_SET_SOUND_OFF = 'settingsSetSoundOff';
+export const SETTINGS_SET_TOOLBAR_SMALL = 'settingsSetToolbarSmall';
+export const SETTINGS_SET_TOOLBAR_LARGE = 'settingsSetToolbarLarge';
 
 export const STATUS_SET_STATUSES = 'statusSetStatuses';
 

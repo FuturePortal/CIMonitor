@@ -18,12 +18,15 @@ import {
     SETTINGS_SET_PASSWORD_REQUIRED,
     SETTINGS_SET_SOUND_ON,
     SETTINGS_SET_SOUND_OFF,
+    SETTINGS_SET_TOOLBAR_SMALL,
+    SETTINGS_SET_TOOLBAR_LARGE,
 } from '../StaticMutations';
 import API from '../../classes/api.js';
 
 const state = {
     settingsPanelOpen: false,
     pushNotifications: false,
+    smallToolbar: false,
     notificationStatuses: {
         info: true,
         warning: true,
@@ -80,6 +83,14 @@ const mutations = {
 
     [SETTINGS_CLEAR_PASSWORD](state) {
         state.password = null;
+    },
+
+    [SETTINGS_SET_TOOLBAR_SMALL](state) {
+        state.smallToolbar = true;
+    },
+
+    [SETTINGS_SET_TOOLBAR_LARGE](state) {
+        state.smallToolbar = false;
     },
 
     [SETTINGS_SET_PASSWORD_REQUIRED](state, passwordRequired) {
