@@ -109,7 +109,9 @@ new Vue({
         },
         [socketEvents.eventTriggerStatus](status) {
             this.pushNotification(status);
-            this.playSound(status);
+            if (this.$store.state.settings.sound) {
+                this.playSound(status);
+            }
         },
     },
 });

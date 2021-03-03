@@ -16,6 +16,8 @@ import {
     SETTINGS_SET_PASSWORD,
     SETTINGS_CLEAR_PASSWORD,
     SETTINGS_SET_PASSWORD_REQUIRED,
+    SETTINGS_SET_SOUND_ON,
+    SETTINGS_SET_SOUND_OFF,
 } from '../StaticMutations';
 import API from '../../classes/api.js';
 
@@ -28,6 +30,7 @@ const state = {
         error: true,
         success: true,
     },
+    sound: true,
     cursorHidden: false,
     cursorHiddenTimeout: 5000,
     passwordRequired: null,
@@ -105,6 +108,14 @@ const mutations = {
 
     [SETTINGS_SET_CURSORHIDDEN_TIMEOUT](state, timeout) {
         state.cursorHiddenTimeout = timeout;
+    },
+
+    [SETTINGS_SET_SOUND_ON](state) {
+        state.sound = true;
+    },
+
+    [SETTINGS_SET_SOUND_OFF](state) {
+        state.sound = false;
     },
 };
 
