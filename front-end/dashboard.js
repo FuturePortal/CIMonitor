@@ -58,6 +58,10 @@ new Vue({
             }
         },
         playSound(status) {
+            if (!this.$store.state.settings.sound) {
+                return;
+            }
+
             switch (status.state) {
                 case 'success':
                     this.sounds.success.play();
@@ -109,9 +113,7 @@ new Vue({
         },
         [socketEvents.eventTriggerStatus](status) {
             this.pushNotification(status);
-            if (this.$store.state.settings.sound) {
-                this.playSound(status);
-            }
+            this.playSound(status);
         },
     },
 });
