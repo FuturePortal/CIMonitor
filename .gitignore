@@ -4,6 +4,7 @@
 
 # Generated files
 
-dist/
+app/
+dashboard/
 .parcel-cache/
 node_modules/
