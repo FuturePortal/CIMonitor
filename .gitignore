@@ -1,0 +1,9 @@
+# Generally ignoring
+
+.idea/
+
+# Generated files
+
+dist/
+.parcel-cache/
+node_modules/

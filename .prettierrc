@@ -1,0 +1,11 @@
+{
+    "printWidth": 120,
+    "tabWidth": 4,
+    "editor.formatOnSave": true,
+    "semi": true,
+    "useTabs": false,
+    "singleQuote": true,
+    "requireConfig": false,
+    "bracketSpacing": true,
+    "trailingComma": "es5"
+}

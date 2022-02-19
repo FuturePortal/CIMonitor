@@ -1,0 +1,14 @@
+{
+    "name": "cimonitor",
+    "version": "4.0.0",
+    "description": "Monitors all your projects CI automatically",
+    "repository": "git@github.com:CIMonitor/CIMonitor.git",
+    "license": "MIT",
+    "author": {
+        "name": "Rick van der Staaij",
+        "url": "https://rick.nu"
+    },
+    "devDependencies": {
+        "parcel": "^2.3.2"
+    }
+}
