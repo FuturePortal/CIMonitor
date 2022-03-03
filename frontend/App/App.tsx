@@ -11,12 +11,16 @@ const App = (): ReactElement => {
     useEffect(() => {
         const socket = io();
 
-        socket.on('connect', () => console.log('Connected to the socket'));
-        socket.on('disconnect', () => console.log('Disconnect to the socket'));
-        socket.on('status-all', (statuses) => console.log(statuses));
+        socket.on('connect', () => console.log('[App] Connected to the socket'));
+        socket.on('disconnect', () => console.log('[App] Disconnect to the socket'));
+        socket.on('status-all', (statuses) => console.log('[App] Received all statuses', statuses));
+
+        // Refresh all statuses once a day
+        const requestStatusesInterval = setInterval(() => socket.emit('request-statuses'), 60000 * 60 * 24);
 
         return () => {
             socket.disconnect();
+            clearInterval(requestStatusesInterval);
         };
     }, []);
 

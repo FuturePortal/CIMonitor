@@ -24,6 +24,10 @@ class ConnectionManager {
 
         socket.emit('status-all', StatusManager.getStatusses());
 
+        socket.on('request-statuses', () => {
+            socket.emit('status-all', StatusManager.getStatusses());
+        });
+
         socket.on('disconnect', () => {
             this.socketConnections--;
             console.log(`[ConnectionManager] Client ${socketId} disconnected.`);
