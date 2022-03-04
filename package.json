@@ -15,7 +15,8 @@
         "start": "node app/backend/server.js",
         "build": "tsc && parcel build --dist-dir dashboard --no-source-maps frontend/index.html",
         "server": "nodemon --watch backend --exec ts-node backend/server.ts",
-        "dashboard": "parcel watch --dist-dir dashboard --hmr-port 3031 frontend/index.html"
+        "dashboard": "parcel watch --dist-dir dashboard --hmr-port 3031 frontend/index.html",
+        "postinstall": "husky install"
     },
     "dependencies": {
         "express": "^4.17.3",
@@ -37,6 +38,8 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.29.3",
+        "husky": "^7.0.0",
+        "lint-staged": "^12.3.4",
         "nodemon": "^2.0.15",
         "parcel": "^2.3.2",
         "prettier": "^2.5.1",
@@ -46,5 +49,10 @@
         "styled-components": "^5.3.3",
         "ts-node": "^10.6.0",
         "typescript": "^4.5.5"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --fix"
+        ]
     }
 }

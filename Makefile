@@ -28,6 +28,8 @@ logs: intro do-check-logs
 
 production: intro do-stop-containers do-clean-generated-files do-yarn-build do-yarn-start
 
+commit: intro do-lint-staged do-commit-header
+
 # ===========================
 # Snippets
 # ===========================
@@ -83,3 +85,10 @@ do-stop-containers:
 do-check-logs:
 	@echo "===== Checking development logs ====="
 	@docker-compose logs --follow --tail=20
+
+do-lint-staged:
+	@echo "===== Fixing changed files ====="
+	@node_modules/.bin/lint-staged
+
+do-commit-header:
+	@echo "===== Creating commit ====="

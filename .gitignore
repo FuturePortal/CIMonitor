@@ -8,3 +8,4 @@ app/
 dashboard/
 .parcel-cache/
 node_modules/
+.husky/_/
