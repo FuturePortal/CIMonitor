@@ -1,0 +1,7 @@
+POST http://localhost:3030/webhook/github
+Content-Type: application/json
+Accept: application/json
+
+{
+    "source": "github"
+}

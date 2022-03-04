@@ -9,3 +9,5 @@ dashboard/
 .parcel-cache/
 node_modules/
 .husky/_/
+webhooks/
+.env

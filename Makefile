@@ -53,7 +53,8 @@ do-show-commands:
 	@echo "    make production            Builds and runs the application in production mode."
 
 do-updates: \
-	do-yarn-install
+	do-yarn-install \
+	do-create-env
 
 do-yarn-install:
 	@echo "===== Updating dependencies ====="
@@ -81,6 +82,10 @@ do-stop-containers:
 	@echo "Stopping development containers..."
 	@${ids} docker-compose stop
 	@echo "Done."
+
+do-create-env:
+	@echo "===== Create env file ====="
+	cp -r local.env .env
 
 do-check-logs:
 	@echo "===== Checking development logs ====="

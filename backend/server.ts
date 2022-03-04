@@ -1,12 +1,16 @@
+import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
 import router from './router';
 import StatusManager from './statusses/StatusManager';
 import ConnectionManager from './socket/ConnectionManager';
+import bodyParser from 'body-parser';
 
 const port = 3030;
 const app = express();
 const server = createServer(app);
+
+app.use(bodyParser.json());
 
 app.use(router);
 
