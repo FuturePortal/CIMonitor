@@ -3,20 +3,22 @@ version: '3.6'
 services:
 
   server:
-    image: node:16-alpine
+    build:
+      context: .
+      target: server
     volumes:
       - .:/CIMonitor
-    working_dir: /CIMonitor
     user: ${USERID}:${GROUPID}
     command: sh -c "npm run server"
     ports:
       - "3030:3030"
 
   dashboard:
-    image: node:16-alpine
+    build:
+      context: .
+      target: dashboard
     volumes:
       - .:/CIMonitor
-    working_dir: /CIMonitor
     user: ${USERID}:${GROUPID}
     command: sh -c "npm run dashboard"
     ports:

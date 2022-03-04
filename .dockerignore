@@ -1,0 +1,7 @@
+# Ignore everything...
+*
+
+# ...but keep files/dirs:
+!/app
+!/dashboard
+!/package.json

@@ -20,7 +20,7 @@ class ConnectionManager {
     onClientConnect(socket) {
         const socketId = this.getNewSocketId();
 
-        console.log(`[ConnectionManager] Client ${socketId} connected.`);
+        console.log(`[ConnectionManager] Client ${socketId} connected. Now ${this.socketConnections} connections.`);
 
         socket.emit('status-all', StatusManager.getStatusses());
 
@@ -30,7 +30,9 @@ class ConnectionManager {
 
         socket.on('disconnect', () => {
             this.socketConnections--;
-            console.log(`[ConnectionManager] Client ${socketId} disconnected.`);
+            console.log(
+                `[ConnectionManager] Client ${socketId} disconnected. Now ${this.socketConnections} connections.`
+            );
         });
     }
 

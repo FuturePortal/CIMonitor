@@ -82,4 +82,4 @@ do-stop-containers:
 
 do-check-logs:
 	@echo "===== Checking development logs ====="
-	@docker-compose logs --follow --tail=10
+	@docker-compose logs --follow --tail=20
