@@ -1,0 +1,14 @@
+POST http://localhost:3030/webhook/gitlab
+
+{
+    "test": "test"
+}
+
+
+###
+
+POST http://localhost:3030/webhook/github
+
+{
+    "test": "test"
+}
