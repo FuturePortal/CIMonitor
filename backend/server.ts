@@ -6,7 +6,7 @@ import StatusManager from './statusses/StatusManager';
 import ConnectionManager from './socket/ConnectionManager';
 import bodyParser from 'body-parser';
 
-const port = 3030;
+const port = process.env.PORT || 3030;
 const app = express();
 const server = createServer(app);
 
