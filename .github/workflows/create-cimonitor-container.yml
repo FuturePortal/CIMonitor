@@ -17,7 +17,7 @@ jobs:
         run: "node_modules/.bin/tsc --noEmit"
 
       - name: Run eslint check
-        run: "node_modules/.bin/eslint ."
+        run: "node_modules/.bin/eslint --ext ts,tsx ."
 
   build-container:
     name: Build and push container
