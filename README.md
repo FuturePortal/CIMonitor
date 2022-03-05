@@ -8,17 +8,11 @@
 [![travis-ci](https://travis-ci.org/CIMonitor/CIMonitor.svg?branch=master)](https://travis-ci.org/CIMonitor/CIMonitor)
 
 CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
-deployments are successful. All in one overview. This is all done via webhooks, so no complex configuration.
+deployments are successful. All in one overview. This is all done via **webhooks**, so no complex configuration.
 
 The time that deployments were scary is over, lets make them FUN!
 
-Full support for the following webhooks:
-
--   GitLab:
-    -   Pipeline events
-    -   job events
--   GitHub:
-    -   Action workflows
+![Dashboard demonstration](docs/images/dashboard.gif)
 
 ## Running CIMonitor
 
@@ -33,7 +27,24 @@ docker run \
     cimonitor/server:4.0.0
 ```
 
-It is possible to run CIMonitor on Kubernetes too of course.
+It is possible to run CIMonitor on Kubernetes too of course. See the docs how to do that.
+
+## Connecting to GitHub / GitLab
+
+CIMonitor is gathering its data from GitHub and GitLab webhooks. Those are VERY easy to configure. All you need is a
+running CIMonitor URL. In the images below you can see how it's done.
+
+### GitHub
+
+Add webhook: `<your_cimonitor_url>/webhook/github`.
+
+![Add GitHub webhook demonstration](docs/images/add-github-webhook.gif)
+
+### GitLab
+
+Add webhook: `<your_cimonitor_url>/webhook/gitlab`.
+
+![Add GitLab webhook demonstration](docs/images/add-gitlab-webhook.gif)
 
 ## Development
 
