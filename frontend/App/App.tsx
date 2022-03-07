@@ -1,6 +1,5 @@
 import {ReactElement, useEffect, useState} from 'react';
 
-import GlobalStyle from './App.style';
 import SocketConnection from './SocketConnection';
 import Statusses from './Statusses';
 import SettingsPanel from './SettingsPanel';
@@ -34,7 +33,6 @@ const App = (): ReactElement => {
 
     return (
         <>
-            <GlobalStyle />
             <SocketConnection connected={serverConnected} />
             <Statusses />
             <Toolbar />
