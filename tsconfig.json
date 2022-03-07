@@ -11,7 +11,8 @@
         "allowJs": true,
         "paths": {
             "backend/*": ["backend/*"],
-            "types/*": ["types/*"]
+            "types/*": ["types/*"],
+            "/*": ["./*"]
         }
     },
     "include": ["**/*.ts"],
