@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
-import router from './router';
-import StatusManager from './statusses/StatusManager';
-import ConnectionManager from './socket/ConnectionManager';
+import router from 'backend/router';
+import StatusManager from 'backend/statusses/StatusManager';
+import ConnectionManager from 'backend/socket/ConnectionManager';
 import bodyParser from 'body-parser';
 
 const port = process.env.PORT || 3030;

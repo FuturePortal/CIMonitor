@@ -9,6 +9,10 @@
         "preserveWatchOutput": true,
         "jsx": "preserve",
         "allowJs": true,
+        "paths": {
+            "backend/*": ["backend/*"],
+            "types/*": ["types/*"]
+        }
     },
     "include": ["**/*.ts"],
     "exclude": ["frontend"]

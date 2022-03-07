@@ -4,6 +4,8 @@
 
 FROM node:16-alpine as base
 
+ENV NODE_PATH=/CIMonitor/app/
+
 WORKDIR /CIMonitor
 
 # ==================================

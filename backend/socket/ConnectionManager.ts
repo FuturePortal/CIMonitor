@@ -1,6 +1,6 @@
 import { Server } from 'http';
 import { Server as SocketServer } from 'socket.io';
-import StatusManager from '../statusses/StatusManager';
+import StatusManager from 'backend/statusses/StatusManager';
 
 class ConnectionManager {
     socket = null;
