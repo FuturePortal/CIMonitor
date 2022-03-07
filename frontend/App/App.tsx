@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import {ReactElement, useEffect, useState} from 'react';
 
 import GlobalStyle from './App.style';
 import SocketConnection from './SocketConnection';
@@ -8,11 +8,19 @@ import Toolbar from './Toolbar';
 import { io } from 'socket.io-client';
 
 const App = (): ReactElement => {
+    const [serverConnected, setServerConnected] = useState(false);
+
     useEffect(() => {
         const socket = io();
 
-        socket.on('connect', () => console.log('[App] Connected to the socket'));
-        socket.on('disconnect', () => console.log('[App] Disconnect to the socket'));
+        socket.on('connect', () => {
+            console.log('[App] Connected to the socket')
+            setServerConnected(true);
+        });
+        socket.on('disconnect', () => {
+            console.log('[App] Disconnect to the socket')
+            setServerConnected(false);
+        });
         socket.on('status-all', (statuses) => console.log('[App] Received all statuses', statuses));
 
         // Refresh all statuses once a day
@@ -27,7 +35,7 @@ const App = (): ReactElement => {
     return (
         <>
             <GlobalStyle />
-            <SocketConnection />
+            <SocketConnection connected={serverConnected} />
             <Statusses />
             <Toolbar />
             <SettingsPanel />

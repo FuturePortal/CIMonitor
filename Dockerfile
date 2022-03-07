@@ -26,16 +26,13 @@ CMD ["npm", "run", "dashboard"]
 
 # ==================================
 # Production
-#
-# Before a production build, all js
-# files should be build and a
-# production install of yarn
 # ==================================
 
 FROM base as production
 
 ENV NODE_ENV=production
 
+# Make sure "yarn build" is ran before building the production container
 COPY . /CIMonitor
 
 RUN apk add --no-cache dumb-init
