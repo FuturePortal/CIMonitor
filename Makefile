@@ -19,9 +19,10 @@ intro:
 # Main commands
 # ===========================
 
-init: intro do-updates do-start-containers
+init: intro do-updates do-build-containers do-start-containers
 start: intro do-start-containers
 stop: intro do-stop-containers
+build: intro do-build-containers
 restart: intro do-stop-containers do-start-containers
 update: intro do-updates do-stop-containers do-start-containers
 logs: intro do-check-logs
@@ -45,6 +46,7 @@ do-show-commands:
 	@echo "Development with docker:"
 	@echo "    make init                  Start the project for the first time."
 	@echo "    make start                 Starts docker with the server and dashboard in development mode."
+	@echo "    make build                 Builds the development containers."
 	@echo "    make stop                  Stops the containers."
 	@echo "    make restart               Restarts the containers."
 	@echo "    make update                Update all project dependencies."
@@ -82,6 +84,10 @@ do-stop-containers:
 	@echo "Stopping development containers..."
 	@${ids} docker-compose stop
 	@echo "Done."
+
+do-build-containers:
+	@echo "===== Building development containers ====="
+	@${ids} docker-compose build
 
 do-create-env:
 	@echo "===== Create env file ====="
