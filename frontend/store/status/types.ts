@@ -5,8 +5,18 @@ export type StateType = {
 };
 
 export type SetAllStatusAction = {
-    type: 'set-all-status';
+    type: 'status-set-all';
     statuses: Status[];
 };
 
-export type ActionTypes = SetAllStatusAction;
+export type AddStatusAction = {
+    type: 'status-add';
+    status: Status;
+};
+
+export type PatchStatusAction = {
+    type: 'status-patch';
+    status: Status;
+};
+
+export type ActionTypes = SetAllStatusAction | AddStatusAction | PatchStatusAction;

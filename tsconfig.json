@@ -10,8 +10,8 @@
         "jsx": "preserve",
         "allowJs": true,
         "paths": {
-            "backend/*": ["backend/*", "../backend/*"],
-            "types/*": ["types/*", "../types/*"],
+            "backend/*": ["backend/*"],
+            "types/*": ["types/*"],
             "/*": ["./*"]
         }
     },

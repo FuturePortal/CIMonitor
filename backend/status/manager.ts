@@ -1,4 +1,5 @@
 import Status from 'types/status';
+import StatusEvents from './events';
 
 class StatusManager {
     statuses: Status[] = [];
@@ -20,6 +21,7 @@ class StatusManager {
             ...this.statuses.map((existingStatus) => {
                 if (existingStatus.id === status.id) {
                     console.log(`[StatusManager] Replaced existing status ${status.id}.`);
+                    StatusEvents.emit(StatusEvents.event.patchStatus, status);
                     replaced = true;
                     return status;
                 }
@@ -30,12 +32,11 @@ class StatusManager {
 
         if (!replaced) {
             statuses.push(status);
+            StatusEvents.emit(StatusEvents.event.newStatus, status);
             console.log(`[StatusManager] Added new status ${status.id}.`);
         }
 
         this.statuses = statuses;
-
-        // TODO: trigger status added or updated
     }
 
     init(): void {
