@@ -31,8 +31,8 @@ export type Status = {
     project: string;
     state: State;
     time: Date;
+    source: 'github' | 'gitlab';
     title?: string; // MR/PR name?
-    source?: 'github' | 'gitlab';
     branch?: string;
     tag?: string;
     issue?: number;

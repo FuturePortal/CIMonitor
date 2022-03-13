@@ -38,7 +38,7 @@ class SocketManager {
     onClientConnect(socket) {
         const socketId = this.getNewSocketId();
 
-        console.log(`[ConnectionManager] Client ${socketId} connected. Now ${this.socketConnections} connections.`);
+        console.log(`[socket/manager] Client ${socketId} connected. Now ${this.socketConnections} connections.`);
 
         socket.emit(socketEvent.allStatuses, StatusManager.getStatuses());
 
@@ -48,9 +48,7 @@ class SocketManager {
 
         socket.on(socketEvent.disconnect, () => {
             this.socketConnections--;
-            console.log(
-                `[ConnectionManager] Client ${socketId} disconnected. Now ${this.socketConnections} connections.`
-            );
+            console.log(`[socket/manager] Client ${socketId} disconnected. Now ${this.socketConnections} connections.`);
         });
     }
 

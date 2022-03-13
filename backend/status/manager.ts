@@ -20,7 +20,7 @@ class StatusManager {
         const statuses = [
             ...this.statuses.map((existingStatus) => {
                 if (existingStatus.id === status.id) {
-                    console.log(`[StatusManager] Replaced existing status ${status.id}.`);
+                    console.log(`[status/manager] Replaced existing status ${status.id}.`);
                     StatusEvents.emit(StatusEvents.event.patchStatus, status);
                     replaced = true;
                     return status;
@@ -33,14 +33,14 @@ class StatusManager {
         if (!replaced) {
             statuses.push(status);
             StatusEvents.emit(StatusEvents.event.newStatus, status);
-            console.log(`[StatusManager] Added new status ${status.id}.`);
+            console.log(`[status/manager] Added new status ${status.id}.`);
         }
 
         this.statuses = statuses;
     }
 
     init(): void {
-        console.log('[StatusManager] init.');
+        console.log('[status/manager] Init.');
     }
 
     getStatuses(): Status[] {
