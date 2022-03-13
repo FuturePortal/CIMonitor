@@ -29,6 +29,9 @@ logs: intro do-check-logs
 
 production: intro do-stop-containers do-clean-generated-files do-yarn-build do-yarn-start
 
+cypress-run: intro do-cypress-run
+cypress-open: intro do-cypress-open
+
 commit: intro do-lint-staged do-commit-header
 
 # ===========================
@@ -53,6 +56,9 @@ do-show-commands:
 	@echo "    make logs                  Check the development logs."
 	@echo "Production:"
 	@echo "    make production            Builds and runs the application in production mode."
+	@echo "Testing:"
+	@echo "    make cypress-run           Runs all cypress tests and feeds test data."
+	@echo "    make cypress-open          Opens Cypress so you can pick what test to run."
 
 do-updates: \
 	do-yarn-install \
@@ -73,6 +79,14 @@ do-yarn-build:
 do-yarn-start:
 	@echo "===== Starting application in production mode ====="
 	@yarn start
+
+do-cypress-run:
+	@echo "===== Running Cypress tests ====="
+	@yarn cypress-run
+
+do-cypress-open:
+	@echo "===== Opening Cypress testing interface ====="
+	@yarn cypress-open
 
 do-start-containers:
 	@echo "===== Starting development containers ====="

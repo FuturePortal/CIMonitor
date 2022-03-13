@@ -1,7 +1,7 @@
 import { ActionTypes, StateType } from './types';
 
 const defaultState: StateType = {
-    status: [],
+    statuses: [],
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -9,7 +9,7 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
         case 'set-all-status':
             return {
                 ...state,
-                status: action.status,
+                statuses: action.statuses,
             };
         default:
             return state;

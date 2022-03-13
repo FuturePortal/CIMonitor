@@ -4,8 +4,6 @@
 
 FROM node:16-alpine as base
 
-ENV NODE_PATH=/CIMonitor/app/
-
 WORKDIR /CIMonitor
 
 # ==================================
@@ -13,6 +11,8 @@ WORKDIR /CIMonitor
 # ==================================
 
 FROM base as server
+
+ENV NODE_PATH=/CIMonitor
 
 CMD ["npm", "run", "server"]
 
@@ -31,6 +31,8 @@ CMD ["npm", "run", "dashboard"]
 FROM base as production
 
 ENV NODE_ENV=production
+
+ENV NODE_PATH=/CIMonitor/app
 
 # Make sure "yarn build" is ran before building the production container
 COPY . /CIMonitor

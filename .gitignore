@@ -11,3 +11,8 @@ node_modules/
 .husky/_/
 webhooks/
 .env
+
+# Cypress testing results
+
+cypress/videos/
+cypress/screenshots/

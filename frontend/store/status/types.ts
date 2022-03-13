@@ -1,12 +1,12 @@
 import Status from 'types/status';
 
 export type StateType = {
-    status: Status[];
+    statuses: Status[];
 };
 
 export type SetAllStatusAction = {
     type: 'set-all-status';
-    status: Status[];
+    statuses: Status[];
 };
 
 export type ActionTypes = SetAllStatusAction;

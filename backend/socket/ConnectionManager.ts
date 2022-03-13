@@ -22,10 +22,10 @@ class ConnectionManager {
 
         console.log(`[ConnectionManager] Client ${socketId} connected. Now ${this.socketConnections} connections.`);
 
-        socket.emit('status-all', StatusManager.getStatusses());
+        socket.emit('status-all', StatusManager.getStatuses());
 
         socket.on('request-statuses', () => {
-            socket.emit('status-all', StatusManager.getStatusses());
+            socket.emit('status-all', StatusManager.getStatuses());
         });
 
         socket.on('disconnect', () => {

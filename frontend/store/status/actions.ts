@@ -4,6 +4,6 @@ import { SetAllStatusAction } from 'frontend/store/status/types';
 export const setAllStatus = (status: Status[]): SetAllStatusAction => {
     return {
         type: 'set-all-status',
-        status,
+        statuses: status,
     };
 };

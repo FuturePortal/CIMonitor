@@ -1,4 +1,4 @@
-import { RootState } from 'frontend/store/store';
+import { RootState } from 'frontend/store';
 import Status from 'types/status';
 
-export const getStatus = (state: RootState): Status[] => state.status.status;
+export const getStatuses = (state: RootState): Status[] => state.status.statuses;

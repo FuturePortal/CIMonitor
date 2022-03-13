@@ -16,6 +16,8 @@
         "build": "tsc && parcel build --dist-dir dashboard --no-source-maps frontend/index.html",
         "server": "nodemon --watch backend --exec ts-node backend/server.ts",
         "dashboard": "parcel watch --dist-dir dashboard --hmr-port 3031 frontend/index.html",
+        "cypress-run": "cypress run",
+        "cypress-open": "cypress open",
         "postinstall": "husky install"
     },
     "dependencies": {
@@ -52,7 +54,7 @@
         "react-redux": "^7.2.6",
         "socket.io-client": "^4.4.1",
         "styled-components": "^5.3.3",
-        "ts-node": "^10.6.0",
+        "ts-node": "^10.7.0",
         "typescript": "^4.5.5"
     },
     "lint-staged": {
