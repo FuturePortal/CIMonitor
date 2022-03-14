@@ -99,7 +99,6 @@ class GitLabPipelineParser {
                     pipelineStages.indexOf(stageA.title) - pipelineStages.indexOf(stageB.title)
             ),
             state: this.parsePipelineStatus(pipeline.object_attributes.status),
-            time: new Date(),
         };
     }
 

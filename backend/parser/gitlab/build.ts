@@ -80,7 +80,6 @@ class GitLabBuildParser {
         return {
             ...process,
             stages,
-            time: new Date(),
         };
     }
 

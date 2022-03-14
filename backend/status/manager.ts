@@ -1,4 +1,4 @@
-import Status from 'types/status';
+import Status, { Process } from 'types/status';
 import StatusEvents from './events';
 
 class StatusManager {
@@ -20,10 +20,11 @@ class StatusManager {
         const statuses = [
             ...this.statuses.map((existingStatus) => {
                 if (existingStatus.id === status.id) {
-                    console.log(`[status/manager] Replaced existing status ${status.id}.`);
-                    StatusEvents.emit(StatusEvents.event.patchStatus, status);
+                    const updatedStatus = this.cleanStatus(status);
+                    console.log(`[status/manager] Replaced existing status ${updatedStatus.id}.`);
+                    StatusEvents.emit(StatusEvents.event.patchStatus, updatedStatus);
                     replaced = true;
-                    return status;
+                    return updatedStatus;
                 }
 
                 return existingStatus;
@@ -37,6 +38,29 @@ class StatusManager {
         }
 
         this.statuses = statuses;
+    }
+
+    cleanStatus(status: Status): Status {
+        let isLatest = true;
+
+        return {
+            ...status,
+            processes: status.processes
+                // Sort processes by creation time
+                .sort(
+                    (processA: Process, processB: Process): number =>
+                        new Date(processA.time).getTime() - new Date(processB.time).getTime()
+                )
+                // Remove all processes that are not the latest or not warning
+                .filter((process) => {
+                    if (isLatest || process.state === 'warning') {
+                        return true;
+                    }
+
+                    isLatest = false;
+                    return false;
+                }),
+        };
     }
 
     init(): void {
