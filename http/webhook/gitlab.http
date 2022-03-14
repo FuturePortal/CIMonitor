@@ -1,7 +1,0 @@
-POST http://localhost:3030/webhook/gitlab
-Content-Type: application/json
-Accept: application/json
-
-{
-    "source": "gitlab"
-}

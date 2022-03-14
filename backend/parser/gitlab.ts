@@ -57,9 +57,10 @@ class GitLabParser {
 
         // TODO: Patch process and stage status based on the new status
 
-        // TODO: Patch status time
-
-        return status;
+        return {
+            ...status,
+            time: new Date(),
+        };
     }
 }
 
