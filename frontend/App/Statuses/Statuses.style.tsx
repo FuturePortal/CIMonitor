@@ -1,11 +1,19 @@
 import styled from 'styled-components';
+import { State } from 'types/status';
+import { stateColor } from '/frontend/style/colors';
 
 export const List = styled.div``;
 
-export const Status = styled.div``;
+type StatusProps = {
+    state: State;
+};
 
-export const Process = styled.div``;
+export const Status = styled.div<StatusProps>`
+    background: ${(props) => stateColor[props.state]};
+    color: #222222;
+    margin-top: 1rem;
 
-export const Stage = styled.div``;
-
-export const Step = styled.div``;
+    &:first-child {
+        margin-top: 0;
+    }
+`;

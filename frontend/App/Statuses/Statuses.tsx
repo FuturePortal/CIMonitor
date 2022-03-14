@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { getStatuses } from '/frontend/store/status/selectors';
-import { List, Status, Process, Stage, Step } from './Statuses.style';
+import { List, Status } from './Statuses.style';
+import Processes from './Processes';
 
 const Statuses = (): ReactElement => {
     const statuses = useSelector(getStatuses);
@@ -10,32 +11,15 @@ const Statuses = (): ReactElement => {
         <List>
             {statuses.length === 0 && <h1>Nothing yet.</h1>}
             {statuses.map((status) => (
-                <Status>
+                <Status state={status.state}>
                     <h1>
                         {status.project}: {status.state}
                     </h1>
                     <p>
-                        {status.branch} {status.tag}
+                        {status.source} {status.branch} {status.tag}
                     </p>
-                    {status.processes.map((process) => (
-                        <Process>
-                            <h2>
-                                {process.title}: {process.state}
-                            </h2>
-                            {process.stages.map((stage) => (
-                                <Stage>
-                                    <h3>
-                                        {stage.title}: {stage.state}
-                                    </h3>
-                                    {stage.steps.map((step) => (
-                                        <Step>
-                                            {step.title}: {step.state}
-                                        </Step>
-                                    ))}
-                                </Stage>
-                            ))}
-                        </Process>
-                    ))}
+                    {status.userImage && <img src={status.userImage} alt="user image" />}
+                    <Processes processes={status.processes} />
                 </Status>
             ))}
         </List>

@@ -1,52 +1,12 @@
 import Status, { Process, Stage, State, Step, StepState } from 'types/status';
 import { GitLabBuild } from 'types/gitlab';
-import Slugify from './slug';
+import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 
-class GitLabParser {
-    getInternalId(projectId: number, repositoryName: string, branch: string | false, tag: string | false): string {
-        let id = `gitlab-${projectId}-${Slugify(repositoryName)}`;
+class GitLabBuildParser {
+    parseBuild(id: string, build: GitLabBuild): Status {
+        const status = this.getBuildStatus(id, build);
 
-        if (branch) {
-            id += `-${Slugify(branch)}`;
-        }
-
-        if (tag) {
-            id += `-${Slugify(tag)}`;
-        }
-
-        return id;
-    }
-
-    parseBuild(build: GitLabBuild): Status {
-        console.log('[parser/gitlab] Parsing build...');
-
-        const status = this.getBuildStatus(build);
-
-        return this.patchBuild(status, build);
-    }
-
-    getBuildStatus(build: GitLabBuild): Status {
-        const id = this.getInternalId(build.project_id, build.repository.name, build.ref, build.tag);
-
-        const status = StatusManager.getStatus(id);
-
-        if (status) {
-            return status;
-        }
-
-        return {
-            id,
-            project: build.project_name,
-            state: 'info',
-            source: 'gitlab',
-            tag: build.tag ? build.tag : undefined,
-            branch: build.ref ? build.ref : undefined,
-            time: new Date(),
-        };
-    }
-
-    patchBuild(status: Status, build: GitLabBuild): Status {
         const processes: Process[] = status.processes || [];
 
         const processId = `pipeline-${build.pipeline_id}`;
@@ -72,6 +32,26 @@ class GitLabParser {
             }),
             time: new Date(),
         };
+    }
+
+    getBuildStatus(id: string, build: GitLabBuild): Status {
+        let status = StatusManager.getStatus(id);
+
+        if (!status) {
+            status = {
+                id,
+                project: build.project_name,
+                state: 'info',
+                source: 'gitlab',
+                tag: build.tag ? build.tag : undefined,
+                branch: build.ref ? build.ref : undefined,
+                time: new Date(),
+            };
+        }
+
+        status.userImage = build.user.avatar_url;
+
+        return status;
     }
 
     patchProcess(process: Process, build: GitLabBuild): Process {
@@ -184,4 +164,4 @@ class GitLabParser {
     }
 }
 
-export default new GitLabParser();
+export default new GitLabBuildParser();
