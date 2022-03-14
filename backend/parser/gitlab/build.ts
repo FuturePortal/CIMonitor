@@ -5,7 +5,7 @@ import StatusManager from 'backend/status/manager';
 
 class GitLabBuildParser {
     parseBuild(id: string, build: GitLabBuild): Status {
-        const status = this.getBuildStatus(id, build);
+        const status = this.getStatus(id, build);
 
         const processes: Process[] = status.processes || [];
 
@@ -34,7 +34,7 @@ class GitLabBuildParser {
         };
     }
 
-    getBuildStatus(id: string, build: GitLabBuild): Status {
+    getStatus(id: string, build: GitLabBuild): Status {
         let status = StatusManager.getStatus(id);
 
         if (!status) {
@@ -80,25 +80,8 @@ class GitLabBuildParser {
         return {
             ...process,
             stages,
-            state: this.determineProcessState(stages),
             time: new Date(),
         };
-    }
-
-    determineProcessState(stages: Stage[]): State {
-        if (stages.find((stage) => stage.state === 'error')) {
-            return 'error';
-        }
-
-        if (stages.find((stage) => stage.state === 'warning')) {
-            return 'warning';
-        }
-
-        if (stages.find((stage) => stage.state === 'info')) {
-            return 'info';
-        }
-
-        return 'success';
     }
 
     patchStage(stage: Stage, build: GitLabBuild): Stage {

@@ -14,6 +14,13 @@ router.post('/', (request, response) => {
         case 'build':
             StatusManager.setStatus(gitlabParser.parseBuild(gitlabWebhook));
             break;
+        case 'pipeline':
+            StatusManager.setStatus(gitlabParser.parsePipeline(gitlabWebhook));
+            break;
+        case 'deployment':
+            // TODO: See 60.json and 63.json
+            console.log(`[route/webhook/gitlab] Deployment webhooks are not yet supported.`);
+            break;
         default:
             console.log(`[route/webhook/gitlab] No parser for webhook type ${gitlabWebhook.object_kind}.`);
     }

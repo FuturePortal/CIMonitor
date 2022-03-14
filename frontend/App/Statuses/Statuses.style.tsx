@@ -17,3 +17,7 @@ export const Status = styled.div<StatusProps>`
         margin-top: 0;
     }
 `;
+
+export const Body = styled.div`
+    padding: 1rem;
+`;

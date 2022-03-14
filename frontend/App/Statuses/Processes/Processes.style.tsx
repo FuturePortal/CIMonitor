@@ -7,7 +7,13 @@ type ProcessProps = {
 };
 
 export const Process = styled.div<ProcessProps>`
+    padding: 1rem;
     background: ${(props) => stateColor[props.state]};
+`;
+
+export const Stages = styled.div`
+    display: flex;
+    gap: 1rem;
 `;
 
 type StageProps = {
