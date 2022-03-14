@@ -1,8 +1,9 @@
-export type State = 'info' | 'warning' | 'danger' | 'success';
+export type State = 'info' | 'warning' | 'error' | 'success';
 
-export type StepState = 'pending' | 'planned' | 'running' | 'success' | 'failed' | 'soft-failed';
+export type StepState = 'created' | 'pending' | 'running' | 'success' | 'failed' | 'soft-failed';
 
 export type Step = {
+    id: string;
     title: string;
     state: StepState;
     time: Date;
@@ -10,6 +11,7 @@ export type Step = {
 };
 
 export type Stage = {
+    id: string;
     title?: string;
     state: State;
     steps: Step[];
