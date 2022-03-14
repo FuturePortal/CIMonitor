@@ -27,7 +27,6 @@ export type Process = {
 
 export type Status = {
     id: string;
-    key: string;
     project: string;
     state: State;
     time: Date;
