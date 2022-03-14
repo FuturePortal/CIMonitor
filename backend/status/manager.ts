@@ -43,6 +43,8 @@ class StatusManager {
     cleanStatus(status: Status): Status {
         let isLatest = true;
 
+        // TODO: the status state must be determined again when filtered
+
         return {
             ...status,
             processes: status.processes
