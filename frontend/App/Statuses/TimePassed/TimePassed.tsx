@@ -1,8 +1,8 @@
-import {ReactElement, useEffect, useState} from "react";
+import { ReactElement, useEffect, useState } from 'react';
 
 type Props = {
     since: Date;
-}
+};
 
 const getTimePassed = (since: Date): string => {
     const timePassed = Math.round((new Date().getTime() - new Date(since).getTime()) / 1000);
@@ -27,9 +27,9 @@ const getTimePassed = (since: Date): string => {
 
     const days = Math.floor(timePassed / (60 * 60 * 24));
     return `${days} day${days > 1 ? 's' : ''} ago`;
-}
+};
 
-const TimePassed = ({since}: Props): ReactElement => {
+const TimePassed = ({ since }: Props): ReactElement => {
     const [timePassed, setTimePassed] = useState(getTimePassed(since));
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const TimePassed = ({since}: Props): ReactElement => {
         return () => clearInterval(interval);
     });
 
-    return <>{timePassed}</>
-}
+    return <>{timePassed}</>;
+};
 
 export default TimePassed;

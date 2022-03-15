@@ -100,7 +100,7 @@ class GitHubJobParser {
 
     determineStageState(steps: Step[]): StepState {
         if (steps.length === 0) {
-            return 'pending';
+            return 'running';
         }
 
         if (steps.find((step) => step.state === 'running')) {

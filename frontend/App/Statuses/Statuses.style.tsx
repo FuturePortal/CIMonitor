@@ -36,7 +36,8 @@ export const ProjectImage = styled.div`
         border-radius: 0.25rem;
         max-width: ${imageSize};
         max-height: ${imageSize};
-    }`;
+    }
+`;
 
 export const UserImage = styled.div`
     img {
