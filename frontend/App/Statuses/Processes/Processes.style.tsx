@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { State, StepState } from 'types/status';
 import { stateColor, stateDarkColor } from '/frontend/style/colors';
 
@@ -34,6 +34,12 @@ export const Step = styled.div<StepProps>`
     border-radius: 0.5rem;
     margin-top: 0.5rem;
     margin-right: 0.5rem;
+
+    ${(props) =>
+        ['running', 'pending'].includes(props.state) &&
+        css`
+            background: ${stateDarkColor['warning']};
+        `}
 `;
 
 export const StageWrapper = styled.div`

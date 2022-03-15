@@ -4,6 +4,14 @@ type Props = {
     icon: string;
 };
 
-const Icon = ({ icon }: Props): ReactElement => <span className="icon">{icon}</span>;
+const Icon = ({ icon }: Props): ReactElement => {
+    const classes = ['icon'];
+
+    if (['autorenew'].includes(icon)) {
+        classes.push('spin');
+    }
+
+    return <span className={classes.join(' ')}>{icon}</span>;
+};
 
 export default Icon;

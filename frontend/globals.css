@@ -26,12 +26,15 @@ body {
     font-style: normal;
     font-size: 1.2em;
     vertical-align: -0.2em;
+    display: inline-block;
+}
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+.icon.spin {
+    animation: spin-ani 3s linear infinite;
+}
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+@keyframes spin-ani {
+    100% {
+        transform: rotate(360deg);
+    }
 }
