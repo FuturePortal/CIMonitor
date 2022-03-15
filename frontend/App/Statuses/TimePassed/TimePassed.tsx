@@ -17,16 +17,16 @@ const getTimePassed = (since: Date): string => {
 
     if (timePassed < 60 * 60) {
         const minutes = Math.floor(timePassed / 60);
-        return `${minutes} minute${minutes > 1 && 's'} ago`;
+        return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
     }
 
     if (timePassed < 60 * 60 * 24) {
         const hours = Math.floor(timePassed / (60 * 60));
-        return `${hours} hour${hours > 1 && 's'} ago`;
+        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
     }
 
     const days = Math.floor(timePassed / (60 * 60 * 24));
-    return `${days} day${days > 1 && 's'} ago`;
+    return `${days} day${days > 1 ? 's' : ''} ago`;
 }
 
 const TimePassed = ({since}: Props): ReactElement => {

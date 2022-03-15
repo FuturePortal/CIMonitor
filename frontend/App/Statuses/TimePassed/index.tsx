@@ -1,1 +1,1 @@
-export {default} from './TimePassed';
+export { default } from './TimePassed';

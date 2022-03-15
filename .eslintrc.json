@@ -4,11 +4,7 @@
         "es2021": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended"
-    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -17,23 +13,18 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
+    "plugins": ["react", "@typescript-eslint"],
     "rules": {
-        "max-len": ["error", {
-            "code": 120,
-            "tabWidth": 4
-        }],
+        "max-len": [
+            "error",
+            {
+                "code": 120,
+                "tabWidth": 4
+            }
+        ],
         "react/react-in-jsx-scope": "off"
     },
-    "ignorePatterns": [
-        "node_modules/",
-        "dashboard/",
-        "app/",
-        ".parcel-cache/"
-    ],
+    "ignorePatterns": ["node_modules/", "dashboard/", "app/", ".parcel-cache/", "cypress/"],
     "settings": {
         "react": {
             "version": "detect"

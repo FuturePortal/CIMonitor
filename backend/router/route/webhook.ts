@@ -24,7 +24,11 @@ router.use((request, response, next) => {
             }
         }
         const file = `${path}/${new Date().getTime()}.json`;
-        FileSystem.writeFileSync(file, JSON.stringify(request.body, null, 4));
+        const body = {
+            headers: request.headers,
+            body: request.body,
+        };
+        FileSystem.writeFileSync(file, JSON.stringify(body, null, 4));
         console.log(`[route/webhook] Saved ${file}.`);
     }
 
