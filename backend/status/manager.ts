@@ -41,23 +41,14 @@ class StatusManager {
     }
 
     cleanStatus(status: Status): Status {
-        let isLatest = true;
-
         const processes = status.processes
             // Sort processes by creation time
             .sort(
                 (processA: Process, processB: Process): number =>
-                    new Date(processA.time).getTime() - new Date(processB.time).getTime()
+                    new Date(processB.time).getTime() - new Date(processA.time).getTime()
             )
             // Remove all processes that are not the latest or not warning
-            .filter((process) => {
-                if (isLatest || process.state === 'warning') {
-                    return true;
-                }
-
-                isLatest = false;
-                return false;
-            });
+            .filter((process, index) => index === 0 || process.state === 'warning');
 
         return {
             ...status,

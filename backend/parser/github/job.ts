@@ -85,6 +85,7 @@ class GitHubJobParser {
                 return {
                     ...stageStep,
                     state: getJobStateFromStatus(jobStep.status, jobStep.conclusion),
+                    time: new Date(),
                 };
             }
 
@@ -95,6 +96,7 @@ class GitHubJobParser {
             ...stage,
             steps,
             state: this.determineStageState(steps),
+            time: new Date(),
         };
     }
 
