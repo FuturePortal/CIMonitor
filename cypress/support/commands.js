@@ -24,15 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const submitFixtureAsWebhook = (webhook, fixture, overrideSettings) => {
-    cy.fixture(`${webhook}/${fixture}`).then((body) => {
-        body = {
-            ...body,
-            ...overrideSettings,
-        };
-
+Cypress.Commands.add('gitlab', (file) => {
+    cy.fixture(`gitlab/${file}`).then((body) => {
         cy.request({
-            url: `webhook/${webhook}`,
+            url: `webhook/gitlab`,
             method: 'POST',
             body,
             headers: {
@@ -40,12 +35,15 @@ const submitFixtureAsWebhook = (webhook, fixture, overrideSettings) => {
             },
         });
     });
-};
+});
 
-Cypress.Commands.add('gitlab', (fixture, overrideSettings = {}) =>
-    submitFixtureAsWebhook('gitlab', fixture, overrideSettings)
-);
-
-Cypress.Commands.add('github', (fixture, overrideSettings = {}) =>
-    submitFixtureAsWebhook('github', fixture, overrideSettings)
-);
+Cypress.Commands.add('github', (file) => {
+    cy.fixture(`github/${file}`).then((fixture) => {
+        cy.request({
+            url: `webhook/github`,
+            method: 'POST',
+            body: fixture.body,
+            headers: fixture.headers,
+        });
+    });
+});

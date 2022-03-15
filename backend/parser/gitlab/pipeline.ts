@@ -48,6 +48,7 @@ class GitLabPipelineParser {
                 tag: pipeline.object_attributes.tag ? pipeline.object_attributes.tag : undefined,
                 branch: pipeline.object_attributes.ref ? pipeline.object_attributes.ref : undefined,
                 time: new Date(),
+                processes: [],
             };
         }
 

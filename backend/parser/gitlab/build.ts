@@ -49,6 +49,7 @@ class GitLabBuildParser {
                 source: 'gitlab',
                 tag: build.tag ? build.tag : undefined,
                 branch: build.ref ? build.ref : undefined,
+                processes: [],
                 time: new Date(),
             };
         }

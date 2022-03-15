@@ -28,6 +28,8 @@ class GitLabParser {
     }
 
     parsePipeline(pipeline: GitLabPipeline): Status {
+        console.log('[parser/gitlab] Parsing pipeline...');
+
         const id = this.getInternalId(
             pipeline.project.id,
             pipeline.project.name,

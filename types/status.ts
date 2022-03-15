@@ -31,6 +31,7 @@ export type Status = {
     id: string;
     project: string;
     state: State;
+    processes: Process[];
     time: Date;
     source: 'github' | 'gitlab';
     title?: string; // MR/PR name?
@@ -39,7 +40,6 @@ export type Status = {
     issue?: number;
     projectImage?: string;
     userImage?: string;
-    processes?: Process[];
 };
 
 export default Status;
