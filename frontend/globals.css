@@ -14,3 +14,24 @@ body {
     font-family: 'Fredoka';
     src: url('fonts/fredoka.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: 'material-icons-round';
+    src: url('fonts/material-icons-round.otf') format('opentype');
+}
+
+.icon {
+    font-family: 'material-icons-round';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.2em;
+    vertical-align: -0.2em;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+}
