@@ -24,7 +24,7 @@
         ],
         "react/react-in-jsx-scope": "off"
     },
-    "ignorePatterns": ["node_modules/", "dashboard/", "app/", ".parcel-cache/", "cypress/"],
+    "ignorePatterns": ["node_modules/", "dashboard/", "./app/", ".parcel-cache/", "cypress/"],
     "settings": {
         "react": {
             "version": "detect"

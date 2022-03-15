@@ -1,4 +1,4 @@
-import Status, { Process, Stage, State, Step, StepState } from 'types/status';
+import Status, { Process, Stage, Step, StepState } from 'types/status';
 import { GitLabBuild } from 'types/gitlab';
 import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
@@ -68,7 +68,7 @@ class GitLabBuildParser {
             stages.push({
                 id: stageId,
                 title: build.build_stage,
-                state: 'info',
+                state: 'created',
                 steps: [],
                 time: new Date(),
             });
@@ -119,17 +119,17 @@ class GitLabBuildParser {
         };
     }
 
-    determineStageState(steps: Step[]): State {
+    determineStageState(steps: Step[]): StepState {
         if (steps.find((step) => step.state === 'failed')) {
-            return 'error';
+            return 'failed';
         }
 
         if (steps.find((step) => ['running', 'pending'].includes(step.state))) {
-            return 'warning';
+            return 'running';
         }
 
         if (steps.find((step) => step.state === 'created')) {
-            return 'info';
+            return 'pending';
         }
 
         return 'success';

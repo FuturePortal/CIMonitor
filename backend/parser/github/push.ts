@@ -12,7 +12,7 @@ class GitHubPushParser {
                 project: push.repository.name,
                 state: 'info',
                 source: 'github',
-                branch: push.ref.replace('refs/head/', ''),
+                branch: push.ref.replace('refs/heads/', ''),
                 time: new Date(),
                 processes: [],
             };

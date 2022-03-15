@@ -69,7 +69,7 @@ class GitLabPipelineParser {
                 stages.push({
                     id: stageId,
                     title: stage,
-                    state: 'info',
+                    state: 'pending',
                     steps: [],
                     time: new Date(),
                 });

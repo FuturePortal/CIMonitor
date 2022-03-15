@@ -13,7 +13,7 @@ export type Step = {
 export type Stage = {
     id: string;
     title?: string;
-    state: State;
+    state: StepState;
     steps: Step[];
     time: Date;
 };

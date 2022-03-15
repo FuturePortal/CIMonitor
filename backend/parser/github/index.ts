@@ -3,6 +3,7 @@ import Slugify from 'backend/parser/slug';
 import { GitHubPush, GitHubWorkflowRun, GitHubWorkflowJob } from 'types/github';
 import GitHubPushParser from './push';
 import GitHubRunParser from './run';
+import GitHubJobParser from './job';
 
 class GitLabParser {
     getInternalId(projectId: number, repositoryName: string, branch: string | false, tag: string | false): string {
@@ -43,10 +44,7 @@ class GitLabParser {
     parseWorkflowJob(job: GitHubWorkflowJob): Status | null {
         console.log('[parser/github] Parsing workflow job...');
 
-        // TODO: We have no branch, we need to find a matching process id
-        job;
-
-        return null;
+        return GitHubJobParser.parseJob(job);
     }
 }
 

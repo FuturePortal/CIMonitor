@@ -22,6 +22,12 @@ type StageProps = {
 export const Stage = styled.div<StageProps>`
     background: ${(props) => stateDarkColor[props.state]};
     padding: 0.3rem 0.5rem;
+
+    ${(props) =>
+        ['running', 'pending'].includes(props.state) &&
+        css`
+            background: ${stateDarkColor['warning']};
+        `}
 `;
 
 type StepProps = {
