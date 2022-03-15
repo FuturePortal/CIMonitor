@@ -32,25 +32,8 @@ class GitLabPipelineParser {
         return {
             ...status,
             processes,
-            state: this.determineStatusState(processes),
             time: new Date(),
         };
-    }
-
-    determineStatusState(processes: Process[]): State {
-        if (processes.find((processes) => processes.state === 'error')) {
-            return 'error';
-        }
-
-        if (processes.find((processes) => processes.state === 'warning')) {
-            return 'warning';
-        }
-
-        if (processes.find((processes) => processes.state === 'success')) {
-            return 'success';
-        }
-
-        return 'info';
     }
 
     getStatus(id: string, pipeline: GitLabPipeline): Status {

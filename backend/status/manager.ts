@@ -1,4 +1,4 @@
-import Status, { Process } from 'types/status';
+import Status, { Process, State } from 'types/status';
 import StatusEvents from './events';
 
 class StatusManager {
@@ -43,26 +43,43 @@ class StatusManager {
     cleanStatus(status: Status): Status {
         let isLatest = true;
 
-        // TODO: the status state must be determined again when filtered
+        const processes = status.processes
+            // Sort processes by creation time
+            .sort(
+                (processA: Process, processB: Process): number =>
+                    new Date(processA.time).getTime() - new Date(processB.time).getTime()
+            )
+            // Remove all processes that are not the latest or not warning
+            .filter((process) => {
+                if (isLatest || process.state === 'warning') {
+                    return true;
+                }
+
+                isLatest = false;
+                return false;
+            });
 
         return {
             ...status,
-            processes: status.processes
-                // Sort processes by creation time
-                .sort(
-                    (processA: Process, processB: Process): number =>
-                        new Date(processA.time).getTime() - new Date(processB.time).getTime()
-                )
-                // Remove all processes that are not the latest or not warning
-                .filter((process) => {
-                    if (isLatest || process.state === 'warning') {
-                        return true;
-                    }
-
-                    isLatest = false;
-                    return false;
-                }),
+            state: this.determineStatusState(processes),
+            processes,
         };
+    }
+
+    determineStatusState(processes: Process[]): State {
+        if (processes.find((processes) => processes.state === 'error')) {
+            return 'error';
+        }
+
+        if (processes.find((processes) => processes.state === 'warning')) {
+            return 'warning';
+        }
+
+        if (processes.find((processes) => processes.state === 'success')) {
+            return 'success';
+        }
+
+        return 'info';
     }
 
     init(): void {

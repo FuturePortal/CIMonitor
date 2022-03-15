@@ -9,7 +9,7 @@ const Processes = ({ processes }: Props) => (
     <>
         {processes && processes.map((process) => (
             <Process key={process.id} state={process.state}>
-                <h2>{process.title}</h2>
+                {process.title}
                 <Stages>
                     {process.stages.map((stage) => (
                         <Stage key={stage.id} state={stage.state}>
