@@ -9,7 +9,7 @@ class GitHubPushParser {
         if (!status) {
             status = {
                 id,
-                project: push.repository.name,
+                project: `${push.repository.name} / ${push.organization.login}`,
                 state: 'info',
                 source: 'github',
                 branch: push.ref.replace('refs/heads/', ''),

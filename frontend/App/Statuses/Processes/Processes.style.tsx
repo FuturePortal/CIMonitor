@@ -16,7 +16,7 @@ export const Stages = styled.div`
 `;
 
 type StageProps = {
-    state: State;
+    state: StepState;
 };
 
 export const Stage = styled.div<StageProps>`
@@ -27,6 +27,12 @@ export const Stage = styled.div<StageProps>`
         ['running', 'pending'].includes(props.state) &&
         css`
             background: ${stateDarkColor['warning']};
+        `}
+
+    ${(props) =>
+        props.state === 'failed' &&
+        css`
+            background: ${stateDarkColor['error']};
         `}
 `;
 
@@ -45,6 +51,12 @@ export const Step = styled.div<StepProps>`
         ['running', 'pending'].includes(props.state) &&
         css`
             background: ${stateDarkColor['warning']};
+        `}
+
+    ${(props) =>
+        props.state === 'failed' &&
+        css`
+            background: ${stateDarkColor['error']};
         `}
 `;
 
