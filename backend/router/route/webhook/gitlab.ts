@@ -2,6 +2,7 @@ import express from 'express';
 import GitLabWebhook from 'types/gitlab';
 import gitlabParser from 'backend/parser/gitlab';
 import StatusManager from 'backend/status/manager';
+import Status from 'types/status';
 
 const router = express.Router();
 
@@ -10,12 +11,14 @@ router.post('/', (request, response) => {
 
     const gitlabWebhook: GitLabWebhook = request.body;
 
+    let status: Status | null = null;
+
     switch (gitlabWebhook.object_kind) {
         case 'build':
-            StatusManager.setStatus(gitlabParser.parseBuild(gitlabWebhook));
+            status = gitlabParser.parseBuild(gitlabWebhook);
             break;
         case 'pipeline':
-            StatusManager.setStatus(gitlabParser.parsePipeline(gitlabWebhook));
+            status = gitlabParser.parsePipeline(gitlabWebhook);
             break;
         case 'deployment':
             // TODO: See 60.json and 63.json
@@ -23,6 +26,10 @@ router.post('/', (request, response) => {
             break;
         default:
             console.log(`[route/webhook/gitlab] No parser for webhook type ${gitlabWebhook.object_kind}.`);
+    }
+
+    if (status !== null) {
+        StatusManager.setStatus(status);
     }
 
     response.json({ message: 'thanks' });

@@ -4,7 +4,11 @@ import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 
 class GitLabBuildParser {
-    parseBuild(id: string, build: GitLabBuild): Status {
+    parseBuild(id: string, build: GitLabBuild): Status | null {
+        if (build.build_status === 'created') {
+            return null;
+        }
+
         const status = this.getStatus(id, build);
 
         const processes: Process[] = status.processes || [];

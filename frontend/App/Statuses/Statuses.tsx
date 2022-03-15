@@ -11,7 +11,7 @@ const Statuses = (): ReactElement => {
         <List>
             {statuses.length === 0 && <h1>Nothing yet.</h1>}
             {statuses.map((status) => (
-                <Status state={status.state}>
+                <Status key={status.id} state={status.state}>
                     <Body>
                         <h1>{status.project}</h1>
                         <p>
