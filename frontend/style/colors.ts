@@ -8,6 +8,6 @@ export const stateColor = {
 export const stateDarkColor = {
     error: '#c92e2e',
     warning: '#d7b136',
-    info: '#4ab3de',
-    success: '#65ad2e',
+    info: '#3298c2',
+    success: '#5ba223',
 };

@@ -1,5 +1,5 @@
 import { Process as ProcessType } from 'types/status';
-import { Process, Stages, Stage, Step } from './Processes.style';
+import { Details, Process, Stages, StageWrapper, Stage, Step } from './Processes.style';
 
 type Props = {
     processes: ProcessType[];
@@ -9,15 +9,15 @@ const Processes = ({ processes }: Props) => (
     <>
         {processes && processes.map((process) => (
             <Process key={process.id} state={process.state}>
-                {process.title}
+                <Details>{process.title}</Details>
                 <Stages>
                     {process.stages.map((stage) => (
-                        <Stage key={stage.id} state={stage.state}>
-                            <h3>{stage.title}</h3>
+                        <StageWrapper key={stage.id}>
+                            <Stage state={stage.state}>{stage.title}</Stage>
                             {stage.steps.map((step) => (
                                 <Step key={step.id} state={step.state}>{step.title}</Step>
                             ))}
-                        </Stage>
+                        </StageWrapper>
                     ))}
                 </Stages>
             </Process>

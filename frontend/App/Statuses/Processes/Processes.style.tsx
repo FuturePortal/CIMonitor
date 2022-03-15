@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { State, StepState } from 'types/status';
-import { stateColor } from '/frontend/style/colors';
+import { stateColor, stateDarkColor } from '/frontend/style/colors';
 
 type ProcessProps = {
     state: State;
@@ -13,7 +13,6 @@ export const Process = styled.div<ProcessProps>`
 
 export const Stages = styled.div`
     display: flex;
-    gap: 1rem;
 `;
 
 type StageProps = {
@@ -21,7 +20,8 @@ type StageProps = {
 };
 
 export const Stage = styled.div<StageProps>`
-    background: ${(props) => stateColor[props.state]};
+    background: ${(props) => stateDarkColor[props.state]};
+    padding: 0.5rem;
 `;
 
 type StepProps = {
@@ -29,5 +29,34 @@ type StepProps = {
 };
 
 export const Step = styled.div<StepProps>`
-    background: ${(props) => stateColor[props.state]};
+    background: ${(props) => stateDarkColor[props.state]};
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+`;
+
+export const StageWrapper = styled.div`
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    &:first-child ${Stage} {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+
+    &:last-child {
+        ${Stage} {
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        ${Step} {
+            margin-right: 0;
+        }
+    }
+`;
+
+export const Details = styled.div`
+    margin-bottom: 0.5rem;
 `;
