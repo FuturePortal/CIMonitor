@@ -26,7 +26,7 @@ export default {
 .note
     padding: 20px
     background: $color-info
-    color: $color-white
+    color: #333333
     font-size: 18px
 
     &.warning
