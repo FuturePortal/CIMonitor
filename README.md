@@ -12,7 +12,7 @@ deployments are successful. All in one overview. This is all done via **webhooks
 
 The time that deployments were scary is over, lets make them FUN!
 
-![Dashboard demonstration](docs/images/dashboard.gif)
+![Dashboard demonstration](docs/images/dashboard.png)
 
 ## Running CIMonitor
 

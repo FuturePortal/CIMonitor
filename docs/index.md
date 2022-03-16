@@ -12,4 +12,4 @@ deployments are successful. All in one overview. This is all done via **webhooks
 
 The time that deployments were scary is over, lets make them FUN!
 
-![dashboard example](images/dashboard.gif)
+![dashboard example](images/dashboard.png)
