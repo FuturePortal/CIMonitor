@@ -1,7 +1,8 @@
 const fileSystem = require('fs');
 const mix = require('laravel-mix');
 
-const VersionChecker = require('./back-end/domain/cimonitor/VersionChecker');
+const packageFile = `${__dirname}/package.json`;
+const currentVersion = JSON.parse(fileSystem.readFileSync(packageFile)).version;
 
 mix.js('front-end/dashboard.js', 'dashboard');
 
@@ -40,7 +41,7 @@ mix.setPublicPath(`dashboard/`);
 mix.then(() => {
     const replacements = [
         { key: 'bust', value: new Date().getTime() },
-        { key: 'version', value: VersionChecker.getCurrentVersion() },
+        { key: 'version', value: currentVersion },
     ];
 
     fileSystem.readFile('front-end/index.html', 'utf8', (error, data) => {

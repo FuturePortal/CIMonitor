@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>CIMonitor version {{ version }}</h1>
+        <note class="note" type="warning">
+            Version 4 has been released, with a lot of neat features and better insights. Consider upgrading!
+        </note>
         <p>
             In the past, deployments were scary. That shouldn't be the case anymore! CIMonitor helps you to achieve more
             fun setting up your tests and deployments. Find more information about the features in
@@ -34,8 +37,10 @@
 <script>
 import { CONTRIBUTOR_GET_ORDERED } from '../../../../store/StaticGetters';
 import { CONTRIBUTOR_FETCH_CONTRIBUTORS } from '../../../../store/StaticActions';
+import Note from '../../Note';
 
 export default {
+    components: { Note },
     created() {
         this.$store.dispatch(CONTRIBUTOR_FETCH_CONTRIBUTORS);
     },
@@ -69,6 +74,9 @@ export default {
 
 .info
     margin-top: 2px
+
+.note
+    margin-bottom: 20px
 
 .location,
 .username

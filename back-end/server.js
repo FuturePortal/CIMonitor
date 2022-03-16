@@ -15,7 +15,6 @@ require('dotenv').config();
     await StatusPersister.loadSavedStatuses();
 
     const SocketConnectionManager = require('./domain/socket/ConnectionManager');
-    const VersionChecker = require('./domain/cimonitor/VersionChecker');
 
     const Config = await ConfigLoader.getConfig();
 
@@ -25,7 +24,6 @@ require('dotenv').config();
     const server = http.createServer(app);
 
     SocketConnectionManager.startSocketServer(server);
-    VersionChecker.scheduleVersionChecks();
     StatusPersister.saveStatusesOnChange();
 
     server.listen(Config.getServerPort(), () => {
