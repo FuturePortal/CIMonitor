@@ -1,0 +1,10 @@
+site_name: CIMonitor
+theme: readthedocs
+repo_url: https://github.com/CIMonitor/CIMonitor
+site_author: Rick van der Staaij
+dev_addr: 0.0.0.0:9998
+pages:
+  - Home: index.md
+  - Webhooks:
+    - GitHub: webhook/GitHub.md
+    - GitLab: webhook/GitLab.md

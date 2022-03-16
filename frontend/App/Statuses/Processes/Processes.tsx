@@ -35,11 +35,17 @@ const Processes = ({ processes }: Props) => (
                                 <Stage state={stage.state}>
                                     <Icon icon={getStateIcon(stage.state)} /> {stage.title}
                                 </Stage>
-                                {stage.steps.map((step) => (
-                                    <Step key={step.id} state={step.state}>
-                                        <Icon icon={getStateIcon(step.state)} /> {step.title}
-                                    </Step>
-                                ))}
+                                {stage.steps.map((step) => {
+                                    if (step.state === 'success') {
+                                        return null;
+                                    }
+
+                                    return (
+                                        <Step key={step.id} state={step.state}>
+                                            <Icon icon={getStateIcon(step.state)} /> {step.title}
+                                        </Step>
+                                    );
+                                })}
                             </StageWrapper>
                         ))}
                     </Stages>

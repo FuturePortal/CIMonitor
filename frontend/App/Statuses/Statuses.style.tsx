@@ -1,10 +1,22 @@
 import styled from 'styled-components';
 import { State } from 'types/status';
-import { stateColor } from '/frontend/style/colors';
+import { stateColor, stateDarkColor } from '/frontend/style/colors';
 
 const imageSize = '6rem';
 
 export const List = styled.div``;
+
+export const Boxes = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+`;
+
+export const Box = styled.div`
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.25rem;
+`;
 
 type StatusProps = {
     state: State;
@@ -14,6 +26,10 @@ export const Status = styled.div<StatusProps>`
     background: ${(props) => stateColor[props.state]};
     color: #222222;
     margin-top: 1rem;
+
+    ${Box} {
+        background: ${(props) => stateDarkColor[props.state]};
+    }
 
     &:first-child {
         margin-top: 0;

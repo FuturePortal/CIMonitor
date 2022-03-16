@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { getStatuses } from '/frontend/store/status/selectors';
-import { List, Body, Status, Details, ProjectImage, UserImage } from './Statuses.style';
+import { List, Body, Status, Details, ProjectImage, UserImage, Box, Boxes } from './Statuses.style';
 import Processes from './Processes';
 import TimePassed from './TimePassed';
+import Icon from '/frontend/components/Icon';
 
 const Statuses = (): ReactElement => {
     const statuses = useSelector(getStatuses);
@@ -21,7 +22,24 @@ const Statuses = (): ReactElement => {
                         )}
                         <Details>
                             <h1>{status.project}</h1>
-                            {status.source} {status.branch} {status.tag} <TimePassed since={status.time} />
+                            <Boxes>
+                                <Box>
+                                    <Icon icon="code" /> {status.source}
+                                </Box>
+                                {status.branch && (
+                                    <Box>
+                                        <Icon icon="commit" /> {status.branch}
+                                    </Box>
+                                )}
+                                {status.tag && (
+                                    <Box>
+                                        <Icon icon="sell" /> {status.tag}
+                                    </Box>
+                                )}
+                                <Box>
+                                    <Icon icon="schedule" /> <TimePassed since={status.time} />
+                                </Box>
+                            </Boxes>
                         </Details>
                         {status.userImage && (
                             <UserImage>
