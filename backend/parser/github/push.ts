@@ -1,6 +1,6 @@
-import Status from 'types/status';
-import { GitHubPush } from 'types/github';
 import StatusManager from 'backend/status/manager';
+import { GitHubPush } from 'types/github';
+import Status from 'types/status';
 
 class GitHubPushParser {
     parsePush(id: string, push: GitHubPush): Status {

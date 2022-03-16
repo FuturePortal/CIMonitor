@@ -1,8 +1,8 @@
-import Status, { Process, Stage, Step, StepState } from 'types/status';
-import { GitHubWorkflowJob } from 'types/github';
-import StatusManager from 'backend/status/manager';
 import { getJobStateFromStatus } from 'backend/parser/github/status';
 import slug from 'backend/parser/slug';
+import StatusManager from 'backend/status/manager';
+import { GitHubWorkflowJob } from 'types/github';
+import Status, { Process, Stage, Step, StepState } from 'types/status';
 
 class GitHubJobParser {
     parseJob(job: GitHubWorkflowJob): Status | null {

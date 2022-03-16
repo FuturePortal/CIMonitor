@@ -1,8 +1,8 @@
 import express from 'express';
 import FileSystem from 'fs';
 
-import GitLabRouter from './webhook/gitlab';
 import GitHubRouter from './webhook/github';
+import GitLabRouter from './webhook/gitlab';
 
 const router = express.Router();
 

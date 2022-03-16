@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { State } from 'types/status';
+
 import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { State } from 'types/status';
 
 const imageSize = '6rem';
 

@@ -1,7 +1,7 @@
+import express from 'express';
+
 import dashboardRouter from './route/dashboard';
 import webhookRouter from './route/webhook';
-
-import express from 'express';
 
 const router = express.Router();
 

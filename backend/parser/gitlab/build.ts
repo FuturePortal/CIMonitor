@@ -1,7 +1,7 @@
-import Status, { Process, Stage, Step, StepState } from 'types/status';
-import { GitLabBuild } from 'types/gitlab';
 import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
+import { GitLabBuild } from 'types/gitlab';
+import Status, { Process, Stage, Step, StepState } from 'types/status';
 
 class GitLabBuildParser {
     parseBuild(id: string, build: GitLabBuild): Status | null {

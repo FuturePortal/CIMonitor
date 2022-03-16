@@ -1,4 +1,5 @@
 import Status, { Process, State } from 'types/status';
+
 import StatusEvents from './events';
 
 class StatusManager {

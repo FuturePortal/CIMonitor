@@ -1,7 +1,7 @@
-import Status from 'types/status';
-import { GitHubWorkflowRun } from 'types/github';
-import StatusManager from 'backend/status/manager';
 import { getStateFromStatus } from 'backend/parser/github/status';
+import StatusManager from 'backend/status/manager';
+import { GitHubWorkflowRun } from 'types/github';
+import Status from 'types/status';
 
 class GitHubRunParser {
     parseRun(id: string, run: GitHubWorkflowRun): Status {

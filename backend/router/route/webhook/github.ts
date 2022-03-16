@@ -1,7 +1,8 @@
 import express from 'express';
-import Status from 'types/status';
-import StatusManager from 'backend/status/manager';
+
 import githubParser from 'backend/parser/github';
+import StatusManager from 'backend/status/manager';
+import Status from 'types/status';
 
 const router = express.Router();
 

@@ -1,10 +1,11 @@
 import { ReactElement } from 'react';
 
+import useSocket from '/frontend/hooks/useSocket';
+
+import SettingsPanel from './SettingsPanel';
 import SocketConnection from './SocketConnection';
 import Statuses from './Statuses';
-import SettingsPanel from './SettingsPanel';
 import Toolbar from './Toolbar';
-import useSocket from '/frontend/hooks/useSocket';
 
 const App = (): ReactElement => {
     const { socketConnected } = useSocket();

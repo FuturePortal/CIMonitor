@@ -1,7 +1,7 @@
-import Status, { Process, Stage, State } from 'types/status';
-import { GitLabPipeline } from 'types/gitlab';
 import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
+import { GitLabPipeline } from 'types/gitlab';
+import Status, { Process, Stage, State } from 'types/status';
 
 class GitLabPipelineParser {
     parsePipeline(id: string, pipeline: GitLabPipeline): Status {

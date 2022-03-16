@@ -1,6 +1,7 @@
-import Status from 'types/status';
-import { GitLabBuild, GitLabPipeline } from 'types/gitlab';
 import Slugify from 'backend/parser/slug';
+import { GitLabBuild, GitLabPipeline } from 'types/gitlab';
+import Status from 'types/status';
+
 import GitLabBuildParser from './build';
 import GitLabPipelineParser from './pipeline';
 

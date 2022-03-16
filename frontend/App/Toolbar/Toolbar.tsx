@@ -1,11 +1,13 @@
 import { ReactElement } from 'react';
-
-import { Container, Buttons, Button, Brand } from './Toolbar.style';
-import Icon from '/frontend/components/Icon';
-import SuccessLight from './light/success.svg';
-import ErrorLight from './light/error.svg';
-import WarningLight from './light/warning.svg';
 import { useSelector } from 'react-redux';
+
+import { Brand, Button, Buttons, Container } from './Toolbar.style';
+
+import ErrorLight from './light/error.svg';
+import SuccessLight from './light/success.svg';
+import WarningLight from './light/warning.svg';
+
+import Icon from '/frontend/components/Icon';
 import { getGlobalState } from '/frontend/store/status/selectors';
 
 const Toolbar = (): ReactElement => {

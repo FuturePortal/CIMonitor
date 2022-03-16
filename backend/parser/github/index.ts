@@ -1,9 +1,10 @@
-import Status from 'types/status';
 import Slugify from 'backend/parser/slug';
-import { GitHubPush, GitHubWorkflowRun, GitHubWorkflowJob } from 'types/github';
+import { GitHubPush, GitHubWorkflowJob, GitHubWorkflowRun } from 'types/github';
+import Status from 'types/status';
+
+import GitHubJobParser from './job';
 import GitHubPushParser from './push';
 import GitHubRunParser from './run';
-import GitHubJobParser from './job';
 
 class GitLabParser {
     getInternalId(projectId: number, repositoryName: string, branch: string | false, tag: string | false): string {

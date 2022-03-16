@@ -1,5 +1,6 @@
-import Status from 'types/status';
 import { AddStatusAction, PatchStatusAction, SetAllStatusAction } from 'frontend/store/status/types';
+
+import Status from 'types/status';
 
 export const setAllStatus = (statuses: Status[]): SetAllStatusAction => {
     return {

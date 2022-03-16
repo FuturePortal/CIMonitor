@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
+import { io } from 'socket.io-client';
+
 import { addStatus, patchStatus, setAllStatus } from '/frontend/store/status/actions';
+
 import socketEvent from '/types/socket';
 
 type UseSocketOutput = {

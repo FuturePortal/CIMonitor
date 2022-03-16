@@ -1,10 +1,13 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
+
+import { Body, Box, Boxes, Details, List, ProjectImage, Status, UserImage } from './Statuses.style';
+
+import Icon from '/frontend/components/Icon';
 import { getStatuses } from '/frontend/store/status/selectors';
-import { List, Body, Status, Details, ProjectImage, UserImage, Box, Boxes } from './Statuses.style';
+
 import Processes from './Processes';
 import TimePassed from './TimePassed';
-import Icon from '/frontend/components/Icon';
 
 const Statuses = (): ReactElement => {
     const statuses = useSelector(getStatuses);

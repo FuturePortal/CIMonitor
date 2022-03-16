@@ -1,7 +1,8 @@
 import { Server } from 'http';
 import { Server as SocketServer } from 'socket.io';
-import StatusManager from 'backend/status/manager';
+
 import StatusEvents from 'backend/status/events';
+import StatusManager from 'backend/status/manager';
 import socketEvent from 'types/socket';
 import Status from 'types/status';
 

@@ -1,7 +1,8 @@
 import express from 'express';
-import GitLabWebhook from 'types/gitlab';
+
 import gitlabParser from 'backend/parser/gitlab';
 import StatusManager from 'backend/status/manager';
+import GitLabWebhook from 'types/gitlab';
 import Status from 'types/status';
 
 const router = express.Router();
