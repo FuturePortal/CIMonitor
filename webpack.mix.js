@@ -1,6 +1,9 @@
 const fileSystem = require('fs');
 const mix = require('laravel-mix');
 
+const packageFile = `${__dirname}/package.json`;
+const currentVersion = JSON.parse(fileSystem.readFileSync(packageFile)).version;
+
 mix.js('front-end/dashboard.js', 'dashboard');
 
 mix.sass('front-end/sass/dashboard.sass', 'dashboard');
@@ -38,7 +41,7 @@ mix.setPublicPath(`dashboard/`);
 mix.then(() => {
     const replacements = [
         { key: 'bust', value: new Date().getTime() },
-        { key: 'version', value: '3.7.2' },
+        { key: 'version', value: currentVersion },
     ];
 
     fileSystem.readFile('front-end/index.html', 'utf8', (error, data) => {
