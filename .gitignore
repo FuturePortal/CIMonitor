@@ -11,6 +11,7 @@ node_modules/
 .husky/_/
 webhooks/
 .env
+yarn-error.log
 
 # Cypress testing results
 
