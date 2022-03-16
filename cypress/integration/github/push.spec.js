@@ -6,12 +6,17 @@ context('A running GitHub push', () => {
     });
 
     it('pushes a GitHub action flow', () => {
+        for (let count = 1; count <= 8; count++) {
+            cy.wait(1000);
+            cy.github(`push-failed/${count}`);
+        }
+
+        cy.wait(4000);
+
         // Push all created events
         for (let count = 1; count <= 14; count++) {
             cy.wait(1000);
             cy.github(`push/${count}`);
         }
-
-        // TODO: Check a status is showing properly
     });
 });

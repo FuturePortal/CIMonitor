@@ -105,12 +105,8 @@ class GitHubJobParser {
             return 'running';
         }
 
-        if (steps.find((step) => step.state === 'running')) {
+        if (steps.find((step) => ['running', 'pending'].includes(step.state))) {
             return 'running';
-        }
-
-        if (steps.find((step) => step.state === 'pending')) {
-            return 'pending';
         }
 
         if (steps.find((step) => step.state === 'failed')) {
