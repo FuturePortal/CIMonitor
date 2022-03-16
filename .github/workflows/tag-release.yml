@@ -1,7 +1,8 @@
-name: Build the CIMonitor v4 container
+name: Tag new CIMonitor release
 on:
   push:
-    branches: [master]
+    tags:
+      - 4.*
 jobs:
   test:
     name: Run all tests
@@ -28,16 +29,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install development dependencies
-        run: "yarn install --ignore-scripts"
+        run: yarn install --ignore-scripts
 
       - name: Build javascript application
-        run: "yarn build"
+        run: yarn build
 
       - name: Install production dependencies
-        run: "yarn install --production --ignore-scripts"
+        run: yarn install --production --ignore-scripts
 
       - name: Build CIMonitor image
-        run: "docker build --tag cimonitor/server:4.0.0 ."
+        run: docker build --tag cimonitor/server:${GITHUB_REF/refs\/tags\//} .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -46,4 +47,4 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Push docker image to the hub
-        run: "docker push cimonitor/server:4.0.0"
+        run: docker push cimonitor/server:${GITHUB_REF/refs\/tags\//}
