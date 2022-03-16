@@ -36,7 +36,7 @@ const TimePassed = ({ since }: Props): ReactElement => {
         const interval = setInterval(() => setTimePassed(getTimePassed(since)), 5000);
 
         return () => clearInterval(interval);
-    });
+    }, [since]);
 
     return <>{timePassed}</>;
 };
