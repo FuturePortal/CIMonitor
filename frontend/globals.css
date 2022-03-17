@@ -47,3 +47,19 @@ h4,
 h5 {
     font-weight: normal;
 }
+
+input,
+textarea,
+select,
+option,
+button {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}

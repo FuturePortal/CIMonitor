@@ -2,23 +2,17 @@ import { AddStatusAction, PatchStatusAction, SetAllStatusAction } from 'frontend
 
 import Status from 'types/status';
 
-export const setAllStatus = (statuses: Status[]): SetAllStatusAction => {
-    return {
-        type: 'status-set-all',
-        statuses,
-    };
-};
+export const setAllStatus = (statuses: Status[]): SetAllStatusAction => ({
+    type: 'status-set-all',
+    statuses,
+});
 
-export const addStatus = (status: Status): AddStatusAction => {
-    return {
-        type: 'status-add',
-        status,
-    };
-};
+export const addStatus = (status: Status): AddStatusAction => ({
+    type: 'status-add',
+    status,
+});
 
-export const patchStatus = (status: Status): PatchStatusAction => {
-    return {
-        type: 'status-patch',
-        status,
-    };
-};
+export const patchStatus = (status: Status): PatchStatusAction => ({
+    type: 'status-patch',
+    status,
+});

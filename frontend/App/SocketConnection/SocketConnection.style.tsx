@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const WarningBar = styled.div`
     position: fixed;
+    z-index: 150;
     top: 0;
     left: 0;
     width: 100%;

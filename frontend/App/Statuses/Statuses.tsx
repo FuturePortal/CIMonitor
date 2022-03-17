@@ -6,6 +6,7 @@ import { Body, Box, Boxes, Details, List, ProjectImage, Status, UserImage } from
 import Icon from '/frontend/components/Icon';
 import { getStatuses } from '/frontend/store/status/selectors';
 
+import MockStatuses from './Mock';
 import Processes from './Processes';
 import TimePassed from './TimePassed';
 
@@ -14,7 +15,7 @@ const Statuses = (): ReactElement => {
 
     return (
         <List>
-            {statuses.length === 0 && <h1>Nothing yet.</h1>}
+            {statuses.length === 0 && <MockStatuses />}
             {statuses.map((status) => (
                 <Status key={status.id} state={status.state}>
                     <Body>

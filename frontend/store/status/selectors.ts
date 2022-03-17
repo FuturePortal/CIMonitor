@@ -15,3 +15,5 @@ export const getGlobalState = (state: RootState): State => {
 
     return 'success';
 };
+
+export const getStatusCount = (state: RootState): number => state.status.statuses.length;

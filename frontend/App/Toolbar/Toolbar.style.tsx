@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 const radius = 1.25;
 
-const actionWidth = 18;
+const actionWidth = 16;
 const actionHeight = 3.5;
 const iconSize = 1.4;
 
-const brandSize = 5.6;
+export const brandSize = 5.6;
 const brandHeight = 3.5;
 
 export const Container = styled.div`

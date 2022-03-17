@@ -1,9 +1,11 @@
 import { combineReducers, compose, createStore } from 'redux';
 
+import SettingReducer from './settings/reducer';
 import StatusReducer from './status/reducer';
 
 const reducers = combineReducers({
     status: StatusReducer,
+    setting: SettingReducer,
 });
 
 export type RootState = ReturnType<typeof reducers>;

@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Brand, Button, Buttons, Container } from './Toolbar.style';
 
@@ -8,10 +8,12 @@ import SuccessLight from './light/success.svg';
 import WarningLight from './light/warning.svg';
 
 import Icon from '/frontend/components/Icon';
+import { toggleSettingsPanel } from '/frontend/store/settings/actions';
 import { getGlobalState } from '/frontend/store/status/selectors';
 
 const Toolbar = (): ReactElement => {
     const dashboardState = useSelector(getGlobalState);
+    const dispatch = useDispatch();
 
     const light = {
         success: <SuccessLight />,
@@ -22,10 +24,10 @@ const Toolbar = (): ReactElement => {
     return (
         <Container>
             <Buttons>
-                <Button>
+                <Button onClick={() => window.open('https://github.com/cimonitor/cimonitor', '_blank').focus()}>
                     <Icon icon="code" />
                 </Button>
-                <Button>
+                <Button onClick={() => dispatch(toggleSettingsPanel())}>
                     <Icon icon="settings" />
                 </Button>
             </Buttons>
