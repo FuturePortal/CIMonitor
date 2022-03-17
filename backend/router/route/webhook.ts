@@ -3,6 +3,7 @@ import FileSystem from 'fs';
 
 import GitHubRouter from './webhook/github';
 import GitLabRouter from './webhook/gitlab';
+import ReadTheDocsRouter from './webhook/readthedocs';
 
 const router = express.Router();
 
@@ -37,5 +38,6 @@ router.use((request, response, next) => {
 
 router.use('/gitlab', GitLabRouter);
 router.use('/github', GitHubRouter);
+router.use('/readthedocs', ReadTheDocsRouter);
 
 export default router;

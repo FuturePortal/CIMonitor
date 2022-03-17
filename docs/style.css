@@ -9,20 +9,19 @@ h5 {
     font-family: 'Montserrat', sans-serif !important;
 }
 
-.wy-side-nav-search,
 .wy-nav-content {
     background: #fff !important;
 }
 
-.wy-side-nav-search a,
-.rst-versions {
+.wy-breadcrumbs-aside,
+.wy-side-nav-search {
     display: none !important;
 }
 
 .wy-nav-side {
     padding-bottom: 0 !important;
-    height: 100% !important;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid #1f1d1d;
+    background: #fff !important;
 }
 
 .wy-nav-side a {
@@ -33,8 +32,8 @@ h5 {
     background: #8ac159 !important;
 }
 
-.rst-content div[role='navigation'] {
-    display: none;
+img {
+    border-radius: 15px;
 }
 
 footer {
@@ -46,5 +45,6 @@ footer {
 }
 
 .wy-nav-top {
-    background: #64a9e8 !important;
+    background: #333 !important;
+    line-height: 30px;
 }
