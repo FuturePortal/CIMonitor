@@ -9,7 +9,9 @@ import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
 import { getStatusCount } from '/frontend/store/status/selectors';
 
 import About from './About';
+import Customisation from './Customisation';
 import Documentation from './Documentation';
+import Statuses from './Statuses';
 
 type SettingsTab = {
     icon: string;
@@ -19,9 +21,19 @@ type SettingsTab = {
 
 const tabs: SettingsTab[] = [
     {
-        icon: 'info',
+        icon: 'help_outline',
         name: 'About',
         content: <About />,
+    },
+    {
+        icon: 'rule',
+        name: 'Statuses',
+        content: <Statuses />,
+    },
+    {
+        icon: 'brush',
+        name: 'Customisation',
+        content: <Customisation />,
     },
     {
         icon: 'auto_stories',
