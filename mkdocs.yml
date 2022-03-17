@@ -4,7 +4,7 @@ repo_url: https://github.com/CIMonitor/CIMonitor
 site_author: Rick van der Staaij
 dev_addr: 0.0.0.0:9998
 extra_css:
-  - docs/style.css
+  - style.css
 pages:
   - Home: index.md
   - Webhooks:
