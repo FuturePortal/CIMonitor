@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
 
-const SettingsPanel = (): ReactElement => <div />;
+const SettingsPanel = (): ReactElement => null;
 
 export default SettingsPanel;
