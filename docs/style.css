@@ -20,8 +20,15 @@ h5 {
 
 .wy-nav-side {
     padding-bottom: 0 !important;
-    border-right: 1px solid #1f1d1d;
     background: #fff !important;
+}
+
+.wy-menu-vertical {
+    border: 0 !important;
+}
+
+.wy-menu-vertical li.current {
+    background: transparent !important;
 }
 
 .wy-nav-side a {
@@ -33,7 +40,7 @@ h5 {
 }
 
 img {
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 footer {
