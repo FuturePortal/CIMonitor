@@ -56,7 +56,7 @@ const SettingsPanel = (): ReactElement => {
         <Overlay>
             <Frame>
                 <TitleBar>
-                    <Title>CIMonitor version 4</Title>
+                    <Title>CIMonitor version PACKAGE_VERSION</Title>
                     {statusCount > 0 && (
                         <Close onClick={() => dispatch(closeSettingsPanel())}>
                             <Icon icon="close" />

@@ -660,7 +660,7 @@
     "@parcel/utils" "2.3.2"
     posthtml "^0.16.4"
 
-"@parcel/plugin@2.3.2":
+"@parcel/plugin@2.3.2", "@parcel/plugin@^2.3.2":
   version "2.3.2"
   resolved "https://registry.npmjs.org/@parcel/plugin/-/plugin-2.3.2.tgz"
   integrity sha512-SaLZAJX4KH+mrAmqmcy9KJN+V7L+6YNTlgyqYmfKlNiHu7aIjLL+3prX8QRcgGtjAYziCxvPj0cl1CCJssaiGg==
@@ -4101,6 +4101,10 @@ package-json@^6.3.0:
     registry-auth-token "^4.0.0"
     registry-url "^5.0.0"
     semver "^6.2.0"
+
+"parcel-transformer-version@link:./frontend/parcel-transformer-package-version":
+  version "0.0.0"
+  uid ""
 
 parcel@^2.3.2:
   version "2.3.2"
