@@ -4102,7 +4102,7 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-"parcel-transformer-version@link:./frontend/parcel-transformer-package-version":
+"parcel-transformer-package-version@link:./frontend/parcel-transformer-package-version":
   version "0.0.0"
   uid ""
 

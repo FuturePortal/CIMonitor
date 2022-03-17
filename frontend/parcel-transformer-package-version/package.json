@@ -1,10 +1,9 @@
 {
-    "name": "@cimonitor/parcel-transformer-version",
+    "name": "@cimonitor/parcel-transformer-package-version",
     "version": "0.0.1",
     "description": "Adds the package.json version to the environment variables",
     "repository": "git@github.com:CIMonitor/CIMonitor.git",
     "license": "MIT",
-    "private": true,
     "author": {
         "name": "Rick van der Staaij",
         "url": "https://rick.nu"

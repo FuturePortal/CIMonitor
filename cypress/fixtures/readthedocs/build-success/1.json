@@ -1,0 +1,21 @@
+{
+    "headers": {
+        "user-agent": "Read-the-Docs/7.4.2 (readthedocs.org)",
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "x-rtd-event": "build:triggered",
+        "content-length": "318"
+    },
+    "body": {
+        "event": "build:triggered",
+        "name": "CIMonitor",
+        "slug": "cimonitor",
+        "version": "latest",
+        "commit": "",
+        "build": "16398754",
+        "start_date": "2022-03-17T19:36:36",
+        "build_url": "https://readthedocs.org/projects/cimonitor/builds/16398754/",
+        "docs_url": "https://cimonitor.readthedocs.io/en/latest/"
+    }
+}
