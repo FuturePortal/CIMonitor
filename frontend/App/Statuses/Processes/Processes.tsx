@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { Details, Process, Stage, Stages, StageWrapper, Step } from './Processes.style';
 
 import Icon from '/frontend/components/Icon';
@@ -22,10 +24,14 @@ const getStateIcon = (state: StepState | State) => {
     return icons[state] || 'info';
 };
 
-const Processes = ({ processes }: Props) => (
-    <>
-        {processes &&
-            processes.map((process) => (
+const Processes = ({ processes }: Props): ReactElement => {
+    if (processes.length === 0) {
+        return null;
+    }
+
+    return (
+        <>
+            {processes.map((process) => (
                 <Process key={process.id} state={process.state}>
                     <Details>
                         <Icon icon="info" /> {process.title}
@@ -52,7 +58,8 @@ const Processes = ({ processes }: Props) => (
                     </Stages>
                 </Process>
             ))}
-    </>
-);
+        </>
+    );
+};
 
 export default Processes;
