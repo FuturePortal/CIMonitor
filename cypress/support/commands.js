@@ -37,13 +37,17 @@ Cypress.Commands.add('gitlab', (file) => {
     });
 });
 
-Cypress.Commands.add('github', (file) => {
-    cy.fixture(`github/${file}`).then((fixture) => {
+const fireFixture = (service, file) => {
+    cy.fixture(`${service}/${file}`).then((fixture) => {
         cy.request({
-            url: `webhook/github`,
+            url: `webhook/${service}`,
             method: 'POST',
             body: fixture.body,
             headers: fixture.headers,
         });
     });
-});
+}
+
+Cypress.Commands.add('github', (file) => fireFixture('github', file));
+
+Cypress.Commands.add('readthedocs', (file) => fireFixture('readthedocs', file));

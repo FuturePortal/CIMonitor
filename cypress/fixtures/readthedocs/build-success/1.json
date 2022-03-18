@@ -2,10 +2,8 @@
     "headers": {
         "user-agent": "Read-the-Docs/7.4.2 (readthedocs.org)",
         "accept": "*/*",
-        "connection": "keep-alive",
         "content-type": "application/json",
-        "x-rtd-event": "build:triggered",
-        "content-length": "318"
+        "x-rtd-event": "build:triggered"
     },
     "body": {
         "event": "build:triggered",

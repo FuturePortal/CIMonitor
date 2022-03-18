@@ -20,7 +20,7 @@ export type Stage = {
 
 export type Process = {
     id: string;
-    title: string; // commit message?
+    title: string;
     state: State;
     stages: Stage[];
     time: Date;
@@ -33,7 +33,7 @@ export type Status = {
     state: State;
     processes: Process[];
     time: Date;
-    source: 'github' | 'gitlab';
+    source: 'github' | 'gitlab' | 'readthedocs';
     title?: string; // MR/PR name?
     branch?: string;
     tag?: string;

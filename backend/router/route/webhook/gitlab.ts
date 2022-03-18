@@ -1,6 +1,6 @@
 import express from 'express';
 
-import gitlabParser from 'backend/parser/gitlab';
+import GitLabParser from 'backend/parser/gitlab';
 import StatusManager from 'backend/status/manager';
 import GitLabWebhook from 'types/gitlab';
 import Status from 'types/status';
@@ -16,10 +16,10 @@ router.post('/', (request, response) => {
 
     switch (gitlabWebhook.object_kind) {
         case 'build':
-            status = gitlabParser.parseBuild(gitlabWebhook);
+            status = GitLabParser.parseBuild(gitlabWebhook);
             break;
         case 'pipeline':
-            status = gitlabParser.parsePipeline(gitlabWebhook);
+            status = GitLabParser.parsePipeline(gitlabWebhook);
             break;
         case 'deployment':
             // TODO: See 60.json and 63.json

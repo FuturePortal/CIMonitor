@@ -1,6 +1,6 @@
 import express from 'express';
 
-import githubParser from 'backend/parser/github';
+import GitHubParser from 'backend/parser/github';
 import StatusManager from 'backend/status/manager';
 import Status from 'types/status';
 
@@ -15,13 +15,13 @@ router.post('/', (request, response) => {
 
     switch (githubWebhookType) {
         case 'push':
-            status = githubParser.parsePush(request.body);
+            status = GitHubParser.parsePush(request.body);
             break;
         case 'workflow_run':
-            status = githubParser.parseWorkflowRun(request.body);
+            status = GitHubParser.parseWorkflowRun(request.body);
             break;
         case 'workflow_job':
-            status = githubParser.parseWorkflowJob(request.body);
+            status = GitHubParser.parseWorkflowJob(request.body);
             break;
         case 'check_run':
             console.log(`[route/webhook/github] Webhook check_run has no added value and is ignored.`);
