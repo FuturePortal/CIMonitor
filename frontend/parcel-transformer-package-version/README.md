@@ -12,12 +12,14 @@ package version in. In the example below we would like to use the package versio
 {
     "extends": "@parcel/config-default",
     "transformers": {
-        "*.tsx": ["parcel-transformer-version", "..."],
+        "*.{ts,tsx}": ["@cimonitor/parcel-transformer-package-version", "@parcel/transformer-typescript-tsc"],
     }
 }
 ```
 
-Now, `PACKAGE_VERSION` will be replaced in the compiled code.
+Add the `@cimonitor/parcel-transformer-package-version` package to your package.json with either yarn or npm.
+
+Now, `PACKAGE_VERSION` will be replaced in the compiled code for the given file transformers.
 
 ## Example
 
