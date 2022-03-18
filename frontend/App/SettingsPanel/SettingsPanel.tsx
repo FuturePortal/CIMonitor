@@ -9,7 +9,7 @@ import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
 import { getStatusCount } from '/frontend/store/status/selectors';
 
 import About from './About';
-import Customisation from './Customisation';
+import Customization from './Customization';
 import Documentation from './Documentation';
 import Statuses from './Statuses';
 
@@ -32,8 +32,8 @@ const tabs: SettingsTab[] = [
     },
     {
         icon: 'brush',
-        name: 'Customisation',
-        content: <Customisation />,
+        name: 'Customization',
+        content: <Customization />,
     },
     {
         icon: 'auto_stories',

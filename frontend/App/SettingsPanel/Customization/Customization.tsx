@@ -2,12 +2,12 @@ import { ReactElement } from 'react';
 
 import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
-const Customisation = (): ReactElement => {
+const Customization = (): ReactElement => {
     return (
         <Content>
-            <h1>Customisation</h1>
+            <h1>Customization</h1>
         </Content>
     );
 };
 
-export default Customisation;
+export default Customization;
