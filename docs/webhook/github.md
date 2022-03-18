@@ -1,5 +1,10 @@
-### GitHub
+# GitHub
 
-Add webhook: `<your_cimonitor_url>/webhook/github`.
+![GitHub status example](../images/status/github.png)
 
-![Add GitHub webhook demonstration](../images/add-github-webhook.gif)
+## Adding webhook
+
+Add webhook URL `<your_cimonitor_url>/webhook/github` to the Webhook settings in GitHub, as demonstrated in the image
+below.
+
+![Add GitHub webhook demonstration](../images/webhook/github.gif)

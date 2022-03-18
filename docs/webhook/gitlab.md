@@ -1,5 +1,10 @@
 # GitLab
 
-Add webhook: `<your_cimonitor_url>/webhook/gitlab`.
+![GitLab status example](../images/status/gitlab.png)
 
-![Add GitLab webhook demonstration](../images/add-gitlab-webhook.gif)
+## Adding webhook
+
+Add webhook URL `<your_cimonitor_url>/webhook/gitlab` to the Webhook settings in GitLab, as demonstrated in the image
+below.
+
+![Add GitLab webhook demonstration](../images/webhook/gitlab.gif)
