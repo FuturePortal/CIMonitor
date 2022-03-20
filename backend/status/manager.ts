@@ -5,6 +5,10 @@ import StatusEvents from './events';
 class StatusManager {
     statuses: Status[] = [];
 
+    setStatuses(statuses: Status[]) {
+        this.statuses = statuses;
+    }
+
     getStatus(id: string): Status | null {
         const status = this.statuses.find((status) => status.id === id);
 
