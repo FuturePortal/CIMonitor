@@ -14,12 +14,12 @@ const storages = {
 class StorageManager {
     storage: StorageType | null = null;
 
-    init(): void {
+    async init(): Promise<void> {
         console.log('[storage/manager] Init.');
 
         this.determineStorageType();
 
-        this.load();
+        await this.load();
     }
 
     determineStorageType() {
@@ -41,13 +41,27 @@ class StorageManager {
             process.exit(1);
         }
 
-        console.log(`[storage/manager] Using storage type ${desiredStorageType}.`);
+        console.log(`[storage/manager] Using storage type ${this.storage.name}.`);
     }
 
-    load(): void {
-        StatusManager.setStatuses(this.storage.loadStatuses());
+    async load(): Promise<void> {
+        try {
+            const statuses = await this.storage.loadStatuses();
 
-        this.storage.loadSettings();
+            if (statuses.length > 0) {
+                StatusManager.setStatuses(statuses);
+            }
+
+            const settings = await this.storage.loadSettings();
+
+            if (settings) {
+                // TODO: set server settings
+            }
+        } catch (error) {
+            console.log(`[storage/manager] Could not set up status persistence for type ${this.storage.name}.`);
+            console.log(error);
+            process.exit(1);
+        }
     }
 
     saveSettings(settings: ServerSettings) {

@@ -17,12 +17,14 @@ app.use(bodyParser.json());
 
 app.use(router);
 
-StatusManager.init();
+(async () => {
+    StatusManager.init();
 
-StorageManager.init();
+    await StorageManager.init();
 
-ConnectionManager.startSocket(server);
+    ConnectionManager.startSocket(server);
 
-server.listen(port, () => {
-    console.log(`[server] CIMonitor running on port ${port}.`);
-});
+    server.listen(port, () => {
+        console.log(`[server] CIMonitor running on port ${port}.`);
+    });
+})();

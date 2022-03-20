@@ -18,7 +18,7 @@ class JsonStorage extends StorageType {
         return true;
     }
 
-    loadSettings(): ServerSettings {
+    async loadSettings(): Promise<ServerSettings> {
         console.log('[storage/type/json] Loading settings...');
         let settings = {};
 
@@ -39,7 +39,7 @@ class JsonStorage extends StorageType {
         return settings;
     }
 
-    loadStatuses(): Status[] {
+    async loadStatuses(): Promise<Status[]> {
         console.log('[storage/type/json] Loading statuses...');
 
         let statuses = [];

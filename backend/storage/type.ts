@@ -6,12 +6,12 @@ abstract class StorageType {
 
     abstract validateEnvironment(): boolean;
 
-    abstract loadStatuses(): Status[];
+    abstract loadStatuses(): Promise<Status[]>;
 
     // eslint-disable-next-line no-unused-vars
     abstract saveStatuses(statuses: Status[]): void;
 
-    abstract loadSettings(): ServerSettings;
+    abstract loadSettings(): Promise<ServerSettings>;
 
     // eslint-disable-next-line no-unused-vars
     abstract saveSettings(settings: ServerSettings): void;
