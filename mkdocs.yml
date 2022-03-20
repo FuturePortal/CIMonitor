@@ -7,11 +7,12 @@ extra_css:
   - style.css
 pages:
   - Home: index.md
-  - Webhooks:
-    - GitHub: webhook/github.md
-    - GitLab: webhook/gitlab.md
-    - Read the docs: webhook/readthedocs.md
+  - Getting started: getting-started.md
   - Running CIMonitor:
     - Docker: run/docker.md
     - Kubernetes: run/kubernetes.md
     - Locally with node: run/locally.md
+  - Webhooks:
+    - GitHub: webhook/github.md
+    - GitLab: webhook/gitlab.md
+    - Read the docs: webhook/readthedocs.md

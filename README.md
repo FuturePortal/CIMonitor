@@ -9,6 +9,7 @@
 
 CIMonitor is a place where all your CI statuses come together. Check if all tests have passed, and if
 deployments are successful. All in one overview. This is all done via **webhooks**, so no complex configuration.
+[Get started](https://cimonitor.readthedocs.io/en/latest/getting-started)!
 
 ## Supported webhooks
 
@@ -27,18 +28,8 @@ the update notification on the dashboard.
 
 # Getting started
 
-The easiest and quickest way to run CIMonitor is via docker. Running the command below will
-start CIMonitor on [localhost:3030](http://localhost:3030), or you can check one of the
-
-```shell
-docker run \
-    --publish 3030:3030 \
-    --detach \
-    --restart unless-stopped \
-    cimonitor/server:4.0.0
-```
-
-## Ways to run CIMonitor
+The easiest and quickest way to run CIMonitor is via docker. But there are other options available for you. Check the
+options below in the documentation:
 
 -   [docker](https://cimonitor.readthedocs.io/en/latest/run/docker/)
 -   [kubernetes](https://cimonitor.readthedocs.io/en/latest/run/kubernetes/)
