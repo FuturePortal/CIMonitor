@@ -12,6 +12,7 @@ node_modules/
 webhooks/
 .env
 yarn-error.log
+storage/
 
 # Cypress testing results
 

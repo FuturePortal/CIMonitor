@@ -1,3 +1,4 @@
+import StorageManager from 'backend/storage/manager';
 import Status, { Process, State } from 'types/status';
 
 import StatusEvents from './events';
@@ -17,6 +18,20 @@ class StatusManager {
         }
 
         return status;
+    }
+
+    clearStatuses() {
+        this.statuses = [];
+
+        StorageManager.saveStatuses([]);
+    }
+
+    deleteStatus(statusId: string) {
+        const statuses = this.statuses.filter((status) => status.id !== statusId);
+
+        this.statuses = statuses;
+
+        StorageManager.saveStatuses(statuses);
     }
 
     setStatus(status: Status): void {
@@ -43,6 +58,8 @@ class StatusManager {
         }
 
         this.statuses = statuses;
+
+        StorageManager.saveStatuses(statuses);
     }
 
     cleanStatus(status: Status): Status {

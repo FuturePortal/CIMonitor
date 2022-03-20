@@ -12,7 +12,7 @@ const storages = {
 };
 
 class StorageManager {
-    storage: StorageType = JsonStorage;
+    storage: StorageType | null = null;
 
     init(): void {
         console.log('[storage/manager] Init.');
@@ -23,7 +23,7 @@ class StorageManager {
     }
 
     determineStorageType() {
-        const desiredStorageType = process.env.STORAGE_TYPE;
+        const desiredStorageType = process.env.STORAGE_TYPE || 'json';
 
         if (!(desiredStorageType in storages)) {
             console.log(
@@ -51,10 +51,18 @@ class StorageManager {
     }
 
     saveSettings(settings: ServerSettings) {
+        if (!this.storage) {
+            console.log('[storage/manager] No storage was defined, no settings saved.');
+        }
+
         this.storage.saveSettings(settings);
     }
 
     saveStatuses(statuses: Status[]) {
+        if (!this.storage) {
+            console.log('[storage/manager] No storage was defined, no statuses saved.');
+        }
+
         this.storage.saveStatuses(statuses);
     }
 }
