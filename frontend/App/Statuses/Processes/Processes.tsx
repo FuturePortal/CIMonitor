@@ -37,24 +37,26 @@ const Processes = ({ processes }: Props): ReactElement => {
                         <Icon icon="info" /> {process.title}
                     </Details>
                     <Stages>
-                        {process.stages.map((stage) => (
-                            <StageWrapper key={stage.id}>
-                                <Stage state={stage.state}>
-                                    <Icon icon={getStateIcon(stage.state)} /> {stage.title}
-                                </Stage>
-                                {stage.steps.map((step) => {
-                                    if (step.state === 'success') {
-                                        return null;
-                                    }
+                        {process.stages &&
+                            process.stages.map((stage) => (
+                                <StageWrapper key={stage.id}>
+                                    <Stage state={stage.state}>
+                                        <Icon icon={getStateIcon(stage.state)} /> {stage.title}
+                                    </Stage>
+                                    {stage.steps &&
+                                        stage.steps.map((step) => {
+                                            if (step.state === 'success') {
+                                                return null;
+                                            }
 
-                                    return (
-                                        <Step key={step.id} state={step.state}>
-                                            <Icon icon={getStateIcon(step.state)} /> {step.title}
-                                        </Step>
-                                    );
-                                })}
-                            </StageWrapper>
-                        ))}
+                                            return (
+                                                <Step key={step.id} state={step.state}>
+                                                    <Icon icon={getStateIcon(step.state)} /> {step.title}
+                                                </Step>
+                                            );
+                                        })}
+                                </StageWrapper>
+                            ))}
                     </Stages>
                 </Process>
             ))}
