@@ -6,7 +6,7 @@ export type Step = {
     id: string;
     title: string;
     state: StepState;
-    time: Date;
+    time: string;
     duration?: number;
 };
 
@@ -15,7 +15,7 @@ export type Stage = {
     title?: string;
     state: StepState;
     steps: Step[];
-    time: Date;
+    time: string;
 };
 
 export type Process = {
@@ -23,7 +23,7 @@ export type Process = {
     title: string;
     state: State;
     stages: Stage[];
-    time: Date;
+    time: string;
     duration?: number;
 };
 
@@ -32,7 +32,7 @@ export type Status = {
     project: string;
     state: State;
     processes: Process[];
-    time: Date;
+    time: string;
     source: 'github' | 'gitlab' | 'readthedocs';
     title?: string; // MR/PR name?
     branch?: string;

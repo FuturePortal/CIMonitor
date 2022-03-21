@@ -26,7 +26,7 @@ class GitHubJobParser {
 
                 return process;
             }),
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 
@@ -41,7 +41,7 @@ class GitHubJobParser {
                 title: job.workflow_job.name,
                 state: getJobStateFromStatus(job.workflow_job.status, job.workflow_job.conclusion),
                 steps: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -56,7 +56,7 @@ class GitHubJobParser {
         return {
             ...process,
             stages,
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 
@@ -72,7 +72,7 @@ class GitHubJobParser {
                         id: stepId,
                         title: step.name,
                         state: getJobStateFromStatus(step.status, step.conclusion),
-                        time: new Date(),
+                        time: new Date().toUTCString(),
                     });
                 }
             }
@@ -85,7 +85,7 @@ class GitHubJobParser {
                 return {
                     ...stageStep,
                     state: getJobStateFromStatus(jobStep.status, jobStep.conclusion),
-                    time: new Date(),
+                    time: new Date().toUTCString(),
                 };
             }
 
@@ -96,7 +96,7 @@ class GitHubJobParser {
             ...stage,
             steps,
             state: this.determineStageState(steps),
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 

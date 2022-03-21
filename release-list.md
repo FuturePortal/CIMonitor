@@ -1,7 +1,5 @@
 # Release list
 
--   firebase
-    -   fix times
 -   add todos to the settings from
     -   deleting statuses manually
     -   deleting all statuses

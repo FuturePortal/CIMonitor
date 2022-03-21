@@ -21,7 +21,7 @@ class GitLabBuildParser {
                 title: build.commit.message.split('\n\n')[0],
                 state: 'info',
                 stages: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -34,7 +34,7 @@ class GitLabBuildParser {
 
                 return process;
             }),
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 
@@ -48,7 +48,7 @@ class GitLabBuildParser {
                 state: 'info',
                 source: 'gitlab',
                 processes: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             };
 
             if (build.tag) {
@@ -76,7 +76,7 @@ class GitLabBuildParser {
                 title: build.build_stage,
                 state: 'created',
                 steps: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -104,14 +104,14 @@ class GitLabBuildParser {
                 id: stepId,
                 title: build.build_name,
                 state: 'created',
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
         steps = steps.map((step) => {
             if (step.id === stepId) {
                 step.state = this.parseBuildStatus(build.build_status, build.build_allow_failure);
-                step.time = new Date();
+                step.time = new Date().toUTCString();
             }
 
             return step;
@@ -121,7 +121,7 @@ class GitLabBuildParser {
             ...stage,
             steps,
             state: this.determineStageState(steps),
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 

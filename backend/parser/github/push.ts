@@ -13,7 +13,7 @@ class GitHubPushParser {
                 state: 'info',
                 source: 'github',
                 branch: push.ref.replace('refs/heads/', ''),
-                time: new Date(),
+                time: new Date().toUTCString(),
                 processes: [],
             };
         }
@@ -22,7 +22,7 @@ class GitHubPushParser {
             ...status,
             userImage: push.sender.avatar_url,
             projectImage: push.organization.avatar_url,
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 }

@@ -17,7 +17,7 @@ class GitLabPipelineParser {
                 title: pipeline.commit.title,
                 state: 'info',
                 stages: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -32,7 +32,7 @@ class GitLabPipelineParser {
         return {
             ...status,
             processes,
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 
@@ -45,7 +45,7 @@ class GitLabPipelineParser {
                 project: pipeline.project.name,
                 state: 'info',
                 source: 'gitlab',
-                time: new Date(),
+                time: new Date().toUTCString(),
                 processes: [],
             };
 
@@ -77,7 +77,7 @@ class GitLabPipelineParser {
                     title: stage,
                     state: 'pending',
                     steps: [],
-                    time: new Date(),
+                    time: new Date().toUTCString(),
                 });
             }
         }

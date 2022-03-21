@@ -43,7 +43,7 @@ class ReadTheDocsParser {
                 source: 'readthedocs',
                 state: 'warning',
                 processes: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             };
         }
 
@@ -57,7 +57,7 @@ class ReadTheDocsParser {
                 title: `Build ${build.build}`,
                 state: 'warning',
                 stages: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -73,7 +73,7 @@ class ReadTheDocsParser {
             ...status,
             processes,
             state: this.determineState(processes),
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 
@@ -96,7 +96,7 @@ class ReadTheDocsParser {
                 {
                     id: 'build',
                     steps: [],
-                    time: new Date(),
+                    time: new Date().toUTCString(),
                     state: this.getStepState(build.event),
                     title: 'Building documentation',
                 },

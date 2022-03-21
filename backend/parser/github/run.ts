@@ -14,7 +14,7 @@ class GitHubRunParser {
                 state: 'info',
                 source: 'github',
                 branch: run.workflow_run.head_branch,
-                time: new Date(),
+                time: new Date().toUTCString(),
                 processes: [],
             };
         }
@@ -29,7 +29,7 @@ class GitHubRunParser {
                 title: run.workflow_run.name,
                 state: 'info',
                 stages: [],
-                time: new Date(),
+                time: new Date().toUTCString(),
             });
         }
 
@@ -49,7 +49,7 @@ class GitHubRunParser {
             userImage: run.sender.avatar_url,
             projectImage: run.organization.avatar_url,
             processes,
-            time: new Date(),
+            time: new Date().toUTCString(),
         };
     }
 }
