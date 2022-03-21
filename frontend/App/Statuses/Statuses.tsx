@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Body, Box, Boxes, Details, List, ProjectImage, Status, UserImage } from './Statuses.style';
+import { Body, Box, Boxes, Details, List, Project, ProjectImage, Status, UserImage } from './Statuses.style';
 
 import Icon from '/frontend/components/Icon';
 import { getStatuses } from '/frontend/store/status/selectors';
@@ -25,7 +25,7 @@ const Statuses = (): ReactElement => {
                             </ProjectImage>
                         )}
                         <Details>
-                            <h1>{status.project}</h1>
+                            <Project>{status.project}</Project>
                             <Boxes>
                                 <Box>
                                     <Icon icon="code" /> {status.source}

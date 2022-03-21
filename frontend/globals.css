@@ -46,6 +46,16 @@ h3,
 h4,
 h5 {
     font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
 }
 
 input,

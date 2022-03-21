@@ -1,10 +1,10 @@
 import { ReactElement, useEffect, useState } from 'react';
 
 type Props = {
-    since: Date;
+    since: string;
 };
 
-const getTimePassed = (since: Date): string => {
+const getTimePassed = (since: string): string => {
     const timePassed = Math.round((new Date().getTime() - new Date(since).getTime()) / 1000);
 
     if (timePassed < 10) {

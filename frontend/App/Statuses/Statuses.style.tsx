@@ -19,6 +19,10 @@ export const Box = styled.div`
     border-radius: 0.25rem;
 `;
 
+export const Project = styled.div`
+    font-size: 2.2rem;
+`;
+
 type StatusProps = {
     state: State;
 };
