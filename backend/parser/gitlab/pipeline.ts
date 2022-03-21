@@ -45,11 +45,17 @@ class GitLabPipelineParser {
                 project: pipeline.project.name,
                 state: 'info',
                 source: 'gitlab',
-                tag: pipeline.object_attributes.tag ? pipeline.object_attributes.tag : undefined,
-                branch: pipeline.object_attributes.ref ? pipeline.object_attributes.ref : undefined,
                 time: new Date(),
                 processes: [],
             };
+
+            if (pipeline.object_attributes.tag) {
+                status.tag = pipeline.object_attributes.tag;
+            }
+
+            if (pipeline.object_attributes.ref) {
+                status.branch = pipeline.object_attributes.ref;
+            }
         }
 
         status.userImage = pipeline.user.avatar_url;

@@ -1,58 +1,58 @@
 {
-    "object_kind": "build",
-    "ref": "master",
-    "tag": false,
-    "before_sha": "0000000000000000000000000000000000000000",
-    "sha": "015396be502cad8ad0840aff044a32a28113de1d",
-    "build_id": 2167421086,
-    "build_name": "overall codestyle",
-    "build_stage": "test",
-    "build_status": "success",
-    "build_created_at": "2022-03-05 19:33:02 UTC",
-    "build_started_at": "2022-03-05 19:35:06 UTC",
-    "build_finished_at": "2022-03-05 19:36:43 UTC",
-    "build_duration": 97.680922,
-    "build_queued_duration": 7.3728,
-    "build_allow_failure": false,
-    "build_failure_reason": "unknown_failure",
-    "pipeline_id": 485308754,
-    "runner": {
-        "id": 13775607,
-        "description": "local.rick.nu",
-        "runner_type": "group_type",
-        "active": true,
-        "is_shared": false,
-        "tags": []
+    "headers": {
+        "content-type": "application/json",
+        "user-agent": "GitLab/14.9.0-pre",
+        "x-gitlab-event": "Job Hook"
     },
-    "project_id": 33715538,
-    "project_name": "FuturePortal / Nawcast",
-    "user": {
-        "id": 203336,
-        "name": "Rick van der Staaij",
-        "username": "rick.nu",
-        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
-        "email": "[REDACTED]"
-    },
-    "commit": {
-        "id": 485308754,
-        "sha": "015396be502cad8ad0840aff044a32a28113de1d",
-        "message": "Merge branch '70' into 'master'\n\n[#70] Update pusher/pusher-php-server package to work with PHP 8\n\nSee merge request FuturePortal/Nawcast!99",
-        "author_name": "Rick van der Staaij",
-        "author_email": "[REDACTED]",
-        "author_url": "https://gitlab.com/rick.nu",
-        "status": "running",
-        "duration": null,
-        "started_at": "2022-03-05 19:33:04 UTC",
-        "finished_at": null
-    },
-    "repository": {
-        "name": "Nawcast",
-        "url": "git@gitlab.com:FuturePortal/Nawcast.git",
-        "description": "https://nawcast.com",
-        "homepage": "https://gitlab.com/FuturePortal/Nawcast",
-        "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
-        "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
-        "visibility_level": 0
-    },
-    "environment": null
+    "body": {
+        "object_kind": "build",
+        "ref": "master",
+        "tag": false,
+        "before_sha": "0000000000000000000000000000000000000000",
+        "sha": "16f8102b00f7687cd911b1240a086fef9ae5e2c1",
+        "build_id": 2228389642,
+        "build_name": "main image",
+        "build_stage": "build",
+        "build_status": "pending",
+        "build_created_at": "2022-03-21 11:26:17 UTC",
+        "build_started_at": null,
+        "build_finished_at": null,
+        "build_duration": null,
+        "build_queued_duration": 2.341802313,
+        "build_allow_failure": false,
+        "build_failure_reason": "unknown_failure",
+        "pipeline_id": 497051634,
+        "runner": null,
+        "project_id": 33715538,
+        "project_name": "FuturePortal / Nawcast",
+        "user": {
+            "id": 203336,
+            "name": "Rick van der Staaij",
+            "username": "rick.nu",
+            "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+            "email": "[REDACTED]"
+        },
+        "commit": {
+            "id": 497051634,
+            "sha": "16f8102b00f7687cd911b1240a086fef9ae5e2c1",
+            "message": "Merge branch '73' into 'master'\n\n[#73] Improve Kubernetes high availability\n\nCloses #73\n\nSee merge request FuturePortal/Nawcast!101",
+            "author_name": "Rick van der Staaij",
+            "author_email": "[REDACTED]",
+            "author_url": "https://gitlab.com/rick.nu",
+            "status": "running",
+            "duration": null,
+            "started_at": "2022-03-21 11:26:20 UTC",
+            "finished_at": null
+        },
+        "repository": {
+            "name": "Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "description": "https://nawcast.com",
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "visibility_level": 0
+        },
+        "environment": null
+    }
 }

@@ -22,7 +22,6 @@ router.post('/', (request, response) => {
             status = GitLabParser.parsePipeline(gitlabWebhook);
             break;
         case 'deployment':
-            // TODO: See 60.json and 63.json
             console.log(`[route/webhook/gitlab] Deployment webhooks are not yet supported.`);
             break;
         default:

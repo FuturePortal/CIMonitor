@@ -6,23 +6,17 @@ context('A running GitLab pipeline', () => {
     });
 
     it('creates a pending pipeline', () => {
-        // Push all created events
-        for (let count = 1; count <= 15; count++) {
+        // Quickly go through the initial created pushes
+        for (let count = 1; count <= 10; count++) {
             cy.gitlab(`pipeline/${count}`);
         }
-
-        // TODO: Check a status is showing properly
     });
-
-    // TODO: 18 is pipeline command
 
     it('test pushes pipeline step by step', () => {
         // Push all created events
-        for (let count = 16; count <= 65; count++) {
+        for (let count = 11; count <= 56; count++) {
             cy.wait(500);
             cy.gitlab(`pipeline/${count}`);
         }
-
-        // TODO: Check a status is showing properly
     });
 });

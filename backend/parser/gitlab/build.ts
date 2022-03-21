@@ -47,11 +47,17 @@ class GitLabBuildParser {
                 project: build.project_name,
                 state: 'info',
                 source: 'gitlab',
-                tag: build.tag ? build.tag : undefined,
-                branch: build.ref ? build.ref : undefined,
                 processes: [],
                 time: new Date(),
             };
+
+            if (build.tag) {
+                status.tag = build.tag;
+            }
+
+            if (build.ref) {
+                status.branch = build.ref;
+            }
         }
 
         status.userImage = build.user.avatar_url;

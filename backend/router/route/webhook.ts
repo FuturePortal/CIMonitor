@@ -1,5 +1,6 @@
 import express from 'express';
 import FileSystem from 'fs';
+import { IncomingHttpHeaders } from 'http';
 
 import GitHubRouter from './webhook/github';
 import GitLabRouter from './webhook/gitlab';
@@ -7,9 +8,22 @@ import ReadTheDocsRouter from './webhook/readthedocs';
 
 const router = express.Router();
 
+const cleanHeaders = (headers: IncomingHttpHeaders): IncomingHttpHeaders => {
+    const headersToClean = ['x-gitlab-event-uuid', 'connection', 'host', 'content-length'];
+
+    for (let headerToClean of headersToClean) {
+        delete headers[headerToClean];
+    }
+
+    return headers;
+};
+
+let recordCount = 0;
+
 // Save the incoming webhook body if requested in the environment variables
 router.use((request, response, next) => {
     if (process.env.PERSIST_WEBHOOKS === 'true') {
+        recordCount++;
         const date = new Date();
         const pad = (number: number) => number.toString().padStart(2, '0');
         const pathParts = [
@@ -24,9 +38,9 @@ router.use((request, response, next) => {
                 FileSystem.mkdirSync(path);
             }
         }
-        const file = `${path}/${new Date().getTime()}.json`;
+        const file = `${path}/${recordCount}.json`;
         const body = {
-            headers: request.headers,
+            headers: cleanHeaders(request.headers),
             body: request.body,
         };
         FileSystem.writeFileSync(file, JSON.stringify(body, null, 4));
