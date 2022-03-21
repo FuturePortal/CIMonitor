@@ -19,7 +19,7 @@ h5 {
 }
 
 .wy-nav-side {
-    padding-bottom: 0 !important;
+    padding: 20px 0 0 !important;
     background: #fff !important;
     height: 100% !important;
 }
@@ -38,6 +38,10 @@ h5 {
 }
 
 .wy-nav-side a:hover {
+    background: #b2da8e !important;
+}
+
+.wy-nav-side a.current {
     background: #8ac159 !important;
 }
 
