@@ -32,6 +32,8 @@ class StatusManager {
         this.statuses = statuses;
 
         StorageManager.saveStatuses(statuses);
+
+        StatusEvents.emit(StatusEvents.event.deleteStatus, statusId);
     }
 
     setStatus(status: Status): void {
@@ -97,6 +99,30 @@ class StatusManager {
 
     init(): void {
         console.log('[status/manager] Init.');
+
+        this.removeOldStatuses();
+
+        // Check every 5 minutes for old statuses
+        setInterval(() => this.removeOldStatuses(), 1000 * 60 * 5);
+    }
+
+    removeOldStatuses() {
+        let deleteCount = 0;
+
+        // Removes statuses when they're older than a week
+        const removeAfterMilliseconds = 1000 * 60 * 60 * 24 * 7;
+        const expiredTime = new Date().getTime() - removeAfterMilliseconds;
+
+        this.statuses.map((status) => {
+            if (new Date(status.time).getTime() < expiredTime) {
+                deleteCount++;
+                this.deleteStatus(status.id);
+            }
+        });
+
+        if (deleteCount > 0) {
+            console.log(`[status/manager] Deleted ${deleteCount} expired statuses.`);
+        }
     }
 
     getStatuses(): Status[] {

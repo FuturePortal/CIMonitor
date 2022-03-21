@@ -6,5 +6,4 @@
     -   setting password
     -   also show completed steps
     -   contributors list
--   delete statuses after 7 days
 -   version check?

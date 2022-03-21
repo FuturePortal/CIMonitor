@@ -18,9 +18,9 @@ app.use(bodyParser.json());
 app.use(router);
 
 (async () => {
-    StatusManager.init();
-
     await StorageManager.init();
+
+    StatusManager.init();
 
     ConnectionManager.startSocket(server);
 
