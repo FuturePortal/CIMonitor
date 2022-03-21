@@ -20,9 +20,17 @@ const cleanHeaders = (headers: IncomingHttpHeaders): IncomingHttpHeaders => {
 
 let recordCount = 0;
 
+const shouldPersist = (request: express.Request): boolean => {
+    if (process.env.PERSIST_WEBHOOKS !== 'true') {
+        return false;
+    }
+
+    return !('x-dont-persist' in request.headers);
+};
+
 // Save the incoming webhook body if requested in the environment variables
 router.use((request, response, next) => {
-    if (process.env.PERSIST_WEBHOOKS === 'true') {
+    if (shouldPersist(request)) {
         recordCount++;
         const date = new Date();
         const pad = (number: number) => number.toString().padStart(2, '0');
@@ -38,7 +46,7 @@ router.use((request, response, next) => {
                 FileSystem.mkdirSync(path);
             }
         }
-        const file = `${path}/${recordCount}.json`;
+        const file = `${path}/${new Date().getTime()}-${recordCount}.json`;
         const body = {
             headers: cleanHeaders(request.headers),
             body: request.body,

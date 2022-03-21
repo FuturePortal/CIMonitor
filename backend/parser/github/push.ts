@@ -2,6 +2,8 @@ import StatusManager from 'backend/status/manager';
 import { GitHubPush } from 'types/github';
 import Status from 'types/status';
 
+import { getBranch, getTag } from './helper';
+
 class GitHubPushParser {
     parsePush(id: string, push: GitHubPush): Status {
         let status = StatusManager.getStatus(id);
@@ -12,10 +14,19 @@ class GitHubPushParser {
                 project: `${push.repository.name} / ${push.organization.login}`,
                 state: 'info',
                 source: 'github',
-                branch: push.ref.replace('refs/heads/', ''),
                 time: new Date().toUTCString(),
                 processes: [],
             };
+
+            const branch = getBranch(push.ref);
+            if (branch) {
+                status.branch = branch;
+            }
+
+            const tag = getTag(push.ref);
+            if (tag) {
+                status.tag = tag;
+            }
         }
 
         return {

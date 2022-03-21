@@ -10,7 +10,10 @@ const fireFixture = (service, file) => {
             url: `webhook/${service}`,
             method: 'POST',
             body: fixture.body,
-            headers: fixture.headers,
+            headers: {
+                ...fixture.headers,
+                'x-dont-persist': true,
+            },
         });
     });
 };

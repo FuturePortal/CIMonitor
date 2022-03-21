@@ -36,3 +36,19 @@ export const getJobStateFromStatus = (status: GitHubStatus, conclusion: GitHubCo
 
     return 'created';
 };
+
+export const getBranch = (reference: string): string | null => {
+    if (reference.includes('refs/heads')) {
+        return reference.replace('refs/heads/', '');
+    }
+
+    return null;
+};
+
+export const getTag = (reference: string): string | null => {
+    if (reference.includes('refs/tags')) {
+        reference.replace('refs/tags/', '');
+    }
+
+    return null;
+};
