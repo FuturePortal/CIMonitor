@@ -13,9 +13,12 @@ import TimePassed from './TimePassed';
 const Statuses = (): ReactElement => {
     const statuses = useSelector(getStatuses);
 
+    if (!statuses || statuses.length === 0) {
+        return <MockStatuses />;
+    }
+
     return (
         <List>
-            {statuses.length === 0 && <MockStatuses />}
             {statuses.map((status) => (
                 <Status key={status.id} state={status.state}>
                     <Body>
@@ -37,7 +40,7 @@ const Statuses = (): ReactElement => {
                                 )}
                                 {status.tag && (
                                     <Box>
-                                        <Icon icon="sell" /> {status.tag}
+                                        <Icon icon="bookmark_border" /> {status.tag}
                                     </Box>
                                 )}
                                 <Box>

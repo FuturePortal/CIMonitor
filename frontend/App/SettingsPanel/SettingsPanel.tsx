@@ -6,7 +6,7 @@ import { Close, Frame, Overlay, Tab, Tabs, Title, TitleBar } from './SettingsPan
 import Icon from '/frontend/components/Icon';
 import { closeSettingsPanel } from '/frontend/store/settings/actions';
 import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
-import { getStatusCount } from '/frontend/store/status/selectors';
+import { hasNoStatuses } from '/frontend/store/status/selectors';
 
 import About from './About';
 // import Customization from './Customization';
@@ -43,12 +43,16 @@ const tabs: SettingsTab[] = [
 ];
 
 const SettingsPanel = (): ReactElement => {
-    const open = useSelector(isSettingsPanelOpen);
-    const statusCount = useSelector(getStatusCount);
+    let open = useSelector(isSettingsPanelOpen);
+    const noStatuses = useSelector(hasNoStatuses);
     const dispatch = useDispatch();
     const [activeTab, setActiveTab] = useState(tabs[0].icon);
 
-    if (!open && statusCount > 0) {
+    if (noStatuses) {
+        open = true;
+    }
+
+    if (!open) {
         return null;
     }
 
@@ -57,7 +61,7 @@ const SettingsPanel = (): ReactElement => {
             <Frame>
                 <TitleBar>
                     <Title>CIMonitor version PACKAGE_VERSION</Title>
-                    {statusCount > 0 && (
+                    {!noStatuses && (
                         <Close onClick={() => dispatch(closeSettingsPanel())}>
                             <Icon icon="close" />
                         </Close>

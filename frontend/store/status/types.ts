@@ -1,6 +1,7 @@
 import Status from 'types/status';
 
 export type StateType = {
+    received: boolean;
     statuses: Status[];
 };
 

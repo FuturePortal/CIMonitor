@@ -9,6 +9,8 @@ body {
     color: #fff;
     font-size: 18px;
     font-family: 'Fredoka', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 @font-face {

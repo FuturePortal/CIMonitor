@@ -34,7 +34,7 @@ const Processes = ({ processes }: Props): ReactElement => {
             {processes.map((process) => (
                 <Process key={process.id} state={process.state}>
                     <Details>
-                        <Icon icon="info" /> {process.title}
+                        <Icon icon="notes" /> {process.title}
                     </Details>
                     <Stages>
                         {process.stages &&

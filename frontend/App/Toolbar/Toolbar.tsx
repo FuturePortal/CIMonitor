@@ -9,12 +9,12 @@ import WarningLight from './light/warning.svg';
 
 import Icon from '/frontend/components/Icon';
 import { closeSettingsPanel, toggleSettingsPanel } from '/frontend/store/settings/actions';
-import { getGlobalState, getStatusCount } from '/frontend/store/status/selectors';
+import { getGlobalState, hasNoStatuses } from '/frontend/store/status/selectors';
 
 const Toolbar = (): ReactElement => {
     const dashboardState = useSelector(getGlobalState);
     const dispatch = useDispatch();
-    const statusCount = useSelector(getStatusCount);
+    const noStatuses = useSelector(hasNoStatuses);
 
     const light = {
         success: <SuccessLight />,
@@ -28,7 +28,7 @@ const Toolbar = (): ReactElement => {
                 <Button onClick={() => window.open('https://github.com/cimonitor/cimonitor', '_blank').focus()}>
                     <Icon icon="code" />
                 </Button>
-                <Button onClick={() => dispatch(statusCount === 0 ? closeSettingsPanel() : toggleSettingsPanel())}>
+                <Button onClick={() => dispatch(noStatuses ? closeSettingsPanel() : toggleSettingsPanel())}>
                     <Icon icon="settings" />
                 </Button>
             </Buttons>

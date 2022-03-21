@@ -3,6 +3,7 @@ import Status from 'types/status';
 import { ActionTypes, StateType } from './types';
 
 export const defaultState: StateType = {
+    received: false,
     statuses: [],
 };
 
@@ -14,16 +15,19 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
         case 'status-set-all':
             return {
                 ...state,
+                received: true,
                 statuses: action.statuses.sort(byTime),
             };
         case 'status-add':
             return {
                 ...state,
+                received: true,
                 statuses: [...state.statuses, action.status].sort(byTime),
             };
         case 'status-patch':
             return {
                 ...state,
+                received: true,
                 statuses: state.statuses
                     .map((status) => {
                         if (status.id === action.status.id) {
