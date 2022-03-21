@@ -4,6 +4,8 @@ import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
 import Alert from '/frontend/components/Alert';
 
+import Version from './Version';
+
 const About = (): ReactElement => {
     return (
         <Content>
@@ -11,9 +13,7 @@ const About = (): ReactElement => {
                 CIMonitor is a dashboard where all your CI statuses come together. Check if all tests have passed, and
                 if deployments are successful. Never miss a failed build again.
             </p>
-            <Alert state="warning">
-                A version check will be shown here, letting you know if a new version is available.
-            </Alert>
+            <Version />
             <Alert>
                 <p>
                     This is an early release of CIMonitor version 4. Features that can be expected in the next releases:

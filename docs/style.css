@@ -36,6 +36,7 @@ h5 {
     color: #333333 !important;
     border: 0 !important;
     border-radius: 0 15px 15px 0;
+    transition: background-color 300ms;
 }
 
 .wy-nav-side a:hover {

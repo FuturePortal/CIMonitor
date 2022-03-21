@@ -26,15 +26,13 @@ const getIcon = (state: State): string => {
     return 'help_outline';
 };
 
-const Alert = ({ children, state = 'info' }: Props): ReactElement => {
-    return (
-        <Container state={state}>
-            <IconSpace>
-                <Icon icon={getIcon(state)} />
-            </IconSpace>
-            <Message>{children}</Message>
-        </Container>
-    );
-};
+const Alert = ({ children, state = 'info' }: Props): ReactElement => (
+    <Container state={state}>
+        <IconSpace>
+            <Icon icon={getIcon(state)} />
+        </IconSpace>
+        <Message>{children}</Message>
+    </Container>
+);
 
 export default Alert;

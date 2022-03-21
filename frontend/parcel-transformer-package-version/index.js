@@ -7,7 +7,7 @@ module.exports = new plugin.Transformer({
 
         const packageJson = require(path.resolve(process.cwd(), 'package.json'));
 
-        asset.setCode(source.replace('PACKAGE_VERSION', packageJson.version));
+        asset.setCode(source.replace(/PACKAGE_VERSION/g, packageJson.version));
 
         return [asset];
     },

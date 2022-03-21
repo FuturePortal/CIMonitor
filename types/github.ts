@@ -14,6 +14,12 @@ type GitHubRepository = {
     };
 };
 
+export type GitHubRelease = {
+    tag_name: string;
+    name: string;
+    target_commitish: string;
+};
+
 type GitHubSender = {
     login: string;
     avatar_url: string;
