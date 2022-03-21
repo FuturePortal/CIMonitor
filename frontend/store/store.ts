@@ -1,7 +1,7 @@
 import { combineReducers, compose, createStore } from 'redux';
 
 import SettingReducer from './settings/reducer';
-import StatusReducer from './status/reducer';
+import StatusReducer, { defaultState as defaultStatusState } from './status/reducer';
 
 const reducers = combineReducers({
     status: StatusReducer,
@@ -46,8 +46,19 @@ const getStoreState = (): any => {
 // Create Redux store with using saved state from local storage if present
 const store = createStore(reducers, getStoreState(), composeEnhancers());
 
+const saveScopedState = (state: RootState): RootState => {
+    return {
+        ...state,
+        status: defaultStatusState,
+        setting: {
+            ...state.setting,
+            open: false,
+        },
+    };
+};
+
 store.subscribe((): void => {
-    window.localStorage.setItem(stateKey, JSON.stringify(store.getState()));
+    window.localStorage.setItem(stateKey, JSON.stringify(saveScopedState(store.getState())));
 });
 
 export default store;

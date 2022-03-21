@@ -2,7 +2,7 @@ import Status from 'types/status';
 
 import { ActionTypes, StateType } from './types';
 
-const defaultState: StateType = {
+export const defaultState: StateType = {
     statuses: [],
 };
 
