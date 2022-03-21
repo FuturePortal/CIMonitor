@@ -1,20 +1,23 @@
 # Generally ignoring
 
 .idea/
+.husky/_/
+yarn-error.log
+/.env
 
 # Generated files
 
-app/
-dashboard/
 .parcel-cache/
-node_modules/
-.husky/_/
-webhooks/
-.env
-yarn-error.log
-storage/
+/app/
+/dashboard/
+/node_modules/
+
+# Application output
+
+/webhooks/
+/storage/
 
 # Cypress testing results
 
-cypress/videos/
-cypress/screenshots/
+/cypress/videos/
+/cypress/screenshots/

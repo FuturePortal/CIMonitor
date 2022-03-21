@@ -58,7 +58,7 @@ class StorageManager {
                 // TODO: set server settings
             }
         } catch (error) {
-            console.log(`[storage/manager] Could not set up status persistence for type ${this.storage.name}.`);
+            console.log(`[storage/manager] Couldn't set up status persistence for type ${this.storage.name}.`);
             console.log(error);
             process.exit(1);
         }
