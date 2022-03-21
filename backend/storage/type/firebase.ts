@@ -11,19 +11,15 @@ class FirebaseStorage extends StorageType {
 
     validateEnvironment(): boolean {
         if (!process.env.FIREBASE_URL) {
-            console.info(
-                '[storage/type/firebase] Missing environment variable FIREBASE_URL, which is required for' +
-                    ' STORAGE_TYPE=firebase.'
-            );
-            process.exit(1);
+            console.info('[storage/type/firebase] Missing FIREBASE_URL, which is required for STORAGE_TYPE=firebase.');
+            return false;
         }
 
         if (!process.env.FIREBASE_KEY_FILE) {
-            console.error(
-                '[Firebase] Missing environment variable FIREBASE_KEY_FILE, which is required for' +
-                    ' STORAGE_TYPE=firebase.'
+            console.info(
+                '[storage/type/firebase] Missing FIREBASE_KEY_FILE, which is required for STORAGE_TYPE=firebase.'
             );
-            process.exit(1);
+            return false;
         }
 
         FirebaseAdmin.initializeApp({
@@ -32,7 +28,6 @@ class FirebaseStorage extends StorageType {
         });
 
         this.database = FirebaseAdmin.database();
-
         return true;
     }
 
@@ -47,9 +42,9 @@ class FirebaseStorage extends StorageType {
             });
     }
 
-    async save(key: string, data: any) {
+    save(key: string, data: any) {
         try {
-            return await this.database.ref(key).set(data);
+            return this.database.ref(key).set(data);
         } catch (error) {
             console.error(`[storage/type/firebase] ${error}`);
         }

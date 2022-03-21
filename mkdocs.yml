@@ -12,6 +12,9 @@ pages:
     - Docker: run/docker.md
     - Kubernetes: run/kubernetes.md
     - Locally with node: run/locally.md
+  - Configuration:
+    - Evironment variables: config/environment.md
+    - Firebase: config/firebase.md
   - Webhooks:
     - GitHub: webhook/github.md
     - GitLab: webhook/gitlab.md
