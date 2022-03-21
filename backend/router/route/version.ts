@@ -6,9 +6,8 @@ import { GitHubRelease } from 'types/github';
 const router = express.Router();
 
 router.get('/', async (request, response) => {
-    console.log(`[route/version] Returning versions.`);
-
     let latestVersion = null;
+    const serverVersion = process.env.npm_package_version;
 
     try {
         const githubVersionInfo: GitHubRelease = await GitHubAPI.getLatestRelease();
@@ -19,9 +18,11 @@ router.get('/', async (request, response) => {
     }
 
     response.json({
-        server: process.env.npm_package_version,
+        server: serverVersion,
         latest: latestVersion,
     });
+
+    console.log(`[route/version] Returning server version ${serverVersion}, latest version is ${latestVersion}.`);
 });
 
 export default router;
