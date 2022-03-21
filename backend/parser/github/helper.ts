@@ -47,7 +47,7 @@ export const getBranch = (reference: string): string | null => {
 
 export const getTag = (reference: string): string | null => {
     if (reference.includes('refs/tags')) {
-        reference.replace('refs/tags/', '');
+        return reference.replace('refs/tags/', '');
     }
 
     return null;

@@ -1,4 +1,3 @@
-import { getBranch, getTag } from 'backend/parser/github/helper';
 import Slugify from 'backend/parser/slug';
 import { GitHubPush, GitHubWorkflowJob, GitHubWorkflowRun } from 'types/github';
 import Status from 'types/status';
@@ -8,24 +7,16 @@ import GitHubPushParser from './push';
 import GitHubRunParser from './run';
 
 class GitLabParser {
-    getInternalId(projectId: number, repositoryName: string, branch: string | null, tag: string | null): string {
-        let id = `github-${projectId}-${Slugify(repositoryName)}`;
+    getInternalId(projectId: number, repositoryName: string, uniqueElement: string): string {
+        const base = `github-${projectId}-${Slugify(repositoryName)}`;
 
-        if (branch) {
-            id += `-${Slugify(branch)}`;
-        }
-
-        if (tag) {
-            id += `-${Slugify(tag)}`;
-        }
-
-        return id;
+        return `${base}-${Slugify(uniqueElement.replace('refs/tags/', '').replace('refs/heads/', ''))}`;
     }
 
     parsePush(push: GitHubPush): Status {
         console.log('[parser/github] Parsing push...');
 
-        const id = this.getInternalId(push.repository.id, push.repository.name, getBranch(push.ref), getTag(push.ref));
+        const id = this.getInternalId(push.repository.id, push.repository.name, push.ref);
 
         return GitHubPushParser.parsePush(id, push);
     }
@@ -33,7 +24,7 @@ class GitLabParser {
     parseWorkflowRun(run: GitHubWorkflowRun): Status {
         console.log('[parser/github] Parsing workflow run...');
 
-        const id = this.getInternalId(run.repository.id, run.repository.name, run.workflow_run.head_branch, null);
+        const id = this.getInternalId(run.repository.id, run.repository.name, run.workflow_run.head_branch);
 
         return GitHubRunParser.parseRun(id, run);
     }

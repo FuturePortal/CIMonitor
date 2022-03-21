@@ -9,7 +9,19 @@ import ReadTheDocsRouter from './webhook/readthedocs';
 const router = express.Router();
 
 const cleanHeaders = (headers: IncomingHttpHeaders): IncomingHttpHeaders => {
-    const headersToClean = ['x-gitlab-event-uuid', 'connection', 'host', 'content-length'];
+    const headersToClean = [
+        'x-gitlab-event-uuid',
+        'connection',
+        'host',
+        'content-length',
+        'accept',
+        'x-github-delivery',
+        'x-github-hook-id',
+        'x-github-hook-installation-target-id',
+        'x-github-hook-installation-target-type',
+        'x-hub-signature',
+        'x-hub-signature-256',
+    ];
 
     for (let headerToClean of headersToClean) {
         delete headers[headerToClean];
