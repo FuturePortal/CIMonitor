@@ -32,6 +32,8 @@ export const Status = styled.div<StatusProps>`
     background: ${(props) => stateColor[props.state]};
     color: #222222;
     margin-bottom: 1rem;
+    max-width: 100%;
+    overflow: hidden;
 
     ${Box} {
         background: ${(props) => stateDarkColor[props.state]};
