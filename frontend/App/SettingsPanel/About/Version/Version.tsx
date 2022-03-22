@@ -41,14 +41,6 @@ const Version = (): ReactElement => {
         return <Alert state="success">You are on the latest version.</Alert>;
     }
 
-    if (isNewest('PACKAGE_VERSION', version.server)) {
-        return (
-            <Alert state="error">
-                Your dashboard is out of sync with the server. Reload the page to see the latest changes.
-            </Alert>
-        );
-    }
-
     return (
         <Alert state="warning">
             A newer version {version.latest} is available. You&apos;re currently running PACKAGE_VERSION, consider
