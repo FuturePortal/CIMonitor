@@ -12,4 +12,11 @@ export const stateDarkColor = {
     success: '#69a633',
 };
 
+export const stateLightColor = {
+    error: '#fae1de',
+    warning: '#fdf6e5',
+    info: '#e4f1fd',
+    success: '#eefce2',
+};
+
 export const textColor = '#333';

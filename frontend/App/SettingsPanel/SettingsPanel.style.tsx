@@ -36,6 +36,7 @@ export const TitleBar = styled.div`
     background: #333;
     height: 3rem;
     align-items: center;
+    flex-shrink: 0;
 `;
 
 export const Title = styled.div`

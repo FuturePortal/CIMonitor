@@ -13,7 +13,6 @@ const Customization = (): ReactElement => {
                     This is an early release of CIMonitor version 4. Features that can be expected in the next releases:
                 </p>
                 <ul>
-                    <li>Manually removing statuses via the settings panel.</li>
                     <li>Customization features like toggling if a completed step should be shown or not.</li>
                     <li>Adding password protection to your server settings and webhooks.</li>
                 </ul>
