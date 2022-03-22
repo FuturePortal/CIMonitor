@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { stateColor, stateDarkColor, textColor } from '/frontend/style/colors';
 
 export const Overlay = styled.div`
     position: fixed;
@@ -19,7 +19,7 @@ export const Overlay = styled.div`
 
 export const Frame = styled.div`
     background: #fff;
-    color: #333;
+    color: ${textColor};
     width: 65rem;
     max-width: 100%;
     margin: 1rem 1rem;

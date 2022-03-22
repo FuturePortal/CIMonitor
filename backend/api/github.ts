@@ -1,23 +1,15 @@
 import axios from 'axios';
 
-import { GitHubRelease } from 'types/github';
+export { getContributors } from './github/contributors';
+export { getLatestRelease } from './github/release';
 
-class GitHubApi {
-    getClient() {
-        return axios.create({
-            headers: {
-                'User-Agent': 'github.com/CIMonitor/CIMonitor',
-                accept: 'application/json',
-            },
-            baseURL: 'https://api.github.com',
-        });
-    }
+const GitHubApi = () =>
+    axios.create({
+        headers: {
+            'User-Agent': 'github.com/CIMonitor/CIMonitor',
+            accept: 'application/json',
+        },
+        baseURL: 'https://api.github.com',
+    });
 
-    async getLatestRelease(): Promise<GitHubRelease> {
-        const response = await this.getClient().get('/repos/CIMonitor/CIMonitor/releases/latest');
-
-        return response.data;
-    }
-}
-
-export default new GitHubApi();
+export default GitHubApi;

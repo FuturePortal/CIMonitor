@@ -1,11 +1,13 @@
 import { combineReducers, compose, createStore } from 'redux';
 
+import CacheReducer from './cache/reducer';
 import SettingReducer from './settings/reducer';
 import StatusReducer, { defaultState as defaultStatusState } from './status/reducer';
 
 const reducers = combineReducers({
     status: StatusReducer,
     setting: SettingReducer,
+    cache: CacheReducer,
 });
 
 export type RootState = ReturnType<typeof reducers>;

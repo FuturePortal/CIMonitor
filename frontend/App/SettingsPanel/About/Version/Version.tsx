@@ -1,12 +1,9 @@
-import axios from 'axios';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import Alert from '/frontend/components/Alert';
-
-type VersionResponse = {
-    server: string;
-    latest: string;
-};
+import { fetchVersion } from '/frontend/store/cache/fetch';
+import { getVersion } from '/frontend/store/cache/selectors';
 
 const isNewest = (currentVersion: string, latestVersion: string): boolean => {
     const currentVersionSplit = currentVersion.split('.');
@@ -26,27 +23,11 @@ const isNewest = (currentVersion: string, latestVersion: string): boolean => {
 };
 
 const Version = (): ReactElement => {
-    const [version, setVersion] = useState<VersionResponse | null>(null);
-    const [failed, setFailed] = useState(false);
-
-    const fetchLatestVersion = async () => {
-        try {
-            const response = await axios.get('/version');
-
-            setVersion(response.data);
-            setFailed(false);
-        } catch (error) {
-            setFailed(true);
-        }
-    };
+    const version = useSelector(getVersion);
 
     useEffect(() => {
-        fetchLatestVersion();
+        fetchVersion();
     }, []);
-
-    if (failed) {
-        return <Alert state="error">Failed to fetch the latest version info.</Alert>;
-    }
 
     if (!version) {
         return <Alert state="info">Checking for the latest version...</Alert>;

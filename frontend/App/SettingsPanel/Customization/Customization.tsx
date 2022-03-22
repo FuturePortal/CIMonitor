@@ -8,8 +8,15 @@ const Customization = (): ReactElement => {
     return (
         <Content>
             <h1>Customization</h1>
-            <Alert state="warning">
-                Customization is not yet available in the first release. Expect more customization options here soon.
+            <Alert>
+                <p>
+                    This is an early release of CIMonitor version 4. Features that can be expected in the next releases:
+                </p>
+                <ul>
+                    <li>Manually removing statuses via the settings panel.</li>
+                    <li>Customization features like toggling if a completed step should be shown or not.</li>
+                    <li>Adding password protection to your server settings and webhooks.</li>
+                </ul>
             </Alert>
         </Content>
     );

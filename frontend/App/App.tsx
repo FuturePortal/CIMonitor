@@ -11,7 +11,7 @@ import Toolbar from './Toolbar';
 const App = (): ReactElement => {
     const { socketConnected } = useSocket();
 
-    document.title = `CIMonitor ${window.location.host}`;
+    document.title = `${window.location.host} | CIMonitor`;
 
     return (
         <>

@@ -2,8 +2,7 @@ import { ReactElement } from 'react';
 
 import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
-import Alert from '/frontend/components/Alert';
-
+import Contributors from './Contributors';
 import Version from './Version';
 
 const About = (): ReactElement => {
@@ -14,17 +13,8 @@ const About = (): ReactElement => {
                 if deployments are successful. Never miss a failed build again.
             </p>
             <Version />
-            <Alert>
-                <p>
-                    This is an early release of CIMonitor version 4. Features that can be expected in the next releases:
-                </p>
-                <ul>
-                    <li>Manually removing statuses via the settings panel.</li>
-                    <li>Customization features like toggling if a completed step should be shown or not.</li>
-                    <li>Adding a contributors list to the about tab (we love open source contributions).</li>
-                    <li>Adding password protection to your server settings and webhooks.</li>
-                </ul>
-            </Alert>
+            <p>A big thank you to all the contributors of the project:</p>
+            <Contributors />
         </Content>
     );
 };

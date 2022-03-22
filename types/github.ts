@@ -14,6 +14,16 @@ type GitHubRepository = {
     };
 };
 
+export type GitHubUser = {
+    login: string;
+    avatar_url: string;
+    html_url: string;
+    name: string | null;
+    company: string | null;
+    blog: string | null;
+    location: string | null;
+};
+
 export type GitHubRelease = {
     tag_name: string;
     name: string;
@@ -59,6 +69,15 @@ export type GitHubWorkflowRun = {
     repository: GitHubRepository;
     organization: GitHubOrganization;
     sender: GitHubSender;
+};
+
+export type GitHubContributor = {
+    total: number;
+    author: {
+        login: string;
+        avatar_url: string;
+        html_url: string;
+    };
 };
 
 export type GitHubStep = {

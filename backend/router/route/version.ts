@@ -1,6 +1,6 @@
 import express from 'express';
 
-import GitHubAPI from 'backend/api/github';
+import { getLatestRelease } from 'backend/api/github';
 import { GitHubRelease } from 'types/github';
 
 const router = express.Router();
@@ -10,7 +10,7 @@ router.get('/', async (request, response) => {
     const serverVersion = process.env.npm_package_version;
 
     try {
-        const githubVersionInfo: GitHubRelease = await GitHubAPI.getLatestRelease();
+        const githubVersionInfo: GitHubRelease = await getLatestRelease();
 
         latestVersion = githubVersionInfo.tag_name;
     } catch (error) {

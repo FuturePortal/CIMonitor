@@ -9,7 +9,7 @@ import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
 import { hasNoStatuses } from '/frontend/store/status/selectors';
 
 import About from './About';
-// import Customization from './Customization';
+import Customization from './Customization';
 import Documentation from './Documentation';
 import Statuses from './Statuses';
 
@@ -30,13 +30,13 @@ const tabs: SettingsTab[] = [
         name: 'Statuses',
         content: <Statuses />,
     },
-    // {
-    //     icon: 'brush',
-    //     name: 'Customization',
-    //     content: <Customization />,
-    // },
     {
-        icon: 'auto_stories',
+        icon: 'brush',
+        name: 'Customization',
+        content: <Customization />,
+    },
+    {
+        icon: 'subject',
         name: 'Documentation',
         content: <Documentation />,
     },
