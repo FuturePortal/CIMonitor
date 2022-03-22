@@ -10,7 +10,7 @@ export const fetchVersion = async () => {
     const { cache }: RootState = store.getState();
 
     if (cache.lastVersionCheck > new Date().getTime() - 60000 * 5) {
-        console.log(`[store/cache/fetch] Serving latest version ${cache.version.latest} from cache.`);
+        console.log(`[store/cache/fetch] Serving latest version from cache.`);
         return cache.version;
     }
 
@@ -20,7 +20,7 @@ export const fetchVersion = async () => {
 
     store.dispatch(setVersion(version));
 
-    console.log(`[store/cache/fetch] Fetched latest version ${version.latest} from the backend.`);
+    console.log(`[store/cache/fetch] Fetched latest version ${version.latest || version.server} from the backend.`);
 
     return version;
 };

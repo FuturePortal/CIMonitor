@@ -19,13 +19,11 @@ class GitHubPushParser {
             };
 
             const branch = getBranch(push.ref);
-            console.log(`=== BRANCH ${branch} ===`);
             if (branch) {
                 status.branch = branch;
             }
 
             const tag = getTag(push.ref);
-            console.log(`=== TAG ${tag} ===`);
             if (tag) {
                 status.tag = tag;
             }

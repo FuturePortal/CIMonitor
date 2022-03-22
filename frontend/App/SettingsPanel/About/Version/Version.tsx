@@ -29,8 +29,12 @@ const Version = (): ReactElement => {
         fetchVersion();
     }, []);
 
-    if (!version) {
+    if (version === null) {
         return <Alert state="info">Checking for the latest version...</Alert>;
+    }
+
+    if (version.latest === null) {
+        return <Alert state="warning">Not able to fetch the latest version right now.</Alert>;
     }
 
     if (isNewest('PACKAGE_VERSION', version.latest)) {

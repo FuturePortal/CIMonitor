@@ -3,7 +3,8 @@ import { ReactElement } from 'react';
 import { Details, Process, Stage, Stages, StageWrapper, Step } from './Processes.style';
 
 import Icon from '/frontend/components/Icon';
-import { Process as ProcessType, State, StepState } from 'types/status';
+
+import { Process as ProcessType, State, StepState } from '/types/status';
 
 type Props = {
     processes: ProcessType[];

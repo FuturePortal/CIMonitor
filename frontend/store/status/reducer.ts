@@ -1,6 +1,6 @@
-import Status from 'types/status';
-
 import { ActionTypes, StateType } from './types';
+
+import Status from '/types/status';
 
 export const defaultState: StateType = {
     received: false,
@@ -37,6 +37,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
                         return status;
                     })
                     .sort(byTime),
+            };
+        case 'status-delete':
+            return {
+                ...state,
+                statuses: state.statuses.filter((status) => status.id !== action.statusId),
             };
         default:
             return state;

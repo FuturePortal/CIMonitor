@@ -1,6 +1,11 @@
-import { AddStatusAction, PatchStatusAction, SetAllStatusAction } from 'frontend/store/status/types';
+import {
+    AddStatusAction,
+    DeleteStatusAction,
+    PatchStatusAction,
+    SetAllStatusAction,
+} from '/frontend/store/status/types';
 
-import Status from 'types/status';
+import Status from '/types/status';
 
 export const setAllStatus = (statuses: Status[]): SetAllStatusAction => ({
     type: 'status-set-all',
@@ -15,4 +20,9 @@ export const addStatus = (status: Status): AddStatusAction => ({
 export const patchStatus = (status: Status): PatchStatusAction => ({
     type: 'status-patch',
     status,
+});
+
+export const deleteStatus = (statusId: string): DeleteStatusAction => ({
+    type: 'status-delete',
+    statusId,
 });

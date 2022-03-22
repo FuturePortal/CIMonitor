@@ -5,6 +5,7 @@ class StatusEvents extends EventEmitter {
         newStatus: 'status-new',
         patchStatus: 'status-patch',
         deleteStatus: 'status-delete',
+        deleteAllStatuses: 'status-delete-all',
     };
 }
 

@@ -1,6 +1,6 @@
-import { Contributor, Version } from 'types/cimonitor';
-
 import { SetContributorsAction, SetVersionAction } from './types';
+
+import { Contributor, Version } from '/types/cimonitor';
 
 export const setContributors = (contributors: Contributor[]): SetContributorsAction => ({
     type: 'cache-contributors-set',

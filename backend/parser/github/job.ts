@@ -58,7 +58,6 @@ class GitHubJobParser {
             ...process,
             stages,
             state: this.determineProcessState(stages),
-            time: new Date().toUTCString(),
         };
     }
 

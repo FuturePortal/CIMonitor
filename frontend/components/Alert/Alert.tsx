@@ -3,7 +3,8 @@ import { ReactElement, ReactNode } from 'react';
 import { Container, IconSpace, Message } from './Alert.style';
 
 import Icon from '/frontend/components/Icon';
-import { State } from 'types/status';
+
+import { State } from '/types/status';
 
 type Props = {
     children: ReactNode;

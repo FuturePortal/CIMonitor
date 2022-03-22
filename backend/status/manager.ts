@@ -36,6 +36,14 @@ class StatusManager {
         StatusEvents.emit(StatusEvents.event.deleteStatus, statusId);
     }
 
+    deleteAllStatuses() {
+        this.statuses = [];
+
+        StorageManager.saveStatuses([]);
+
+        StatusEvents.emit(StatusEvents.event.deleteAllStatuses);
+    }
+
     setStatus(status: Status): void {
         let replaced = false;
 

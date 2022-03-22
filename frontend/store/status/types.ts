@@ -1,4 +1,4 @@
-import Status from 'types/status';
+import Status from '/types/status';
 
 export type StateType = {
     received: boolean;
@@ -20,4 +20,9 @@ export type PatchStatusAction = {
     status: Status;
 };
 
-export type ActionTypes = SetAllStatusAction | AddStatusAction | PatchStatusAction;
+export type DeleteStatusAction = {
+    type: 'status-delete';
+    statusId: string;
+};
+
+export type ActionTypes = SetAllStatusAction | AddStatusAction | PatchStatusAction | DeleteStatusAction;

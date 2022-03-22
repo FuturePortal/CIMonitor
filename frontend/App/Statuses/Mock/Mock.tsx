@@ -2,7 +2,7 @@ import { Fragment, ReactElement, useEffect, useState } from 'react';
 
 import { Mock, Mocks } from './Mock.style';
 
-import { State } from 'types/status';
+import { State } from '/types/status';
 
 const randomState = (): State => {
     const random = 100 * Math.random();

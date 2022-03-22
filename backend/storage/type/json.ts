@@ -62,10 +62,10 @@ class JsonStorage extends StorageType {
     }
 
     saveSettings(settings: ServerSettings): void {
-        console.log('[storage/type/json] Saving settings...');
+        this.createStorageFolder();
+
         try {
             FileSystem.writeFileSync(this.settingsFile, JSON.stringify(settings, null, 4));
-            console.log('[storage/type/json] settings saved.');
         } catch (error) {
             console.log('[storage/type/json] Failed to save the settings.');
             console.log(error);
@@ -73,10 +73,10 @@ class JsonStorage extends StorageType {
     }
 
     saveStatuses(statuses: Status[]): void {
-        console.log('[storage/type/json] Saving statuses...');
+        this.createStorageFolder();
+
         try {
             FileSystem.writeFileSync(this.statusesFile, JSON.stringify(statuses, null, 4));
-            console.log('[storage/type/json] statuses saved.');
         } catch (error) {
             console.log('[storage/type/json] Failed to save the statuses.');
             console.log(error);

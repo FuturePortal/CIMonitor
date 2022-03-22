@@ -1,6 +1,6 @@
 import { RootState } from 'frontend/store';
 
-import { Contributor, Version } from 'types/cimonitor';
+import { Contributor, Version } from '/types/cimonitor';
 
 export const getVersion = (state: RootState): Version | null => state.cache.version;
 

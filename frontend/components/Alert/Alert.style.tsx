@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import { stateColor } from '/frontend/style/colors';
-import { State } from 'types/status';
+
+import { State } from '/types/status';
 
 type BoxProps = {
     state: State;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 
-import { addStatus, patchStatus, setAllStatus } from '/frontend/store/status/actions';
+import { addStatus, deleteStatus, patchStatus, setAllStatus } from '/frontend/store/status/actions';
 
 import socketEvent from '/types/socket';
 
@@ -22,7 +22,7 @@ const useSocket = (): UseSocketOutput => {
         socket.on(socketEvent.allStatuses, (statuses) => dispatch(setAllStatus(statuses)));
         socket.on(socketEvent.patchStatus, (status) => dispatch(patchStatus(status)));
         socket.on(socketEvent.newStatus, (status) => dispatch(addStatus(status)));
-        // TODO: delete status
+        socket.on(socketEvent.deleteStatus, (statusId) => dispatch(deleteStatus(statusId)));
 
         // Refresh all statuses once a day
         const requestStatusesInterval = setInterval(() => socket.emit(socketEvent.requestAllStatuses), 60000 * 60 * 24);

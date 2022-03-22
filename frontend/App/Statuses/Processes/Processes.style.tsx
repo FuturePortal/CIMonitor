@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
 import { stateColor, stateDarkColor } from '/frontend/style/colors';
-import { State, StepState } from 'types/status';
+
+import { State, StepState } from '/types/status';
 
 type ProcessProps = {
     state: State;

@@ -34,6 +34,11 @@ class SocketManager {
             StatusEvents.event.deleteStatus,
             (status: Status) => this.socket && this.socket.sockets.emit(socketEvent.deleteStatus, status)
         );
+
+        StatusEvents.on(
+            StatusEvents.event.deleteAllStatuses,
+            () => this.socket && this.socket.sockets.emit(socketEvent.allStatuses, [])
+        );
     }
 
     onClientConnect(socket) {
