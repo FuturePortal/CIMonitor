@@ -227,6 +227,13 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@cimonitor/parcel-transformer-package-version@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cimonitor/parcel-transformer-package-version/-/parcel-transformer-package-version-0.1.0.tgz#59ad217b71dd7610e51d733890c4a41f0e1bf83e"
+  integrity sha512-auZmuxIY/1+cVh9rAS94CW+rSXnNiyXILsj3UxNVW9EGz90OVBs7jhBfYxgfLHzdgwY3Slz3zyrpiRiQSJZ7UA==
+  dependencies:
+    "@parcel/plugin" "^2.3.2"
+
 "@cspotcode/source-map-consumer@0.8.0":
   version "0.8.0"
   resolved "https://registry.npmjs.org/@cspotcode/source-map-consumer/-/source-map-consumer-0.8.0.tgz"
@@ -4780,10 +4787,6 @@ package-json@^6.3.0:
     registry-auth-token "^4.0.0"
     registry-url "^5.0.0"
     semver "^6.2.0"
-
-"parcel-transformer-package-version@link:./frontend/parcel-transformer-package-version":
-  version "0.0.0"
-  uid ""
 
 parcel@^2.3.2:
   version "2.3.2"
