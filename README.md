@@ -18,7 +18,7 @@ deployments are successful. All in one overview. This is all done via **webhooks
 
 ## Example
 
-![Dashboard demonstration](docs/images/dashboard.png)
+![Dashboard demonstration](docs/images/dashboard.gif)
 
 # :warning: version 3 :warning:
 

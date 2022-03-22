@@ -11,6 +11,18 @@ type Props = {
     title?: string;
 };
 
+type SpanProps = {
+    state?: State;
+};
+
+const Span = styled.span<SpanProps>`
+    ${(props) =>
+        props.state &&
+        css`
+            color: ${stateColor[props.state]};
+        `}
+`;
+
 const Icon = ({ icon, state, title }: Props): ReactElement => {
     const classes = ['icon'];
 
@@ -18,15 +30,8 @@ const Icon = ({ icon, state, title }: Props): ReactElement => {
         classes.push('spin');
     }
 
-    const Span = styled.span`
-        ${state &&
-        css`
-            color: ${stateColor[state]};
-        `}
-    `;
-
     return (
-        <Span className={classes.join(' ')} title={title || ''}>
+        <Span state={state} className={classes.join(' ')} title={title || ''}>
             {icon}
         </Span>
     );
