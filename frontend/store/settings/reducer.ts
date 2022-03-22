@@ -2,6 +2,7 @@ import { ActionTypes, StateType } from './types';
 
 const defaultState: StateType = {
     open: false,
+    showCompleted: false,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -15,6 +16,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
             return {
                 ...state,
                 open: false,
+            };
+        case 'settings-show-completed-toggle':
+            return {
+                ...state,
+                showCompleted: !state.showCompleted,
             };
         default:
             return state;

@@ -3,7 +3,7 @@ import { Server as SocketServer } from 'socket.io';
 
 import StatusEvents from 'backend/status/events';
 import StatusManager from 'backend/status/manager';
-import socketEvent from 'types/socket';
+import { socketEvent } from 'types/cimonitor';
 import Status from 'types/status';
 
 class SocketManager {

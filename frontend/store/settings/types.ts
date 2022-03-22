@@ -1,5 +1,10 @@
 export type StateType = {
     open: boolean;
+    showCompleted: boolean;
+};
+
+export type ToggleShowCompletedAction = {
+    type: 'settings-show-completed-toggle';
 };
 
 export type ToggleSettingsPanelAction = {
@@ -10,4 +15,4 @@ export type CloseSettingsPanelAction = {
     type: 'settings-panel-close';
 };
 
-export type ActionTypes = ToggleSettingsPanelAction | CloseSettingsPanelAction;
+export type ActionTypes = ToggleSettingsPanelAction | CloseSettingsPanelAction | ToggleShowCompletedAction;

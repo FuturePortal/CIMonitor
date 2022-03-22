@@ -13,3 +13,13 @@ export type Version = {
     server: string;
     latest: string | null;
 };
+
+export const socketEvent = {
+    connect: 'connect',
+    disconnect: 'disconnect',
+    allStatuses: 'status-all',
+    newStatus: 'status-new',
+    patchStatus: 'status-patch',
+    deleteStatus: 'status-delete',
+    requestAllStatuses: 'status-request',
+};

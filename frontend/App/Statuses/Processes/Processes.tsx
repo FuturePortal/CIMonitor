@@ -1,8 +1,10 @@
 import { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Details, Process, Stage, Stages, StageWrapper, Step } from './Processes.style';
 
 import Icon from '/frontend/components/Icon';
+import { isShowingCompleted } from '/frontend/store/settings/selectors';
 
 import { Process as ProcessType, State, StepState } from '/types/status';
 
@@ -26,6 +28,8 @@ const getStateIcon = (state: StepState | State) => {
 };
 
 const Processes = ({ processes }: Props): ReactElement => {
+    const showCompleted = useSelector(isShowingCompleted);
+
     if (processes.length === 0) {
         return null;
     }
@@ -46,7 +50,7 @@ const Processes = ({ processes }: Props): ReactElement => {
                                     </Stage>
                                     {stage.steps &&
                                         stage.steps.map((step) => {
-                                            if (step.state === 'success') {
+                                            if (step.state === 'success' && !showCompleted) {
                                                 return null;
                                             }
 

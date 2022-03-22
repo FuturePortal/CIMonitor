@@ -20,3 +20,4 @@ export const stateLightColor = {
 };
 
 export const textColor = '#333';
+export const textMutedColor = '#999';

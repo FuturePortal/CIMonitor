@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 
 import { addStatus, deleteStatus, patchStatus, setAllStatus } from '/frontend/store/status/actions';
 
-import socketEvent from '/types/socket';
+import { socketEvent } from '/types/cimonitor';
 
 type UseSocketOutput = {
     socketConnected: boolean;

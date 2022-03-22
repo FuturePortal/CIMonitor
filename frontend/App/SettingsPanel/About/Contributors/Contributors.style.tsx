@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { stateColor } from '/frontend/style/colors';
+import { stateColor, textMutedColor } from '/frontend/style/colors';
 
 export const Contributor = styled.div`
     border-top: 2px solid #f0f0f0;
@@ -31,11 +31,11 @@ export const Name = styled.div`
 `;
 
 export const Location = styled.div`
-    color: #999;
+    color: ${textMutedColor};
 `;
 
 export const Handle = styled.span`
-    color: #999;
+    color: ${textMutedColor};
     padding-left: 0.3rem;
 `;
 
