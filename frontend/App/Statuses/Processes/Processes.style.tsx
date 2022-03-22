@@ -8,7 +8,7 @@ type ProcessProps = {
 };
 
 export const Process = styled.div<ProcessProps>`
-    padding: 1rem;
+    padding: 0.5rem 1rem 1rem 1rem;
     background: ${(props) => stateColor[props.state]};
 `;
 

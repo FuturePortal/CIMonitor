@@ -18,6 +18,7 @@ export const Image = styled.img`
 
 export const Details = styled.div`
     padding-left: 1rem;
+    line-height: 1.3;
 `;
 
 export const ProfileLink = styled.a`

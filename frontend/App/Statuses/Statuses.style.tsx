@@ -10,8 +10,8 @@ export const List = styled.div``;
 export const Boxes = styled.div`
     display: flex;
     gap: 0.5rem;
-    margin-top: 0.5rem;
     flex-wrap: wrap;
+    margin-bottom: 0.25rem;
 `;
 
 export const Box = styled.div`
@@ -19,8 +19,9 @@ export const Box = styled.div`
     border-radius: 0.25rem;
 `;
 
-export const Project = styled.div`
+export const Project = styled.h1`
     font-size: 2.2rem;
+    margin-bottom: 0.5rem;
 `;
 
 type StatusProps = {
@@ -30,14 +31,10 @@ type StatusProps = {
 export const Status = styled.div<StatusProps>`
     background: ${(props) => stateColor[props.state]};
     color: #222222;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     ${Box} {
         background: ${(props) => stateDarkColor[props.state]};
-    }
-
-    &:first-child {
-        margin-top: 0;
     }
 `;
 

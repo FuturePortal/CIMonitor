@@ -24,7 +24,7 @@ const Contributors = (): ReactElement => {
             return 'Creator and maintainer';
         }
 
-        return `${contributor.commits} contributions`;
+        return `${contributor.commits} contribution${contributor.commits > 1 ? 's' : ''}`;
     };
 
     return (
