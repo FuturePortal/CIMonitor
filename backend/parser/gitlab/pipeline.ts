@@ -42,7 +42,7 @@ class GitLabPipelineParser {
         if (!status) {
             status = {
                 id,
-                project: pipeline.project.name,
+                project: `${pipeline.project.namespace} / ${pipeline.project.name}`,
                 state: 'info',
                 source: 'gitlab',
                 time: new Date().toUTCString(),
