@@ -11,7 +11,7 @@ context('A running GitHub push', () => {
             cy.github(`push-failed/${count}`);
         }
 
-        cy.wait(4000);
+        cy.wait(2000);
 
         // Push all created events
         for (let count = 1; count <= 14; count++) {

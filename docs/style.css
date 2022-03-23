@@ -11,6 +11,7 @@ h5 {
 
 .wy-nav-content {
     background: #fff !important;
+    max-width: 1020px !important;
 }
 
 .wy-breadcrumbs-aside,

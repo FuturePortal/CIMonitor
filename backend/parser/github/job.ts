@@ -77,6 +77,22 @@ class GitHubJobParser {
         return 'success';
     }
 
+    isStepNotBlacklisted(stepId: string): boolean {
+        const blacklist = ['set-up-job', 'complete-job', 'checkout-branch', /^post-/];
+
+        for (let bannedItem of blacklist) {
+            if (bannedItem instanceof RegExp && bannedItem.test(stepId)) {
+                return false;
+            }
+
+            if (typeof bannedItem === 'string' && bannedItem === stepId) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     patchStage(stage: Stage, job: GitHubWorkflowJob): Stage {
         let steps = stage.steps;
 
@@ -84,7 +100,7 @@ class GitHubJobParser {
             const stepId = slug(step.name);
 
             if (!steps.find((step) => step.id === stepId)) {
-                if (!['set-up-job', 'complete-job', 'checkout-branch', 'post-checkout-branch'].includes(stepId)) {
+                if (this.isStepNotBlacklisted(stepId)) {
                     steps.push({
                         id: stepId,
                         title: step.name,

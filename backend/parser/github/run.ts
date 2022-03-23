@@ -27,7 +27,7 @@ class GitHubRunParser {
         if (!processes.find((process) => process.id === processId)) {
             processes.push({
                 id: processId,
-                title: run.workflow_run.name,
+                title: run.workflow_run.head_commit.message,
                 state: 'info',
                 stages: [],
                 time: new Date().toUTCString(),

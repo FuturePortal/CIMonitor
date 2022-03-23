@@ -62,6 +62,9 @@ export type GitHubWorkflowRun = {
         actor: {
             login: string;
         };
+        head_commit: {
+            message: string;
+        };
     };
     workflow: {
         name: string;
