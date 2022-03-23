@@ -12,7 +12,11 @@ class SocketManager {
     socketConnections = 0;
 
     startSocket(server: Server): void {
-        this.socket = new SocketServer(server);
+        this.socket = new SocketServer(server, {
+            cors: {
+                origin: '*',
+            },
+        });
 
         this.socket.on(socketEvent.connect, (socket) => this.onClientConnect(socket));
 
