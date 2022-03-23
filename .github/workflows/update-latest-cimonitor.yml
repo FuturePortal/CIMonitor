@@ -20,7 +20,7 @@ jobs:
         run: "node_modules/.bin/eslint --ext ts,tsx ."
 
   build-container:
-    name: Build and push container
+    name: Update docker latest version
     needs: test
     runs-on: ubuntu-latest
     steps:

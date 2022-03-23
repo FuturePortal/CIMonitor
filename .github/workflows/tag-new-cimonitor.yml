@@ -21,7 +21,7 @@ jobs:
         run: "node_modules/.bin/eslint --ext ts,tsx ."
 
   build-container:
-    name: Release new CIMonitor container
+    name: Release new docker version
     needs: test
     runs-on: ubuntu-latest
     steps:
