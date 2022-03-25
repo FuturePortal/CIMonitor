@@ -15,6 +15,7 @@ export const ProcessContainer = styled.div<ProcessContainerProps>`
 
 export const Stages = styled.div`
     display: flex;
+    margin-top: 0.5rem;
 `;
 
 type StageProps = {
@@ -83,6 +84,4 @@ export const StageContainer = styled.div`
     }
 `;
 
-export const Details = styled.div`
-    margin-bottom: 0.5rem;
-`;
+export const Details = styled.div``;

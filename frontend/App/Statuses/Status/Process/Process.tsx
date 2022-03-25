@@ -35,7 +35,7 @@ const Process = ({ process }: Props): ReactElement => {
             <Details>
                 <Icon icon="notes" /> {process.title}
             </Details>
-            {process.stages && (
+            {process.stages && process.stages.length > 0 && (
                 <Stages>
                     {process.stages.map((stage) => (
                         <StageContainer key={stage.id}>
