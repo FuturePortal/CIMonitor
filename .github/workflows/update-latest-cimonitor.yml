@@ -5,46 +5,13 @@ on:
       - master
 jobs:
   test:
-    name: Run all tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v2
-
-      - name: Install development dependencies
-        run: yarn install --ignore-scripts
-
-      - name: Run typescript check
-        run: node_modules/.bin/tsc --noEmit
-
-      - name: Run eslint check
-        run: node_modules/.bin/eslint --ext ts,tsx .
+    uses: ./.github/workflows/test-and-lint.yml
 
   build-container:
-    name: Update CIMonitor docker latest tag
+    uses: ./.github/workflows/build-and-tag-container.yml
     needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@v2
-
-      - name: Install development dependencies
-        run: yarn install --ignore-scripts
-
-      - name: Build javascript application
-        run: yarn build
-
-      - name: Install production dependencies
-        run: yarn install --production --ignore-scripts
-
-      - name: Build CIMonitor image
-        run: docker build --target production --tag cimonitor/server:latest .
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: Push docker image to the hub
-        run: docker push cimonitor/server:latest
+    with:
+      TAG: latest
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}

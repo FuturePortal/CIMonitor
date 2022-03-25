@@ -1,0 +1,19 @@
+name: Test and lint
+on:
+  workflow_call:
+jobs:
+  test:
+    name: Run all tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Install development dependencies
+        run: yarn install --ignore-scripts
+
+      - name: Run typescript check
+        run: node_modules/.bin/tsc --noEmit
+
+      - name: Run eslint check
+        run: node_modules/.bin/eslint --ext ts,tsx .

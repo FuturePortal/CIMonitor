@@ -1,0 +1,40 @@
+name: Build and tag CIMonitor container
+on:
+  workflow_call:
+    inputs:
+      TAG:
+        required: true
+        type: string
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_TOKEN:
+        required: true
+jobs:
+  build-and-tag-container:
+    name: Build and tag CIMonitor container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - name: Install development dependencies
+        run: yarn install --ignore-scripts
+
+      - name: Build javascript application
+        run: yarn build
+
+      - name: Install production dependencies
+        run: yarn install --production --ignore-scripts
+
+      - name: Build CIMonitor image
+        run: docker build --target production --tag cimonitor/server:${{ inputs.TAG }} .
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Push docker image to the hub
+        run: docker push cimonitor/server:${{ inputs.TAG }}
