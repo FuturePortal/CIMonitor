@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { ellipsis, ellipsisLeft } from '/frontend/style/text';
 
 import { State } from '/types/status';
 
@@ -16,11 +17,19 @@ export const Boxes = styled.div`
 export const Box = styled.div`
     padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
+    ${ellipsis};
+`;
+
+export const Details = styled.div`
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 5rem;
 `;
 
 export const Project = styled.h1`
     font-size: 2.2rem;
     margin-bottom: 0.5rem;
+    ${ellipsisLeft};
 `;
 
 type StatusProps = {
@@ -46,10 +55,6 @@ export const Container = styled.div<StatusProps>`
 export const Body = styled.div`
     padding: 1rem 1rem 0 1rem;
     display: flex;
-`;
-
-export const Details = styled.div`
-    flex-grow: 1;
 `;
 
 export const ProjectImage = styled.div`

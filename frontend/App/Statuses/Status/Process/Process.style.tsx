@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { ellipsis } from '/frontend/style/text';
 
 import { State, StepState } from '/types/status';
 
@@ -25,6 +26,7 @@ type StageProps = {
 export const Stage = styled.div<StageProps>`
     background: ${(props) => stateDarkColor[props.state]};
     padding: 0.3rem 0.5rem;
+    ${ellipsis};
 
     ${(props) =>
         ['running', 'pending'].includes(props.state) &&
@@ -47,8 +49,8 @@ export const Step = styled.div<StepProps>`
     background: ${(props) => stateDarkColor[props.state]};
     padding: 0.3rem 0.5rem;
     border-radius: 0.5rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
+    margin: 0.5rem 0.5rem 0 0;
+    ${ellipsis};
 
     ${(props) =>
         ['running', 'pending'].includes(props.state) &&
@@ -66,6 +68,7 @@ export const Step = styled.div<StepProps>`
 export const StageContainer = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
+    min-width: 4rem;
 
     &:first-child ${Stage} {
         border-top-left-radius: 0.5rem;
