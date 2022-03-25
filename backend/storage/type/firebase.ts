@@ -32,14 +32,9 @@ class FirebaseStorage extends StorageType {
     }
 
     async load(key: string): Promise<any> {
-        return this.database
-            .ref(key)
-            .once('value', function (data) {
-                return data;
-            })
-            .then((data) => {
-                return FirebaseDataParser.convertObjectArraysToArrays(data.toJSON());
-            });
+        const dataResponse = await this.database.ref(key).once('value');
+
+        return FirebaseDataParser.convertObjectArraysToArrays(dataResponse.toJSON());
     }
 
     save(key: string, data: any) {
@@ -61,7 +56,8 @@ class FirebaseStorage extends StorageType {
             return [];
         }
 
-        return statuses;
+        // Make sure that everything that should be an array of a status, is an array.
+        return this.fixStatusArrays(statuses);
     }
 
     saveSettings(settings: ServerSettings): void {
@@ -70,6 +66,32 @@ class FirebaseStorage extends StorageType {
 
     saveStatuses(statuses: Status[]): void {
         this.save('statuses', statuses);
+    }
+
+    fixStatusArrays(statuses: Status[]): Status[] {
+        return statuses.map((status) => {
+            if (!status.processes) {
+                status.processes = [];
+            }
+
+            status.processes.map((process) => {
+                if (!process.stages) {
+                    process.stages = [];
+                }
+
+                process.stages.map((stage) => {
+                    if (!stage.steps) {
+                        stage.steps = [];
+                    }
+
+                    return stage;
+                });
+
+                return process;
+            });
+
+            return status;
+        });
     }
 }
 
