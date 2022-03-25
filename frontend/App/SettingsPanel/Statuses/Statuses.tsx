@@ -5,7 +5,7 @@ import { Box, Boxes, DeleteButton, Details, Header, Intro, Project, Status, Titl
 import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
 import { deleteAllStatuses, deleteStatus } from '/frontend/api/cimonitor';
-import TimePassed from '/frontend/App/Statuses/TimePassed';
+import TimePassed from '/frontend/App/Statuses/Status/TimePassed';
 import Alert from '/frontend/components/Alert';
 import Icon from '/frontend/components/Icon';
 import { getStatuses } from '/frontend/store/status/selectors';

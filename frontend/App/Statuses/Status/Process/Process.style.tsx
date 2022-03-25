@@ -4,11 +4,11 @@ import { stateColor, stateDarkColor } from '/frontend/style/colors';
 
 import { State, StepState } from '/types/status';
 
-type ProcessProps = {
+type ProcessContainerProps = {
     state: State;
 };
 
-export const Process = styled.div<ProcessProps>`
+export const ProcessContainer = styled.div<ProcessContainerProps>`
     padding: 0.5rem 1rem 1rem 1rem;
     background: ${(props) => stateColor[props.state]};
 `;
@@ -62,7 +62,7 @@ export const Step = styled.div<StepProps>`
         `}
 `;
 
-export const StageWrapper = styled.div`
+export const StageContainer = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
 
