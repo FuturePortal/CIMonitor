@@ -25,6 +25,7 @@ class GitLabDeploymentParser {
 
         status.projectImage = deployment.project.avatar_url;
         status.source_url = deployment.project.git_http_url;
+        status.tag = deployment.environment;
 
         if (status.processes.length === 0) {
             status.state = statusToState(deployment.status);
