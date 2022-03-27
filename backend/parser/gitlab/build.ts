@@ -3,6 +3,8 @@ import StatusManager from 'backend/status/manager';
 import { GitLabBuild } from 'types/gitlab';
 import Status, { Process, Stage, Step, StepState } from 'types/status';
 
+import { statusToStepState } from './helper';
+
 class GitLabBuildParser {
     parseBuild(id: string, build: GitLabBuild): Status | null {
         if (build.build_status === 'created') {
@@ -61,6 +63,7 @@ class GitLabBuildParser {
         }
 
         status.userImage = build.user.avatar_url;
+        status.source_url = build.repository.homepage;
 
         return status;
     }
@@ -110,7 +113,7 @@ class GitLabBuildParser {
 
         steps = steps.map((step) => {
             if (step.id === stepId) {
-                step.state = this.parseBuildStatus(build.build_status, build.build_allow_failure);
+                step.state = statusToStepState(build.build_status, build.build_allow_failure);
                 step.time = new Date().toUTCString();
             }
 
@@ -139,21 +142,6 @@ class GitLabBuildParser {
         }
 
         return 'success';
-    }
-
-    parseBuildStatus(status: string, allowFailure: boolean): StepState {
-        switch (status) {
-            case 'failed':
-                return allowFailure ? 'soft-failed' : 'failed';
-            case 'success':
-                return 'success';
-            case 'running':
-                return 'running';
-            case 'pending':
-                return 'pending';
-            default:
-                return 'created';
-        }
     }
 }
 

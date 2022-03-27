@@ -1,8 +1,9 @@
 import Slugify from 'backend/parser/slug';
-import { GitLabBuild, GitLabPipeline } from 'types/gitlab';
+import { GitLabBuild, GitLabDeployment, GitLabPipeline } from 'types/gitlab';
 import Status from 'types/status';
 
 import GitLabBuildParser from './build';
+import GitLabDeploymentParser from './deployment';
 import GitLabPipelineParser from './pipeline';
 
 class GitLabParser {
@@ -39,6 +40,14 @@ class GitLabParser {
         );
 
         return GitLabPipelineParser.parsePipeline(id, pipeline);
+    }
+
+    parseDeployment(deployment: GitLabDeployment): Status {
+        console.log('[parser/gitlab] Parsing deployment...');
+
+        const id = this.getInternalId(deployment.project.id, deployment.project.name, deployment.ref, false);
+
+        return GitLabDeploymentParser.parseDeployment(id, deployment);
     }
 }
 

@@ -34,6 +34,8 @@ export type Status = {
     processes: Process[];
     time: string;
     source: 'github' | 'gitlab' | 'readthedocs';
+    source_url?: string;
+    url?: string;
     title?: string; // MR/PR name?
     branch?: string;
     tag?: string;

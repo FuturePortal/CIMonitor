@@ -1,7 +1,9 @@
 import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 import { GitLabPipeline } from 'types/gitlab';
-import Status, { Process, Stage, State } from 'types/status';
+import Status, { Process, Stage } from 'types/status';
+
+import { statusToState } from './helper';
 
 class GitLabPipelineParser {
     parsePipeline(id: string, pipeline: GitLabPipeline): Status {
@@ -60,6 +62,7 @@ class GitLabPipelineParser {
 
         status.userImage = pipeline.user.avatar_url;
         status.projectImage = pipeline.project.avatar_url;
+        status.source_url = pipeline.project.git_http_url;
 
         return status;
     }
@@ -88,19 +91,8 @@ class GitLabPipelineParser {
                 (stageA: Stage, stageB: Stage): number =>
                     pipelineStages.indexOf(stageA.title) - pipelineStages.indexOf(stageB.title)
             ),
-            state: this.parsePipelineStatus(pipeline.object_attributes.status),
+            state: statusToState(pipeline.object_attributes.status),
         };
-    }
-
-    parsePipelineStatus(status: string): State {
-        const gitlabStatuses = {
-            pending: 'warning',
-            running: 'warning',
-            failed: 'error',
-            success: 'success',
-        };
-
-        return gitlabStatuses[status] || 'info';
     }
 }
 

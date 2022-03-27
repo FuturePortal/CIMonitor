@@ -9,7 +9,10 @@
         "url": "https://rick.nu"
     },
     "contributors": [
-        "https://github.com/CIMonitor/CIMonitor/graphs/contributors"
+        {
+            "name": "GitHub contributors",
+            "url": "https://github.com/CIMonitor/CIMonitor/graphs/contributors"
+        }
     ],
     "scripts": {
         "start": "node app/backend/server.js",

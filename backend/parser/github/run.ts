@@ -49,6 +49,7 @@ class GitHubRunParser {
             ...status,
             userImage: run.sender.avatar_url,
             projectImage: run.organization.avatar_url,
+            source_url: run.repository.html_url,
             processes,
             time: new Date().toUTCString(),
         };

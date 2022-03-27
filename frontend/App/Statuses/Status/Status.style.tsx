@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { stateColor, stateDarkColor, textColor } from '/frontend/style/colors';
 import { ellipsis, ellipsisLeft } from '/frontend/style/text';
 
 import { State } from '/types/status';
@@ -17,6 +17,14 @@ export const Boxes = styled.div`
 export const Box = styled.div`
     padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
+    ${ellipsis};
+`;
+
+export const LinkBox = styled.a`
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    color: ${textColor};
     ${ellipsis};
 `;
 
@@ -43,8 +51,13 @@ export const Container = styled.div<StatusProps>`
     max-width: 100%;
     overflow: hidden;
 
-    ${Box} {
+    ${Box}, ${LinkBox} {
         background: ${(props) => stateDarkColor[props.state]};
+    }
+
+    ${LinkBox}:hover {
+        background: ${textColor} !important;
+        color: ${(props) => stateDarkColor[props.state]};
     }
 
     &:last-child {

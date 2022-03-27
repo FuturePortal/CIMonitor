@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { Body, Box, Boxes, Container, Details, Project, ProjectImage, UserImage } from './Status.style';
+import { Body, Box, Boxes, Container, Details, LinkBox, Project, ProjectImage, UserImage } from './Status.style';
 
 import Icon from '/frontend/components/Icon';
 
@@ -13,6 +13,17 @@ type Props = {
     status: Status;
 };
 
+const getSource = (source: string, url: string | null = null): ReactElement =>
+    url ? (
+        <LinkBox href={url} target="_blank">
+            <Icon icon="code" /> {source}
+        </LinkBox>
+    ) : (
+        <Box>
+            <Icon icon="code" /> {source}
+        </Box>
+    );
+
 const Statuses = ({ status }: Props): ReactElement => (
     <Container key={status.id} state={status.state}>
         <Body>
@@ -24,9 +35,7 @@ const Statuses = ({ status }: Props): ReactElement => (
             <Details>
                 <Project>{status.project}</Project>
                 <Boxes>
-                    <Box>
-                        <Icon icon="code" /> {status.source}
-                    </Box>
+                    {getSource(status.source, status.source_url)}
                     {status.branch && (
                         <Box>
                             <Icon icon="commit" /> {status.branch}
@@ -36,6 +45,11 @@ const Statuses = ({ status }: Props): ReactElement => (
                         <Box>
                             <Icon icon="bookmark_border" /> {status.tag}
                         </Box>
+                    )}
+                    {status.url && (
+                        <LinkBox href={status.url} target="_blank">
+                            <Icon icon="launch" /> {String(status.url).replace(/^http[s]?:\/\//, '')}
+                        </LinkBox>
                     )}
                     <Box>
                         <Icon icon="schedule" /> <TimePassed since={status.time} />
