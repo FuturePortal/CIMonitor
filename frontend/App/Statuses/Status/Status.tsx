@@ -5,6 +5,7 @@ import { Body, Box, Boxes, Container, Details, LinkBox, Project, ProjectImage, U
 import Icon from '/frontend/components/Icon';
 
 import Process from './Process';
+import Source from './Source';
 import TimePassed from './TimePassed';
 
 import Status from '/types/status';
@@ -12,17 +13,6 @@ import Status from '/types/status';
 type Props = {
     status: Status;
 };
-
-const getSource = (source: string, url: string | null = null): ReactElement =>
-    url ? (
-        <LinkBox href={url} target="_blank">
-            <Icon icon="code" /> {source}
-        </LinkBox>
-    ) : (
-        <Box>
-            <Icon icon="code" /> {source}
-        </Box>
-    );
 
 const Statuses = ({ status }: Props): ReactElement => (
     <Container key={status.id} state={status.state}>
@@ -35,7 +25,7 @@ const Statuses = ({ status }: Props): ReactElement => (
             <Details>
                 <Project>{status.project}</Project>
                 <Boxes>
-                    {getSource(status.source, status.source_url)}
+                    <Source type={status.source} url={status.source_url} />
                     {status.branch && (
                         <Box>
                             <Icon icon="commit" /> {status.branch}

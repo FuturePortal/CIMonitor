@@ -53,11 +53,21 @@ export const Container = styled.div<StatusProps>`
 
     ${Box}, ${LinkBox} {
         background: ${(props) => stateDarkColor[props.state]};
+
+        svg {
+            transform: translatey(0.25rem) scale(1.4);
+            height: 1rem;
+            fill: ${textColor};
+        }
     }
 
     ${LinkBox}:hover {
         background: ${textColor} !important;
         color: ${(props) => stateDarkColor[props.state]};
+
+        svg {
+            fill: ${(props) => stateDarkColor[props.state]};
+        }
     }
 
     &:last-child {
