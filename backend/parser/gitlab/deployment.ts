@@ -24,6 +24,7 @@ class GitLabDeploymentParser {
         }
 
         status.projectImage = deployment.project.avatar_url;
+        status.userImage = deployment.user.avatar_url;
         status.source_url = deployment.project.git_http_url;
         status.tag = deployment.environment;
 

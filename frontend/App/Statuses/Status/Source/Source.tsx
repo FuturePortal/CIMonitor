@@ -4,6 +4,7 @@ import { Box, LinkBox } from '/frontend/App/Statuses/Status/Status.style';
 
 import GitHub from './icon/github.svg';
 import GitLab from './icon/gitlab.svg';
+import ReadTheDocs from './icon/readthedocs.svg';
 
 import Icon from '/frontend/components/Icon';
 
@@ -19,6 +20,8 @@ const Source = ({ type, url }: Props): ReactElement => {
                 return <GitLab />;
             case 'github':
                 return <GitHub />;
+            case 'readthedocs':
+                return <ReadTheDocs />;
             default:
                 return (
                     <>

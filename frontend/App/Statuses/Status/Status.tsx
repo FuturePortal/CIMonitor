@@ -1,10 +1,11 @@
 import { ReactElement } from 'react';
 
-import { Body, Box, Boxes, Container, Details, LinkBox, Project, ProjectImage, UserImage } from './Status.style';
+import { Body, Box, Boxes, Container, Details, LinkBox, Project, UserImage } from './Status.style';
 
 import Icon from '/frontend/components/Icon';
 
 import Process from './Process';
+import ProjectImage from './ProjectImage';
 import Source from './Source';
 import TimePassed from './TimePassed';
 
@@ -17,11 +18,7 @@ type Props = {
 const Statuses = ({ status }: Props): ReactElement => (
     <Container key={status.id} state={status.state}>
         <Body>
-            {status.projectImage && (
-                <ProjectImage>
-                    <img src={status.projectImage} alt="project image" />
-                </ProjectImage>
-            )}
+            {status.projectImage && <ProjectImage url={status.projectImage} alt="Project image" />}
             <Details>
                 <Project>{status.project}</Project>
                 <Boxes>
@@ -48,7 +45,7 @@ const Statuses = ({ status }: Props): ReactElement => (
             </Details>
             {status.userImage && (
                 <UserImage>
-                    <img src={status.userImage} alt="user image" />
+                    <img src={status.userImage} alt="User" />
                 </UserImage>
             )}
         </Body>

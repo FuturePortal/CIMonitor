@@ -80,16 +80,6 @@ export const Body = styled.div`
     display: flex;
 `;
 
-export const ProjectImage = styled.div`
-    margin-right: 1rem;
-
-    img {
-        border-radius: 0.25rem;
-        max-width: ${imageSize};
-        max-height: ${imageSize};
-    }
-`;
-
 export const UserImage = styled.div`
     img {
         border-radius: 50%;
