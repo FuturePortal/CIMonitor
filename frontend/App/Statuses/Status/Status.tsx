@@ -15,6 +15,13 @@ type Props = {
     status: Status;
 };
 
+const pettyUrl = (url: string) =>
+    String(url)
+        // strip http(s)://
+        .replace(/^http[s]?:\/\//, '')
+        // strip / on the end
+        .replace(/\/$/, '');
+
 const Statuses = ({ status }: Props): ReactElement => (
     <Container key={status.id} state={status.state}>
         <Body>
@@ -35,7 +42,7 @@ const Statuses = ({ status }: Props): ReactElement => (
                     )}
                     {status.url && (
                         <LinkBox href={status.url} target="_blank">
-                            <Icon icon="launch" /> {String(status.url).replace(/^http[s]?:\/\//, '')}
+                            <Icon icon="launch" /> {pettyUrl(status.url)}
                         </LinkBox>
                     )}
                     <Box>

@@ -23,16 +23,18 @@ class GitLabDeploymentParser {
             }
         }
 
-        status.projectImage = deployment.project.avatar_url;
-        status.userImage = deployment.user.avatar_url;
-        status.source_url = deployment.project.git_http_url;
-        status.tag = deployment.environment;
-
         if (status.processes.length === 0) {
             status.state = statusToState(deployment.status);
         }
 
-        return status;
+        return {
+            ...status,
+            projectImage: deployment.project.avatar_url,
+            userImage: deployment.user.avatar_url,
+            source_url: deployment.project.git_http_url,
+            tag: deployment.environment,
+            time: new Date().toUTCString(),
+        };
     }
 }
 

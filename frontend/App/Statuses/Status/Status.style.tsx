@@ -5,13 +5,10 @@ import { ellipsis, ellipsisLeft } from '/frontend/style/text';
 
 import { State } from '/types/status';
 
-const imageSize = '6rem';
-
 export const Boxes = styled.div`
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-bottom: 0.25rem;
 `;
 
 export const Box = styled.div`
@@ -76,14 +73,14 @@ export const Container = styled.div<StatusProps>`
 `;
 
 export const Body = styled.div`
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem 1rem 0.75rem;
     display: flex;
 `;
 
 export const UserImage = styled.div`
     img {
         border-radius: 50%;
-        max-width: ${imageSize};
-        max-height: ${imageSize};
+        max-width: 6rem;
+        max-height: 6rem;
     }
 `;

@@ -10,7 +10,7 @@ type ProcessContainerProps = {
 };
 
 export const ProcessContainer = styled.div<ProcessContainerProps>`
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 0 1rem 1rem 1rem;
     background: ${(props) => stateColor[props.state]};
 `;
 
