@@ -1,0 +1,40 @@
+{
+    "triggers": [
+        {
+            "status": {
+                "project": "CIMonitor / CIMonitor",
+                "state": "success",
+                "branch": "master"
+            },
+            "event": "celebrate"
+        },
+        {
+            "state": "error",
+            "event": "failure"
+        }
+    ],
+    "events": [
+        {
+            "name": "celebrate",
+            "modules": [
+                {
+                    "type": "gpio",
+                    "pin": 10,
+                    "mode": "on-for",
+                    "duration": 10
+                }
+            ]
+        },
+        {
+            "name": "failure",
+            "modules": [
+                {
+                    "type": "gpio",
+                    "pin": 18,
+                    "mode": "on-for",
+                    "duration": 10
+                }
+            ]
+        }
+    ]
+}

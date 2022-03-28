@@ -6,13 +6,13 @@ import FirebaseStorage from './type/firebase';
 import JsonStorage from './type/json';
 import StorageType from './type';
 
-const storages = {
-    json: JsonStorage,
-    firebase: FirebaseStorage,
-};
-
 class StorageManager {
     storage: StorageType | null = null;
+
+    storages = {
+        json: JsonStorage,
+        firebase: FirebaseStorage,
+    };
 
     async init(): Promise<void> {
         console.log('[storage/manager] Init.');
@@ -25,16 +25,16 @@ class StorageManager {
     determineStorageType() {
         const desiredStorageType = process.env.STORAGE_TYPE || 'json';
 
-        if (!(desiredStorageType in storages)) {
+        if (!(desiredStorageType in this.storages)) {
             console.log(
                 `[storage/manager] STORAGE_TYPE ${desiredStorageType} is not valid. Please select 1 of: ${Object.keys(
-                    storages
+                    this.storages
                 ).join(', ')}.`
             );
             process.exit(1);
         }
 
-        this.storage = storages[desiredStorageType];
+        this.storage = this.storages[desiredStorageType];
 
         if (!this.storage.validateEnvironment()) {
             console.log(`[storage/manager] Could not set up status persistence for type ${desiredStorageType}.`);
