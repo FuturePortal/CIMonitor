@@ -43,7 +43,13 @@ export const Button = styled.button`
     width: ${(actionWidth - brandSize) / 2}rem;
     font-size: ${iconSize}rem;
     cursor: pointer;
-    transition: background 300ms;
+    transition: background 100ms;
+
+    svg {
+        fill: #fff;
+        height: 1.5rem;
+        transform: translateY(0.15rem);
+    }
 
     &:first-child {
         border-top-left-radius: ${radius}rem;
@@ -54,7 +60,7 @@ export const Button = styled.button`
     }
 
     &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
     }
 `;
 
