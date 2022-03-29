@@ -1,28 +1,35 @@
+ARG QEMU_BINARY=notset
+ARG BASE_IMAGE=node:16-slim
+
 # ==================================
 # Base stage
 # ==================================
 
-FROM node:16-alpine as base
+FROM ${BASE_IMAGE} as base
 
 WORKDIR /CIMonitor
 
 # ==================================
-# Local development server
+# Local development module-client
 # ==================================
 
-FROM base as server
+FROM base as module-client
 
 ENV NODE_PATH=/CIMonitor
 
-CMD ["npm", "run", "server"]
+CMD ["npm", "run", "module-client"]
 
 # ==================================
-# Local development dashboard
+# Production build - QEMU emulator
 # ==================================
 
-FROM base as dashboard
+FROM base as production-qemu
 
-CMD ["npm", "run", "dashboard"]
+COPY ./${QEMU_BINARY}* /usr/bin/
+
+RUN echo "deb http://deb.debian.org/debian unstable main contrib non-free" >> /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install dumb-init
 
 # ==================================
 # Production
@@ -31,14 +38,14 @@ CMD ["npm", "run", "dashboard"]
 FROM base as production
 
 ENV NODE_ENV=production
-
 ENV NODE_PATH=/CIMonitor/app
+
+# Copy dumb-init from the QEMU stage
+COPY --from=production-qemu /usr/bin/dumb-init /usr/bin/dumb-init
 
 # Make sure "yarn build" is ran before building the production container
 COPY . /CIMonitor
 
-RUN apk add --no-cache dumb-init
-
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start-client"]

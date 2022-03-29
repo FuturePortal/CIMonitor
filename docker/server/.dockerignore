@@ -1,0 +1,11 @@
+# Ignore everything...
+**
+
+# ...but keep files/dirs:
+!/app
+!/dashboard
+!/node_modules
+!/package.json
+
+# ... and also keep the QEMU emulator for cross compiling:
+!/qemu-*-static
