@@ -32,7 +32,7 @@ export const Details = styled.div`
 `;
 
 export const Project = styled.h1`
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
     ${ellipsisLeft};
 `;
@@ -47,6 +47,7 @@ export const Container = styled.div<StatusProps>`
     margin-bottom: 1rem;
     max-width: 100%;
     overflow: hidden;
+    font-size: 1.5rem;
 
     ${Box}, ${LinkBox} {
         background: ${(props) => stateDarkColor[props.state]};

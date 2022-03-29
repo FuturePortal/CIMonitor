@@ -26,6 +26,7 @@ type StageProps = {
 export const Stage = styled.div<StageProps>`
     background: ${(props) => stateDarkColor[props.state]};
     padding: 0.3rem 0.5rem;
+    font-size: 1.5rem;
     ${ellipsis};
 
     ${(props) =>
