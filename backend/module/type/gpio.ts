@@ -27,19 +27,22 @@ class GpioModule extends ModuleType {
         }
     }
 
-    gpio(pin: number, on: boolean) {
-        console.log(`[module/gpio] gpio set ${pin} ${on ? '1' : '0'}.`);
-        exec(`gpio set ${pin} ${on ? '1' : '0'}`, (error, stdout, stderr) => {
-            if (error) {
-                console.log(`[module/gpio] Could not execute gpio command for pin ${pin}.`);
-                console.error(error);
-            }
+    handleExecError(error, stdout, stderr) {
+        if (error) {
+            console.log(`[module/gpio] Could not execute gpio command.`);
+            console.error(error);
+        }
 
-            if (stderr) {
-                console.log(`[module/gpio] Could not execute gpio command for pin ${pin}.`);
-                console.error(stderr);
-            }
-        });
+        if (stderr) {
+            console.log(`[module/gpio] Could not execute gpio command.`);
+            console.error(stderr);
+        }
+    }
+
+    gpio(pin: number, on: boolean) {
+        console.log(`[module/gpio] gpio set ${pin} ${on ? 'on' : 'off'}.`);
+        exec(`gpio mode ${pin} out`, this.handleExecError);
+        exec(`gpio set ${pin} ${on ? '0' : '1'}`, this.handleExecError);
     }
 }
 
