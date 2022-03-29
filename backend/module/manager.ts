@@ -1,5 +1,5 @@
 import StatusEvents from 'backend/status/events';
-import { ModuleEvent, ModuleTrigger } from 'types/module';
+import { ModuleConfig, ModuleEvent, ModuleTrigger } from 'types/module';
 import Status from 'types/status';
 
 import GpioModule from './type/gpio';
@@ -32,18 +32,49 @@ class ModuleManager {
         }
 
         console.log('[module/manager] Watching status events to trigger modules...');
-        StatusEvents.on(StatusEvents.event.newStatus, (status) => this.onStatusUpdate(status));
-        StatusEvents.on(StatusEvents.event.patchStatus, (status) => this.onStatusUpdate(status));
+
+        StatusEvents.on(StatusEvents.event.statusStateChange, (status) => this.checkStatusTriggers(status));
+        StatusEvents.on(StatusEvents.event.newStatus, (status) => this.checkStatusTriggers(status));
 
         return true;
     }
 
-    onStatusUpdate(status: Status) {
-        status;
+    checkStatusTriggers(status: Status) {
+        console.log(`=> Status: ${status.id} ${status.state}`);
 
-        // TODO: check if a trigger matches the status
+        for (const trigger of this.triggers) {
+            let triggerMatchesStatus = true;
 
-        // TODO: fire module for the matched event
+            for (const [statusKey, statusValue] of Object.entries(trigger.status)) {
+                if (!(statusKey in status && String(status[statusKey]) === String(statusValue))) {
+                    triggerMatchesStatus = false;
+                }
+            }
+
+            if (triggerMatchesStatus) {
+                console.log(`[module/manager] Trigger match! Firing event ${trigger.event}.`);
+                this.fireEvent(trigger.event);
+            }
+        }
+    }
+
+    fireEvent(name: string) {
+        console.log(`[module/manager] Firing event ${name}...`);
+
+        const event = this.events.find((event) => event.name === name);
+
+        if (!event) {
+            console.log(`[module/manager] No event found with name "${name}".`);
+        }
+
+        event.modules.map((module: ModuleConfig) => {
+            if (!(module.type in this.modules)) {
+                console.log(`[module/manager] No module found with type "${module.type}".`);
+                return;
+            }
+
+            this.modules[module.type].fire(module);
+        });
     }
 }
 

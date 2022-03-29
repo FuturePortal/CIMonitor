@@ -40,6 +40,11 @@ class SocketManager {
         );
 
         StatusEvents.on(
+            StatusEvents.event.statusStateChange,
+            (status: Status) => this.socket && this.socket.sockets.emit(socketEvent.statusStateChange, status)
+        );
+
+        StatusEvents.on(
             StatusEvents.event.deleteAllStatuses,
             () => this.socket && this.socket.sockets.emit(socketEvent.allStatuses, [])
         );

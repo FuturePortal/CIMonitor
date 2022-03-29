@@ -1,11 +1,12 @@
 import ModuleType from 'backend/module/type';
-import { HttpModule as HttpType } from 'types/module';
+import { ModuleConfig } from 'types/module';
 
 class HttpModule extends ModuleType {
     name: 'HTTP';
 
-    fire(config: HttpType): void {
-        config;
+    fire(config: ModuleConfig): void {
+        console.log('[module/http] FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE');
+        console.log(config);
     }
 }
 

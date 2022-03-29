@@ -30,9 +30,9 @@ class SocketClient {
             console.log(`[socket/client] lost connection to ${process.env.CIMONITOR_SERVER_URL}.`);
         });
 
-        socket.on(socketEvent.patchStatus, (status) => {
-            console.log(`[socket/client] Received patched status.`);
-            StatusEvents.emit(StatusEvents.event.patchStatus, status);
+        socket.on(socketEvent.statusStateChange, (status) => {
+            console.log(`[socket/client] Received changed state status.`);
+            StatusEvents.emit(StatusEvents.event.statusStateChange, status);
         });
 
         socket.on(socketEvent.newStatus, (status) => {

@@ -53,6 +53,10 @@ class StatusManager {
                     const updatedStatus = this.cleanStatus(status);
                     console.log(`[status/manager] Replaced existing status ${updatedStatus.id}.`);
                     StatusEvents.emit(StatusEvents.event.patchStatus, updatedStatus);
+                    if (existingStatus.state !== updatedStatus.state) {
+                        console.log(`[status/manager] fired status change state.`);
+                        StatusEvents.emit(StatusEvents.event.statusStateChange, updatedStatus);
+                    }
                     replaced = true;
                     return updatedStatus;
                 }

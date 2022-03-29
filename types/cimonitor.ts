@@ -21,6 +21,7 @@ export const socketEvent = {
     newStatus: 'status-new',
     patchStatus: 'status-patch',
     deleteStatus: 'status-delete',
+    statusStateChange: 'status-state-change',
     requestAllStatuses: 'status-request',
 };
 

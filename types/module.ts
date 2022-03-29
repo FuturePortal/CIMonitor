@@ -1,10 +1,9 @@
+import { State } from 'types/status';
+
 export type GpioModule = {
     type: 'gpio';
     pin: number;
     mode: 'on' | 'off' | 'on-for' | 'off-for';
-} & {
-    mode: 'on-for' | 'off-for';
-    duration: number;
 };
 
 export type HttpModule = {
@@ -17,6 +16,7 @@ export type ModuleConfig = GpioModule | HttpModule;
 export type ModuleTrigger = {
     event: string;
     status: {
+        state: State;
         [key: string]: string;
     };
 };

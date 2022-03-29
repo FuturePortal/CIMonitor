@@ -1,11 +1,12 @@
 import ModuleType from 'backend/module/type';
-import { GpioModule as GpioType } from 'types/module';
+import { ModuleConfig } from 'types/module';
 
 class GpioModule extends ModuleType {
     name: 'GPIO';
 
-    fire(config: GpioType): void {
-        config;
+    fire(config: ModuleConfig): void {
+        console.log('[module/gpio] FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE');
+        console.log(config);
     }
 }
 

@@ -1,3 +1,6 @@
+# Modules
+
+```json
 {
     "triggers": [
         {
@@ -9,7 +12,11 @@
             "event": "celebrate"
         },
         {
-            "state": "error",
+            "status": {
+                "project": "CIMonitor / CIMonitor",
+                "state": "error",
+                "branch": "master"
+            },
             "event": "failure"
         }
     ],
@@ -38,3 +45,4 @@
         }
     ]
 }
+```
