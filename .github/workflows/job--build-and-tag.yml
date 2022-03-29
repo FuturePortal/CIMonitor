@@ -2,7 +2,17 @@ name: Build and tag CIMonitor container
 on:
   workflow_call:
     inputs:
-      TAG:
+      BASE_IMAGE:
+        required: true
+        type: string
+      DOCKER_DIRECTORY:
+        default: docker/server
+        required: false
+        type: string
+      QEMU_ARCH:
+        required: false
+        type: string
+      DOCKER_IMAGE:
         required: true
         type: string
     secrets:
@@ -27,8 +37,19 @@ jobs:
       - name: Install production dependencies
         run: yarn install --production --ignore-scripts
 
+      - name : Install QEMU emulator
+        run: |
+          if [ -n "${{ inputs.QEMU_ARCH }}" ]; then
+            wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
+            tar xfvz x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
+            docker run --rm --privileged multiarch/qemu-user-static:register --reset
+          fi
+
+      - name: Copy Docker files
+        run: cp ${{ inputs.DOCKER_DIRECTORY }}/Dockerfile ${{ inputs.DOCKER_DIRECTORY }}/.dockerignore .
+
       - name: Build CIMonitor image
-        run: docker build --target production --tag cimonitor/server:${{ inputs.TAG }} .
+        run: docker build --target production --tag ${{ inputs.DOCKER_IMAGE }} --build-arg BASE_IMAGE=${{ inputs.BASE_IMAGE }} --build-arg QEMU_BINARY=qemu-${{ inputs.QEMU_ARCH }}-static .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -37,4 +58,4 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Push docker image to the hub
-        run: docker push cimonitor/server:${{ inputs.TAG }}
+        run: docker push ${{ inputs.DOCKER_IMAGE }}
