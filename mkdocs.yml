@@ -20,4 +20,6 @@ pages:
     - GitLab: webhook/gitlab.md
     - Read the docs: webhook/readthedocs.md
   - Modules: modules.md
+  - Module:
     - GPIO: module/gpio.md
+  - Module client: module-client.md
