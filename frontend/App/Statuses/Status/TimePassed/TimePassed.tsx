@@ -17,7 +17,7 @@ const getTimePassed = (since: string): string => {
 
     if (timePassed < 60 * 60) {
         const minutes = Math.floor(timePassed / 60);
-        return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
     }
 
     if (timePassed < 60 * 60 * 24) {

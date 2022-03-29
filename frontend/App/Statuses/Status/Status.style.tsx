@@ -32,7 +32,7 @@ export const Details = styled.div`
 `;
 
 export const Project = styled.h1`
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
     ${ellipsisLeft};
 `;
@@ -52,7 +52,7 @@ export const Container = styled.div<StatusProps>`
         background: ${(props) => stateDarkColor[props.state]};
 
         svg {
-            transform: translatey(0.25rem) scale(1.4);
+            transform: translateY(0.15rem) scale(1.4);
             height: 1rem;
             fill: ${textColor};
         }

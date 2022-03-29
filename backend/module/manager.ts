@@ -40,8 +40,6 @@ class ModuleManager {
     }
 
     checkStatusTriggers(status: Status) {
-        console.log(`=> Status: ${status.id} ${status.state}`);
-
         for (const trigger of this.triggers) {
             let triggerMatchesStatus = true;
 
