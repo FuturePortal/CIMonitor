@@ -42,7 +42,7 @@ class GpioModule extends ModuleType {
     gpio(pin: number, on: boolean) {
         console.log(`[module/gpio] gpio set ${pin} ${on ? 'on' : 'off'}.`);
         exec(`gpio mode ${pin} out`, this.handleExecError);
-        exec(`gpio set ${pin} ${on ? '0' : '1'}`, this.handleExecError);
+        exec(`gpio write ${pin} ${on ? '0' : '1'}`, this.handleExecError);
     }
 }
 
