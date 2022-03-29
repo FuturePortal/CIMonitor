@@ -4,6 +4,7 @@ export type GpioModule = {
     type: 'gpio';
     pin: number;
     mode: 'on' | 'off' | 'on-for' | 'off-for';
+    duration?: number;
 };
 
 export type HttpModule = {

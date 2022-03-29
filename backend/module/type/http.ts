@@ -5,8 +5,13 @@ class HttpModule extends ModuleType {
     name: 'HTTP';
 
     fire(config: ModuleConfig): void {
-        console.log('[module/http] FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE FIRE');
-        console.log(config);
+        if (config.type !== 'http') {
+            return;
+        }
+
+        console.log(`[module/gpio] Triggering HTTP ${config.url}...`);
+
+        // TODO: not important for now
     }
 }
 
