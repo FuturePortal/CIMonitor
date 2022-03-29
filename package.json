@@ -16,6 +16,7 @@
     ],
     "scripts": {
         "start": "node app/backend/server.js",
+        "start-client": "node app/backend/module-client.js",
         "build": "tsc && parcel build --dist-dir dashboard --no-source-maps frontend/index.html",
         "server": "nodemon --watch backend --exec ts-node backend/server.ts",
         "module-client": "nodemon --watch backend --exec ts-node backend/module-client.ts",
