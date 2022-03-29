@@ -5,7 +5,7 @@ import { stateColor, textMutedColor } from '/frontend/style/colors';
 export const Switch = styled.div`
     position: absolute;
     top: 0.2rem;
-    right: 0.2rem;
+    right: 2.1rem;
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 50%;
@@ -46,7 +46,7 @@ export const Button = styled.button<ButtonProps>`
 
             ${Switch} {
                 background: ${stateColor.success};
-                right: 2.1rem;
+                right: 0.2rem;
             }
         `}
 `;
