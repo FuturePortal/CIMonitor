@@ -1,6 +1,6 @@
 {
     "name": "cimonitor",
-    "version": "4.1.4",
+    "version": "4.2.0",
     "description": "Monitors all your projects CI automatically",
     "repository": "git@github.com:CIMonitor/CIMonitor.git",
     "license": "MIT",
@@ -18,6 +18,7 @@
         "start": "node app/backend/server.js",
         "build": "tsc && parcel build --dist-dir dashboard --no-source-maps frontend/index.html",
         "server": "nodemon --watch backend --exec ts-node backend/server.ts",
+        "module-client": "nodemon --watch backend --exec ts-node backend/module-client.ts",
         "dashboard": "parcel watch --dist-dir dashboard --hmr-port 3031 frontend/index.html",
         "cypress-run": "cypress run",
         "cypress-open": "cypress open",
@@ -29,7 +30,8 @@
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
         "firebase-admin": "^10.0.2",
-        "socket.io": "^4.4.1"
+        "socket.io": "^4.4.1",
+        "socket.io-client": "^4.4.1"
     },
     "devDependencies": {
         "@cimonitor/parcel-transformer-package-version": "^0.1.0",
@@ -62,7 +64,6 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-redux": "^7.2.6",
-        "socket.io-client": "^4.4.1",
         "styled-components": "^5.3.3",
         "ts-node": "^10.7.0",
         "typescript": "^4.5.5"

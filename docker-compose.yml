@@ -13,6 +13,15 @@ services:
     ports:
       - "3030:3030"
 
+  module-client:
+    build:
+      context: .
+      target: server
+    volumes:
+      - .:/CIMonitor
+    user: ${USERID}:${GROUPID}
+    command: sh -c "npm run module-client"
+
   dashboard:
     build:
       context: .

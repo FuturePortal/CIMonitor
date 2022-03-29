@@ -2,7 +2,8 @@ import FirebaseAdmin from 'firebase-admin';
 
 import FirebaseDataParser from 'backend/parser/firebase';
 import StorageType from 'backend/storage/type';
-import ServerSettings from 'types/server';
+import { ServerSettings } from 'types/cimonitor';
+import { ModuleSettings } from 'types/module';
 import Status from 'types/status';
 
 class FirebaseStorage extends StorageType {
@@ -46,7 +47,26 @@ class FirebaseStorage extends StorageType {
     }
 
     async loadSettings(): Promise<ServerSettings> {
-        return this.load('settings');
+        try {
+            return this.load('settings');
+        } catch (error) {
+            console.error(`[storage/type/firebase] ${error}`);
+            console.log(`[storage/type/firebase] Returning default settings`);
+            return {};
+        }
+    }
+
+    async loadModules(): Promise<ModuleSettings> {
+        try {
+            return this.load('modules');
+        } catch (error) {
+            console.error(`[storage/type/firebase] ${error}`);
+            console.log(`[storage/type/firebase] Returning default settings`);
+            return {
+                triggers: [],
+                events: [],
+            };
+        }
     }
 
     async loadStatuses(): Promise<Status[]> {

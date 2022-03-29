@@ -1,5 +1,5 @@
-import StatusManager from 'backend/status/manager';
-import ServerSettings from 'types/server';
+import { ServerSettings } from 'types/cimonitor';
+import { ModuleSettings } from 'types/module';
 import Status from 'types/status';
 
 import FirebaseStorage from './type/firebase';
@@ -14,12 +14,10 @@ class StorageManager {
         firebase: FirebaseStorage,
     };
 
-    async init(): Promise<void> {
+    init() {
         console.log('[storage/manager] Init.');
 
         this.determineStorageType();
-
-        await this.load();
     }
 
     determineStorageType() {
@@ -44,24 +42,16 @@ class StorageManager {
         console.log(`[storage/manager] Using storage type ${this.storage.name}.`);
     }
 
-    async load(): Promise<void> {
-        try {
-            const statuses = await this.storage.loadStatuses();
+    async loadStatuses(): Promise<Status[]> {
+        return this.storage.loadStatuses();
+    }
 
-            if (statuses.length > 0) {
-                StatusManager.setStatuses(statuses);
-            }
+    async loadSettings(): Promise<ServerSettings> {
+        return this.storage.loadSettings();
+    }
 
-            const settings = await this.storage.loadSettings();
-
-            if (settings) {
-                // TODO: set server settings
-            }
-        } catch (error) {
-            console.log(`[storage/manager] Couldn't set up status persistence for type ${this.storage.name}.`);
-            console.log(error);
-            process.exit(1);
-        }
+    async loadModules(): Promise<ModuleSettings> {
+        return this.storage.loadModules();
     }
 
     saveSettings(settings: ServerSettings) {

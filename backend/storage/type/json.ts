@@ -1,7 +1,8 @@
 import FileSystem from 'fs';
 
 import StorageType from 'backend/storage/type';
-import ServerSettings from 'types/server';
+import { ServerSettings } from 'types/cimonitor';
+import { ModuleSettings } from 'types/module';
 import Status from 'types/status';
 
 class JsonStorage extends StorageType {
@@ -9,6 +10,7 @@ class JsonStorage extends StorageType {
     storagePath = 'storage';
     settingsFile = `${this.storagePath}/settings.json`;
     statusesFile = `${this.storagePath}/statuses.json`;
+    modulesFile = `${this.storagePath}/modules.json`;
 
     validateEnvironment() {
         this.createStorageFolder();
@@ -59,6 +61,31 @@ class JsonStorage extends StorageType {
 
         console.log('[storage/type/json] Statuses loaded.');
         return statuses;
+    }
+
+    async loadModules(): Promise<ModuleSettings> {
+        console.log('[storage/type/json] Loading modules...');
+
+        let moduleSettings: ModuleSettings = {
+            triggers: [],
+            events: [],
+        };
+
+        if (!FileSystem.existsSync(this.modulesFile)) {
+            console.log('[storage/type/json] No modules file exists yet.');
+            return moduleSettings;
+        }
+
+        try {
+            moduleSettings = JSON.parse(String(FileSystem.readFileSync(this.modulesFile)));
+        } catch (error) {
+            console.log('[storage/type/json] Failed to load modules, manual check required.');
+            process.exit(1);
+            return moduleSettings;
+        }
+
+        console.log('[storage/type/json] Modules loaded.');
+        return moduleSettings;
     }
 
     saveSettings(settings: ServerSettings): void {

@@ -13,3 +13,20 @@ export type HttpModule = {
 };
 
 export type ModuleConfig = GpioModule | HttpModule;
+
+export type ModuleTrigger = {
+    event: string;
+    status: {
+        [key: string]: string;
+    };
+};
+
+export type ModuleEvent = {
+    name: string;
+    modules: ModuleConfig[];
+};
+
+export type ModuleSettings = {
+    triggers: ModuleTrigger[];
+    events: ModuleEvent[];
+};

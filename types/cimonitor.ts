@@ -23,3 +23,5 @@ export const socketEvent = {
     deleteStatus: 'status-delete',
     requestAllStatuses: 'status-request',
 };
+
+export type ServerSettings = {};
