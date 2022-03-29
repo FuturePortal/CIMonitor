@@ -19,3 +19,5 @@ pages:
     - GitHub: webhook/github.md
     - GitLab: webhook/gitlab.md
     - Read the docs: webhook/readthedocs.md
+  - Modules: modules.md
+    - GPIO: module/gpio.md
