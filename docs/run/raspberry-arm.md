@@ -63,7 +63,8 @@ Install docker following [the official docker installation guide](https://docs.d
 
 1. First, create a folder where you want to run the container: `# mkdir ~/CIMonitor`
 2. Navigate to the new folder so you can always find the saved statuses: `# cd ~/CIMonitor`
-3. See the [docker documentation](./docker.md) on what start command you should run.
+3. See the [docker documentation](./docker.md) on what start command you should run. Don't forget to append `-arm` to
+   the docker tag.
 4. You should now have CIMonitor running on the Raspberry Pi on port 3030.
 
 ## Start CIMonitor dashboard full-screen
