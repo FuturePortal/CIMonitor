@@ -10,13 +10,14 @@ type ProcessContainerProps = {
 };
 
 export const ProcessContainer = styled.div<ProcessContainerProps>`
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 0.75rem 0.75rem 0.75rem;
     background: ${(props) => stateColor[props.state]};
 `;
 
 export const Stages = styled.div`
     display: flex;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
+    font-size: 1.15em;
 `;
 
 type StageProps = {
@@ -26,7 +27,6 @@ type StageProps = {
 export const Stage = styled.div<StageProps>`
     background: ${(props) => stateDarkColor[props.state]};
     padding: 0.3rem 0.5rem;
-    font-size: 1.5rem;
     ${ellipsis};
 
     ${(props) =>

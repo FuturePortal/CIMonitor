@@ -3,6 +3,7 @@ import { ActionTypes, StateType } from './types';
 const defaultState: StateType = {
     open: false,
     showCompleted: false,
+    sizeModifier: 1,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -21,6 +22,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
             return {
                 ...state,
                 showCompleted: !state.showCompleted,
+            };
+        case 'settings-size-modifier-set':
+            return {
+                ...state,
+                sizeModifier: action.sizeModifier,
             };
         default:
             return state;

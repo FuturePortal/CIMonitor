@@ -7,7 +7,7 @@ jobs:
   test:
     uses: ./.github/workflows/job--test-and-lint.yml
 
-  build-server:
+  server:
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -18,7 +18,7 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
-  build-server-arm:
+  server-arm:
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -30,7 +30,7 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
-  build-module-client:
+  module-client:
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -41,7 +41,7 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
-  build-module-client-arm:
+  module-client-arm:
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:

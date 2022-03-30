@@ -1,6 +1,12 @@
 export type StateType = {
     open: boolean;
     showCompleted: boolean;
+    sizeModifier: number;
+};
+
+export type SetSizeModifierAction = {
+    type: 'settings-size-modifier-set';
+    sizeModifier: number;
 };
 
 export type ToggleShowCompletedAction = {
@@ -15,4 +21,8 @@ export type CloseSettingsPanelAction = {
     type: 'settings-panel-close';
 };
 
-export type ActionTypes = ToggleSettingsPanelAction | CloseSettingsPanelAction | ToggleShowCompletedAction;
+export type ActionTypes =
+    | ToggleSettingsPanelAction
+    | CloseSettingsPanelAction
+    | ToggleShowCompletedAction
+    | SetSizeModifierAction;

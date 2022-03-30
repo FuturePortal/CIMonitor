@@ -12,12 +12,14 @@ export const Boxes = styled.div`
 `;
 
 export const Box = styled.div`
+    font-size: 1.15em;
     padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
     ${ellipsis};
 `;
 
 export const LinkBox = styled.a`
+    font-size: 1.15em;
     padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
     text-decoration: none;
@@ -32,8 +34,8 @@ export const Details = styled.div`
 `;
 
 export const Project = styled.h1`
-    font-size: 3rem;
     margin-bottom: 0.5rem;
+    font-size: 2em;
     ${ellipsisLeft};
 `;
 
@@ -43,19 +45,25 @@ type StatusProps = {
 
 export const Container = styled.div<StatusProps>`
     background: ${(props) => stateColor[props.state]};
-    color: #222222;
+    color: ${textColor};
     margin-bottom: 1rem;
     max-width: 100%;
     overflow: hidden;
-    font-size: 1.5rem;
 
     ${Box}, ${LinkBox} {
+        position: relative;
         background: ${(props) => stateDarkColor[props.state]};
+        min-width: 1.6em;
 
         svg {
-            transform: translateY(0.15rem) scale(1.4);
-            height: 1rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -0.5em 0 0 -0.5em;
+            height: 1em;
+            width: 1em;
             fill: ${textColor};
+            transform: scale(1.2);
         }
     }
 
@@ -74,14 +82,16 @@ export const Container = styled.div<StatusProps>`
 `;
 
 export const Body = styled.div`
-    padding: 1rem 1rem 0.75rem;
+    padding: 0.75rem;
     display: flex;
 `;
 
 export const UserImage = styled.div`
+    flex-shrink: 0;
+
     img {
         border-radius: 50%;
-        max-width: 6rem;
-        max-height: 6rem;
+        width: 6rem;
+        height: 6rem;
     }
 `;

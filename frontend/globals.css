@@ -4,10 +4,14 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    font-size: 18px;
+}
+
 body {
     background: #333;
     color: #fff;
-    font-size: 18px;
     font-family: 'Fredoka', sans-serif;
     min-height: 100vh;
     line-height: 1.1;

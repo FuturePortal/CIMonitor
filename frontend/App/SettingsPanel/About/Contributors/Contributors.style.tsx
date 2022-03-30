@@ -36,7 +36,6 @@ export const Location = styled.div`
 
 export const Handle = styled.span`
     color: ${textMutedColor};
-    padding-left: 0.3rem;
 `;
 
 export const Contributions = styled.a`

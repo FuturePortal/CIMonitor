@@ -22,7 +22,7 @@ on:
         required: true
 jobs:
   build-and-tag-container:
-    name: Build and tag CIMonitor container
+    name: build & tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
