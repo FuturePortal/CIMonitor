@@ -16,5 +16,5 @@ trim_trailing_whitespace = true
 indent_style = tab
 
 # Yaml files indent with 2 spaces due to their weird array syntax
-[{*.yaml,*.yml}]
+[*.{yaml,yml,md}]
 indent_size = 2

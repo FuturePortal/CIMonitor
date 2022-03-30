@@ -19,6 +19,11 @@ metadata:
         app: cimonitor-server
 spec:
     replicas: 1
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 0
     selector:
         matchLabels:
             app: cimonitor-server
@@ -82,6 +87,18 @@ spec:
                             name: cimonitor-server-service
                             port:
                                 number: 80
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: cimonitor-server-disruption-budget
+    namespace: cimonitor
+spec:
+    minAvailable: 0
+    selector:
+        matchLabels:
+            app: cimonitor-server
 ```
 
 ## Running with Firebase storage

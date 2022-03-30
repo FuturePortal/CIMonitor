@@ -54,7 +54,7 @@ export const Step = styled.div<StepProps>`
     ${ellipsis};
 
     ${(props) =>
-        ['running', 'pending'].includes(props.state) &&
+        ['running', 'pending', 'soft-failed'].includes(props.state) &&
         css`
             background: ${stateDarkColor['warning']};
         `}
