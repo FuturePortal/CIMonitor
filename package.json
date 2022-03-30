@@ -73,8 +73,11 @@
         "*.{ts,tsx}": [
             "eslint --fix"
         ],
-        "*.{json,md,css,html}": [
+        "*.{json,css,html}": [
             "prettier --write"
+        ],
+        "*.md": [
+            "prettier --write --tab-width 2"
         ]
     }
 }
