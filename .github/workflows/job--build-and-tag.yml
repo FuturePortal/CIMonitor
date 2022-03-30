@@ -3,16 +3,21 @@ on:
   workflow_call:
     inputs:
       BASE_IMAGE:
+        description: Base build of what docker image
         required: true
         type: string
       DOCKER_DIRECTORY:
+        description: Directory to get the docker files from
         default: docker/server
         required: false
         type: string
       QEMU_ARCH:
+        description: QEMU architecture to build on
         required: false
         type: string
+        default: none
       DOCKER_IMAGE:
+        description: Docker image tag to push into the docker hub
         required: true
         type: string
     secrets:
@@ -38,12 +43,11 @@ jobs:
         run: yarn install --production --ignore-scripts
 
       - name : Install QEMU emulator
+        if: ${{ inputs.QEMU_ARCH != 'none' }}
         run: |
-          if [ -n "${{ inputs.QEMU_ARCH }}" ]; then
-            wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
-            tar xfvz x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
-            docker run --rm --privileged multiarch/qemu-user-static:register --reset
-          fi
+          wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
+          tar xfvz x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
       - name: Copy Docker files
         run: cp ${{ inputs.DOCKER_DIRECTORY }}/Dockerfile ${{ inputs.DOCKER_DIRECTORY }}/.dockerignore .
