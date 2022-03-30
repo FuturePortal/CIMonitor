@@ -12,19 +12,28 @@ export const Boxes = styled.div`
 `;
 
 export const Box = styled.div`
+    position: relative;
     font-size: 1.15em;
     padding: 0.3rem 0.5rem;
     border-radius: 0.25rem;
+    min-width: 1.6em;
+    min-height: 2rem;
     ${ellipsis};
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -0.5em 0 0 -0.5em;
+        height: 1em;
+        width: 1em;
+        transform: scale(1.2);
+    }
 `;
 
-export const LinkBox = styled.a`
-    font-size: 1.15em;
-    padding: 0.3rem 0.5rem;
-    border-radius: 0.25rem;
+export const LinkBox = styled(Box).attrs({ as: 'a' })`
     text-decoration: none;
     color: ${textColor};
-    ${ellipsis};
 `;
 
 export const Details = styled.div`
@@ -50,20 +59,11 @@ export const Container = styled.div<StatusProps>`
     max-width: 100%;
     overflow: hidden;
 
-    ${Box}, ${LinkBox} {
-        position: relative;
+    ${Box} {
         background: ${(props) => stateDarkColor[props.state]};
-        min-width: 1.6em;
 
         svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -0.5em 0 0 -0.5em;
-            height: 1em;
-            width: 1em;
             fill: ${textColor};
-            transform: scale(1.2);
         }
     }
 

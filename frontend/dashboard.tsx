@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
 
-console.log('[Frontend] init dashboard.');
+console.log('[frontend] init dashboard.');
 
 render(
     <StrictMode>
