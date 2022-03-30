@@ -12,6 +12,7 @@ pages:
     - Docker: run/docker.md
     - Kubernetes: run/kubernetes.md
     - Locally with node: run/locally.md
+    - Raspberry Pi (ARM): run/raspberry-arm.md
   - Configuration:
     - Evironment variables: config/environment.md
     - Firebase: config/firebase.md
