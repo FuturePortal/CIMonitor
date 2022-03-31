@@ -56,13 +56,19 @@ export const Step = styled.div<StepProps>`
     ${(props) =>
         ['running', 'pending', 'soft-failed'].includes(props.state) &&
         css`
-            background: ${stateDarkColor['warning']};
+            background: ${stateDarkColor.warning};
+        `}
+
+    ${(props) =>
+        props.state === 'skipped' &&
+        css`
+            background: ${stateDarkColor.success}55;
         `}
 
     ${(props) =>
         props.state === 'failed' &&
         css`
-            background: ${stateDarkColor['error']};
+            background: ${stateDarkColor.error};
         `}
 `;
 

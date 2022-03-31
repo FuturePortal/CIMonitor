@@ -1,6 +1,6 @@
 export type GitHubStatus = 'queued' | 'completed' | 'in_progress';
 
-export type GitHubConclusion = null | 'success' | 'failure';
+export type GitHubConclusion = null | 'success' | 'failure' | 'skipped';
 
 type GitHubRepository = {
     id: number;

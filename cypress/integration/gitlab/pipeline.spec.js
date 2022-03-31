@@ -15,7 +15,9 @@ context('A running GitLab pipeline', () => {
     it('test pushes pipeline step by step', () => {
         // Push all created events
         for (let count = 11; count <= 56; count++) {
-            cy.wait(500);
+            if (count > 1) {
+                cy.wait(300);
+            }
             cy.gitlab(`pipeline/${count}`);
         }
     });

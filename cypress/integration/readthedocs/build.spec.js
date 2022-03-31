@@ -6,16 +6,15 @@ context('A running read the docs push', () => {
     });
 
     it('pushes a failed build', () => {
-        for (let count = 1; count <= 2; count++) {
-            cy.wait(1000);
-            cy.readthedocs(`build-failed/${count}`);
-        }
+        cy.readthedocs(`build-failed/1`);
+        cy.wait(1000);
+        cy.readthedocs(`build-failed/2`);
     });
 
     it('pushes a successful build', () => {
-        for (let count = 1; count <= 2; count++) {
-            cy.wait(1000);
-            cy.readthedocs(`build-success/${count}`);
-        }
+        cy.wait(2000);
+        cy.readthedocs(`build-success/1`);
+        cy.wait(1000);
+        cy.readthedocs(`build-success/2`);
     });
 });

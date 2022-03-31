@@ -23,6 +23,10 @@ export const getJobStateFromStatus = (status: GitHubStatus, conclusion: GitHubCo
             return 'failed';
         }
 
+        if (conclusion === 'skipped') {
+            return 'skipped';
+        }
+
         return 'success';
     }
 

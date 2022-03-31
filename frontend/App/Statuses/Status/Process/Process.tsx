@@ -18,6 +18,7 @@ const getStateIcon = (state: StepState | State) => {
         'soft-failed': 'report_problem',
         pending: 'update',
         created: 'push_pin',
+        skipped: 'skip_next',
     };
 
     return icons[state] || 'info';
@@ -44,7 +45,7 @@ const Process = ({ process }: Props): ReactElement => {
                             </Stage>
                             {stage.steps &&
                                 stage.steps.map((step) => {
-                                    if (step.state === 'success' && !showCompleted) {
+                                    if (['success', 'skipped'].includes(step.state) && !showCompleted) {
                                         return null;
                                     }
 
