@@ -8,11 +8,10 @@ on:
         type: string
       DOCKER_DIRECTORY:
         description: Directory to get the docker files from
-        default: docker/server
-        required: false
+        required: true
         type: string
       QEMU_ARCH:
-        description: QEMU architecture to build on
+        description: QEMU architecture to emulate
         required: false
         type: string
         default: none

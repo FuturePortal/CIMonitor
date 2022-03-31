@@ -19,6 +19,7 @@ const getStateIcon = (state: StepState | State) => {
         pending: 'update',
         created: 'push_pin',
         skipped: 'skip_next',
+        timeout: 'auto_delete',
     };
 
     return icons[state] || 'info';

@@ -1,7 +1,7 @@
 import slug from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 import { GitHubWorkflowJob } from 'types/github';
-import Status, { Process, Stage, State, Step, StepState } from 'types/status';
+import Status, { Process, Stage, Step, StepState } from 'types/status';
 
 import { getJobStateFromStatus } from './helper';
 
@@ -57,24 +57,7 @@ class GitHubJobParser {
         return {
             ...process,
             stages,
-            state: this.determineProcessState(stages),
         };
-    }
-
-    determineProcessState(stages: Stage[]): State {
-        if (stages.length === 0) {
-            return 'warning';
-        }
-
-        if (stages.find((stage) => ['running', 'pending'].includes(stage.state))) {
-            return 'warning';
-        }
-
-        if (stages.find((stage) => stage.state === 'failed')) {
-            return 'error';
-        }
-
-        return 'success';
     }
 
     isStepNotBlacklisted(stepId: string): boolean {

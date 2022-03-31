@@ -1,6 +1,14 @@
 export type State = 'info' | 'warning' | 'error' | 'success';
 
-export type StepState = 'created' | 'pending' | 'running' | 'success' | 'failed' | 'soft-failed' | 'skipped';
+export type StepState =
+    | 'created'
+    | 'pending'
+    | 'running'
+    | 'success'
+    | 'failed'
+    | 'soft-failed'
+    | 'skipped'
+    | 'timeout';
 
 export type Step = {
     id: string;

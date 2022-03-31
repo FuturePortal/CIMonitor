@@ -36,7 +36,7 @@ export const Stage = styled.div<StageProps>`
         `}
 
     ${(props) =>
-        props.state === 'failed' &&
+        ['failed', 'timeout'].includes(props.state) &&
         css`
             background: ${stateDarkColor['error']};
         `}
@@ -66,7 +66,7 @@ export const Step = styled.div<StepProps>`
         `}
 
     ${(props) =>
-        props.state === 'failed' &&
+        ['failed', 'timeout'].includes(props.state) &&
         css`
             background: ${stateDarkColor.error};
         `}
