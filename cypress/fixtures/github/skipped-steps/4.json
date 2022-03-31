@@ -5,85 +5,28 @@
         "content-type": "application/json"
     },
     "body": {
-        "action": "completed",
+        "action": "queued",
         "workflow_job": {
-            "id": 5762187712,
-            "run_id": 2067619100,
-            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/2067619100",
-            "run_attempt": 3,
-            "node_id": "CR_kwDOA1saOs8AAAABV3QBwA",
-            "head_sha": "e0925205858b2f358c1395a26ca0d5db7121af6f",
-            "url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/jobs/5762187712",
-            "html_url": "https://github.com/CIMonitor/CIMonitor/runs/5762187712?check_suite_focus=true",
-            "status": "completed",
-            "conclusion": "success",
-            "started_at": "2022-03-30T22:07:34Z",
-            "completed_at": "2022-03-30T22:08:15Z",
+            "id": 5767944923,
+            "run_id": 2069935594,
+            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/2069935594",
+            "run_attempt": 1,
+            "node_id": "CR_kwDOA1saOs8AAAABV8va2w",
+            "head_sha": "55580f9eee19f329b3912733d09588d63a0c1492",
+            "url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/jobs/5767944923",
+            "html_url": "https://github.com/CIMonitor/CIMonitor/runs/5767944923?check_suite_focus=true",
+            "status": "queued",
+            "conclusion": null,
+            "started_at": "2022-03-31T08:45:49Z",
+            "completed_at": null,
             "name": "test / run all tests",
-            "steps": [
-                {
-                    "name": "Set up job",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 1,
-                    "started_at": "2022-03-30T22:07:34.000Z",
-                    "completed_at": "2022-03-30T22:07:35.000Z"
-                },
-                {
-                    "name": "Checkout branch",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 2,
-                    "started_at": "2022-03-30T22:07:35.000Z",
-                    "completed_at": "2022-03-30T22:07:36.000Z"
-                },
-                {
-                    "name": "Install development dependencies",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 3,
-                    "started_at": "2022-03-30T22:07:36.000Z",
-                    "completed_at": "2022-03-30T22:07:59.000Z"
-                },
-                {
-                    "name": "Run typescript check",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 4,
-                    "started_at": "2022-03-30T22:08:00.000Z",
-                    "completed_at": "2022-03-30T22:08:09.000Z"
-                },
-                {
-                    "name": "Run eslint check",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 5,
-                    "started_at": "2022-03-30T22:08:09.000Z",
-                    "completed_at": "2022-03-30T22:08:14.000Z"
-                },
-                {
-                    "name": "Post Checkout branch",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 10,
-                    "started_at": "2022-03-30T22:08:15.000Z",
-                    "completed_at": "2022-03-30T22:08:15.000Z"
-                },
-                {
-                    "name": "Complete job",
-                    "status": "completed",
-                    "conclusion": "success",
-                    "number": 11,
-                    "started_at": "2022-03-30T22:08:14.000Z",
-                    "completed_at": "2022-03-30T22:08:15.000Z"
-                }
-            ],
-            "check_run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/check-runs/5762187712",
+            "steps": [],
+            "check_run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/check-runs/5767944923",
             "labels": ["ubuntu-latest"],
-            "runner_id": 1,
-            "runner_name": "Hosted Agent",
-            "runner_group_id": 2,
-            "runner_group_name": "GitHub Actions"
+            "runner_id": null,
+            "runner_name": null,
+            "runner_group_id": null,
+            "runner_group_name": null
         },
         "repository": {
             "id": 56302138,
@@ -153,13 +96,13 @@
             "deployments_url": "https://api.github.com/repos/CIMonitor/CIMonitor/deployments",
             "created_at": "2016-04-15T07:57:09Z",
             "updated_at": "2022-03-28T11:27:26Z",
-            "pushed_at": "2022-03-30T21:57:05Z",
+            "pushed_at": "2022-03-31T08:45:45Z",
             "git_url": "git://github.com/CIMonitor/CIMonitor.git",
             "ssh_url": "git@github.com:CIMonitor/CIMonitor.git",
             "clone_url": "https://github.com/CIMonitor/CIMonitor.git",
             "svn_url": "https://github.com/CIMonitor/CIMonitor",
             "homepage": "",
-            "size": 54664,
+            "size": 54667,
             "stargazers_count": 39,
             "watchers_count": 39,
             "language": "TypeScript",

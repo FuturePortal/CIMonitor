@@ -5,7 +5,7 @@
         "content-type": "application/json"
     },
     "body": {
-        "action": "requested",
+        "action": "completed",
         "workflow_run": {
             "id": 2069935594,
             "name": "Build the CIMonitor latest container",
@@ -14,8 +14,8 @@
             "head_sha": "55580f9eee19f329b3912733d09588d63a0c1492",
             "run_number": 42,
             "event": "push",
-            "status": "queued",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "workflow_id": 22604490,
             "check_suite_id": 5874638347,
             "check_suite_node_id": "CS_kwDOA1saOs8AAAABXifeCw",
@@ -23,7 +23,7 @@
             "html_url": "https://github.com/CIMonitor/CIMonitor/actions/runs/2069935594",
             "pull_requests": [],
             "created_at": "2022-03-31T08:45:48Z",
-            "updated_at": "2022-03-31T08:45:48Z",
+            "updated_at": "2022-03-31T08:48:52Z",
             "actor": {
                 "login": "RickvdStaaij",
                 "id": 6495166,

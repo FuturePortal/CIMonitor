@@ -7,33 +7,113 @@
     "body": {
         "action": "in_progress",
         "workflow_job": {
-            "id": 5762196155,
-            "run_id": 2067619100,
-            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/2067619100",
-            "run_attempt": 3,
-            "node_id": "CR_kwDOA1saOs8AAAABV3Qiuw",
-            "head_sha": "e0925205858b2f358c1395a26ca0d5db7121af6f",
-            "url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/jobs/5762196155",
-            "html_url": "https://github.com/CIMonitor/CIMonitor/runs/5762196155?check_suite_focus=true",
+            "id": 5767959153,
+            "run_id": 2069935594,
+            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/2069935594",
+            "run_attempt": 1,
+            "node_id": "CR_kwDOA1saOs8AAAABV8wScQ",
+            "head_sha": "55580f9eee19f329b3912733d09588d63a0c1492",
+            "url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/jobs/5767959153",
+            "html_url": "https://github.com/CIMonitor/CIMonitor/runs/5767959153?check_suite_focus=true",
             "status": "in_progress",
             "conclusion": null,
-            "started_at": "2022-03-30T22:08:26Z",
+            "started_at": "2022-03-31T08:46:59Z",
             "completed_at": null,
-            "name": "server-arm / build & tag",
+            "name": "module-client / build & tag",
             "steps": [
                 {
                     "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2022-03-31T08:46:58.000Z",
+                    "completed_at": "2022-03-31T08:46:59.000Z"
+                },
+                {
+                    "name": "Checkout branch",
                     "status": "in_progress",
                     "conclusion": null,
-                    "number": 1,
-                    "started_at": "2022-03-30T22:08:26.000Z",
+                    "number": 2,
+                    "started_at": "2022-03-31T08:46:59.000Z",
+                    "completed_at": null
+                },
+                {
+                    "name": "Install development dependencies",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 3,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Build javascript application",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 4,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Install production dependencies",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 5,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Install QEMU emulator",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 6,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Copy Docker files",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 7,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Build CIMonitor image",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 8,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Log in to Docker Hub",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 9,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Push docker image to the hub",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 10,
+                    "started_at": null,
+                    "completed_at": null
+                },
+                {
+                    "name": "Post Checkout branch",
+                    "status": "queued",
+                    "conclusion": null,
+                    "number": 20,
+                    "started_at": null,
                     "completed_at": null
                 }
             ],
-            "check_run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/check-runs/5762196155",
+            "check_run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/check-runs/5767959153",
             "labels": ["ubuntu-latest"],
-            "runner_id": 4,
-            "runner_name": "GitHub Actions 4",
+            "runner_id": 3,
+            "runner_name": "GitHub Actions 3",
             "runner_group_id": 2,
             "runner_group_name": "GitHub Actions"
         },
@@ -105,13 +185,13 @@
             "deployments_url": "https://api.github.com/repos/CIMonitor/CIMonitor/deployments",
             "created_at": "2016-04-15T07:57:09Z",
             "updated_at": "2022-03-28T11:27:26Z",
-            "pushed_at": "2022-03-30T21:57:05Z",
+            "pushed_at": "2022-03-31T08:45:45Z",
             "git_url": "git://github.com/CIMonitor/CIMonitor.git",
             "ssh_url": "git@github.com:CIMonitor/CIMonitor.git",
             "clone_url": "https://github.com/CIMonitor/CIMonitor.git",
             "svn_url": "https://github.com/CIMonitor/CIMonitor",
             "homepage": "",
-            "size": 54664,
+            "size": 54667,
             "stargazers_count": 39,
             "watchers_count": 39,
             "language": "TypeScript",

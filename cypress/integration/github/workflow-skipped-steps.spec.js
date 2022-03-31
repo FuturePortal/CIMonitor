@@ -6,7 +6,7 @@ context('Github actions run with skipped steps', () => {
     });
 
     it('pushes a GitHub action flow', () => {
-        for (let count = 1; count <= 27; count++) {
+        for (let count = 1; count <= 29; count++) {
             if (count > 1) {
                 cy.wait(500);
             }
