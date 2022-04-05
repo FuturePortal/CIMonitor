@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { stateColor, stateDarkColor, textColor } from '/frontend/style/colors';
+import { fromSize } from '/frontend/style/size';
 import { ellipsis, ellipsisLeft } from '/frontend/style/text';
 
 import { State } from '/types/status';
@@ -44,8 +45,12 @@ export const Details = styled.div`
 
 export const Project = styled.h1`
     margin-bottom: 0.5rem;
-    font-size: 2em;
+    font-size: 1.5em;
     ${ellipsisLeft};
+
+    ${fromSize.small(css`
+        font-size: 2em;
+    `)}
 `;
 
 type StatusProps = {
