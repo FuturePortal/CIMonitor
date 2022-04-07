@@ -12,7 +12,7 @@ export const Boxes = styled.div`
     flex-wrap: wrap;
 `;
 
-export const Box = styled.div`
+const boxBase = css`
     position: relative;
     font-size: 1.15em;
     padding: 0.3rem 0.5rem;
@@ -32,7 +32,12 @@ export const Box = styled.div`
     }
 `;
 
-export const LinkBox = styled(Box).attrs({ as: 'a' })`
+export const Box = styled.div`
+    ${boxBase};
+`;
+
+export const LinkBox = styled.a`
+    ${boxBase};
     text-decoration: none;
     color: ${textColor};
 `;

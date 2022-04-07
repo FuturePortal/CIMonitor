@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "CommonJS",
+        "outDir": "app",
+        "moduleResolution": "node",
+        "baseUrl": "../",
+        "esModuleInterop": true,
+        "preserveWatchOutput": true,
+        "jsx": "preserve",
+        "allowJs": true,
+        "paths": {
+            "/*": ["./*"]
+        }
+    },
+    "include": ["../types/**/*.ts", "../frontend/**/*.ts", "../frontend/**/*.tsx"]
+}
