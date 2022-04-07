@@ -8,7 +8,7 @@
         "esModuleInterop": true,
         "preserveWatchOutput": true,
         "jsx": "preserve",
-        "allowJs": true,
+        "allowJs": false,
         "paths": {
             "backend/*": ["./backend/*"],
             "types/*": ["./types/*"]
