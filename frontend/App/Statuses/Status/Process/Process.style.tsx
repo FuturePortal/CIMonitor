@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { stateColor, stateDarkColor } from '/frontend/style/colors';
+import { opacity, stateColor, stateDarkColor } from '/frontend/style/colors';
 import { fromSize } from '/frontend/style/size';
 import { ellipsis } from '/frontend/style/text';
 
@@ -30,10 +30,11 @@ export const Stages = styled.div`
 
 type StageProps = {
     state: StepState;
+    processState: State;
 };
 
 export const Stage = styled.div<StageProps>`
-    background: ${(props) => stateDarkColor[props.state]};
+    background: ${(props) => stateDarkColor[props.state] || stateDarkColor.success};
     padding: 0.3rem 0.5rem;
     ${ellipsis};
 
@@ -42,9 +43,15 @@ export const Stage = styled.div<StageProps>`
     `)}
 
     ${(props) =>
-        ['running', 'pending'].includes(props.state) &&
+        ['running'].includes(props.state) &&
         css`
             background: ${stateDarkColor['warning']};
+        `}
+
+    ${(props) =>
+        ['pending'].includes(props.state) &&
+        css`
+            background: ${opacity(stateDarkColor[props.processState], 0.5)};
         `}
 
     ${(props) =>
@@ -56,6 +63,7 @@ export const Stage = styled.div<StageProps>`
 
 type StepProps = {
     state: StepState;
+    processState: State;
 };
 
 export const Step = styled.div<StepProps>`
@@ -70,15 +78,21 @@ export const Step = styled.div<StepProps>`
     `)};
 
     ${(props) =>
-        ['running', 'pending', 'soft-failed'].includes(props.state) &&
+        ['running', 'soft-failed'].includes(props.state) &&
         css`
             background: ${stateDarkColor.warning};
         `}
 
     ${(props) =>
+        ['pending'].includes(props.state) &&
+        css`
+            background: ${opacity(stateDarkColor[props.processState], 0.5)};
+        `}
+
+    ${(props) =>
         props.state === 'skipped' &&
         css`
-            background: ${stateDarkColor.success}55;
+            background: ${opacity(stateDarkColor.success, 0.4)};
         `}
 
     ${(props) =>

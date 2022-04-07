@@ -1,4 +1,4 @@
-import Status, { Process, Stage, State, Step, StepState } from 'types/status';
+import Status, { Process, Stage, State } from 'types/status';
 
 const statusesExpire = 60 * 60 * 24 * 7; // 7 days
 const statusesTimeout = 60 * 60 * 2; // 2 hours
@@ -64,15 +64,10 @@ export const fixStuckStatus = (status: Status): Status => ({
                 return step;
             });
 
-            const stageState: StepState =
-                stage.state === 'running' && isExpired(stage.time, statusesTimeout)
-                    ? 'timeout'
-                    : determineStageState(steps);
-
             return {
                 ...stage,
                 steps,
-                state: stageState,
+                state: stage.state === 'running' && isExpired(stage.time, statusesTimeout) ? 'timeout' : stage.state,
             };
         });
 
@@ -101,25 +96,9 @@ const determineStatusState = (processes: Process[]): State => {
 };
 
 const determineTimeoutProcessState = (stages: Stage[]): State => {
-    if (stages.find((stage) => ['running', 'pending'].includes(stage.state))) {
+    if (stages.find((stage) => ['running'].includes(stage.state))) {
         return 'warning';
     }
 
     return 'error';
-};
-
-const determineStageState = (steps: Step[]): StepState => {
-    if (steps.find((step) => ['running'].includes(step.state))) {
-        return 'running';
-    }
-
-    if (steps.find((step) => ['created', 'pending'].includes(step.state))) {
-        return 'pending';
-    }
-
-    if (steps.find((step) => ['timeout', 'failed'].includes(step.state))) {
-        return 'failed';
-    }
-
-    return 'success';
 };

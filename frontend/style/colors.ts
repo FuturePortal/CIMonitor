@@ -21,3 +21,9 @@ export const stateLightColor = {
 
 export const textColor = '#333';
 export const textMutedColor = '#999';
+
+export const opacity = (color: string, opacity: number) => {
+    const opacityHex = Math.round(opacity * 255).toString(16);
+
+    return `${color}${opacityHex}`;
+};

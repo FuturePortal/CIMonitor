@@ -37,9 +37,9 @@ export const Box = styled.div`
 `;
 
 export const LinkBox = styled.a`
-    ${boxBase};
     text-decoration: none;
     color: ${textColor};
+    ${boxBase};
 `;
 
 export const Details = styled.div`
@@ -69,7 +69,7 @@ export const Container = styled.div<StatusProps>`
     max-width: 100%;
     overflow: hidden;
 
-    ${Box} {
+    ${Box}, ${LinkBox} {
         background: ${(props) => stateDarkColor[props.state]};
 
         svg {
