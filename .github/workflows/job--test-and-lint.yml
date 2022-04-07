@@ -12,8 +12,11 @@ jobs:
       - name: Install development dependencies
         run: yarn install --ignore-scripts
 
-      - name: Run typescript check
-        run: node_modules/.bin/tsc --noEmit
-
       - name: Run eslint check
         run: node_modules/.bin/eslint --ext ts,tsx .
+
+      - name: Check frontend typescript
+        run: node_modules/.bin/tsc --noEmit --project ./frontend/tsconfig.json
+
+      - name: Check backend typescript
+        run: node_modules/.bin/tsc --noEmit --project ./backend/tsconfig.json
