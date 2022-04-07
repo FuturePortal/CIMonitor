@@ -113,7 +113,7 @@ do-check-logs:
 
 do-lint-staged:
 	@echo "===== Fixing changed files ====="
-	@node_modules/.bin/lint-staged
+	@node_modules/.bin/lint-staged --verbose
 
 do-commit-header:
 	@echo "===== Creating commit ====="

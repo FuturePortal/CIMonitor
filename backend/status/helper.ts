@@ -101,7 +101,7 @@ const determineStatusState = (processes: Process[]): State => {
 };
 
 const determineTimeoutProcessState = (stages: Stage[]): State => {
-    if (stages.find((stage) => ['running'].includes(stage.state))) {
+    if (stages.find((stage) => ['running', 'pending'].includes(stage.state))) {
         return 'warning';
     }
 

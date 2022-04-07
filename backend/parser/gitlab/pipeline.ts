@@ -89,18 +89,10 @@ class GitLabPipelineParser {
 
         return {
             ...process,
-            stages: stages
-                .map((stage) => {
-                    if (state === 'success' && stage.steps.length === 0) {
-                        stage.state = 'skipped';
-                    }
-
-                    return stage;
-                })
-                .sort(
-                    (stageA: Stage, stageB: Stage): number =>
-                        pipelineStages.indexOf(stageA.title) - pipelineStages.indexOf(stageB.title)
-                ),
+            stages: stages.sort(
+                (stageA: Stage, stageB: Stage): number =>
+                    pipelineStages.indexOf(stageA.title) - pipelineStages.indexOf(stageB.title)
+            ),
             state,
         };
     }

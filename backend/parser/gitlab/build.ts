@@ -129,15 +129,15 @@ class GitLabBuildParser {
     }
 
     determineStageState(steps: Step[]): StepState {
-        if (steps.find((step) => step.state === 'failed')) {
+        if (steps.find((step) => ['failed'].includes(step.state))) {
             return 'failed';
         }
 
-        if (steps.find((step) => ['running', 'pending'].includes(step.state))) {
+        if (steps.find((step) => ['running'].includes(step.state))) {
             return 'running';
         }
 
-        if (steps.find((step) => step.state === 'created')) {
+        if (steps.find((step) => ['created', 'pending'].includes(step.state))) {
             return 'pending';
         }
 
