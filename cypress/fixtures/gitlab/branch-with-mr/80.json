@@ -1,0 +1,146 @@
+{
+    "headers": {
+        "content-type": "application/json",
+        "user-agent": "GitLab/14.10.0-pre",
+        "x-gitlab-event": "Merge Request Hook"
+    },
+    "body": {
+        "object_kind": "merge_request",
+        "event_type": "merge_request",
+        "user": {
+            "id": 203336,
+            "name": "Rick van der Staaij",
+            "username": "rick.nu",
+            "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+            "email": "[REDACTED]"
+        },
+        "project": {
+            "id": 33715538,
+            "name": "Nawcast",
+            "description": "https://nawcast.com",
+            "web_url": "https://gitlab.com/FuturePortal/Nawcast",
+            "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "namespace": "FuturePortal",
+            "visibility_level": 0,
+            "path_with_namespace": "FuturePortal/Nawcast",
+            "default_branch": "master",
+            "ci_config_path": null,
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
+        },
+        "object_attributes": {
+            "assignee_id": 203336,
+            "author_id": 203336,
+            "created_at": "2022-04-09 19:32:53 UTC",
+            "description": "# What\n\nCreates a web frame slide type, so another website can be displayed as a slide in the Narrowcasting.\n\n## How to test\n\n1. Open the dashboard\n1. Add a web frame slide\n1. Run the demo program\n1. See that the web frame slide is shown in the narrowcasting\n\n## To do\n\n- [ ] Create web frame slide type icon\n- [ ] Create web frame slide for the narrowcasting runner\n\n## Ticket\n\nCloses #74",
+            "head_pipeline_id": null,
+            "id": 149619559,
+            "iid": 102,
+            "last_edited_at": null,
+            "last_edited_by_id": null,
+            "merge_commit_sha": null,
+            "merge_error": null,
+            "merge_params": {
+                "force_remove_source_branch": "1"
+            },
+            "merge_status": "preparing",
+            "merge_user_id": null,
+            "merge_when_pipeline_succeeds": false,
+            "milestone_id": 2469305,
+            "source_branch": "74",
+            "source_project_id": 33715538,
+            "state_id": 1,
+            "target_branch": "master",
+            "target_project_id": 33715538,
+            "time_estimate": 0,
+            "title": "[#74] Create web frame slide type",
+            "updated_at": "2022-04-09 19:32:53 UTC",
+            "updated_by_id": null,
+            "url": "https://gitlab.com/FuturePortal/Nawcast/-/merge_requests/102",
+            "source": {
+                "id": 33715538,
+                "name": "Nawcast",
+                "description": "https://nawcast.com",
+                "web_url": "https://gitlab.com/FuturePortal/Nawcast",
+                "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+                "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+                "namespace": "FuturePortal",
+                "visibility_level": 0,
+                "path_with_namespace": "FuturePortal/Nawcast",
+                "default_branch": "master",
+                "ci_config_path": null,
+                "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+                "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
+            },
+            "target": {
+                "id": 33715538,
+                "name": "Nawcast",
+                "description": "https://nawcast.com",
+                "web_url": "https://gitlab.com/FuturePortal/Nawcast",
+                "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+                "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+                "namespace": "FuturePortal",
+                "visibility_level": 0,
+                "path_with_namespace": "FuturePortal/Nawcast",
+                "default_branch": "master",
+                "ci_config_path": null,
+                "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+                "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+                "http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
+            },
+            "last_commit": {
+                "id": "70b15b53ded5151bb15efa80279f4cc732996717",
+                "message": "[#74] Add web frame slide type in the dashboard\n",
+                "title": "[#74] Add web frame slide type in the dashboard",
+                "timestamp": "2022-04-09T21:25:17+02:00",
+                "url": "https://gitlab.com/FuturePortal/Nawcast/-/commit/70b15b53ded5151bb15efa80279f4cc732996717",
+                "author": {
+                    "name": "Rick van der Staaij",
+                    "email": "[REDACTED]"
+                }
+            },
+            "work_in_progress": false,
+            "total_time_spent": 0,
+            "time_change": 0,
+            "human_total_time_spent": null,
+            "human_time_change": null,
+            "human_time_estimate": null,
+            "assignee_ids": [203336],
+            "labels": [],
+            "state": "opened",
+            "blocking_discussions_resolved": true,
+            "action": "open"
+        },
+        "labels": [],
+        "changes": {
+            "merge_status": {
+                "previous": "unchecked",
+                "current": "preparing"
+            }
+        },
+        "repository": {
+            "name": "Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "description": "https://nawcast.com",
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast"
+        },
+        "assignees": [
+            {
+                "id": 203336,
+                "name": "Rick van der Staaij",
+                "username": "rick.nu",
+                "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                "email": "[REDACTED]"
+            }
+        ]
+    }
+}

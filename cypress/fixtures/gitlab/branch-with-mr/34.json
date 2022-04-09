@@ -1,0 +1,58 @@
+{
+    "headers": {
+        "content-type": "application/json",
+        "user-agent": "GitLab/14.10.0-pre",
+        "x-gitlab-event": "Job Hook"
+    },
+    "body": {
+        "object_kind": "build",
+        "ref": "74",
+        "tag": false,
+        "before_sha": "057ffcf3b58f839c17fff0e022b8011eca4cf303",
+        "sha": "70b15b53ded5151bb15efa80279f4cc732996717",
+        "build_id": 2314349284,
+        "build_name": "frontend codestyle",
+        "build_stage": "test",
+        "build_status": "pending",
+        "build_created_at": "2022-04-09 19:26:31 UTC",
+        "build_started_at": null,
+        "build_finished_at": null,
+        "build_duration": null,
+        "build_queued_duration": 4.150361923,
+        "build_allow_failure": false,
+        "build_failure_reason": "unknown_failure",
+        "pipeline_id": 513076930,
+        "runner": null,
+        "project_id": 33715538,
+        "project_name": "FuturePortal / Nawcast",
+        "user": {
+            "id": 203336,
+            "name": "Rick van der Staaij",
+            "username": "rick.nu",
+            "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+            "email": "[REDACTED]"
+        },
+        "commit": {
+            "id": 513076930,
+            "sha": "70b15b53ded5151bb15efa80279f4cc732996717",
+            "message": "[#74] Add web frame slide type in the dashboard\n",
+            "author_name": "Rick van der Staaij",
+            "author_email": "[REDACTED]",
+            "author_url": "https://gitlab.com/rick.nu",
+            "status": "running",
+            "duration": null,
+            "started_at": "2022-04-09 19:26:32 UTC",
+            "finished_at": null
+        },
+        "repository": {
+            "name": "Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "description": "https://nawcast.com",
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "visibility_level": 0
+        },
+        "environment": null
+    }
+}
