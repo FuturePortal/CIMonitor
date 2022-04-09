@@ -6,7 +6,7 @@ import Status, { Process, Stage, Step, StepState } from 'types/status';
 import { statusToStepState } from './helper';
 
 class GitLabBuildParser {
-    parseBuild(id: string, build: GitLabBuild): Status | null {
+    parse(id: string, build: GitLabBuild): Status | null {
         if (build.build_status === 'created') {
             return null;
         }

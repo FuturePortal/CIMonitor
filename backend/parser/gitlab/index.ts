@@ -1,9 +1,10 @@
 import Slugify from 'backend/parser/slug';
-import { GitLabBuild, GitLabDeployment, GitLabPipeline } from 'types/gitlab';
+import { GitLabBuild, GitLabDeployment, GitLabMergeRequest, GitLabPipeline } from 'types/gitlab';
 import Status from 'types/status';
 
 import GitLabBuildParser from './build';
 import GitLabDeploymentParser from './deployment';
+import GitLabMergeRequestParser from './merge-request';
 import GitLabPipelineParser from './pipeline';
 
 class GitLabParser {
@@ -26,7 +27,7 @@ class GitLabParser {
 
         const id = this.getInternalId(build.project_id, build.repository.name, build.ref, build.tag);
 
-        return GitLabBuildParser.parseBuild(id, build);
+        return GitLabBuildParser.parse(id, build);
     }
 
     parsePipeline(pipeline: GitLabPipeline): Status {
@@ -39,7 +40,7 @@ class GitLabParser {
             pipeline.object_attributes.tag
         );
 
-        return GitLabPipelineParser.parsePipeline(id, pipeline);
+        return GitLabPipelineParser.parse(id, pipeline);
     }
 
     parseDeployment(deployment: GitLabDeployment): Status {
@@ -47,7 +48,20 @@ class GitLabParser {
 
         const id = this.getInternalId(deployment.project.id, deployment.project.name, deployment.ref, false);
 
-        return GitLabDeploymentParser.parseDeployment(id, deployment);
+        return GitLabDeploymentParser.parse(id, deployment);
+    }
+
+    parseMergeRequest(mergeRequest: GitLabMergeRequest): Status {
+        console.log('[parser/gitlab] Parsing merge request...');
+
+        const id = this.getInternalId(
+            mergeRequest.project.id,
+            mergeRequest.project.name,
+            mergeRequest.object_attributes.source_branch,
+            false
+        );
+
+        return GitLabMergeRequestParser.parse(id, mergeRequest);
     }
 }
 

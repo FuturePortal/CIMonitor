@@ -4,6 +4,7 @@ import { Body, Box, Boxes, Container, Details, LinkBox, Project, UserImage } fro
 
 import Icon from '/frontend/components/Icon';
 
+import Merge from './Merge';
 import Process from './Process';
 import ProjectImage from './ProjectImage';
 import Source from './Source';
@@ -40,6 +41,7 @@ const Statuses = ({ status }: Props): ReactElement => (
                             <Icon icon="bookmark_border" /> {status.tag}
                         </Box>
                     )}
+                    <Merge title={status.mergeTitle} url={status.mergeUrl} />
                     {status.url && (
                         <LinkBox href={status.url} target="_blank">
                             <Icon icon="launch" /> {pettyUrl(status.url)}

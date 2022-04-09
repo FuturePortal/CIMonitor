@@ -44,12 +44,13 @@ export type Status = {
     source: 'github' | 'gitlab' | 'readthedocs';
     source_url?: string;
     url?: string;
-    title?: string; // MR/PR name?
     branch?: string;
     tag?: string;
     issue?: number;
     projectImage?: string;
     userImage?: string;
+    mergeTitle?: string;
+    mergeUrl?: string;
 };
 
 export default Status;

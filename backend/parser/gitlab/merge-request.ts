@@ -1,0 +1,37 @@
+import StatusManager from 'backend/status/manager';
+import { GitLabMergeRequest } from 'types/gitlab';
+import Status from 'types/status';
+
+class GitLabMergeRequestParser {
+    parse(id: string, mergeRequest: GitLabMergeRequest): Status {
+        let status = StatusManager.getStatus(id);
+
+        if (!status) {
+            status = {
+                id,
+                project: `${mergeRequest.project.namespace} / ${mergeRequest.project.name}`,
+                state: 'info',
+                source: 'gitlab',
+                time: new Date().toUTCString(),
+                processes: [],
+                branch: mergeRequest.object_attributes.source_branch,
+            };
+
+            if (mergeRequest.object_attributes.source_branch) {
+                status.branch = mergeRequest.object_attributes.source_branch;
+            }
+        }
+
+        return {
+            ...status,
+            projectImage: mergeRequest.project.avatar_url,
+            userImage: mergeRequest.user.avatar_url,
+            source_url: mergeRequest.project.git_http_url,
+            mergeTitle: mergeRequest.object_attributes.title,
+            mergeUrl: mergeRequest.object_attributes.url,
+            time: new Date().toUTCString(),
+        };
+    }
+}
+
+export default new GitLabMergeRequestParser();
