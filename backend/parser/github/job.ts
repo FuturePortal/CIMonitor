@@ -6,7 +6,7 @@ import Status, { Process, Stage, Step, StepState } from 'types/status';
 import { getJobStateFromStatus } from './helper';
 
 class GitHubJobParser {
-    parseJob(job: GitHubWorkflowJob): Status | null {
+    parse(job: GitHubWorkflowJob): Status | null {
         const statuses = StatusManager.getStatuses();
 
         const processId = `run-${job.workflow_job.run_id}`;

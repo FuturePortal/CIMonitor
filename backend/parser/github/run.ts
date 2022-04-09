@@ -5,7 +5,7 @@ import Status from 'types/status';
 import { getStateFromStatus } from './helper';
 
 class GitHubRunParser {
-    parseRun(id: string, run: GitHubWorkflowRun): Status {
+    parse(id: string, run: GitHubWorkflowRun): Status {
         let status = StatusManager.getStatus(id);
 
         if (!status) {

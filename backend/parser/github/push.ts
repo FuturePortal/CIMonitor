@@ -5,7 +5,7 @@ import Status from 'types/status';
 import { getBranch, getTag } from './helper';
 
 class GitHubPushParser {
-    parsePush(id: string, push: GitHubPush): Status {
+    parse(id: string, push: GitHubPush): Status {
         let status = StatusManager.getStatus(id);
 
         if (!status) {
