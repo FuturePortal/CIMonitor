@@ -1,0 +1,67 @@
+{
+    "headers": {
+        "content-type": "application/json",
+        "user-agent": "GitLab/14.10.0-pre",
+        "x-gitlab-event": "Push Hook"
+    },
+    "body": {
+        "object_kind": "push",
+        "event_name": "push",
+        "before": "057ffcf3b58f839c17fff0e022b8011eca4cf303",
+        "after": "70b15b53ded5151bb15efa80279f4cc732996717",
+        "ref": "refs/heads/74",
+        "checkout_sha": "70b15b53ded5151bb15efa80279f4cc732996717",
+        "message": null,
+        "user_id": 203336,
+        "user_name": "Rick van der Staaij",
+        "user_username": "rick.nu",
+        "user_email": "",
+        "user_avatar": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+        "project_id": 33715538,
+        "project": {
+            "id": 33715538,
+            "name": "Nawcast",
+            "description": "https://nawcast.com",
+            "web_url": "https://gitlab.com/FuturePortal/Nawcast",
+            "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "namespace": "FuturePortal",
+            "visibility_level": 0,
+            "path_with_namespace": "FuturePortal/Nawcast",
+            "default_branch": "master",
+            "ci_config_path": null,
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
+        },
+        "commits": [
+            {
+                "id": "70b15b53ded5151bb15efa80279f4cc732996717",
+                "message": "[#74] Add web frame slide type in the dashboard\n",
+                "title": "[#74] Add web frame slide type in the dashboard",
+                "timestamp": "2022-04-09T21:25:17+02:00",
+                "url": "https://gitlab.com/FuturePortal/Nawcast/-/commit/70b15b53ded5151bb15efa80279f4cc732996717",
+                "author": {
+                    "name": "Rick van der Staaij",
+                    "email": "[REDACTED]"
+                },
+                "added": ["frontend/dashboard/components/Slide/type/webFrame.ts"],
+                "modified": ["frontend/dashboard/components/Slide/types.ts"],
+                "removed": []
+            }
+        ],
+        "total_commits_count": 1,
+        "push_options": {},
+        "repository": {
+            "name": "Nawcast",
+            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "description": "https://nawcast.com",
+            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "visibility_level": 0
+        }
+    }
+}

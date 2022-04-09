@@ -75,6 +75,26 @@ export type GitHubWorkflowRun = {
     sender: GitHubSender;
 };
 
+export type GitHubPullRequest = {
+    action: 'opened';
+    number: number;
+    pull_request: {
+        html_url: string;
+        title: string;
+        state: 'open';
+        number: number;
+        user: GitHubUser;
+        head: {
+            label: string;
+            ref: string;
+            user: GitHubUser;
+        };
+    };
+    repository: GitHubRepository;
+    organization: GitHubOrganization;
+    sender: GitHubUser;
+};
+
 export type GitHubContributor = {
     total: number;
     author: {

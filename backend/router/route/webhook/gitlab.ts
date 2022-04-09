@@ -24,6 +24,9 @@ router.post('/', (request, response) => {
         case 'deployment':
             status = GitLabParser.parseDeployment(gitlabWebhook);
             break;
+        case 'merge_request':
+            status = GitLabParser.parseMergeRequest(gitlabWebhook);
+            break;
         default:
             console.log(`[route/webhook/gitlab] No parser for webhook type ${gitlabWebhook.object_kind}.`);
     }

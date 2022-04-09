@@ -6,7 +6,7 @@ import Status, { Process, Stage } from 'types/status';
 import { statusToState } from './helper';
 
 class GitLabPipelineParser {
-    parsePipeline(id: string, pipeline: GitLabPipeline): Status {
+    parse(id: string, pipeline: GitLabPipeline): Status {
         const status = this.getStatus(id, pipeline);
 
         let processes: Process[] = status.processes || [];

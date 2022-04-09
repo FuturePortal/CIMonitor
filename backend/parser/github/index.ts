@@ -1,8 +1,9 @@
 import Slugify from 'backend/parser/slug';
-import { GitHubPush, GitHubWorkflowJob, GitHubWorkflowRun } from 'types/github';
+import { GitHubPullRequest, GitHubPush, GitHubWorkflowJob, GitHubWorkflowRun } from 'types/github';
 import Status from 'types/status';
 
 import GitHubJobParser from './job';
+import GitHubPullRequestParser from './pull-request';
 import GitHubPushParser from './push';
 import GitHubRunParser from './run';
 
@@ -18,7 +19,7 @@ class GitLabParser {
 
         const id = this.getInternalId(push.repository.id, push.repository.name, push.ref);
 
-        return GitHubPushParser.parsePush(id, push);
+        return GitHubPushParser.parse(id, push);
     }
 
     parseWorkflowRun(run: GitHubWorkflowRun): Status {
@@ -26,13 +27,25 @@ class GitLabParser {
 
         const id = this.getInternalId(run.repository.id, run.repository.name, run.workflow_run.head_branch);
 
-        return GitHubRunParser.parseRun(id, run);
+        return GitHubRunParser.parse(id, run);
     }
 
     parseWorkflowJob(job: GitHubWorkflowJob): Status | null {
         console.log('[parser/github] Parsing workflow job...');
 
-        return GitHubJobParser.parseJob(job);
+        return GitHubJobParser.parse(job);
+    }
+
+    parsePullRequest(pullRequest: GitHubPullRequest): Status | null {
+        console.log('[parser/github] Parsing pull rquest...');
+
+        const id = this.getInternalId(
+            pullRequest.repository.id,
+            pullRequest.repository.name,
+            pullRequest.pull_request.head.ref
+        );
+
+        return GitHubPullRequestParser.parse(id, pullRequest);
     }
 }
 

@@ -79,6 +79,31 @@ export type GitLabDeployment = {
     project: GitLabProject;
 };
 
+export type GitLabMergeRequest = {
+    object_kind: 'merge_request';
+    user: GitLabUser;
+    project: GitLabProject;
+    object_attributes: {
+        description: string;
+        id: number;
+        iid: number;
+        source_branch: string;
+        source_project_id: number;
+        target_branch: string;
+        target_project_id: number;
+        title: string;
+        url: string;
+        source: GitLabProject;
+        target: GitLabProject;
+        last_commit: {
+            title: string;
+        };
+        state: 'opened';
+        action: 'open';
+    };
+    assignees: GitLabUser[];
+};
+
 export type GitLabBuild = {
     object_kind: 'build';
     ref: string | false;
@@ -125,6 +150,6 @@ export type GitLabBuild = {
     environment: GitLabEnvironment | null;
 };
 
-export type GitLabWebhook = GitLabBuild | GitLabPipeline | GitLabDeployment | GitLabOther;
+export type GitLabWebhook = GitLabBuild | GitLabPipeline | GitLabDeployment | GitLabOther | GitLabMergeRequest;
 
 export default GitLabWebhook;

@@ -4,7 +4,7 @@ import { GitLabDeployment } from 'types/gitlab';
 import Status from 'types/status';
 
 class GitLabDeploymentParser {
-    parseDeployment(id: string, deployment: GitLabDeployment): Status {
+    parse(id: string, deployment: GitLabDeployment): Status {
         let status = StatusManager.getStatus(id);
 
         if (!status) {

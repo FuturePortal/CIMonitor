@@ -58,7 +58,7 @@ router.use((request, response, next) => {
                 FileSystem.mkdirSync(path);
             }
         }
-        const file = `${path}/${new Date().getTime()}-${recordCount}.json`;
+        const file = `${path}/${recordCount}.json`;
         const body = {
             headers: cleanHeaders(request.headers),
             body: request.body,

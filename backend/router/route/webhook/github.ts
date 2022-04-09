@@ -23,8 +23,8 @@ router.post('/', (request, response) => {
         case 'workflow_job':
             status = GitHubParser.parseWorkflowJob(request.body);
             break;
-        case 'check_run':
-            console.log(`[route/webhook/github] Webhook check_run has no added value and is ignored.`);
+        case 'pull_request':
+            status = GitHubParser.parsePullRequest(request.body);
             break;
         default:
             console.log(`[route/webhook/github] No parser for webhook type ${githubWebhookType}.`);

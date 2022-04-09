@@ -3,10 +3,8 @@ function hasChangedFileInFolder(changedFiles, folder) {
 }
 
 module.exports = {
-    '*.{js,ts,tsx}': ['eslint --fix'],
-    '*.{json,css,html}': ['prettier --write'],
-    '*.md': ['prettier --write --tab-width 2'],
     '*.{ts,tsx}': [
+        'eslint --fix',
         (changedFiles) => {
             var linters = [];
             var typescriptChecks = ['frontend', 'backend'];
@@ -22,4 +20,6 @@ module.exports = {
             return linters;
         },
     ],
+    '*.{json,css,html,js}': ['prettier --write'],
+    '*.md': ['prettier --write --tab-width 2'],
 };

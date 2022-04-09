@@ -1,0 +1,582 @@
+{
+    "headers": {
+        "content-type": "application/json",
+        "user-agent": "GitLab/14.10.0-pre",
+        "x-gitlab-event": "Pipeline Hook"
+    },
+    "body": {
+        "object_kind": "pipeline",
+        "object_attributes": {
+            "id": 513076930,
+            "ref": "74",
+            "tag": false,
+            "sha": "70b15b53ded5151bb15efa80279f4cc732996717",
+            "before_sha": "057ffcf3b58f839c17fff0e022b8011eca4cf303",
+            "source": "push",
+            "status": "created",
+            "detailed_status": "created",
+            "stages": ["test", "build", "deploy", "regression"],
+            "created_at": "2022-04-09 19:26:31 UTC",
+            "finished_at": null,
+            "duration": null,
+            "queued_duration": null,
+            "variables": []
+        },
+        "merge_request": null,
+        "user": {
+            "id": 203336,
+            "name": "Rick van der Staaij",
+            "username": "rick.nu",
+            "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+            "email": "[REDACTED]"
+        },
+        "project": {
+            "id": 33715538,
+            "name": "Nawcast",
+            "description": "https://nawcast.com",
+            "web_url": "https://gitlab.com/FuturePortal/Nawcast",
+            "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+            "namespace": "FuturePortal",
+            "visibility_level": 0,
+            "path_with_namespace": "FuturePortal/Nawcast",
+            "default_branch": "master",
+            "ci_config_path": null
+        },
+        "commit": {
+            "id": "70b15b53ded5151bb15efa80279f4cc732996717",
+            "message": "[#74] Add web frame slide type in the dashboard\n",
+            "title": "[#74] Add web frame slide type in the dashboard",
+            "timestamp": "2022-04-09T21:25:17+02:00",
+            "url": "https://gitlab.com/FuturePortal/Nawcast/-/commit/70b15b53ded5151bb15efa80279f4cc732996717",
+            "author": {
+                "name": "Rick van der Staaij",
+                "email": "[REDACTED]"
+            }
+        },
+        "builds": [
+            {
+                "id": 2314349288,
+                "stage": "build",
+                "name": "api image",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349289,
+                "stage": "build",
+                "name": "main image",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349290,
+                "stage": "build",
+                "name": "dashboard image",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349291,
+                "stage": "build",
+                "name": "runner image",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349292,
+                "stage": "deploy",
+                "name": "deploy review application",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": {
+                    "name": "review/74",
+                    "action": "start",
+                    "deployment_tier": "development"
+                }
+            },
+            {
+                "id": 2314349293,
+                "stage": "deploy",
+                "name": "stop review application",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "manual",
+                "manual": true,
+                "allow_failure": true,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": {
+                    "name": "review/74",
+                    "action": "stop",
+                    "deployment_tier": "development"
+                }
+            },
+            {
+                "id": 2314349294,
+                "stage": "regression",
+                "name": "commercial pages",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349295,
+                "stage": "regression",
+                "name": "recover username",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349296,
+                "stage": "regression",
+                "name": "recover password",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349297,
+                "stage": "regression",
+                "name": "dashboard",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349298,
+                "stage": "regression",
+                "name": "program",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349299,
+                "stage": "regression",
+                "name": "slides",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349300,
+                "stage": "regression",
+                "name": "account",
+                "status": "created",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": null,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349282,
+                "stage": "test",
+                "name": "api tests",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.307373207,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349283,
+                "stage": "test",
+                "name": "php codestyle",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.264566522,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349284,
+                "stage": "test",
+                "name": "frontend codestyle",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.236309533,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349285,
+                "stage": "test",
+                "name": "styling codestyle",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.207563835,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349286,
+                "stage": "test",
+                "name": "frontend typescript",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.177669215,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            },
+            {
+                "id": 2314349287,
+                "stage": "test",
+                "name": "overall codestyle",
+                "status": "pending",
+                "created_at": "2022-04-09 19:26:31 UTC",
+                "started_at": null,
+                "finished_at": null,
+                "duration": null,
+                "queued_duration": 0.145163421,
+                "when": "on_success",
+                "manual": false,
+                "allow_failure": false,
+                "user": {
+                    "id": 203336,
+                    "name": "Rick van der Staaij",
+                    "username": "rick.nu",
+                    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+                    "email": "[REDACTED]"
+                },
+                "runner": null,
+                "artifacts_file": {
+                    "filename": null,
+                    "size": null
+                },
+                "environment": null
+            }
+        ]
+    }
+}
