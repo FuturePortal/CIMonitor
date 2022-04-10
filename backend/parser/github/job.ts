@@ -9,7 +9,7 @@ class GitHubJobParser {
     parse(job: GitHubWorkflowJob): Status | null {
         const statuses = StatusManager.getStatuses();
 
-        const processId = `run-${job.workflow_job.run_id}`;
+        const processId = job.workflow_job.run_id;
 
         const targetStatus = statuses.find((status) => status.processes.find((process) => process.id === processId));
 

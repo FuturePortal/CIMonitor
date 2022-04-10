@@ -15,9 +15,11 @@ class GitLabBuildParser {
 
         const processes: Process[] = status.processes || [];
 
-        const processId = `pipeline-${build.pipeline_id}`;
+        const processId = build.pipeline_id;
 
         if (!processes.find((process) => process.id === processId)) {
+            // TODO: if process ID is smaller than the latest process ID, return null
+
             processes.push({
                 id: processId,
                 title: build.commit.message.split('\n\n')[0],

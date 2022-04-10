@@ -49,9 +49,11 @@ class ReadTheDocsParser {
 
         let processes: Process[] = status.processes || [];
 
-        const processId = `build-${build.build}`;
+        const processId = parseInt(build.build);
 
         if (!processes.find((process) => process.id === processId)) {
+            // TODO: if process ID is smaller than the latest process ID, return null
+
             processes.push({
                 id: processId,
                 title: `Build ${build.build}`,

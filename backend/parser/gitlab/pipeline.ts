@@ -11,9 +11,11 @@ class GitLabPipelineParser {
 
         let processes: Process[] = status.processes || [];
 
-        const processId = `pipeline-${pipeline.object_attributes.id}`;
+        const processId = pipeline.object_attributes.id;
 
         if (!processes.find((process) => process.id === processId)) {
+            // TODO: if process ID is smaller than the latest process ID, return null
+
             processes.push({
                 id: processId,
                 title: pipeline.commit.title,

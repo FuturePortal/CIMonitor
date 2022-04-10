@@ -22,9 +22,11 @@ class GitHubRunParser {
 
         let processes = status.processes;
 
-        const processId = `run-${run.workflow_run.id}`;
+        const processId = run.workflow_run.id;
 
         if (!processes.find((process) => process.id === processId)) {
+            // TODO: if process ID is smaller than the latest process ID, return null
+
             processes.push({
                 id: processId,
                 title: run.workflow_run.head_commit.message,
