@@ -129,4 +129,6 @@ export const StageContainer = styled.div`
     `)}
 `;
 
-export const Details = styled.div``;
+export const Details = styled.div`
+    ${ellipsis};
+`;
