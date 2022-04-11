@@ -1,4 +1,5 @@
 import Slugify from 'backend/parser/slug';
+import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import { GitLabBuild } from 'types/gitlab';
 import Status, { Process, Stage, Step, StepState } from 'types/status';
@@ -18,7 +19,9 @@ class GitLabBuildParser {
         const processId = build.pipeline_id;
 
         if (!processes.find((process) => process.id === processId)) {
-            // TODO: if process ID is smaller than the latest process ID, return null
+            if (isOldProcess(status, processId)) {
+                return null;
+            }
 
             processes.push({
                 id: processId,

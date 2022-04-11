@@ -18,8 +18,8 @@
         "action": "completed",
         "workflow_job": {
             "id": 5558621403,
-            "run_id": 1988417362,
-            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/1988417362",
+            "run_id": 1989460246,
+            "run_url": "https://api.github.com/repos/CIMonitor/CIMonitor/actions/runs/1989460246",
             "run_attempt": 1,
             "node_id": "CR_kwDOA1saOs8AAAABS1HU2w",
             "head_sha": "46b2179d2bc0a474e4511ece471792d6451c54b9",
