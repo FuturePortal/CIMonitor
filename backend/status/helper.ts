@@ -30,6 +30,7 @@ export const getStuckStatuses = (statuses: Status[]): Status[] =>
             if (
                 process.state === 'warning' &&
                 isExpired(process.time, statusesTimeout) &&
+                // when there is a pending stage, the process is not stuck running
                 !process.stages.find((stage) => stage.state === 'pending')
             ) {
                 return true;
