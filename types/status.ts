@@ -27,7 +27,7 @@ export type Stage = {
 };
 
 export type Process = {
-    id: string;
+    id: number;
     title: string;
     state: State;
     stages: Stage[];

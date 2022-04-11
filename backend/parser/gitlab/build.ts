@@ -1,4 +1,5 @@
 import Slugify from 'backend/parser/slug';
+import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import { GitLabBuild } from 'types/gitlab';
 import Status, { Process, Stage, Step, StepState } from 'types/status';
@@ -15,9 +16,13 @@ class GitLabBuildParser {
 
         const processes: Process[] = status.processes || [];
 
-        const processId = `pipeline-${build.pipeline_id}`;
+        const processId = build.pipeline_id;
 
         if (!processes.find((process) => process.id === processId)) {
+            if (isOldProcess(status, processId)) {
+                return null;
+            }
+
             processes.push({
                 id: processId,
                 title: build.commit.message.split('\n\n')[0],

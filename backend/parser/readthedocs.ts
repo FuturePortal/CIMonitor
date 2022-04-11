@@ -1,4 +1,5 @@
 import Slugify from 'backend/parser/slug';
+import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import ReadTheDocsBuild from 'types/readthedocs';
 import Status, { Process, State, StepState } from 'types/status';
@@ -28,7 +29,7 @@ class ReadTheDocsParser {
         return 'running';
     }
 
-    parseBuild(build: ReadTheDocsBuild): Status {
+    parseBuild(build: ReadTheDocsBuild): Status | null {
         console.log('[parser/readthedocs] Parsing build...');
 
         const statusId = `readthedocs-${build.slug}-${Slugify(build.version)}`;
@@ -49,9 +50,13 @@ class ReadTheDocsParser {
 
         let processes: Process[] = status.processes || [];
 
-        const processId = `build-${build.build}`;
+        const processId = parseInt(build.build);
 
         if (!processes.find((process) => process.id === processId)) {
+            if (isOldProcess(status, processId)) {
+                return null;
+            }
+
             processes.push({
                 id: processId,
                 title: `Build ${build.build}`,

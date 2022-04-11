@@ -1,4 +1,5 @@
 import Slugify from 'backend/parser/slug';
+import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import { GitLabPipeline } from 'types/gitlab';
 import Status, { Process, Stage } from 'types/status';
@@ -6,14 +7,18 @@ import Status, { Process, Stage } from 'types/status';
 import { statusToState } from './helper';
 
 class GitLabPipelineParser {
-    parse(id: string, pipeline: GitLabPipeline): Status {
+    parse(id: string, pipeline: GitLabPipeline): Status | null {
         const status = this.getStatus(id, pipeline);
 
         let processes: Process[] = status.processes || [];
 
-        const processId = `pipeline-${pipeline.object_attributes.id}`;
+        const processId = pipeline.object_attributes.id;
 
         if (!processes.find((process) => process.id === processId)) {
+            if (isOldProcess(status, processId)) {
+                return null;
+            }
+
             processes.push({
                 id: processId,
                 title: pipeline.commit.title,

@@ -15,10 +15,6 @@ export const getExpiredStatuses = (statuses: Status[]): Status[] =>
 export const getStuckStatuses = (statuses: Status[]): Status[] =>
     statuses.filter((status) => {
         for (let process of status.processes) {
-            if (process.state === 'warning' && isExpired(process.time, statusesTimeout)) {
-                return true;
-            }
-
             for (let stage of process.stages) {
                 if (stage.state === 'running' && isExpired(stage.time, statusesTimeout)) {
                     return true;
@@ -29,6 +25,15 @@ export const getStuckStatuses = (statuses: Status[]): Status[] =>
                         return true;
                     }
                 }
+            }
+
+            if (
+                process.state === 'warning' &&
+                isExpired(process.time, statusesTimeout) &&
+                // when there is a pending stage, the process is not stuck running
+                !process.stages.find((stage) => stage.state === 'pending')
+            ) {
+                return true;
             }
         }
 
@@ -93,6 +98,16 @@ const determineStatusState = (processes: Process[]): State => {
     }
 
     return 'info';
+};
+
+export const isOldProcess = (status: Status, processId: number): boolean => {
+    if (status.processes.length === 0) {
+        return false;
+    }
+
+    const latestProcessId = status.processes[0].id;
+
+    return processId < latestProcessId;
 };
 
 const determineTimeoutProcessState = (stages: Stage[]): State => {
