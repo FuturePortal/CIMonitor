@@ -84,15 +84,9 @@ export const Step = styled.div<StepProps>`
         `}
 
     ${(props) =>
-        ['pending'].includes(props.state) &&
+        ['pending', 'skipped'].includes(props.state) &&
         css`
             background: ${opacity(stateDarkColor[props.processState], 0.5)};
-        `}
-
-    ${(props) =>
-        props.state === 'skipped' &&
-        css`
-            background: ${opacity(stateDarkColor.success, 0.4)};
         `}
 
     ${(props) =>
