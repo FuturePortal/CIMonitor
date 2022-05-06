@@ -2,9 +2,9 @@ import { ActionTypes, StateType } from './types';
 
 const defaultState: StateType = {
     version: null,
-    lastVersionCheck: new Date().getTime(),
+    lastVersionCheck: 0,
     contributors: [],
-    lastContributorCheck: new Date().getTime(),
+    lastContributorCheck: 0,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {

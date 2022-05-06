@@ -9,6 +9,7 @@ import Process from './Process';
 import ProjectImage from './ProjectImage';
 import Source from './Source';
 import TimePassed from './TimePassed';
+import User from './User';
 
 import Status from '/types/status';
 
@@ -30,7 +31,7 @@ const Statuses = ({ status }: Props): ReactElement => (
             <Details>
                 <Project>{status.project}</Project>
                 <Boxes>
-                    <Source type={status.source} url={status.source_url} />
+                    <Source type={status.source} url={status.sourceUrl} />
                     {status.branch && (
                         <Box>
                             <Icon icon="commit" /> {status.branch}
@@ -47,6 +48,7 @@ const Statuses = ({ status }: Props): ReactElement => (
                             <Icon icon="launch" /> {pettyUrl(status.url)}
                         </LinkBox>
                     )}
+                    <User username={status.username} url={status.userUrl} />
                     <Box>
                         <Icon icon="schedule" /> <TimePassed since={status.time} />
                     </Box>

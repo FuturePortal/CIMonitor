@@ -67,8 +67,10 @@ class GitLabBuildParser {
             }
         }
 
+        status.username = build.user.name || build.user.username;
+        status.userUrl = build.commit.author_url;
         status.userImage = build.user.avatar_url;
-        status.source_url = build.repository.homepage;
+        status.sourceUrl = build.repository.homepage;
 
         return status;
     }

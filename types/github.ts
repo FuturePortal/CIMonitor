@@ -34,6 +34,7 @@ export type GitHubRelease = {
 type GitHubSender = {
     login: string;
     avatar_url: string;
+    html_url: string;
 };
 
 type GitHubOrganization = {
@@ -92,7 +93,7 @@ export type GitHubPullRequest = {
     };
     repository: GitHubRepository;
     organization: GitHubOrganization;
-    sender: GitHubUser;
+    sender: GitHubSender;
 };
 
 export type GitHubContributor = {

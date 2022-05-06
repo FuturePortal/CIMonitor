@@ -25,8 +25,9 @@ class GitLabMergeRequestParser {
         return {
             ...status,
             projectImage: mergeRequest.project.avatar_url,
+            username: mergeRequest.user.name || mergeRequest.user.username,
             userImage: mergeRequest.user.avatar_url,
-            source_url: mergeRequest.project.git_http_url,
+            sourceUrl: mergeRequest.project.git_http_url,
             mergeTitle: mergeRequest.object_attributes.title,
             mergeUrl: mergeRequest.object_attributes.url,
             time: new Date().toUTCString(),

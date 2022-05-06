@@ -65,9 +65,10 @@ class GitLabPipelineParser {
             }
         }
 
+        status.username = pipeline.user.name || pipeline.user.username;
         status.userImage = pipeline.user.avatar_url;
         status.projectImage = pipeline.project.avatar_url;
-        status.source_url = pipeline.project.git_http_url;
+        status.sourceUrl = pipeline.project.git_http_url;
 
         return status;
     }

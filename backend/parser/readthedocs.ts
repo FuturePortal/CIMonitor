@@ -78,7 +78,7 @@ class ReadTheDocsParser {
             ...status,
             processes,
             url: build.docs_url,
-            source_url: build.build_url,
+            sourceUrl: build.build_url,
             state: this.determineState(processes),
             time: new Date().toUTCString(),
         };

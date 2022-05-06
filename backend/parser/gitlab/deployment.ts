@@ -30,8 +30,10 @@ class GitLabDeploymentParser {
         return {
             ...status,
             projectImage: deployment.project.avatar_url,
+            username: deployment.user.name || deployment.user.username,
             userImage: deployment.user.avatar_url,
-            source_url: deployment.project.git_http_url,
+            userUrl: deployment.user_url,
+            sourceUrl: deployment.project.git_http_url,
             tag: deployment.environment,
             time: new Date().toUTCString(),
         };

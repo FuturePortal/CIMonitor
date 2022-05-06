@@ -42,13 +42,15 @@ export type Status = {
     processes: Process[];
     time: string;
     source: 'github' | 'gitlab' | 'readthedocs';
-    source_url?: string;
+    sourceUrl?: string;
     url?: string;
     branch?: string;
     tag?: string;
     issue?: number;
     projectImage?: string;
+    username?: string;
     userImage?: string;
+    userUrl?: string;
     mergeTitle?: string;
     mergeUrl?: string;
 };
