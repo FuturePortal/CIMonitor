@@ -2,6 +2,7 @@ export type StateType = {
     open: boolean;
     showCompleted: boolean;
     sizeModifier: number;
+    showUserAvatars: boolean;
 };
 
 export type SetSizeModifierAction = {
@@ -21,8 +22,13 @@ export type CloseSettingsPanelAction = {
     type: 'settings-panel-close';
 };
 
+export type ToggleShowUserAvatarsAction = {
+    type: 'settings-show-user-avatars-toggle';
+};
+
 export type ActionTypes =
     | ToggleSettingsPanelAction
     | CloseSettingsPanelAction
     | ToggleShowCompletedAction
-    | SetSizeModifierAction;
+    | SetSizeModifierAction
+    | ToggleShowUserAvatarsAction;
