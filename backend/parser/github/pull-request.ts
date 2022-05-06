@@ -20,9 +20,11 @@ class GitHubPullRequestParser {
 
         return {
             ...status,
+            username: pullRequest.sender.login,
+            userUrl: pullRequest.sender.html_url,
             userImage: pullRequest.sender.avatar_url,
             projectImage: pullRequest.organization.avatar_url,
-            source_url: pullRequest.repository.html_url,
+            sourceUrl: pullRequest.repository.html_url,
             mergeTitle: pullRequest.pull_request.title,
             mergeUrl: pullRequest.pull_request.html_url,
             time: new Date().toUTCString(),

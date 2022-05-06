@@ -5,28 +5,28 @@ import { Box, LinkBox } from '/frontend/App/Statuses/Status/Status.style';
 import Icon from '/frontend/components/Icon';
 
 type Props = {
-    title?: string;
+    username?: string;
     url?: string;
 };
 
-const Merge = ({ title, url }: Props): ReactElement | null => {
-    if (!title && !url) {
+const User = ({ username, url }: Props): ReactElement | null => {
+    if (!username && !url) {
         return null;
     }
 
     if (url) {
         return (
             <LinkBox href={url} target="_blank">
-                <Icon icon="merge_type" /> {title || 'request'}
+                <Icon icon="person" /> {username || 'User'}
             </LinkBox>
         );
     }
 
     return (
         <Box>
-            <Icon icon="merge_type" /> {title}
+            <Icon icon="merge_type" /> {username}
         </Box>
     );
 };
 
-export default Merge;
+export default User;

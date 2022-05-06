@@ -52,9 +52,11 @@ class GitHubRunParser {
 
         return {
             ...status,
+            username: run.sender.login,
+            userUrl: run.sender.html_url,
             userImage: run.sender.avatar_url,
             projectImage: run.organization.avatar_url,
-            source_url: run.repository.html_url,
+            sourceUrl: run.repository.html_url,
             processes,
             time: new Date().toUTCString(),
         };

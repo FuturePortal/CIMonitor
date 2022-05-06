@@ -31,9 +31,11 @@ class GitHubPushParser {
 
         return {
             ...status,
+            username: push.sender.login,
+            userUrl: push.sender.html_url,
             userImage: push.sender.avatar_url,
             projectImage: push.organization.avatar_url,
-            source_url: push.repository.html_url,
+            sourceUrl: push.repository.html_url,
             time: new Date().toUTCString(),
         };
     }

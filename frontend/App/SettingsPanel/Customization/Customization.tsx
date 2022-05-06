@@ -7,12 +7,13 @@ import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 import Icon from '/frontend/components/Icon';
 import Modifier from '/frontend/components/Modifier';
 import Toggle from '/frontend/components/Toggle';
-import { setSizeModifier, toggleShowCompleted } from '/frontend/store/settings/actions';
-import { getSizeModifier, isShowingCompleted } from '/frontend/store/settings/selectors';
+import { setSizeModifier, toggleShowCompleted, toggleShowUserAvatars } from '/frontend/store/settings/actions';
+import { getSizeModifier, isShowingCompleted, isShowingUserAvatars } from '/frontend/store/settings/selectors';
 
 const Customization = (): ReactElement => {
     const showCompleted = useSelector(isShowingCompleted);
     const sizeModifier = useSelector(getSizeModifier);
+    const showUserAvatars = useSelector(isShowingUserAvatars);
     const dispatch = useDispatch();
 
     const server = <Icon icon="warning" state="warning" title="Server setting" />;
@@ -32,6 +33,15 @@ const Customization = (): ReactElement => {
                 </About>
                 <Tool>
                     <Toggle onToggle={() => dispatch(toggleShowCompleted())} enabled={showCompleted} />
+                </Tool>
+            </Setting>
+            <Setting>
+                <About>
+                    <Title>Show user avatars</Title>
+                    <Description>Do you want to see the user avatar images?</Description>
+                </About>
+                <Tool>
+                    <Toggle onToggle={() => dispatch(toggleShowUserAvatars())} enabled={showUserAvatars} />
                 </Tool>
             </Setting>
             <Setting>

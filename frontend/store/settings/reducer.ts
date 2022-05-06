@@ -4,6 +4,7 @@ const defaultState: StateType = {
     open: false,
     showCompleted: false,
     sizeModifier: 1,
+    showUserAvatars: true,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -27,6 +28,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
             return {
                 ...state,
                 sizeModifier: action.sizeModifier,
+            };
+        case 'settings-show-user-avatars-toggle':
+            return {
+                ...state,
+                showUserAvatars: !state.showUserAvatars,
             };
         default:
             return state;
