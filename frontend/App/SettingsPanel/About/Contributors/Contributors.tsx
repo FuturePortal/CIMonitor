@@ -20,7 +20,7 @@ const Contributors = (): ReactElement => {
     }
 
     const getContributions = (contributor: ContributorType): string => {
-        if (contributor.username === 'RickvdStaaij') {
+        if (contributor.username === 'rick-nu') {
             return 'Creator and maintainer';
         }
 
