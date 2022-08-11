@@ -20,11 +20,6 @@ deployments are successful. All in one overview. This is all done via **webhooks
 
 ![Dashboard demonstration](docs/images/dashboard.gif)
 
-# :warning: version 3 :warning:
-
-Are you running version 3, and are not ready to switch to version 4 yet? You can upgrade to version 3.7.2 to suppress
-the update notification on the dashboard.
-
 # Getting started
 
 The easiest and quickest way to run CIMonitor is via docker. But there are other options available for you. Check the
