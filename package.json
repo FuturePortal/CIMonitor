@@ -2,7 +2,7 @@
     "name": "cimonitor",
     "version": "4.6.1",
     "description": "Monitors all your projects CI automatically",
-    "repository": "git@github.com:CIMonitor/CIMonitor.git",
+    "repository": "git@github.com:FuturePortal/CIMonitor.git",
     "license": "MIT",
     "author": {
         "name": "Rick van der Staaij",
@@ -11,7 +11,7 @@
     "contributors": [
         {
             "name": "GitHub contributors",
-            "url": "https://github.com/CIMonitor/CIMonitor/graphs/contributors"
+            "url": "https://github.com/FuturePortal/CIMonitor/graphs/contributors"
         }
     ],
     "scripts": {

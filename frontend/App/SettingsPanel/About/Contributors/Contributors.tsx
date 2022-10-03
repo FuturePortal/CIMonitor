@@ -41,7 +41,7 @@ const Contributors = (): ReactElement => {
                         </Name>
                         {contributor.location && <Location>{contributor.location}</Location>}
                         <Contributions
-                            href={`https://github.com/CIMonitor/CIMonitor/commits?author=${contributor.username}`}
+                            href={`https://github.com/FuturePortal/CIMonitor/commits?author=${contributor.username}`}
                             target="_blank"
                         >
                             {getContributions(contributor)}

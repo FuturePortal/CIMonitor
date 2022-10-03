@@ -6,7 +6,7 @@ export { getLatestRelease } from './github/release';
 const GitHubApi = () =>
     axios.create({
         headers: {
-            'User-Agent': 'github.com/CIMonitor/CIMonitor',
+            'User-Agent': 'github.com/FuturePortal/CIMonitor',
             accept: 'application/json',
         },
         baseURL: 'https://api.github.com',
