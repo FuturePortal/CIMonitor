@@ -11,8 +11,8 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-# Makefiles must have tabs
-[Makefile]
+# Taskfiles should have tabs
+[Taskfile]
 indent_style = tab
 
 # Yaml files indent with 2 spaces due to their weird array syntax

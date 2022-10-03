@@ -1,0 +1,183 @@
+#!/bin/bash
+set -eo pipefail
+
+# =========================================================
+# Taskfile gives you a set of quick tasks for your project
+# More info: https://go.futureportal.com/taskfile
+# =========================================================
+
+PATH=./node_modules/.bin:$PATH
+
+# =========================================================
+## Project
+# =========================================================
+
+function task:init { ## Set up the project for local development
+	project:clean-generated-files
+	task:update
+	docker:build
+	docker:start
+	task:help
+}
+
+function task:update { ## Update all project dependencies
+	project:install-dependencies
+}
+
+function task:pr { ## Check out pull request <number> and update
+	project:checkout-pr $1
+	task:update
+}
+
+function project:checkout-pr {
+	title "Checking out pull request"
+	if [ -z "$1" ]
+	then
+		echo "You need to provide a pull request number to check out."
+		echo -e "${BLUE}Usage:${RESET} $0 pr ${YELLOW}<number>${RESET}"
+		exit 422
+	fi
+	echo "Checking out pull request $1..."
+	git fetch origin refs/pull/$1/head:refs/remotes/origin/pr/$1
+	git checkout origin/pr/$1
+}
+
+function project:install-dependencies {
+	title "Installing dependencies"
+	cp --no-clobber local.env .env
+	yarn install
+}
+
+function project:clean-generated-files {
+	rm -rf .parcel-cache/ app/ dashboard/
+}
+
+function task:production { ## Build production application
+	docker:stop
+	project:clean-generated-files
+	project:build
+	project:start
+}
+
+function project:build {
+	title "Running production build"
+	yarn build
+}
+
+function project:start {
+	title "Starting application locally"
+	yarn start
+}
+
+# =========================================================
+## Docker
+# =========================================================
+
+function task:start { ## Start the project locally
+	docker:start
+}
+
+function task:stop { ## Stop the project locally
+	docker:stop
+}
+
+function task:restart { ## Restart the project locally
+	docker:stop
+	docker:start
+}
+
+function docker:start {
+	title "Starting project locally"
+	USERID=$(id -u) GROUPID=$(id -g) docker compose up --detach
+	echo "-> CIMonitor is running on http://localhost:3030"
+}
+
+function docker:build {
+	title "Building project containers"
+	USERID=$(id -u) GROUPID=$(id -g) docker compose build
+}
+
+function docker:stop {
+	title "Stopping local project"
+	USERID=$(id -u) GROUPID=$(id -g) docker compose stop
+	echo "Project stopped."
+}
+
+function task:logs { ## Follow the local logs
+	title "Following logs"
+	USERID=$(id -u) GROUPID=$(id -g) docker compose logs --follow --tail=20
+}
+
+# =========================================================
+## Cypress
+# =========================================================
+
+function task:test { ## Run the Cypress test suite
+	title "Running Cypress tests"
+	yarn cypress-run
+}
+
+function task:open { ## Open the Cypress UI
+	title "Opening Cypress UI"
+	yarn cypress-open
+}
+
+# =========================================================
+## Automation
+# =========================================================
+
+function task:commit { ## Clean up code before committing
+	title "Checking changed files"
+	lint-staged --verbose
+	title "Comitting"
+}
+
+# =========================================================
+## Taskfile
+# =========================================================
+
+BLUE=$(printf '\033[36m')
+YELLOW=$(printf '\033[33m')
+RESET=$(printf '\033[0m')
+
+function title {
+	echo -e "\n${BLUE}=>${RESET} $1\n"
+}
+
+function banner {
+	echo ""
+	echo " .d8888b. 8888888 888b     d888                   d8b 888"
+	echo "d88P  Y88b  888   8888b   d8888                   Y8P 888"
+	echo "888    888  888   88888b.d88888                       888"
+	echo "888         888   888Y88888P888  .d88b.  88888b.  888 888888 .d88b.  888d888"
+	echo "888         888   888 Y888P 888 d88\"\"88b 888 \"88b 888 888   d88\"\"88b 888P\""
+	echo "888    888  888   888  Y8P  888 888  888 888  888 888 888   888  888 888"
+	echo "Y88b  d88P  888   888   \"   888 Y88..88P 888  888 888 Y88b. Y88..88P 888"
+	echo " \"Y8888P\" 8888888 888       888  \"Y88P\"  888  888 888  \"Y888 \"Y88P\"  888"
+}
+
+function task:help { ## Show all available tasks
+	title "Available tasks"
+	awk 'BEGIN {FS = " { [#][#][ ]?"} /^([a-zA-Z_-]*:?.*)(\{ )?[#][#][ ]?/ \
+		{printf "\033[33m%-34s\033[0m %s\n", $1, $2}' $0 |\
+		sed -E "s/[#]{2,}[ ]*/${RESET}/g" |\
+		sed -E "s/function task:*/  /g"
+	echo -e "\n${BLUE}Usage:${RESET} $0 ${YELLOW}<task>${RESET} <args>"
+}
+
+function task:shorthand { ## Create CLI shorthand task instead of ./Taskfile
+	title "Creating task shorthand"
+	if [ -f /usr/local/bin/task ]
+	then
+		echo "/usr/local/bin/task already exists."
+	else
+		echo -e "You are about to create /usr/local/bin/task that requires root permission..."
+		sudo curl --location --silent --output /usr/local/bin/task https://go.futureportal.com/task-bin
+		sudo chmod +x /usr/local/bin/task
+	fi
+	echo -e "${BLUE}You can now use:${RESET} task ${YELLOW}<task>${RESET} <args>"
+}
+
+# Execute tasks (defaults to help)
+banner
+"task:${@:-help}"

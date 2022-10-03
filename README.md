@@ -12,9 +12,9 @@ deployments are successful. All in one overview. This is all done via **webhooks
 
 ## Supported webhooks
 
--   [GitHub](https://cimonitor.readthedocs.io/en/latest/webhook/github/)
--   [GitLab](https://cimonitor.readthedocs.io/en/latest/webhook/gitlab/)
--   [Read the Docs](https://cimonitor.readthedocs.io/en/latest/webhook/readthedocs/)
+- [GitHub](https://cimonitor.readthedocs.io/en/latest/webhook/github/)
+- [GitLab](https://cimonitor.readthedocs.io/en/latest/webhook/gitlab/)
+- [Read the Docs](https://cimonitor.readthedocs.io/en/latest/webhook/readthedocs/)
 
 ## Example
 
@@ -25,14 +25,14 @@ deployments are successful. All in one overview. This is all done via **webhooks
 The easiest and quickest way to run CIMonitor is via docker. But there are other options available for you. Check the
 options below in the documentation:
 
--   [docker](https://cimonitor.readthedocs.io/en/latest/run/docker/)
--   [kubernetes](https://cimonitor.readthedocs.io/en/latest/run/kubernetes/)
--   [locally wit nodejs](https://cimonitor.readthedocs.io/en/latest/run/locally/)
+- [docker](https://cimonitor.readthedocs.io/en/latest/run/docker/)
+- [kubernetes](https://cimonitor.readthedocs.io/en/latest/run/kubernetes/)
+- [locally wit nodejs](https://cimonitor.readthedocs.io/en/latest/run/locally/)
 
 # Development
 
 To start development, run the following commands on your terminal:
 
--   `make`: See all available make commands.
--   `make init`: Set up the project for local development (required to run locally).
--   `make start`: Run the development server.
+- `./Taskfile`: See all available make commands.
+- `./Taskfile init`: Set up the project for local development (required to run locally).
+- `./Taskfile start`: Run the development server.
