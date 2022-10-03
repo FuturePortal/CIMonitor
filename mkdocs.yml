@@ -1,6 +1,6 @@
 site_name: CIMonitor
 theme: readthedocs
-repo_url: https://github.com/CIMonitor/CIMonitor
+repo_url: https://github.com/FuturePortal/CIMonitor
 site_author: Rick van der Staaij
 dev_addr: 0.0.0.0:9998
 extra_css:
