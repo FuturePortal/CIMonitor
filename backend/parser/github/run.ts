@@ -12,7 +12,7 @@ class GitHubRunParser {
         if (!status) {
             status = {
                 id,
-                project: `${run.repository.name} / ${run.organization.login}`,
+                project: `${run.organization.login} / ${run.repository.name}`,
                 state: 'info',
                 source: 'github',
                 branch: run.workflow_run.head_branch,

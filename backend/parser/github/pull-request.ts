@@ -9,7 +9,7 @@ class GitHubPullRequestParser {
         if (!status) {
             status = {
                 id,
-                project: `${pullRequest.repository.name} / ${pullRequest.organization.login}`,
+                project: `${pullRequest.organization.login} / ${pullRequest.repository.name}`,
                 state: 'info',
                 source: 'github',
                 time: new Date().toUTCString(),
