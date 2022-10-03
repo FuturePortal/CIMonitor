@@ -1,6 +1,6 @@
 {
     "name": "cimonitor",
-    "version": "4.6.0",
+    "version": "4.6.1",
     "description": "Monitors all your projects CI automatically",
     "repository": "git@github.com:CIMonitor/CIMonitor.git",
     "license": "MIT",
@@ -35,7 +35,7 @@
         "socket.io-client": "^4.4.1"
     },
     "devDependencies": {
-        "@cimonitor/parcel-transformer-package-version": "^0.1.0",
+        "@futureportal/parcel-transformer-package-version": "^1.0.0",
         "@parcel/packager-raw-url": "2.3.2",
         "@parcel/transformer-svg-react": "^2.3.2",
         "@parcel/transformer-typescript-tsc": "^2.3.2",
