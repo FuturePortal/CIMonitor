@@ -26,7 +26,7 @@ const Toolbar = (): ReactElement => {
     return (
         <Container>
             <Buttons>
-                <Button onClick={() => window.open('https://github.com/cimonitor/cimonitor', '_blank').focus()}>
+                <Button onClick={() => window.open('https://github.com/FuturePortal/CIMonitor', '_blank').focus()}>
                     <GitHub />
                 </Button>
                 <Button onClick={() => dispatch(noStatuses ? closeSettingsPanel() : toggleSettingsPanel())}>

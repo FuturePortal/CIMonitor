@@ -3,7 +3,7 @@ import { Contributor } from 'types/cimonitor';
 import { GitHubContributor, GitHubUser } from 'types/github';
 
 export const getContributors = async (): Promise<Contributor[]> => {
-    const response = await GitHubApi().get('repos/CIMonitor/CIMonitor/stats/contributors');
+    const response = await GitHubApi().get('repos/FuturePortal/CIMonitor/stats/contributors');
 
     const contributors: GitHubContributor[] = response.data;
 
