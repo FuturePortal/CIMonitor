@@ -8,10 +8,10 @@ import store from './store';
 console.log('[frontend] init dashboard.');
 
 render(
-    <StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </StrictMode>,
-    document.getElementById('cimonitor')
+	<StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</StrictMode>,
+	document.getElementById('cimonitor')
 );

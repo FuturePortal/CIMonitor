@@ -5,20 +5,20 @@ import StorageManager from 'backend/storage/manager';
 import 'dotenv/config';
 
 (async () => {
-    console.log('[module-client] Starting...');
+	console.log('[module-client] Starting...');
 
-    await StorageManager.init();
+	await StorageManager.init();
 
-    const { events, triggers } = await StorageManager.loadModules();
+	const { events, triggers } = await StorageManager.loadModules();
 
-    const hasModules = ModuleManager.init(triggers, events);
+	const hasModules = ModuleManager.init(triggers, events);
 
-    if (!hasModules) {
-        console.log('[module-client] Without modules, the module client has no purpose.');
-        process.exit(1);
-    }
+	if (!hasModules) {
+		console.log('[module-client] Without modules, the module client has no purpose.');
+		process.exit(1);
+	}
 
-    SocketClient.init();
+	SocketClient.init();
 
-    SocketClient.listen();
+	SocketClient.listen();
 })();

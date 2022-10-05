@@ -3,36 +3,36 @@ import { GitLabMergeRequest } from 'types/gitlab';
 import Status from 'types/status';
 
 class GitLabMergeRequestParser {
-    parse(id: string, mergeRequest: GitLabMergeRequest): Status {
-        let status = StatusManager.getStatus(id);
+	parse(id: string, mergeRequest: GitLabMergeRequest): Status {
+		let status = StatusManager.getStatus(id);
 
-        if (!status) {
-            status = {
-                id,
-                project: `${mergeRequest.project.namespace} / ${mergeRequest.project.name}`,
-                state: 'info',
-                source: 'gitlab',
-                time: new Date().toUTCString(),
-                processes: [],
-                branch: mergeRequest.object_attributes.source_branch,
-            };
+		if (!status) {
+			status = {
+				id,
+				project: `${mergeRequest.project.namespace} / ${mergeRequest.project.name}`,
+				state: 'info',
+				source: 'gitlab',
+				time: new Date().toUTCString(),
+				processes: [],
+				branch: mergeRequest.object_attributes.source_branch,
+			};
 
-            if (mergeRequest.object_attributes.source_branch) {
-                status.branch = mergeRequest.object_attributes.source_branch;
-            }
-        }
+			if (mergeRequest.object_attributes.source_branch) {
+				status.branch = mergeRequest.object_attributes.source_branch;
+			}
+		}
 
-        return {
-            ...status,
-            projectImage: mergeRequest.project.avatar_url,
-            username: mergeRequest.user.name || mergeRequest.user.username,
-            userImage: mergeRequest.user.avatar_url,
-            sourceUrl: mergeRequest.project.git_http_url,
-            mergeTitle: mergeRequest.object_attributes.title,
-            mergeUrl: mergeRequest.object_attributes.url,
-            time: new Date().toUTCString(),
-        };
-    }
+		return {
+			...status,
+			projectImage: mergeRequest.project.avatar_url,
+			username: mergeRequest.user.name || mergeRequest.user.username,
+			userImage: mergeRequest.user.avatar_url,
+			sourceUrl: mergeRequest.project.git_http_url,
+			mergeTitle: mergeRequest.object_attributes.title,
+			mergeUrl: mergeRequest.object_attributes.url,
+			time: new Date().toUTCString(),
+		};
+	}
 }
 
 export default new GitLabMergeRequestParser();

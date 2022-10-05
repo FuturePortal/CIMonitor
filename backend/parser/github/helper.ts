@@ -2,57 +2,57 @@ import { GitHubConclusion, GitHubStatus } from 'types/github';
 import { State, StepState } from 'types/status';
 
 export const getStateFromStatus = (status: GitHubStatus, conclusion: GitHubConclusion): State => {
-    if (conclusion !== null) {
-        if (conclusion === 'failure') {
-            return 'error';
-        }
+	if (conclusion !== null) {
+		if (conclusion === 'failure') {
+			return 'error';
+		}
 
-        return 'success';
-    }
+		return 'success';
+	}
 
-    if (['queued', 'in_progress'].includes(status)) {
-        return 'warning';
-    }
+	if (['queued', 'in_progress'].includes(status)) {
+		return 'warning';
+	}
 
-    return 'info';
+	return 'info';
 };
 
 export const getJobStateFromStatus = (status: GitHubStatus, conclusion: GitHubConclusion): StepState => {
-    if (conclusion !== null) {
-        if (conclusion === 'failure') {
-            return 'failed';
-        }
+	if (conclusion !== null) {
+		if (conclusion === 'failure') {
+			return 'failed';
+		}
 
-        if (conclusion === 'skipped') {
-            return 'skipped';
-        }
+		if (conclusion === 'skipped') {
+			return 'skipped';
+		}
 
-        return 'success';
-    }
+		return 'success';
+	}
 
-    if (status === 'in_progress') {
-        return 'running';
-    }
+	if (status === 'in_progress') {
+		return 'running';
+	}
 
-    if (status === 'queued') {
-        return 'pending';
-    }
+	if (status === 'queued') {
+		return 'pending';
+	}
 
-    return 'created';
+	return 'created';
 };
 
 export const getBranch = (reference: string): string | null => {
-    if (reference.includes('refs/heads')) {
-        return reference.replace('refs/heads/', '');
-    }
+	if (reference.includes('refs/heads')) {
+		return reference.replace('refs/heads/', '');
+	}
 
-    return null;
+	return null;
 };
 
 export const getTag = (reference: string): string | null => {
-    if (reference.includes('refs/tags')) {
-        return reference.replace('refs/tags/', '');
-    }
+	if (reference.includes('refs/tags')) {
+		return reference.replace('refs/tags/', '');
+	}
 
-    return null;
+	return null;
 };

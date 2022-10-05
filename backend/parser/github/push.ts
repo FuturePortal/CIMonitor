@@ -5,40 +5,40 @@ import Status from 'types/status';
 import { getBranch, getTag } from './helper';
 
 class GitHubPushParser {
-    parse(id: string, push: GitHubPush): Status {
-        let status = StatusManager.getStatus(id);
+	parse(id: string, push: GitHubPush): Status {
+		let status = StatusManager.getStatus(id);
 
-        if (!status) {
-            status = {
-                id,
-                project: `${push.organization.login} / ${push.repository.name}`,
-                state: 'info',
-                source: 'github',
-                time: new Date().toUTCString(),
-                processes: [],
-            };
+		if (!status) {
+			status = {
+				id,
+				project: `${push.organization.login} / ${push.repository.name}`,
+				state: 'info',
+				source: 'github',
+				time: new Date().toUTCString(),
+				processes: [],
+			};
 
-            const branch = getBranch(push.ref);
-            if (branch) {
-                status.branch = branch;
-            }
+			const branch = getBranch(push.ref);
+			if (branch) {
+				status.branch = branch;
+			}
 
-            const tag = getTag(push.ref);
-            if (tag) {
-                status.tag = tag;
-            }
-        }
+			const tag = getTag(push.ref);
+			if (tag) {
+				status.tag = tag;
+			}
+		}
 
-        return {
-            ...status,
-            username: push.sender.login,
-            userUrl: push.sender.html_url,
-            userImage: push.sender.avatar_url,
-            projectImage: push.organization.avatar_url,
-            sourceUrl: push.repository.html_url,
-            time: new Date().toUTCString(),
-        };
-    }
+		return {
+			...status,
+			username: push.sender.login,
+			userUrl: push.sender.html_url,
+			userImage: push.sender.avatar_url,
+			projectImage: push.organization.avatar_url,
+			sourceUrl: push.repository.html_url,
+			time: new Date().toUTCString(),
+		};
+	}
 }
 
 export default new GitHubPushParser();

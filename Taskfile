@@ -134,9 +134,14 @@ function task:commit { ## Clean up code before committing
 
 function task:clean { ## Clean up the codestyle in all files
 	title "Running eslint"
-	eslint .
+	echo "Cleaning typescript files..."
+	eslint --fix --ext ts,tsx .
+	echo "Done."
 	title "Running prettier"
-	prettier ./**/*.{json,css,html,js}
+	echo "Cleaning other files..."
+	prettier --write --list-different *.{json,js}
+	prettier --write --list-different **/*.{json,css,html,js}
+	echo "Done."
 }
 
 # =========================================================

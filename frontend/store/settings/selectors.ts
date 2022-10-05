@@ -7,4 +7,4 @@ export const isShowingCompleted = (state: RootState): boolean => state.setting.s
 export const isShowingUserAvatars = (state: RootState): boolean => state.setting.showUserAvatars;
 
 export const getSizeModifier = (state: RootState): number =>
-    state.setting.sizeModifier ? state.setting.sizeModifier : 1;
+	state.setting.sizeModifier ? state.setting.sizeModifier : 1;

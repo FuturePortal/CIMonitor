@@ -1,49 +1,49 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html,
 body {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 body {
-    background: #333;
-    color: #fff;
-    font-family: 'Fredoka', sans-serif;
-    min-height: 100vh;
-    line-height: 1.1;
+	background: #333;
+	color: #fff;
+	font-family: 'Fredoka', sans-serif;
+	min-height: 100vh;
+	line-height: 1.1;
 }
 
 @font-face {
-    font-family: 'Fredoka';
-    src: url('fonts/fredoka.ttf') format('truetype');
+	font-family: 'Fredoka';
+	src: url('fonts/fredoka.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'material-icons-round';
-    src: url('fonts/material-icons-round.otf') format('opentype');
+	font-family: 'material-icons-round';
+	src: url('fonts/material-icons-round.otf') format('opentype');
 }
 
 .icon {
-    font-family: 'material-icons-round';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 1.2em;
-    vertical-align: -0.2em;
-    display: inline-block;
+	font-family: 'material-icons-round';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1.2em;
+	vertical-align: -0.2em;
+	display: inline-block;
 }
 
 .icon.spin {
-    animation: spin-ani 3s linear infinite;
+	animation: spin-ani 3s linear infinite;
 }
 
 @keyframes spin-ani {
-    100% {
-        transform: rotate(360deg);
-    }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 h1,
@@ -51,19 +51,19 @@ h2,
 h3,
 h4,
 h5 {
-    font-weight: normal;
-    margin-bottom: 1rem;
+	font-weight: normal;
+	margin-bottom: 1rem;
 }
 
 p {
-    margin-bottom: 1rem;
-    line-height: 1.4;
+	margin-bottom: 1rem;
+	line-height: 1.4;
 }
 
 ul {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+	margin-left: 2rem;
+	margin-bottom: 1rem;
+	line-height: 1.3;
 }
 
 input,
@@ -71,13 +71,13 @@ textarea,
 select,
 option,
 button {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 1rem;
+	font-family: 'Fredoka', sans-serif;
+	font-size: 1rem;
 }
 
 button {
-    cursor: pointer;
-    border: 0;
-    outline: 0;
-    background: transparent;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background: transparent;
 }

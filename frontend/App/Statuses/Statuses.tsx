@@ -10,20 +10,20 @@ import MockStatuses from './Mock';
 import Status from './Status';
 
 const Statuses = (): ReactElement => {
-    const statuses = useSelector(getStatuses);
-    const sizeModifier = useSelector(getSizeModifier);
+	const statuses = useSelector(getStatuses);
+	const sizeModifier = useSelector(getSizeModifier);
 
-    if (!statuses || statuses.length === 0) {
-        return <MockStatuses />;
-    }
+	if (!statuses || statuses.length === 0) {
+		return <MockStatuses />;
+	}
 
-    return (
-        <List style={{ fontSize: `${sizeModifier}rem` }}>
-            {statuses.map((status) => (
-                <Status key={status.id} status={status} />
-            ))}
-        </List>
-    );
+	return (
+		<List style={{ fontSize: `${sizeModifier}rem` }}>
+			{statuses.map((status) => (
+				<Status key={status.id} status={status} />
+			))}
+		</List>
+	);
 };
 
 export default Statuses;
