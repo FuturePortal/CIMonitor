@@ -132,6 +132,13 @@ function task:commit { ## Clean up code before committing
 	title "Comitting"
 }
 
+function task:clean { ## Clean up the codestyle in all files
+	title "Running eslint"
+	eslint .
+	title "Running prettier"
+	prettier ./**/*.{json,css,html,js}
+}
+
 # =========================================================
 ## Taskfile
 # =========================================================
