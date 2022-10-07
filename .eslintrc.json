@@ -1,54 +1,53 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
-    "rules": {
-        "max-len": [
-            "error",
-            {
-                "code": 120,
-                "tabWidth": 4
-            }
-        ],
-        "react/react-in-jsx-scope": "off",
-        "simple-import-sort/imports": [
-            "error",
-            {
-                "groups": [
-                    // other packages. Node packages first
-                    ["^@?\\w"],
-                    // Sub components of current component
-                    ["^.+\\.style$"],
-                    ["^.+\\.svg$"],
-                    // Own modules
-                    ["^(/frontend|backend|types)(/.*|$)"],
-                    // Shared modules
-                    ["^types(/.*|$)"],
-                    // Wrong imports (should be replaced)
-                    ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-                    // Sub components of current component
-                    ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
-                ]
-            }
-        ],
-        "simple-import-sort/exports": "error"
-    },
-    "ignorePatterns": ["node_modules/", "./dashboard/", "./app/", ".parcel-cache/", "./cypress/"],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    }
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint", "simple-import-sort"],
+	"rules": {
+		"max-len": [
+			"error",
+			{
+				"code": 120
+			}
+		],
+		"react/react-in-jsx-scope": "off",
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// other packages. Node packages first
+					["^@?\\w"],
+					// Sub components of current component
+					["^.+\\.style$"],
+					["^.+\\.svg$"],
+					// Own modules
+					["^(/frontend|backend|types)(/.*|$)"],
+					// Shared modules
+					["^types(/.*|$)"],
+					// Wrong imports (should be replaced)
+					["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+					// Sub components of current component
+					["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
+				]
+			}
+		],
+		"simple-import-sort/exports": "error"
+	},
+	"ignorePatterns": ["node_modules/", "./dashboard/", "./app/", ".parcel-cache/", "./cypress/"],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	}
 }

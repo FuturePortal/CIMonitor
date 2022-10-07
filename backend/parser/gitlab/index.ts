@@ -8,61 +8,61 @@ import GitLabMergeRequestParser from './merge-request';
 import GitLabPipelineParser from './pipeline';
 
 class GitLabParser {
-    getInternalId(projectId: number, repositoryName: string, branch: string | false, tag: string | false): string {
-        let id = `gitlab-${projectId}-${Slugify(repositoryName)}`;
+	getInternalId(projectId: number, repositoryName: string, branch: string | false, tag: string | false): string {
+		let id = `gitlab-${projectId}-${Slugify(repositoryName)}`;
 
-        if (branch) {
-            id += `-${Slugify(branch)}`;
-        }
+		if (branch) {
+			id += `-${Slugify(branch)}`;
+		}
 
-        if (tag) {
-            id += `-${Slugify(tag)}`;
-        }
+		if (tag) {
+			id += `-${Slugify(tag)}`;
+		}
 
-        return id;
-    }
+		return id;
+	}
 
-    parseBuild(build: GitLabBuild): Status {
-        console.log('[parser/gitlab] Parsing build...');
+	parseBuild(build: GitLabBuild): Status {
+		console.log('[parser/gitlab] Parsing build...');
 
-        const id = this.getInternalId(build.project_id, build.repository.name, build.ref, build.tag);
+		const id = this.getInternalId(build.project_id, build.repository.name, build.ref, build.tag);
 
-        return GitLabBuildParser.parse(id, build);
-    }
+		return GitLabBuildParser.parse(id, build);
+	}
 
-    parsePipeline(pipeline: GitLabPipeline): Status {
-        console.log('[parser/gitlab] Parsing pipeline...');
+	parsePipeline(pipeline: GitLabPipeline): Status {
+		console.log('[parser/gitlab] Parsing pipeline...');
 
-        const id = this.getInternalId(
-            pipeline.project.id,
-            pipeline.project.name,
-            pipeline.object_attributes.ref,
-            pipeline.object_attributes.tag
-        );
+		const id = this.getInternalId(
+			pipeline.project.id,
+			pipeline.project.name,
+			pipeline.object_attributes.ref,
+			pipeline.object_attributes.tag
+		);
 
-        return GitLabPipelineParser.parse(id, pipeline);
-    }
+		return GitLabPipelineParser.parse(id, pipeline);
+	}
 
-    parseDeployment(deployment: GitLabDeployment): Status {
-        console.log('[parser/gitlab] Parsing deployment...');
+	parseDeployment(deployment: GitLabDeployment): Status {
+		console.log('[parser/gitlab] Parsing deployment...');
 
-        const id = this.getInternalId(deployment.project.id, deployment.project.name, deployment.ref, false);
+		const id = this.getInternalId(deployment.project.id, deployment.project.name, deployment.ref, false);
 
-        return GitLabDeploymentParser.parse(id, deployment);
-    }
+		return GitLabDeploymentParser.parse(id, deployment);
+	}
 
-    parseMergeRequest(mergeRequest: GitLabMergeRequest): Status {
-        console.log('[parser/gitlab] Parsing merge request...');
+	parseMergeRequest(mergeRequest: GitLabMergeRequest): Status {
+		console.log('[parser/gitlab] Parsing merge request...');
 
-        const id = this.getInternalId(
-            mergeRequest.project.id,
-            mergeRequest.project.name,
-            mergeRequest.object_attributes.source_branch,
-            false
-        );
+		const id = this.getInternalId(
+			mergeRequest.project.id,
+			mergeRequest.project.name,
+			mergeRequest.object_attributes.source_branch,
+			false
+		);
 
-        return GitLabMergeRequestParser.parse(id, mergeRequest);
-    }
+		return GitLabMergeRequestParser.parse(id, mergeRequest);
+	}
 }
 
 export default new GitLabParser();

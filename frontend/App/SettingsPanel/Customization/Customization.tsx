@@ -11,68 +11,68 @@ import { setSizeModifier, toggleShowCompleted, toggleShowUserAvatars } from '/fr
 import { getSizeModifier, isShowingCompleted, isShowingUserAvatars } from '/frontend/store/settings/selectors';
 
 const Customization = (): ReactElement => {
-    const showCompleted = useSelector(isShowingCompleted);
-    const sizeModifier = useSelector(getSizeModifier);
-    const showUserAvatars = useSelector(isShowingUserAvatars);
-    const dispatch = useDispatch();
+	const showCompleted = useSelector(isShowingCompleted);
+	const sizeModifier = useSelector(getSizeModifier);
+	const showUserAvatars = useSelector(isShowingUserAvatars);
+	const dispatch = useDispatch();
 
-    const server = <Icon icon="warning" state="warning" title="Server setting" />;
+	const server = <Icon icon="warning" state="warning" title="Server setting" />;
 
-    return (
-        <Content>
-            <p>
-                You can customize your dashboard with the settings below. Note that all settings with a {server} are
-                server settings, and are changed for everyone.
-            </p>
-            <Setting>
-                <About>
-                    <Title>Show completed steps</Title>
-                    <Description>
-                        Do you want to see all successfully completed steps that your status went trough?
-                    </Description>
-                </About>
-                <Tool>
-                    <Toggle onToggle={() => dispatch(toggleShowCompleted())} enabled={showCompleted} />
-                </Tool>
-            </Setting>
-            <Setting>
-                <About>
-                    <Title>Show user avatars</Title>
-                    <Description>Do you want to see the user avatar images?</Description>
-                </About>
-                <Tool>
-                    <Toggle onToggle={() => dispatch(toggleShowUserAvatars())} enabled={showUserAvatars} />
-                </Tool>
-            </Setting>
-            <Setting>
-                <About>
-                    <Title>Status size modifier</Title>
-                    <Description>
-                        When displaying statuses on a centralized monitor, you probably want to increase the size of the
-                        text. This allows you to make statuses easier to read from a distance.
-                    </Description>
-                </About>
-                <Tool>
-                    <Modifier
-                        value={sizeModifier}
-                        min={1}
-                        max={3}
-                        step={0.1}
-                        onChange={(modifier) => dispatch(setSizeModifier(modifier))}
-                    />
-                </Tool>
-            </Setting>
-            <Setting>
-                <About>
-                    <Title>Remove statuses after</Title>
-                    <Description>
-                        {server} Automatically remove statuses older than x days. Not yet customisable in this version.
-                    </Description>
-                </About>
-                <Tool>7 days</Tool>
-            </Setting>
-        </Content>
-    );
+	return (
+		<Content>
+			<p>
+				You can customize your dashboard with the settings below. Note that all settings with a {server} are
+				server settings, and are changed for everyone.
+			</p>
+			<Setting>
+				<About>
+					<Title>Show completed steps</Title>
+					<Description>
+						Do you want to see all successfully completed steps that your status went trough?
+					</Description>
+				</About>
+				<Tool>
+					<Toggle onToggle={() => dispatch(toggleShowCompleted())} enabled={showCompleted} />
+				</Tool>
+			</Setting>
+			<Setting>
+				<About>
+					<Title>Show user avatars</Title>
+					<Description>Do you want to see the user avatar images?</Description>
+				</About>
+				<Tool>
+					<Toggle onToggle={() => dispatch(toggleShowUserAvatars())} enabled={showUserAvatars} />
+				</Tool>
+			</Setting>
+			<Setting>
+				<About>
+					<Title>Status size modifier</Title>
+					<Description>
+						When displaying statuses on a centralized monitor, you probably want to increase the size of the
+						text. This allows you to make statuses easier to read from a distance.
+					</Description>
+				</About>
+				<Tool>
+					<Modifier
+						value={sizeModifier}
+						min={1}
+						max={3}
+						step={0.1}
+						onChange={(modifier) => dispatch(setSizeModifier(modifier))}
+					/>
+				</Tool>
+			</Setting>
+			<Setting>
+				<About>
+					<Title>Remove statuses after</Title>
+					<Description>
+						{server} Automatically remove statuses older than x days. Not yet customisable in this version.
+					</Description>
+				</About>
+				<Tool>7 days</Tool>
+			</Setting>
+		</Content>
+	);
 };
 
 export default Customization;

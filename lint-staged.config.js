@@ -1,25 +1,25 @@
 function hasChangedFileInFolder(changedFiles, folder) {
-    return !!changedFiles.find((fileName) => fileName.includes('/' + folder + '/'));
+	return !!changedFiles.find((fileName) => fileName.includes('/' + folder + '/'));
 }
 
 module.exports = {
-    '*.{ts,tsx}': [
-        'eslint --fix',
-        (changedFiles) => {
-            var linters = [];
-            var typescriptChecks = ['frontend', 'backend'];
+	'*.{ts,tsx}': [
+		'eslint --fix',
+		(changedFiles) => {
+			var linters = [];
+			var typescriptChecks = ['frontend', 'backend'];
 
-            var haveTypesChanged = hasChangedFileInFolder(changedFiles, 'types');
+			var haveTypesChanged = hasChangedFileInFolder(changedFiles, 'types');
 
-            typescriptChecks.forEach((folder) => {
-                if (haveTypesChanged || hasChangedFileInFolder(changedFiles, folder)) {
-                    linters.push('tsc --noEmit --project ./' + folder + '/tsconfig.json');
-                }
-            });
+			typescriptChecks.forEach((folder) => {
+				if (haveTypesChanged || hasChangedFileInFolder(changedFiles, folder)) {
+					linters.push('tsc --noEmit --project ./' + folder + '/tsconfig.json');
+				}
+			});
 
-            return linters;
-        },
-    ],
-    '*.{json,css,html,js}': ['prettier --write'],
-    '*.md': ['prettier --write --tab-width 2'],
+			return linters;
+		},
+	],
+	'*.{json,css,html,js}': ['prettier --write'],
+	'*.md': ['prettier --write --tab-width 2'],
 };

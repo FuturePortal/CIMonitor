@@ -10,23 +10,23 @@ import WarningIcon from './icon/warning.png';
 import { State } from '/types/status';
 
 const getIcon = (state: State) => {
-    if (state === 'error') {
-        return ErrorIcon;
-    }
+	if (state === 'error') {
+		return ErrorIcon;
+	}
 
-    if (state === 'warning') {
-        return WarningIcon;
-    }
+	if (state === 'warning') {
+		return WarningIcon;
+	}
 
-    return SuccessIcon;
+	return SuccessIcon;
 };
 
 const Favicon = (): ReactElement => {
-    const globalState = useSelector(getGlobalState);
+	const globalState = useSelector(getGlobalState);
 
-    document.getElementById('favicon').setAttribute('href', getIcon(globalState));
+	document.getElementById('favicon').setAttribute('href', getIcon(globalState));
 
-    return null;
+	return null;
 };
 
 export default Favicon;

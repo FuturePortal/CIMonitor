@@ -13,29 +13,29 @@ import { closeSettingsPanel, toggleSettingsPanel } from '/frontend/store/setting
 import { getGlobalState, hasNoStatuses } from '/frontend/store/status/selectors';
 
 const Toolbar = (): ReactElement => {
-    const dashboardState = useSelector(getGlobalState);
-    const dispatch = useDispatch();
-    const noStatuses = useSelector(hasNoStatuses);
+	const dashboardState = useSelector(getGlobalState);
+	const dispatch = useDispatch();
+	const noStatuses = useSelector(hasNoStatuses);
 
-    const light = {
-        success: <SuccessLight />,
-        warning: <WarningLight />,
-        error: <ErrorLight />,
-    };
+	const light = {
+		success: <SuccessLight />,
+		warning: <WarningLight />,
+		error: <ErrorLight />,
+	};
 
-    return (
-        <Container>
-            <Buttons>
-                <Button onClick={() => window.open('https://github.com/FuturePortal/CIMonitor', '_blank').focus()}>
-                    <GitHub />
-                </Button>
-                <Button onClick={() => dispatch(noStatuses ? closeSettingsPanel() : toggleSettingsPanel())}>
-                    <Icon icon="settings" />
-                </Button>
-            </Buttons>
-            <Brand>{light[dashboardState]}</Brand>
-        </Container>
-    );
+	return (
+		<Container>
+			<Buttons>
+				<Button onClick={() => window.open('https://github.com/FuturePortal/CIMonitor', '_blank').focus()}>
+					<GitHub />
+				</Button>
+				<Button onClick={() => dispatch(noStatuses ? closeSettingsPanel() : toggleSettingsPanel())}>
+					<Icon icon="settings" />
+				</Button>
+			</Buttons>
+			<Brand>{light[dashboardState]}</Brand>
+		</Container>
+	);
 };
 
 export default Toolbar;

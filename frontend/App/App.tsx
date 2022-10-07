@@ -9,19 +9,19 @@ import Statuses from './Statuses';
 import Toolbar from './Toolbar';
 
 const App = (): ReactElement => {
-    const { socketConnected } = useSocket();
+	const { socketConnected } = useSocket();
 
-    document.title = `${window.location.host} | CIMonitor`;
+	document.title = `${window.location.host} | CIMonitor`;
 
-    return (
-        <>
-            <Favicon />
-            <SocketConnection connected={socketConnected} />
-            <Statuses />
-            <Toolbar />
-            <SettingsPanel />
-        </>
-    );
+	return (
+		<>
+			<Favicon />
+			<SocketConnection connected={socketConnected} />
+			<Statuses />
+			<Toolbar />
+			<SettingsPanel />
+		</>
+	);
 };
 
 export default App;

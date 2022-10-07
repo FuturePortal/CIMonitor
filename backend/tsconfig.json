@@ -1,18 +1,18 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "CommonJS",
-        "outDir": "../app",
-        "moduleResolution": "node",
-        "baseUrl": "../",
-        "esModuleInterop": true,
-        "preserveWatchOutput": true,
-        "jsx": "preserve",
-        "allowJs": false,
-        "paths": {
-            "backend/*": ["./backend/*"],
-            "types/*": ["./types/*"]
-        }
-    },
-    "include": ["../backend/**/*.ts", "../types/**/*.ts"]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "CommonJS",
+		"outDir": "../app",
+		"moduleResolution": "node",
+		"baseUrl": "../",
+		"esModuleInterop": true,
+		"preserveWatchOutput": true,
+		"jsx": "preserve",
+		"allowJs": false,
+		"paths": {
+			"backend/*": ["./backend/*"],
+			"types/*": ["./types/*"]
+		}
+	},
+	"include": ["../backend/**/*.ts", "../types/**/*.ts"]
 }

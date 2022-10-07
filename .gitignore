@@ -1,7 +1,6 @@
 # Generally ignoring
 
 .idea/
-.husky/_/
 yarn-error.log
 /.env
 

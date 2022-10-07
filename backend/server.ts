@@ -19,21 +19,21 @@ app.use(bodyParser.json());
 app.use(router);
 
 (async () => {
-    StorageManager.init();
+	StorageManager.init();
 
-    const statuses = await StorageManager.loadStatuses();
+	const statuses = await StorageManager.loadStatuses();
 
-    if (statuses.length > 0) {
-        StatusManager.setStatuses(statuses);
-    }
+	if (statuses.length > 0) {
+		StatusManager.setStatuses(statuses);
+	}
 
-    StatusManager.init();
+	StatusManager.init();
 
-    const { events, triggers } = await StorageManager.loadModules();
+	const { events, triggers } = await StorageManager.loadModules();
 
-    ModuleManager.init(triggers, events);
+	ModuleManager.init(triggers, events);
 
-    ConnectionManager.startSocket(server);
+	ConnectionManager.startSocket(server);
 
-    server.listen(port, () => console.log(`[server] CIMonitor running on port ${port}.`));
+	server.listen(port, () => console.log(`[server] CIMonitor running on port ${port}.`));
 })();

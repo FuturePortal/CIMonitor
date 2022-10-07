@@ -7,14 +7,11 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
-indent_style = space
+indent_style = tab
 indent_size = 4
 trim_trailing_whitespace = true
 
-# Taskfiles should have tabs
-[Taskfile]
-indent_style = tab
-
 # Yaml files indent with 2 spaces due to their weird array syntax
 [*.{yaml,yml,md}]
+indent_style = spaces
 indent_size = 2

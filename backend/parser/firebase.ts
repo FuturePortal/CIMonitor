@@ -1,45 +1,45 @@
 class FirebaseDataParser {
-    convertObjectArraysToArrays(data) {
-        if (data === null || typeof data !== 'object') {
-            return data;
-        }
+	convertObjectArraysToArrays(data) {
+		if (data === null || typeof data !== 'object') {
+			return data;
+		}
 
-        if (this.shouldObjectBeArray(data)) {
-            const actualArray = this.convertObjectToArray(data);
+		if (this.shouldObjectBeArray(data)) {
+			const actualArray = this.convertObjectToArray(data);
 
-            return actualArray.map((arrayItem) => this.convertObjectArraysToArrays(arrayItem));
-        }
+			return actualArray.map((arrayItem) => this.convertObjectArraysToArrays(arrayItem));
+		}
 
-        Object.keys(data).map((objectKey) => {
-            data[objectKey] = this.convertObjectArraysToArrays(data[objectKey]);
-        });
+		Object.keys(data).map((objectKey) => {
+			data[objectKey] = this.convertObjectArraysToArrays(data[objectKey]);
+		});
 
-        return data;
-    }
+		return data;
+	}
 
-    shouldObjectBeArray(dataObject) {
-        let arrayKeyCount = 0;
-        let shouldBeArray = true;
+	shouldObjectBeArray(dataObject) {
+		let arrayKeyCount = 0;
+		let shouldBeArray = true;
 
-        Object.keys(dataObject).map((objectKey) => {
-            if (isNaN(parseInt(objectKey)) || parseInt(objectKey) !== arrayKeyCount) {
-                shouldBeArray = false;
-            }
-            arrayKeyCount++;
-        });
+		Object.keys(dataObject).map((objectKey) => {
+			if (isNaN(parseInt(objectKey)) || parseInt(objectKey) !== arrayKeyCount) {
+				shouldBeArray = false;
+			}
+			arrayKeyCount++;
+		});
 
-        return shouldBeArray;
-    }
+		return shouldBeArray;
+	}
 
-    convertObjectToArray(arrayObject) {
-        const actualArray = [];
+	convertObjectToArray(arrayObject) {
+		const actualArray = [];
 
-        Object.keys(arrayObject).map((objectKey) => {
-            actualArray.push(arrayObject[objectKey]);
-        });
+		Object.keys(arrayObject).map((objectKey) => {
+			actualArray.push(arrayObject[objectKey]);
+		});
 
-        return actualArray;
-    }
+		return actualArray;
+	}
 }
 
 export default new FirebaseDataParser();
