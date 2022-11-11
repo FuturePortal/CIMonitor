@@ -19,6 +19,7 @@ const getStateIcon = (state: StepState, processState: State = 'warning') => {
 		pending: processState === 'warning' ? 'update' : 'skip_next',
 		created: 'push_pin',
 		skipped: 'skip_next',
+		stopped: 'stop_circle',
 		timeout: 'alarm',
 	};
 
