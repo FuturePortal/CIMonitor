@@ -8,7 +8,8 @@ export type StepState =
 	| 'failed'
 	| 'soft-failed'
 	| 'skipped'
-	| 'timeout';
+	| 'timeout'
+	| 'stopped';
 
 export type Step = {
 	id: string;

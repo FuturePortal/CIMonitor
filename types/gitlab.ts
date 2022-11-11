@@ -1,3 +1,5 @@
+export type GitLabStatus = 'canceled' | 'pending' | 'running' | 'success' | 'failed' | 'created';
+
 export type GitLabUser = {
 	id: number;
 	name: string;
@@ -40,7 +42,7 @@ export type GitLabPipeline = {
 		sha: string;
 		before_sha: string;
 		source: string;
-		status: string;
+		status: GitLabStatus;
 		detailed_status: string;
 		stages: string[];
 		created_at: string;
@@ -64,7 +66,7 @@ export type GitLabPipeline = {
 
 export type GitLabDeployment = {
 	object_kind: 'deployment';
-	status: string;
+	status: GitLabStatus;
 	status_changed_at: string;
 	deployment_id: number;
 	deployable_id: number;
@@ -113,7 +115,7 @@ export type GitLabBuild = {
 	build_id: number;
 	build_name: string;
 	build_stage: string;
-	build_status: string;
+	build_status: GitLabStatus;
 	build_created_at: string;
 	build_started_at: string | null;
 	build_finished_at: string | null;

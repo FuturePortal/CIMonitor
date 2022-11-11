@@ -43,21 +43,27 @@ export const Stage = styled.div<StageProps>`
 	`)}
 
 	${(props) =>
-		['running'].includes(props.state) &&
+		['stopped'].includes(props.state) &&
 		css`
-			background: ${stateDarkColor['warning']};
+			background: ${stateDarkColor.info};
 		`}
 
-    ${(props) =>
+	${(props) =>
+		['running'].includes(props.state) &&
+		css`
+			background: ${stateDarkColor.warning};
+		`}
+
+	${(props) =>
 		['pending'].includes(props.state) &&
 		css`
 			background: ${opacity(stateDarkColor[props.processState], 0.5)};
 		`}
 
-    ${(props) =>
+	${(props) =>
 		['failed', 'timeout'].includes(props.state) &&
 		css`
-			background: ${stateDarkColor['error']};
+			background: ${stateDarkColor.error};
 		`}
 `;
 
@@ -67,7 +73,7 @@ type StepProps = {
 };
 
 export const Step = styled.div<StepProps>`
-	background: ${(props) => stateDarkColor[props.state]};
+	background: ${(props) => stateDarkColor[props.state] || stateDarkColor.info};
 	padding: 0.3rem 0.5rem 0.3rem 2.3rem;
 	${ellipsis};
 
@@ -89,7 +95,7 @@ export const Step = styled.div<StepProps>`
 			background: ${opacity(stateDarkColor[props.processState], 0.5)};
 		`}
 
-    ${(props) =>
+	${(props) =>
 		['failed', 'timeout'].includes(props.state) &&
 		css`
 			background: ${stateDarkColor.error};

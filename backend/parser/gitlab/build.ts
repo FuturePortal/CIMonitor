@@ -144,6 +144,10 @@ class GitLabBuildParser {
 			return 'running';
 		}
 
+		if (steps.find((step) => ['stopped'].includes(step.state))) {
+			return 'stopped';
+		}
+
 		if (steps.find((step) => ['created', 'pending'].includes(step.state))) {
 			return 'pending';
 		}
