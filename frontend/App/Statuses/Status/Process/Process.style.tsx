@@ -43,9 +43,15 @@ export const Stage = styled.div<StageProps>`
 	`)}
 
 	${(props) =>
+		['stopped'].includes(props.state) &&
+		css`
+			background: ${stateDarkColor.info};
+		`}
+
+	${(props) =>
 		['running'].includes(props.state) &&
 		css`
-			background: ${stateDarkColor['warning']};
+			background: ${stateDarkColor.warning};
 		`}
 
 	${(props) =>
@@ -57,7 +63,7 @@ export const Stage = styled.div<StageProps>`
 	${(props) =>
 		['failed', 'timeout'].includes(props.state) &&
 		css`
-			background: ${stateDarkColor['error']};
+			background: ${stateDarkColor.error};
 		`}
 `;
 
