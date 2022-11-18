@@ -27,7 +27,7 @@ options below in the documentation:
 
 - [docker](https://cimonitor.readthedocs.io/en/latest/run/docker/)
 - [kubernetes](https://cimonitor.readthedocs.io/en/latest/run/kubernetes/)
-- [locally wit nodejs](https://cimonitor.readthedocs.io/en/latest/run/locally/)
+- [locally with nodejs](https://cimonitor.readthedocs.io/en/latest/run/locally/)
 
 # Development
 
