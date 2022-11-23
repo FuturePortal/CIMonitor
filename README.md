@@ -36,3 +36,9 @@ To start development, run the following commands on your terminal:
 - `./Taskfile`: See all available make commands.
 - `./Taskfile init`: Set up the project for local development (required to run locally).
 - `./Taskfile start`: Run the development server.
+
+# Contributors
+
+A big thanks to all the contributors who make CIMonitor what it is today!
+
+![contirubtor avatars](https://contrib.rocks/image?repo=futureportal/cimonitor)
