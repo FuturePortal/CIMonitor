@@ -72,6 +72,8 @@ export type GitLabDeployment = {
 	deployable_id: number;
 	deployable_url: string;
 	environment: string;
+	environment_slug?: string;
+	environment_external_url?: string;
 	short_sha: string;
 	user_url: string;
 	commit_url: string;

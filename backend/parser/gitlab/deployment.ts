@@ -34,7 +34,7 @@ class GitLabDeploymentParser {
 			userImage: deployment.user.avatar_url,
 			userUrl: deployment.user_url,
 			sourceUrl: deployment.project.git_http_url,
-			tag: deployment.environment,
+			url: deployment.environment_external_url,
 			time: new Date().toUTCString(),
 		};
 	}

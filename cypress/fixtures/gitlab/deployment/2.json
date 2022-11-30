@@ -1,46 +1,48 @@
 {
-    "headers": {
-        "content-type": "application/json",
-        "user-agent": "GitLab/14.9.0-pre",
-        "x-gitlab-event": "Deployment Hook"
-    },
-    "body": {
-        "object_kind": "deployment",
-        "status": "success",
-        "status_changed_at": "2022-03-21 11:34:38 +0000",
-        "deployment_id": 263364082,
-        "deployable_id": 2228389648,
-        "deployable_url": "https://gitlab.com/FuturePortal/Nawcast/-/jobs/2228389648",
-        "environment": "review/10",
-        "project": {
-            "id": 33715538,
-            "name": "Nawcast",
-            "description": "https://nawcast.com",
-            "web_url": "https://gitlab.com/FuturePortal/Nawcast",
-            "avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
-            "git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
-            "git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
-            "namespace": "FuturePortal",
-            "visibility_level": 0,
-            "path_with_namespace": "FuturePortal/Nawcast",
-            "default_branch": "master",
-            "ci_config_path": null,
-            "homepage": "https://gitlab.com/FuturePortal/Nawcast",
-            "url": "git@gitlab.com:FuturePortal/Nawcast.git",
-            "ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
-            "http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
-        },
-        "short_sha": "16f8102b",
-        "user": {
-            "id": 203336,
-            "name": "Rick van der Staaij",
-            "username": "rick.nu",
-            "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
-            "email": "[REDACTED]"
-        },
-        "user_url": "https://gitlab.com/rick.nu",
-        "commit_url": "https://gitlab.com/FuturePortal/Nawcast/-/commit/16f8102b00f7687cd911b1240a086fef9ae5e2c1",
-        "commit_title": "Merge branch '73' into 'master'",
-        "ref": "10"
-    }
+	"headers": {
+		"content-type": "application/json",
+		"user-agent": "GitLab/14.9.0-pre",
+		"x-gitlab-event": "Deployment Hook"
+	},
+	"body": {
+		"object_kind": "deployment",
+		"status": "success",
+		"status_changed_at": "2022-03-21 11:34:38 +0000",
+		"deployment_id": 263364082,
+		"deployable_id": 2228389648,
+		"deployable_url": "https://gitlab.com/FuturePortal/Nawcast/-/jobs/2228389648",
+		"environment": "review/10",
+		"environment_slug": "10",
+		"environment_external_url": "https://10.main.nawcast.com",
+		"project": {
+			"id": 33715538,
+			"name": "Nawcast",
+			"description": "https://nawcast.com",
+			"web_url": "https://gitlab.com/FuturePortal/Nawcast",
+			"avatar_url": "https://gitlab.com/uploads/-/system/project/avatar/33715538/api.png",
+			"git_ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+			"git_http_url": "https://gitlab.com/FuturePortal/Nawcast.git",
+			"namespace": "FuturePortal",
+			"visibility_level": 0,
+			"path_with_namespace": "FuturePortal/Nawcast",
+			"default_branch": "master",
+			"ci_config_path": null,
+			"homepage": "https://gitlab.com/FuturePortal/Nawcast",
+			"url": "git@gitlab.com:FuturePortal/Nawcast.git",
+			"ssh_url": "git@gitlab.com:FuturePortal/Nawcast.git",
+			"http_url": "https://gitlab.com/FuturePortal/Nawcast.git"
+		},
+		"short_sha": "16f8102b",
+		"user": {
+			"id": 203336,
+			"name": "Rick van der Staaij",
+			"username": "rick.nu",
+			"avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/203336/avatar.png",
+			"email": "[REDACTED]"
+		},
+		"user_url": "https://gitlab.com/rick.nu",
+		"commit_url": "https://gitlab.com/FuturePortal/Nawcast/-/commit/16f8102b00f7687cd911b1240a086fef9ae5e2c1",
+		"commit_title": "Merge branch '73' into 'master'",
+		"ref": "10"
+	}
 }
