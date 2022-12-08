@@ -2,14 +2,16 @@ import axios from 'axios';
 
 import store, { RootState } from '/frontend/store';
 
-import { setContributors, setVersion } from './actions';
+import { setChangelog, setContributors, setVersion } from './actions';
 
-import { Contributor, Version } from '/types/cimonitor';
+import { Change, Contributor, Version } from '/types/cimonitor';
+
+const isCacheOlderThanFiveMinutes = (cacheTime: number) => cacheTime > new Date().getTime() - 60000 * 5;
 
 export const fetchVersion = async () => {
 	const { cache }: RootState = store.getState();
 
-	if (cache.lastVersionCheck > new Date().getTime() - 60000 * 5) {
+	if (isCacheOlderThanFiveMinutes(cache.lastVersionCheck)) {
 		console.log(`[store/cache/fetch] Serving latest version from cache.`);
 		return cache.version;
 	}
@@ -28,7 +30,7 @@ export const fetchVersion = async () => {
 export const fetchContributors = async (): Promise<Contributor[]> => {
 	const { cache }: RootState = store.getState();
 
-	if (cache.lastContributorCheck > new Date().getTime() - 60000 * 5) {
+	if (isCacheOlderThanFiveMinutes(cache.lastContributorCheck)) {
 		console.log(`[store/cache/fetch] Serving ${cache.contributors.length} contributors from cache.`);
 		return cache.contributors;
 	}
@@ -43,6 +45,29 @@ export const fetchContributors = async (): Promise<Contributor[]> => {
 		console.log(`[store/cache/fetch] Fetched ${contributors.length} contributors from the backend.`);
 
 		return contributors;
+	} catch (error) {
+		return [];
+	}
+};
+
+export const fetchChangelog = async (): Promise<Change[]> => {
+	const { cache }: RootState = store.getState();
+
+	if (isCacheOlderThanFiveMinutes(cache.lastChangelogCheck)) {
+		console.log(`[store/cache/fetch] Serving changelog from cache.`);
+		return cache.changelog;
+	}
+
+	try {
+		const response = await axios.get('/changelog');
+
+		const changelog: Change[] = response.data;
+
+		store.dispatch(setChangelog(changelog));
+
+		console.log(`[store/cache/fetch] Fetched ${changelog.length} changelogs from the backend.`);
+
+		return changelog;
 	} catch (error) {
 		return [];
 	}

@@ -9,6 +9,7 @@ import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
 import { hasNoStatuses } from '/frontend/store/status/selectors';
 
 import About from './About';
+import Changelog from './Changelog';
 import Customization from './Customization';
 import Documentation from './Documentation';
 import Statuses from './Statuses';
@@ -36,7 +37,12 @@ const tabs: SettingsTab[] = [
 		content: <Customization />,
 	},
 	{
-		icon: 'subject',
+		icon: 'info_outline',
+		name: 'Changelog',
+		content: <Changelog />,
+	},
+	{
+		icon: 'school',
 		name: 'Documentation',
 		content: <Documentation />,
 	},

@@ -14,6 +14,11 @@ export type Version = {
 	latest: string | null;
 };
 
+export type Change = {
+	version: string;
+	description: string;
+};
+
 export const socketEvent = {
 	connect: 'connect',
 	disconnect: 'disconnect',

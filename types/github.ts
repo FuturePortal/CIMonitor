@@ -15,6 +15,19 @@ type GitHubRepository = {
 	};
 };
 
+export type GitHubChange = {
+	id: string;
+	tag_name: string;
+	name: string;
+	body: string;
+	draft: boolean;
+	prerelease: boolean;
+	published_at: string;
+	html_url: string;
+};
+
+export type GitHubChangelog = GitHubChange[];
+
 export type GitHubUser = {
 	login: string;
 	avatar_url: string;
