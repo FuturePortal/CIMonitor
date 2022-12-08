@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Body, Box, Boxes, Container, Details, LinkBox, Project, UserImage } from './Status.style';
 
 import Icon from '/frontend/components/Icon';
-import { isShowingUserAvatars } from '/frontend/store/settings/selectors';
+import { isHidingUserAvatars } from '/frontend/store/settings/selectors';
 
 import Merge from './Merge';
 import Process from './Process';
@@ -27,7 +27,7 @@ const pettyUrl = (url: string) =>
 		.replace(/\/$/, '');
 
 const Statuses = ({ status }: Props): ReactElement => {
-	const showUserAvatar = useSelector(isShowingUserAvatars);
+	const hideUserAvatar = useSelector(isHidingUserAvatars);
 
 	return (
 		<Container key={status.id} state={status.state}>
@@ -59,7 +59,7 @@ const Statuses = ({ status }: Props): ReactElement => {
 						</Box>
 					</Boxes>
 				</Details>
-				{status.userImage && showUserAvatar && (
+				{status.userImage && !hideUserAvatar && (
 					<UserImage>
 						<img src={status.userImage} alt="User" />
 					</UserImage>
