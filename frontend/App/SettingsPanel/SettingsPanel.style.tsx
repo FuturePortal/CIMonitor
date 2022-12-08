@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { stateColor, stateDarkColor, textColor } from '/frontend/style/colors';
+import { fromSize } from '/frontend/style/size';
 
 export const Overlay = styled.div`
 	position: fixed;
@@ -59,11 +60,15 @@ export const Tabs = styled.div`
 	background: ${stateColor.success};
 `;
 
-type TabProps = {
-	active: boolean;
-};
+export const TabText = styled.span`
+	display: none;
 
-export const Tab = styled.button<TabProps>`
+	${fromSize.medium(css`
+		display: inline;
+	`)}
+`;
+
+export const Tab = styled.button<{ active: boolean }>`
 	padding: 0.8rem 1rem;
 
 	${(props) =>
