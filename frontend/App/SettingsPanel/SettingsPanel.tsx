@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Close, Frame, Overlay, Tab, Tabs, Title, TitleBar } from './SettingsPanel.style';
+import { Close, Frame, Overlay, Tab, Tabs, TabText, Title, TitleBar } from './SettingsPanel.style';
 
 import Icon from '/frontend/components/Icon';
 import { closeSettingsPanel } from '/frontend/store/settings/actions';
@@ -70,7 +70,7 @@ const SettingsPanel = (): ReactElement => {
 				<Tabs>
 					{tabs.map((tab) => (
 						<Tab active={tab.icon === activeTab} key={tab.icon} onClick={() => setActiveTab(tab.icon)}>
-							<Icon icon={tab.icon} /> {tab.name}
+							<Icon icon={tab.icon} /> <TabText>{tab.name}</TabText>
 						</Tab>
 					))}
 				</Tabs>
