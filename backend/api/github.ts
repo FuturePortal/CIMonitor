@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export { getContributors } from './github/contributors';
-export { getLatestRelease } from './github/release';
+export { getChangelog, getLatestRelease } from './github/release';
 
 const GitHubApi = () =>
 	axios.create({

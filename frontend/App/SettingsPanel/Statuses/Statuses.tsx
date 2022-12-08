@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Box, Boxes, DeleteButton, Details, Header, Intro, Project, Status, Title } from './Statuses.style';
+import { Box, Boxes, DeleteButton, Details, Header, Intro, Project, Status } from './Statuses.style';
 import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
 import { deleteAllStatuses, deleteStatus } from '/frontend/api/cimonitor';
@@ -16,10 +16,7 @@ const Statuses = (): ReactElement => {
 	return (
 		<Content>
 			<Header>
-				<Intro>
-					<Title>Statuses</Title>
-					Be aware that removing statuses is happening on all connected CIMonitors.
-				</Intro>
+				<Intro>Be aware that removing statuses is happening on all connected CIMonitors.</Intro>
 				{statuses.length > 0 && (
 					<DeleteButton onClick={() => deleteAllStatuses()}>
 						<Icon icon="delete_forever" /> delete all

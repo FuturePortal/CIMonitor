@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { stateColor, textMutedColor } from '/frontend/style/colors';
+import { stateDarkColor, textMutedColor } from '/frontend/style/colors';
 
 export const Contributor = styled.div`
 	border-top: 2px solid #f0f0f0;
@@ -40,5 +40,5 @@ export const Handle = styled.span`
 
 export const Contributions = styled.a`
 	display: block;
-	color: ${stateColor.success};
+	color: ${stateDarkColor.success};
 `;

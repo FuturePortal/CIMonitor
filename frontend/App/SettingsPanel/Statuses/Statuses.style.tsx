@@ -63,11 +63,6 @@ export const Header = styled.div`
 	gap: 1rem;
 `;
 
-export const Title = styled.h1`
-	margin-bottom: 0;
-	flex-grow: 1;
-`;
-
 export const Project = styled.div`
 	font-size: 1.3rem;
 `;

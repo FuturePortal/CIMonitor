@@ -5,6 +5,8 @@ const defaultState: StateType = {
 	lastVersionCheck: 0,
 	contributors: [],
 	lastContributorCheck: 0,
+	changelog: [],
+	lastChangelogCheck: 0,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -20,6 +22,12 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
 				...state,
 				version: action.version,
 				lastVersionCheck: new Date().getTime(),
+			};
+		case 'cache-changelog-set':
+			return {
+				...state,
+				changelog: action.changelog,
+				lastChangelogCheck: new Date().getTime(),
 			};
 		default:
 			return state;
