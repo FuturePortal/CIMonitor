@@ -32,6 +32,7 @@ const About = (): ReactElement => {
 	return (
 		<Content>
 			<p>You are currently running version PACKAGE_VERSION of CIMonitor.</p>
+			{changelog.length === 0 && <p>Fetching changelog from GitHub releases...</p>}
 			{changelog.map((log) => (
 				<Styled.Log key={log.version}>
 					<Styled.Version>{log.version}</Styled.Version>
