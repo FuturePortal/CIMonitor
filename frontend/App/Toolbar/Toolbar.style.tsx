@@ -86,19 +86,21 @@ export const Brand = styled.div`
 		bottom: 0;
 		position: absolute;
 		content: '';
-		box-shadow: 0 0 0 50px #fff;
-		clip: rect(0, ${radius}rem, ${radius}rem, 0);
 		display: block;
 	}
 
 	&::after {
 		right: -${radius}rem;
-		border-bottom-left-radius: 100%;
+		background-image: radial-gradient(
+			circle at ${radius}rem 0,
+			rgba(204, 0, 0, 0) ${radius}rem,
+			white ${radius + 0.1}rem
+		);
 	}
 
 	&::before {
 		left: -${radius}rem;
-		border-bottom-right-radius: 100%;
+		background-image: radial-gradient(circle at 0 0, rgba(204, 0, 0, 0) ${radius}rem, white ${radius + 0.1}rem);
 	}
 
 	svg {
