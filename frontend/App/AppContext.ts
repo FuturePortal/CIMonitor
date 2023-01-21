@@ -13,8 +13,6 @@ const defaultContext: AppContext = {
 export const getQueryContext = (): AppContext => {
 	const queryParams = new URLSearchParams(window?.location.search);
 
-	console.log(queryParams);
-
 	const isEnabled = (setting: string): null | boolean => {
 		if (!queryParams.has(setting)) {
 			return null;

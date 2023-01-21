@@ -9,8 +9,6 @@ type Setting = 'showCompleted' | 'showAvatars';
 const useSetting = (setting: Setting): boolean => {
 	const context = useContext(appContext);
 
-	console.log(context);
-
 	if (context[setting] !== null) {
 		return context[setting];
 	}
