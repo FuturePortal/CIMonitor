@@ -14,15 +14,15 @@ export const getQueryContext = (): AppContext => {
 	const queryParams = new URLSearchParams(window?.location.search);
 
 	const isEnabled = (setting: string): null | boolean => {
-		if (!queryParams.has(setting)) {
-			return null;
-		}
-
 		if (queryParams.get(setting) === '1') {
 			return true;
 		}
 
-		return false;
+		if (queryParams.get(setting) === '0') {
+			return false;
+		}
+
+		return null;
 	};
 
 	return {
