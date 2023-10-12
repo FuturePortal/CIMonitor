@@ -23,7 +23,7 @@ and insert the contents:
 @xset s off
 @xset -dpms
 @xset s noblank
-@chromium-browser --kiosk https://ci.yourwebsite.com
+@chromium-browser --kiosk https://ci.example.com
 ```
 
 you might also want to hide the mouse, install unclutter:
@@ -102,6 +102,6 @@ docker run \
     --volume /lib/libwiringPi.so:/lib/libwiringPi.so \
     --volume /dev/mem:/dev/mem \
     --volume /dev/gpiomem:/dev/gpiomem \
-    --env CIMONITOR_SERVER_URL="https://ci.craft.enrise.com" \
+    --env CIMONITOR_SERVER_URL="https://ci.example.com" \
     cimonitor/module-client:latest-arm
 ```
