@@ -11,12 +11,17 @@ export type StepState =
 	| 'timeout'
 	| 'stopped';
 
+export type Duration = {
+	start?: string;
+	ran: number;
+};
+
 export type Step = {
 	id: string;
 	title: string;
 	state: StepState;
 	time: string;
-	duration?: number;
+	duration?: Duration;
 };
 
 export type Stage = {
@@ -25,6 +30,7 @@ export type Stage = {
 	state: StepState;
 	steps: Step[];
 	time: string;
+	duration?: Duration;
 };
 
 export type Process = {
@@ -33,7 +39,7 @@ export type Process = {
 	state: State;
 	stages: Stage[];
 	time: string;
-	duration?: number;
+	duration?: Duration;
 };
 
 export type Status = {

@@ -56,7 +56,7 @@ const Process = ({ process }: Props): ReactElement => {
 	return (
 		<ProcessContainer key={process.id} state={process.state}>
 			<Details>
-				<Icon icon="notes" /> {process.title}
+				<Icon icon="notes" /> {process.title} ({process.duration?.ran})
 			</Details>
 			{!!process.stages && process.stages.length > 0 && (
 				<Stages>{process.stages.map((stage) => renderStage(stage))}</Stages>
