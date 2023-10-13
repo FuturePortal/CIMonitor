@@ -3,15 +3,14 @@ import { ReactElement, useEffect, useState } from 'react';
 import { Duration } from '/types/status';
 
 const getTimeRan = (milliseconds: number = 0) => {
-	if (milliseconds === 0) {
+	let seconds = Math.round(milliseconds / 1000);
+	if (seconds === 0) {
 		return '';
 	}
-
-	let seconds = Math.round(milliseconds / 1000);
 	const minutes = Math.floor(seconds / 60);
 	seconds = seconds - minutes * 60;
 
-	return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+	return `(${minutes}:${seconds < 10 ? `0${seconds}` : seconds})`;
 };
 
 type Props = {
@@ -42,7 +41,7 @@ const RunTime = ({ duration }: Props): ReactElement | null => {
 
 		return () => clearInterval(intervalId);
 	}, [duration, setRunDuration]);
-	return <span>{getTimeRan(runDuration)}</span>;
+	return <>{getTimeRan(runDuration)}</>;
 };
 
 export default RunTime;
