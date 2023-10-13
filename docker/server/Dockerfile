@@ -35,7 +35,7 @@ FROM base as production-qemu
 
 COPY ./${QEMU_BINARY}* /usr/bin/
 
-RUN echo "deb http://deb.debian.org/debian unstable main contrib non-free" >> /etc/apt/sources.list \
+RUN echo "deb http://deb.debian.org/debian stable main contrib non-free" >> /etc/apt/sources.list \
     && apt-get --yes update \
     && apt-get --yes install dumb-init
 
