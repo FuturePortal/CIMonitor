@@ -61,7 +61,7 @@ class GitHubJobParser {
 	}
 
 	isStepNotBlacklisted(stepId: string): boolean {
-		const blacklist = ['set-up-job', 'complete-job', 'checkout-branch', /^post-/];
+		const blacklist = ['set-up-job', 'complete-job', 'checkout-branch', /^post-/, /^run-actions-/];
 
 		for (let bannedItem of blacklist) {
 			if (bannedItem instanceof RegExp && bannedItem.test(stepId)) {
