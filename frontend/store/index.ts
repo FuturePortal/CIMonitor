@@ -1,1 +1,1 @@
-export { default, RootState } from './store';
+export { default } from './store';

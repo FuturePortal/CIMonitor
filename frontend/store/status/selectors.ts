@@ -1,4 +1,4 @@
-import { RootState } from '/frontend/store';
+import { RootState } from '/frontend/store/store';
 
 import Status, { State } from '/types/status';
 

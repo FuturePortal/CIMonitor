@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import store, { RootState } from '/frontend/store';
+import store from '/frontend/store';
+import { RootState } from '/frontend/store/store';
 
 import { setChangelog, setContributors, setVersion } from './actions';
 
