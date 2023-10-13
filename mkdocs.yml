@@ -5,7 +5,7 @@ site_author: Rick van der Staaij
 dev_addr: 0.0.0.0:9998
 extra_css:
   - style.css
-pages:
+nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Running CIMonitor:
