@@ -2,7 +2,7 @@ import StorageManager from 'backend/storage/manager';
 import Status from 'types/status';
 
 import StatusEvents from './events';
-import { fixStatusStates, fixStuckStatus, getExpiredStatuses, getStuckStatuses } from './helper';
+import { fixStuckStatus, getExpiredStatuses, getStuckStatuses, processStatusChanges } from './helper';
 
 class StatusManager {
 	statuses: Status[] = [];
@@ -46,7 +46,7 @@ class StatusManager {
 	}
 
 	setStatus(status: Status): void {
-		status = fixStatusStates(status);
+		status = processStatusChanges(status);
 		let replacedStatus = false;
 
 		const statuses = [
