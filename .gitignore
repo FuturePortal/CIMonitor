@@ -3,6 +3,7 @@
 .idea/
 yarn-error.log
 /.env
+firebase-key.json
 
 # Generated files
 

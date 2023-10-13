@@ -33,7 +33,7 @@ const RunTime = ({ duration }: Props): ReactElement | null => {
 			setRunDuration(Math.abs(new Date(duration.start).getTime() - new Date().getTime()) + ran);
 		};
 
-		if (duration.start) {
+		if (duration?.start) {
 			intervalId = setInterval(() => updateTime(duration), 1000);
 		}
 
