@@ -1,4 +1,4 @@
-import Status, { Duration, Process, Stage, State } from 'types/status';
+import Status, { Duration, Process, Stage, State, StepState } from 'types/status';
 
 const statusesExpire = 60 * 60 * 24 * 7; // 7 days
 const statusesTimeout = 60 * 60 * 2; // 2 hours
@@ -57,29 +57,36 @@ export const processStatusChanges = (status: Status): Status => {
 	};
 };
 
-const setProcessDuration = (process: Process): Duration => {
-	if (process.state === 'warning') {
+const setDuration = (state: StepState | Process['state'], currentDuration?: Duration): Duration => {
+	if (state === 'running' || state === 'warning') {
 		return {
-			ran: process.duration?.ran || 0,
-			start: process.duration?.start ? process.duration.start : new Date().toUTCString(),
+			ran: currentDuration?.ran || 0,
+			start: currentDuration?.start ? currentDuration.start : new Date().toUTCString(),
 		};
 	}
 
-	let duration = process.duration?.ran || 0;
-	if (process.duration?.start) {
-		duration += Math.abs(new Date(process.duration.start).getTime() - new Date().getTime());
+	let duration = currentDuration?.ran || 0;
+	if (currentDuration?.start) {
+		duration += Math.abs(new Date(currentDuration.start).getTime() - new Date().getTime());
 	}
 	return {
 		ran: duration,
 	};
 };
 
-export const patchProcessDurations = (processes: Process[]): Process[] => {
-	return processes.map((process) => ({
+export const patchProcessDurations = (processes: Process[]): Process[] =>
+	processes.map((process) => ({
 		...process,
-		duration: setProcessDuration(process),
+		stages: process.stages.map((stage) => ({
+			...stage,
+			steps: stage.steps.map((step) => ({
+				...step,
+				duration: setDuration(step.state, step.duration),
+			})),
+			duration: setDuration(stage.state, stage.duration),
+		})),
+		duration: setDuration(process.state, process.duration),
 	}));
-};
 
 export const fixStuckStatus = (status: Status): Status => ({
 	...status,

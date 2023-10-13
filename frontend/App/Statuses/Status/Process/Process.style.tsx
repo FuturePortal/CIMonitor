@@ -130,5 +130,15 @@ export const StageContainer = styled.div`
 `;
 
 export const Details = styled.div`
+	display: flex;
+	flex-direction: row;
+`;
+
+export const DetailTitle = styled.div`
+	${ellipsis};
+	flex-grow: 1;
+`;
+
+export const DetailRunTime = styled.div`
 	${ellipsis};
 `;
