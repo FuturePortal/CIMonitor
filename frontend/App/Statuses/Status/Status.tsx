@@ -58,12 +58,13 @@ const Statuses = ({ status }: Props): ReactElement => {
 						<User username={status.username} url={status.userUrl} />
 						<Box>
 							<Icon icon="schedule" /> <TimePassed since={status.time} />
+							{!!activeProcess && (
+								<>
+									{' '}
+									<RunTime duration={activeProcess.duration} />
+								</>
+							)}
 						</Box>
-						{!!activeProcess && (
-							<Box>
-								<Icon icon="timer" /> <RunTime duration={activeProcess.duration} />
-							</Box>
-						)}
 					</Boxes>
 				</Details>
 				{!!status.userImage && showAvatars && (
