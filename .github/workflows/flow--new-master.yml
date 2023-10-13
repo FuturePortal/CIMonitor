@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - fix-master-build
 jobs:
   test:
     uses: ./.github/workflows/job--test-and-lint.yml

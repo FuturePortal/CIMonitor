@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Install development dependencies
         run: yarn install --ignore-scripts
@@ -46,7 +46,7 @@ jobs:
       - name : Install QEMU emulator
         if: ${{ inputs.QEMU_ARCH != 'none' }}
         run: |
-          wget -q https://github.com/multiarch/qemu-user-static/releases/download/v3.0.0/x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
+          wget -q https://github.com/multiarch/qemu-user-static/releases/download/v7.2.0-1/x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
           tar xfvz x86_64_qemu-${{ inputs.QEMU_ARCH }}-static.tar.gz
           docker run --rm --privileged multiarch/qemu-user-static:register --reset
 

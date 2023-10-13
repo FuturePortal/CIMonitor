@@ -77,6 +77,10 @@ function task:start { ## Start the project locally
 	docker:start
 }
 
+function task:build { ## (re)build the docker containers
+	docker:build
+}
+
 function task:stop { ## Stop the project locally
 	docker:stop
 }

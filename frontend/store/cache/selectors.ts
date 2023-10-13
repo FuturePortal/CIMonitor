@@ -1,4 +1,4 @@
-import { RootState } from 'frontend/store';
+import { RootState } from '/frontend/store/store';
 
 import { Change, Contributor, Version } from '/types/cimonitor';
 
