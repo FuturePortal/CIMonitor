@@ -19,6 +19,7 @@ const boxBase = css`
 	border-radius: 0.25rem;
 	min-width: 1.6em;
 	min-height: 2rem;
+	max-width: 15rem;
 	${ellipsis};
 
 	svg {
