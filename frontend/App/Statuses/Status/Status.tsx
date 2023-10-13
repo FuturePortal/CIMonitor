@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 
 import { Body, Box, Boxes, Container, Details, LinkBox, Project, UserImage } from './Status.style';
 
+import RunTime from '/frontend/App/Statuses/Status/RunTime';
 import Icon from '/frontend/components/Icon';
 import useSetting from '/frontend/hooks/useSetting';
 
@@ -27,6 +28,8 @@ const pettyUrl = (url: string) =>
 
 const Statuses = ({ status }: Props): ReactElement => {
 	const showAvatars = useSetting('showAvatars');
+
+	const activeProcess = status.processes[0] || null;
 
 	return (
 		<Container key={status.id} state={status.state}>
@@ -56,6 +59,11 @@ const Statuses = ({ status }: Props): ReactElement => {
 						<Box>
 							<Icon icon="schedule" /> <TimePassed since={status.time} />
 						</Box>
+						{!!activeProcess && (
+							<Box>
+								<Icon icon="timer" /> <RunTime duration={activeProcess.duration} />
+							</Box>
+						)}
 					</Boxes>
 				</Details>
 				{!!status.userImage && showAvatars && (

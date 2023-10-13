@@ -1,20 +1,9 @@
 import { ReactElement } from 'react';
 
-import {
-	DetailRunTime,
-	Details,
-	DetailTitle,
-	ProcessContainer,
-	Stage,
-	StageContainer,
-	Stages,
-	Step,
-} from './Process.style';
+import { Details, ProcessContainer, Stage, StageContainer, Stages, Step } from './Process.style';
 
 import Icon from '/frontend/components/Icon';
 import useSetting from '/frontend/hooks/useSetting';
-
-import RunTime from './RunTime';
 
 import { Process as ProcessType, Stage as StageType, State, Step as StepType, StepState } from '/types/status';
 
@@ -67,12 +56,7 @@ const Process = ({ process }: Props): ReactElement => {
 	return (
 		<ProcessContainer key={process.id} state={process.state}>
 			<Details>
-				<DetailTitle>
-					<Icon icon="notes" /> {process.title}
-				</DetailTitle>
-				<DetailRunTime>
-					<Icon icon="timer" /> <RunTime duration={process.duration} />
-				</DetailRunTime>
+				<Icon icon="notes" /> {process.title}
 			</Details>
 			{!!process.stages && process.stages.length > 0 && (
 				<Stages>{process.stages.map((stage) => renderStage(stage))}</Stages>
