@@ -1,11 +1,12 @@
 import { ReactElement } from 'react';
 
-import { Details, ProcessContainer, Stage, StageContainer, Stages, Step } from './Process.style';
+import { Details, ProcessContainer, Stage, StageContainer, Stages, Step, Info, Duration } from './Process.style';
 
 import Icon from '/frontend/components/Icon';
 import useSetting from '/frontend/hooks/useSetting';
 
 import { Process as ProcessType, Stage as StageType, State, Step as StepType, StepState } from '/types/status';
+import RunTime from '/frontend/App/Statuses/Status/RunTime';
 
 const getStateIcon = (state: StepState, processState: State = 'warning') => {
 	const icons = {
@@ -39,7 +40,12 @@ const Process = ({ process }: Props): ReactElement => {
 
 		return (
 			<Step key={step.id} state={step.state} processState={process.state}>
-				<Icon icon={getStateIcon(step.state)} /> {step.title}
+				<Info>
+					<Icon icon={getStateIcon(step.state)} /> {step.title}
+				</Info>
+				<Duration>
+					<RunTime duration={step.duration} noWrap />
+				</Duration>
 			</Step>
 		);
 	};
@@ -47,7 +53,9 @@ const Process = ({ process }: Props): ReactElement => {
 	const renderStage = (stage: StageType): ReactElement => (
 		<StageContainer key={stage.id}>
 			<Stage state={stage.state} processState={process.state}>
-				<Icon icon={getStateIcon(stage.state, process.state)} /> {stage.title}
+				<Info>
+					<Icon icon={getStateIcon(stage.state, process.state)} /> {stage.title}
+				</Info>
 			</Stage>
 			{!!stage.steps && stage.steps.map((step) => renderStep(step))}
 		</StageContainer>

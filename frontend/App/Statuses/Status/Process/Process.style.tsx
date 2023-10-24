@@ -34,9 +34,12 @@ type StageProps = {
 };
 
 export const Stage = styled.div<StageProps>`
+	display: flex;
+	justify-content: space-between;
 	background: ${(props) => stateDarkColor[props.state] || stateDarkColor.success};
 	padding: 0.3rem 0.5rem;
-	${ellipsis};
+	container-type: inline-size;
+	container-name: info;
 
 	${fromSize.small(css`
 		width: auto;
@@ -73,9 +76,13 @@ type StepProps = {
 };
 
 export const Step = styled.div<StepProps>`
+	display: flex;
 	background: ${(props) => stateDarkColor[props.state] || stateDarkColor.info};
 	padding: 0.3rem 0.5rem 0.3rem 2.3rem;
-	${ellipsis};
+	gap: 0.5rem;
+	justify-content: space-between;
+	container-type: inline-size;
+	container-name: info;
 
 	${fromSize.small(css`
 		border-radius: 0.5rem;
@@ -100,6 +107,18 @@ export const Step = styled.div<StepProps>`
 		css`
 			background: ${stateDarkColor.error};
 		`}
+`;
+
+export const Info = styled.div`
+	${ellipsis};
+`;
+
+export const Duration = styled.div`
+	display: none;
+
+	@container info (min-width: 15rem) {
+		display: block;
+	}
 `;
 
 export const StageContainer = styled.div`
