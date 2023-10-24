@@ -1,4 +1,4 @@
-import { State } from 'types/status';
+import { State } from './status';
 
 export type GpioModule = {
 	type: 'gpio';
