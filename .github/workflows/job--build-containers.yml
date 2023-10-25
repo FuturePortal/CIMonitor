@@ -1,0 +1,59 @@
+name: Build and tag CIMonitor container
+on:
+  workflow_call:
+    inputs:
+      BASE_TAG:
+        description: The base of the tag to build
+        required: true
+        type: string
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_TOKEN:
+        required: true
+jobs:
+  server:
+    name: Server
+    uses: ./.github/workflows/job--build-and-tag-container.yml
+    with:
+      BASE_IMAGE: node:16-slim
+      DOCKER_DIRECTORY: docker/server
+      DOCKER_IMAGE: cimonitor/server:${{ inputs.BASE_TAG }}
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+
+  server-arm:
+    name: Server ARM
+    uses: ./.github/workflows/job--build-and-tag-container.yml
+    with:
+      BASE_IMAGE: arm32v7/node:16-slim
+      DOCKER_DIRECTORY: docker/server
+      DOCKER_IMAGE: cimonitor/server:${{ inputs.BASE_TAG }}-arm
+      QEMU_ARCH: arm
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+
+  module-client:
+    name: Module client
+    uses: ./.github/workflows/job--build-and-tag-container.yml
+    with:
+      BASE_IMAGE: node:16-slim
+      DOCKER_DIRECTORY: docker/module-client
+      DOCKER_IMAGE: cimonitor/module-client:${{ inputs.BASE_TAG }}
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+
+  module-client-arm:
+    name: Module client ARM
+    uses: ./.github/workflows/job--build-and-tag-container.yml
+    with:
+      BASE_IMAGE: arm32v7/node:16-slim
+      DOCKER_DIRECTORY: docker/module-client
+      DOCKER_IMAGE: cimonitor/module-client:${{ inputs.BASE_TAG }}-arm
+      QEMU_ARCH: arm
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
