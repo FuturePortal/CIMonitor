@@ -3,7 +3,7 @@ set -eo pipefail
 
 # =========================================================
 # Taskfile gives you a set of quick tasks for your project
-# More info: https://go.futureportal.com/taskfile
+# More info: https://enri.se/taskfile
 # =========================================================
 
 PATH=./node_modules/.bin:$PATH
@@ -188,7 +188,7 @@ function task:shorthand { ## Create CLI shorthand task instead of ./Taskfile
 		echo "/usr/local/bin/task already exists."
 	else
 		echo -e "You are about to create /usr/local/bin/task that requires root permission..."
-		sudo curl --location --silent --output /usr/local/bin/task https://go.futureportal.com/task-bin
+		sudo curl --location --silent --output /usr/local/bin/task https://enri.se/taskfile-bin
 		sudo chmod +x /usr/local/bin/task
 	fi
 	echo -e "${BLUE}You can now use:${RESET} task ${YELLOW}<task>${RESET} <args>"
