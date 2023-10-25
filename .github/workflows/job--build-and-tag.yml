@@ -26,7 +26,7 @@ on:
         required: true
 jobs:
   build-and-tag-container:
-    name: build & tag
+    name: Build & Tag
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3

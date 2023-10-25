@@ -5,9 +5,11 @@ on:
       - '*'
 jobs:
   test:
+    name: Test
     uses: ./.github/workflows/job--test-and-lint.yml
 
   server:
+    name: Server
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -19,6 +21,7 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   server-arm:
+    name: Server ARM
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -31,6 +34,7 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   module-client:
+    name: Module client
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
@@ -42,6 +46,7 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
   module-client-arm:
+    name: Module client ARM
     uses: ./.github/workflows/job--build-and-tag.yml
     needs: test
     with:
