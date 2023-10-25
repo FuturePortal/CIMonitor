@@ -1,18 +1,17 @@
-import slug from 'backend/parser/slug';
+import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 import { GitHubWorkflowJob } from 'types/github';
 import Status, { Process, Stage, Step, StepState } from 'types/status';
 
-import { getJobStateFromStatus } from './helper';
+import { getStepState } from './helper';
 
 class GitHubJobParser {
-	parse(job: GitHubWorkflowJob): Status | null {
+	parse(webhook: GitHubWorkflowJob): Status | null {
 		const statuses = StatusManager.getStatuses();
 
-		const processId = job.workflow_job.run_id;
-
+		// Check if a matching workflow run exists
+		const processId = webhook.workflow_job.run_id;
 		const targetStatus = statuses.find((status) => status.processes.find((process) => process.id === processId));
-
 		if (!targetStatus) {
 			console.log('[parser/github/job] No status with matching process is found, skipping update.');
 			return null;
@@ -22,7 +21,7 @@ class GitHubJobParser {
 			...targetStatus,
 			processes: targetStatus.processes.map((process) => {
 				if (process.id === processId) {
-					return this.patchProcess(process, job);
+					return this.patchProcess(process, webhook);
 				}
 
 				return process;
@@ -31,16 +30,17 @@ class GitHubJobParser {
 		};
 	}
 
-	patchProcess(process: Process, job: GitHubWorkflowJob): Process {
-		const stageId = `job-${job.workflow_job.id}`;
+	patchProcess(process: Process, webhook: GitHubWorkflowJob): Process {
+		const stageName = webhook.workflow_job.name.split(' / ')[0];
+		const stageId = `stage-${Slugify(stageName)}`;
 
 		let stages = process.stages;
 
 		if (!process.stages.find((stage) => stage.id === stageId)) {
 			stages.push({
 				id: stageId,
-				title: job.workflow_job.name,
-				state: getJobStateFromStatus(job.workflow_job.status, job.workflow_job.conclusion),
+				title: stageName,
+				state: getStepState(webhook.workflow_job.status, webhook.workflow_job.conclusion),
 				steps: [],
 				time: new Date().toUTCString(),
 			});
@@ -48,7 +48,7 @@ class GitHubJobParser {
 
 		stages = stages.map((stage) => {
 			if (stage.id === stageId) {
-				return this.patchStage(stage, job);
+				return this.patchStage(stage, webhook);
 			}
 
 			return stage;
@@ -60,47 +60,35 @@ class GitHubJobParser {
 		};
 	}
 
-	isStepNotBlacklisted(stepId: string): boolean {
-		const blacklist = ['set-up-job', 'complete-job', 'checkout-branch', /^post-/, /^run-actions-/];
-
-		for (let bannedItem of blacklist) {
-			if (bannedItem instanceof RegExp && bannedItem.test(stepId)) {
-				return false;
-			}
-
-			if (typeof bannedItem === 'string' && bannedItem === stepId) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	patchStage(stage: Stage, job: GitHubWorkflowJob): Stage {
+	patchStage(stage: Stage, webhook: GitHubWorkflowJob): Stage {
 		let steps = stage.steps;
 
-		for (let step of job.workflow_job.steps) {
-			const stepId = slug(step.name);
+		const actionNameTree = webhook.workflow_job.name.split(' / ');
+		if (actionNameTree.length <= 1) {
+			return {
+				...stage,
+				state: getStepState(webhook.workflow_job.status, webhook.workflow_job.conclusion),
+			};
+		}
 
-			if (!steps.find((step) => step.id === stepId)) {
-				if (this.isStepNotBlacklisted(stepId)) {
-					steps.push({
-						id: stepId,
-						title: step.name,
-						state: getJobStateFromStatus(step.status, step.conclusion),
-						time: new Date().toUTCString(),
-					});
-				}
-			}
+		const stepId = `step-${Slugify(webhook.workflow_job.name)}`;
+
+		stage.title = actionNameTree[0];
+
+		if (!steps.find((step) => step.id === stepId)) {
+			steps.push({
+				id: stepId,
+				title: actionNameTree.slice(1).join(' / '),
+				state: 'pending',
+				time: new Date().toUTCString(),
+			});
 		}
 
 		steps = steps.map((stageStep) => {
-			const jobStep = job.workflow_job.steps.find((jobStep) => slug(jobStep.name) === stageStep.id);
-
-			if (jobStep) {
+			if (stageStep.id === stepId) {
 				return {
 					...stageStep,
-					state: getJobStateFromStatus(jobStep.status, jobStep.conclusion),
+					state: getStepState(webhook.workflow_job.status, webhook.workflow_job.conclusion),
 					time: new Date().toUTCString(),
 				};
 			}
@@ -111,12 +99,12 @@ class GitHubJobParser {
 		return {
 			...stage,
 			steps,
-			state: this.determineStageState(steps),
+			state: this.getStageState(steps),
 			time: new Date().toUTCString(),
 		};
 	}
 
-	determineStageState(steps: Step[]): StepState {
+	getStageState(steps: Step[]): StepState {
 		if (steps.length === 0) {
 			return 'running';
 		}

@@ -2,8 +2,8 @@ name: Test and lint
 on:
   workflow_call:
 jobs:
-  test:
-    name: run all tests
+  eslint:
+    name: ESLint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -17,8 +17,32 @@ jobs:
       - name: Run eslint check
         run: node_modules/.bin/eslint --ext ts,tsx .
 
+  frontend-typescript:
+    name: Frontend typescript
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install development dependencies
+        run: yarn install --ignore-scripts
+
       - name: Check frontend typescript
         run: node_modules/.bin/tsc --noEmit --project ./frontend/tsconfig.json
+
+  backend-typescript:
+    name: Backend typescript
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install development dependencies
+        run: yarn install --ignore-scripts
 
       - name: Check backend typescript
         run: node_modules/.bin/tsc --noEmit --project ./backend/tsconfig.json

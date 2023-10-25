@@ -3,7 +3,7 @@ import StatusManager from 'backend/status/manager';
 import { GitHubWorkflowRun } from 'types/github';
 import Status from 'types/status';
 
-import { getStateFromStatus } from './helper';
+import { getProcessState } from './helper';
 
 class GitHubRunParser {
 	parse(id: string, run: GitHubWorkflowRun): Status | null {
@@ -43,7 +43,7 @@ class GitHubRunParser {
 			if (process.id === processId) {
 				return {
 					...process,
-					state: getStateFromStatus(run.workflow_run.status, run.workflow_run.conclusion),
+					state: getProcessState(run.workflow_run.status, run.workflow_run.conclusion),
 				};
 			}
 
