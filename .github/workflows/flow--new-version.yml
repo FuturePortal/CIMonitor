@@ -5,50 +5,15 @@ on:
       - '*'
 jobs:
   test:
+    name: Test
     uses: ./.github/workflows/job--test-and-lint.yml
 
-  server:
-    uses: ./.github/workflows/job--build-and-tag.yml
+  build:
+    name: Build
+    uses: ./.github/workflows/job--build-containers.yml
     needs: test
     with:
-      BASE_IMAGE: node:16-slim
-      DOCKER_DIRECTORY: docker/server
-      DOCKER_IMAGE: cimonitor/server:${GITHUB_REF/refs\/tags\//}
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-
-  server-arm:
-    uses: ./.github/workflows/job--build-and-tag.yml
-    needs: test
-    with:
-      BASE_IMAGE: arm32v7/node:16-slim
-      DOCKER_DIRECTORY: docker/server
-      DOCKER_IMAGE: cimonitor/server:${GITHUB_REF/refs\/tags\//}-arm
-      QEMU_ARCH: arm
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-
-  module-client:
-    uses: ./.github/workflows/job--build-and-tag.yml
-    needs: test
-    with:
-      BASE_IMAGE: node:16-slim
-      DOCKER_DIRECTORY: docker/module-client
-      DOCKER_IMAGE: cimonitor/module-client:${GITHUB_REF/refs\/tags\//}
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-
-  module-client-arm:
-    uses: ./.github/workflows/job--build-and-tag.yml
-    needs: test
-    with:
-      BASE_IMAGE: arm32v7/node:16-slim
-      DOCKER_DIRECTORY: docker/module-client
-      DOCKER_IMAGE: cimonitor/module-client:${GITHUB_REF/refs\/tags\//}-arm
-      QEMU_ARCH: arm
+      BASE_TAG: ${GITHUB_REF/refs\/tags\//}
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
