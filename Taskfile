@@ -3,7 +3,7 @@ set -eo pipefail
 
 # =========================================================
 # Taskfile gives you a set of quick tasks for your project
-# More info: https://go.futureportal.com/taskfile
+# More info: https://enri.se/taskfile
 # =========================================================
 
 PATH=./node_modules/.bin:$PATH
