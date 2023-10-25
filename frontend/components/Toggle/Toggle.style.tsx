@@ -10,7 +10,9 @@ export const Switch = styled.div`
 	height: 1.25rem;
 	border-radius: 50%;
 	background: ${textMutedColor};
-	transition: right 300ms, background-color 300ms;
+	transition:
+		right 300ms,
+		background-color 300ms;
 `;
 
 type ButtonProps = {

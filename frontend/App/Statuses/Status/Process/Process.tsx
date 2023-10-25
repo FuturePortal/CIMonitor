@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
 
-import { Details, ProcessContainer, Stage, StageContainer, Stages, Step, Info, Duration } from './Process.style';
+import { Details, Duration, Info, ProcessContainer, Stage, StageContainer, Stages, Step } from './Process.style';
 
+import RunTime from '/frontend/App/Statuses/Status/RunTime';
 import Icon from '/frontend/components/Icon';
 import useSetting from '/frontend/hooks/useSetting';
 
 import { Process as ProcessType, Stage as StageType, State, Step as StepType, StepState } from '/types/status';
-import RunTime from '/frontend/App/Statuses/Status/RunTime';
 
 const getStateIcon = (state: StepState, processState: State = 'warning') => {
 	const icons = {
