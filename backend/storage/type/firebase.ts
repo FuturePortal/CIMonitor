@@ -58,17 +58,12 @@ class FirebaseStorage extends StorageType {
 
 	async loadModules(): Promise<ModuleSettings> {
 		try {
-			const modules: ModuleSettings = await this.load('modules');
+			const modules = await this.load('modules');
 
-			if (!('triggers' in modules)) {
-				modules.triggers = [];
-			}
-
-			if (!('events' in modules)) {
-				modules.events = [];
-			}
-
-			return modules;
+			return {
+				triggers: modules?.triggers ?? [],
+				events: modules?.events ?? [],
+			};
 		} catch (error) {
 			console.error(`[storage/type/firebase] ${error}`);
 			console.log(`[storage/type/firebase] Returning default settings`);

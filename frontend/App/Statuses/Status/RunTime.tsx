@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 
 import { Duration } from '/types/status';
 
-const getTimeRan = (milliseconds: number = 0) => {
+const getTimeRan = (milliseconds: number = 0, wrap: boolean) => {
 	let seconds = Math.round(milliseconds / 1000);
 	if (seconds === 0) {
 		return '';
@@ -10,14 +10,17 @@ const getTimeRan = (milliseconds: number = 0) => {
 	const minutes = Math.floor(seconds / 60);
 	seconds = seconds - minutes * 60;
 
-	return `(${minutes}:${seconds < 10 ? `0${seconds}` : seconds})`;
+	const duration = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+	return wrap ? `(${duration})` : duration;
 };
 
 type Props = {
 	duration?: Duration;
+	noWrap?: boolean;
 };
 
-const RunTime = ({ duration }: Props): ReactElement | null => {
+const RunTime = ({ duration, noWrap = false }: Props): ReactElement | null => {
 	const [runDuration, setRunDuration] = useState(duration?.ran || 0);
 
 	useEffect(() => {
@@ -41,7 +44,8 @@ const RunTime = ({ duration }: Props): ReactElement | null => {
 
 		return () => clearInterval(intervalId);
 	}, [duration, setRunDuration]);
-	return <>{getTimeRan(runDuration)}</>;
+
+	return <>{getTimeRan(runDuration, !noWrap)}</>;
 };
 
 export default RunTime;
