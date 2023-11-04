@@ -1,12 +1,12 @@
 {
 	"headers": {
-		"x-request-id": "59cab80b96de966b8041f35c58886441",
+		"x-request-id": "63af57e068d412df672a153b7e31d217",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "workflow_run",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "requested",
+		"action": "in_progress",
 		"workflow_run": {
 			"id": 6757418578,
 			"name": "Build the CIMonitor latest container",
@@ -17,7 +17,7 @@
 			"display_title": "Add push test and trigger errors",
 			"run_number": 103,
 			"event": "push",
-			"status": "queued",
+			"status": "in_progress",
 			"conclusion": null,
 			"workflow_id": 22604490,
 			"check_suite_id": 17911222693,
@@ -26,7 +26,7 @@
 			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418578",
 			"pull_requests": [],
 			"created_at": "2023-11-04T23:15:12Z",
-			"updated_at": "2023-11-04T23:15:12Z",
+			"updated_at": "2023-11-04T23:15:22Z",
 			"actor": {
 				"login": "rick-nu",
 				"id": 6495166,

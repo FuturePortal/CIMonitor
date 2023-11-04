@@ -1,38 +1,38 @@
 {
 	"headers": {
-		"x-request-id": "36b3106aef3be9e6f7a3069a64334ac6",
+		"x-request-id": "597b7c71edd2b9ebe34dfcf6ef718ee0",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "check_run",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "created",
+		"action": "completed",
 		"check_run": {
-			"id": 18368542593,
-			"name": "Test / Backend typescript",
-			"node_id": "CR_kwDOA1saOs8AAAAERtm3gQ",
+			"id": 18368542739,
+			"name": "Test / Frontend typescript",
+			"node_id": "CR_kwDOA1saOs8AAAAERtm4Ew",
 			"head_sha": "cb8f9779a5198b30f47f2a21061cc451a9758ce3",
-			"external_id": "d49f189b-072b-5f65-c0b7-3781d9be65a0",
-			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18368542593",
-			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418578/job/18368542593",
-			"details_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418578/job/18368542593",
-			"status": "queued",
-			"conclusion": null,
-			"started_at": "2023-11-04T23:15:14Z",
-			"completed_at": null,
+			"external_id": "490f673a-ae4d-5d6d-454c-119bb46fbbf1",
+			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18368542739",
+			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418578/job/18368542739",
+			"details_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418578/job/18368542739",
+			"status": "completed",
+			"conclusion": "success",
+			"started_at": "2023-11-04T23:15:21Z",
+			"completed_at": "2023-11-04T23:16:13Z",
 			"output": {
 				"title": null,
 				"summary": null,
 				"text": null,
 				"annotations_count": 0,
-				"annotations_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18368542593/annotations"
+				"annotations_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18368542739/annotations"
 			},
 			"check_suite": {
 				"id": 17911222693,
 				"node_id": "CS_kwDOA1saOs8AAAAEK5eRpQ",
 				"head_branch": "master",
 				"head_sha": "cb8f9779a5198b30f47f2a21061cc451a9758ce3",
-				"status": "queued",
+				"status": "in_progress",
 				"conclusion": null,
 				"url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-suites/17911222693",
 				"before": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
@@ -124,7 +124,7 @@
 					]
 				},
 				"created_at": "2023-11-04T23:15:12Z",
-				"updated_at": "2023-11-04T23:15:12Z"
+				"updated_at": "2023-11-04T23:15:22Z"
 			},
 			"app": {
 				"id": 15368,
