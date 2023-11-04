@@ -1,16 +1,17 @@
 {
 	"headers": {
+		"x-request-id": "5a571d01b991ebbf535b3842c8a61f2a",
 		"user-agent": "Read-the-Docs/10.9.0 (readthedocs.org)",
 		"accept-encoding": "gzip, deflate",
 		"content-type": "application/json",
-		"x-rtd-event": "build:triggered"
+		"x-rtd-event": "build:passed"
 	},
 	"body": {
-		"event": "build:triggered",
+		"event": "build:passed",
 		"name": "CIMonitor",
 		"slug": "cimonitor",
 		"version": "latest",
-		"commit": "",
+		"commit": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
 		"build": "22450546",
 		"start_date": "2023-11-04T22:07:16",
 		"build_url": "https://readthedocs.org/projects/cimonitor/builds/22450546/",
