@@ -10,7 +10,7 @@ First, you download (or clone) the CIMonitor codebase. For this example we assum
 
 ## Installing dependencies
 
-We require you to use node 16 with its corresponding npm package. Only instead of npm for dependency
+We require you to use node 20 with its corresponding npm package. Only instead of npm for dependency
 installation, we use `yarn`. If you don't have yarn installed yet, you can easily do this with `npm install --global yarn`.
 
 After yarn is installed, you need to run `yarn install` to download all the dependencies the project requires. This will

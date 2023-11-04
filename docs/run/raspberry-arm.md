@@ -2,7 +2,8 @@
 
 To run CIMonitor on a Raspberry Pi (or any other ARM device), we also build special `-arm` tags on our docker containers.
 All you have to do is prepend `-arm` to the version you want to run. So on your raspberry you could just run
-`docker run cimonitor/server:latest-arm` or `docker run cimonitor/server:4.0.0-arm`. Check the
+`docker run cimonitor/server:latest-arm` or `docker run cimonitor/server:<version>-arm` (find the latest version in the
+[release overview](https://github.com/FuturePortal/CIMonitor/releases)). Check the
 [docker documentation](./docker.md) on how to fully run CIMonitor, and make sure you prepend the `-arm` tag.
 
 You could also do a [local installation](./locally.md) of course. That will work to on your ARM device.
