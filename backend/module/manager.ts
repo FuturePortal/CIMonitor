@@ -1,3 +1,4 @@
+import Contributors from 'backend/router/route/contributors';
 import StatusEvents from 'backend/status/events';
 import { ModuleConfig, ModuleEvent, ModuleTrigger } from 'types/module';
 import Status from 'types/status';
@@ -56,7 +57,7 @@ class ModuleManager {
 		}
 	}
 
-	fireEvent(name: string) {
+	fireEvent(name: number) {
 		console.log(`[module/manager] Firing event ${name}...`);
 
 		const event = this.events.find((event) => event.name === name);

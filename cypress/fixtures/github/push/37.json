@@ -1,38 +1,159 @@
 {
 	"headers": {
-		"x-request-id": "c725e98ae7a0da1c5611a6a4d1a3721f",
+		"x-request-id": "7bff314207e8fdf05d1fbccd08270354",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "workflow_job",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "queued",
+		"action": "completed",
 		"workflow_job": {
-			"id": 18367967136,
+			"id": 18367979711,
 			"run_id": 6757418579,
 			"workflow_name": "Build the CIMonitor latest container",
 			"head_branch": "master",
 			"run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/runs/6757418579",
 			"run_attempt": 1,
-			"node_id": "CR_kwDOA1saOs8AAAAERtDvoA",
+			"node_id": "CR_kwDOA1saOs8AAAAERtEgvw",
 			"head_sha": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
-			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/jobs/18367967136",
-			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579/job/18367967136",
-			"status": "queued",
-			"conclusion": null,
-			"created_at": "2023-11-04T22:07:19Z",
-			"started_at": "2023-11-04T22:07:19Z",
-			"completed_at": null,
-			"name": "Test / ESLint",
-			"steps": [],
-			"check_run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18367967136",
+			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/jobs/18367979711",
+			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579/job/18367979711",
+			"status": "completed",
+			"conclusion": "success",
+			"created_at": "2023-11-04T22:08:35Z",
+			"started_at": "2023-11-04T22:08:40Z",
+			"completed_at": "2023-11-04T22:10:38Z",
+			"name": "Build / Server ARM / Build & Tag",
+			"steps": [
+				{
+					"name": "Set up job",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 1,
+					"started_at": "2023-11-04T22:08:40.000Z",
+					"completed_at": "2023-11-04T22:08:41.000Z"
+				},
+				{
+					"name": "Run actions/checkout@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 2,
+					"started_at": "2023-11-04T22:08:41.000Z",
+					"completed_at": "2023-11-04T22:08:42.000Z"
+				},
+				{
+					"name": "Run actions/setup-node@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 3,
+					"started_at": "2023-11-04T22:08:42.000Z",
+					"completed_at": "2023-11-04T22:08:47.000Z"
+				},
+				{
+					"name": "Install development dependencies",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 4,
+					"started_at": "2023-11-04T22:08:47.000Z",
+					"completed_at": "2023-11-04T22:09:16.000Z"
+				},
+				{
+					"name": "Build javascript application",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 5,
+					"started_at": "2023-11-04T22:09:16.000Z",
+					"completed_at": "2023-11-04T22:09:30.000Z"
+				},
+				{
+					"name": "Install production dependencies",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 6,
+					"started_at": "2023-11-04T22:09:30.000Z",
+					"completed_at": "2023-11-04T22:09:32.000Z"
+				},
+				{
+					"name": "Install QEMU emulator",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 7,
+					"started_at": "2023-11-04T22:09:33.000Z",
+					"completed_at": "2023-11-04T22:09:35.000Z"
+				},
+				{
+					"name": "Copy Docker files",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 8,
+					"started_at": "2023-11-04T22:09:36.000Z",
+					"completed_at": "2023-11-04T22:09:36.000Z"
+				},
+				{
+					"name": "Build CIMonitor image",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 9,
+					"started_at": "2023-11-04T22:09:36.000Z",
+					"completed_at": "2023-11-04T22:10:28.000Z"
+				},
+				{
+					"name": "Log in to Docker Hub",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 10,
+					"started_at": "2023-11-04T22:10:29.000Z",
+					"completed_at": "2023-11-04T22:10:29.000Z"
+				},
+				{
+					"name": "Push docker image to the hub",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 11,
+					"started_at": "2023-11-04T22:10:29.000Z",
+					"completed_at": "2023-11-04T22:10:36.000Z"
+				},
+				{
+					"name": "Post Log in to Docker Hub",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 20,
+					"started_at": "2023-11-04T22:10:36.000Z",
+					"completed_at": "2023-11-04T22:10:36.000Z"
+				},
+				{
+					"name": "Post Run actions/setup-node@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 21,
+					"started_at": "2023-11-04T22:10:36.000Z",
+					"completed_at": "2023-11-04T22:10:36.000Z"
+				},
+				{
+					"name": "Post Run actions/checkout@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 22,
+					"started_at": "2023-11-04T22:10:38.000Z",
+					"completed_at": "2023-11-04T22:10:38.000Z"
+				},
+				{
+					"name": "Complete job",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 23,
+					"started_at": "2023-11-04T22:10:36.000Z",
+					"completed_at": "2023-11-04T22:10:36.000Z"
+				}
+			],
+			"check_run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18367979711",
 			"labels": [
 				"ubuntu-22.04"
 			],
-			"runner_id": null,
-			"runner_name": null,
-			"runner_group_id": null,
-			"runner_group_name": null
+			"runner_id": 5,
+			"runner_name": "GitHub Actions 5",
+			"runner_group_id": 2,
+			"runner_group_name": "GitHub Actions"
 		},
 		"repository": {
 			"id": 56302138,

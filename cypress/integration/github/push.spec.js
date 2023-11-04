@@ -17,7 +17,7 @@ context('A running GitHub push', () => {
 	});
 
 	it('pushes a GitHub successful action flow', () => {
-		for (let count = 1; count <= 14; count++) {
+		for (let count = 1; count <= 41; count++) {
 			if (count > 1) {
 				cy.wait(1000);
 			}

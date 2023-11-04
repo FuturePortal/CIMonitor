@@ -1,19 +1,20 @@
 {
-    "headers": {
-        "user-agent": "Read-the-Docs/7.4.2 (readthedocs.org)",
-        "accept": "*/*",
-        "content-type": "application/json",
-        "x-rtd-event": "build:triggered"
-    },
-    "body": {
-        "event": "build:triggered",
-        "name": "CIMonitor",
-        "slug": "cimonitor",
-        "version": "latest",
-        "commit": "",
-        "build": "16398756",
-        "start_date": "2022-03-17T19:36:36",
-        "build_url": "https://readthedocs.org/projects/cimonitor/builds/16398756/",
-        "docs_url": "https://cimonitor.readthedocs.io/en/latest/"
-    }
+	"headers": {
+		"x-request-id": "5a571d01b991ebbf535b3842c8a61f2a",
+		"user-agent": "Read-the-Docs/10.9.0 (readthedocs.org)",
+		"accept-encoding": "gzip, deflate",
+		"content-type": "application/json",
+		"x-rtd-event": "build:passed"
+	},
+	"body": {
+		"event": "build:passed",
+		"name": "CIMonitor",
+		"slug": "cimonitor",
+		"version": "latest",
+		"commit": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
+		"build": "22450546",
+		"start_date": "2023-11-04T22:07:16",
+		"build_url": "https://readthedocs.org/projects/cimonitor/builds/22450546/",
+		"docs_url": "https://cimonitor.readthedocs.io/en/latest/"
+	}
 }

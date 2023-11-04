@@ -1,12 +1,12 @@
 {
 	"headers": {
-		"x-request-id": "189f3b35e60c0a390aae86b76f571468",
+		"x-request-id": "eed37a54d4164df5a88d708bec4d9b29",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "workflow_run",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "requested",
+		"action": "in_progress",
 		"workflow_run": {
 			"id": 6757418579,
 			"name": "Build the CIMonitor latest container",
@@ -17,7 +17,7 @@
 			"display_title": "Update documentation on what versions to use",
 			"run_number": 102,
 			"event": "push",
-			"status": "queued",
+			"status": "in_progress",
 			"conclusion": null,
 			"workflow_id": 22604490,
 			"check_suite_id": 17910674277,
@@ -26,7 +26,7 @@
 			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579",
 			"pull_requests": [],
 			"created_at": "2023-11-04T22:07:17Z",
-			"updated_at": "2023-11-04T22:07:17Z",
+			"updated_at": "2023-11-04T22:08:42Z",
 			"actor": {
 				"login": "rick-nu",
 				"id": 6495166,

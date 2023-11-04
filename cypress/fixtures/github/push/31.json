@@ -1,38 +1,135 @@
 {
 	"headers": {
-		"x-request-id": "c725e98ae7a0da1c5611a6a4d1a3721f",
+		"x-request-id": "98389329ef97ab6e50d0b3ea9818ca16",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "workflow_job",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "queued",
+		"action": "in_progress",
 		"workflow_job": {
-			"id": 18367967136,
+			"id": 18367979605,
 			"run_id": 6757418579,
 			"workflow_name": "Build the CIMonitor latest container",
 			"head_branch": "master",
 			"run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/runs/6757418579",
 			"run_attempt": 1,
-			"node_id": "CR_kwDOA1saOs8AAAAERtDvoA",
+			"node_id": "CR_kwDOA1saOs8AAAAERtEgVQ",
 			"head_sha": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
-			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/jobs/18367967136",
-			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579/job/18367967136",
-			"status": "queued",
+			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/jobs/18367979605",
+			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579/job/18367979605",
+			"status": "in_progress",
 			"conclusion": null,
-			"created_at": "2023-11-04T22:07:19Z",
-			"started_at": "2023-11-04T22:07:19Z",
+			"created_at": "2023-11-04T22:08:34Z",
+			"started_at": "2023-11-04T22:08:41Z",
 			"completed_at": null,
-			"name": "Test / ESLint",
-			"steps": [],
-			"check_run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18367967136",
+			"name": "Build / Module client ARM / Build & Tag",
+			"steps": [
+				{
+					"name": "Set up job",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 1,
+					"started_at": "2023-11-04T22:08:40.000Z",
+					"completed_at": "2023-11-04T22:08:41.000Z"
+				},
+				{
+					"name": "Run actions/checkout@v3",
+					"status": "in_progress",
+					"conclusion": null,
+					"number": 2,
+					"started_at": "2023-11-04T22:08:42.000Z",
+					"completed_at": null
+				},
+				{
+					"name": "Run actions/setup-node@v3",
+					"status": "queued",
+					"conclusion": null,
+					"number": 3,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Install development dependencies",
+					"status": "queued",
+					"conclusion": null,
+					"number": 4,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Build javascript application",
+					"status": "queued",
+					"conclusion": null,
+					"number": 5,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Install production dependencies",
+					"status": "queued",
+					"conclusion": null,
+					"number": 6,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Install QEMU emulator",
+					"status": "queued",
+					"conclusion": null,
+					"number": 7,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Copy Docker files",
+					"status": "queued",
+					"conclusion": null,
+					"number": 8,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Build CIMonitor image",
+					"status": "queued",
+					"conclusion": null,
+					"number": 9,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Log in to Docker Hub",
+					"status": "queued",
+					"conclusion": null,
+					"number": 10,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Push docker image to the hub",
+					"status": "queued",
+					"conclusion": null,
+					"number": 11,
+					"started_at": null,
+					"completed_at": null
+				},
+				{
+					"name": "Post Run actions/checkout@v3",
+					"status": "queued",
+					"conclusion": null,
+					"number": 22,
+					"started_at": null,
+					"completed_at": null
+				}
+			],
+			"check_run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18367979605",
 			"labels": [
 				"ubuntu-22.04"
 			],
-			"runner_id": null,
-			"runner_name": null,
-			"runner_group_id": null,
-			"runner_group_name": null
+			"runner_id": 2,
+			"runner_name": "GitHub Actions 2",
+			"runner_group_id": 2,
+			"runner_group_name": "GitHub Actions"
 		},
 		"repository": {
 			"id": 56302138,

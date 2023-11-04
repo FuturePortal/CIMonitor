@@ -1,12 +1,12 @@
 {
 	"headers": {
-		"x-request-id": "c725e98ae7a0da1c5611a6a4d1a3721f",
+		"x-request-id": "4dbe044b5d8a1673f2029ba7434cb653",
 		"user-agent": "GitHub-Hookshot/1049d02",
 		"x-github-event": "workflow_job",
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "queued",
+		"action": "completed",
 		"workflow_job": {
 			"id": 18367967136,
 			"run_id": 6757418579,
@@ -18,21 +18,86 @@
 			"head_sha": "d50747d28e1c01a0b4057ddac9b28a8b2822f9a9",
 			"url": "https://api.github.com/repos/FuturePortal/CIMonitor/actions/jobs/18367967136",
 			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6757418579/job/18367967136",
-			"status": "queued",
-			"conclusion": null,
+			"status": "completed",
+			"conclusion": "success",
 			"created_at": "2023-11-04T22:07:19Z",
-			"started_at": "2023-11-04T22:07:19Z",
-			"completed_at": null,
+			"started_at": "2023-11-04T22:07:28Z",
+			"completed_at": "2023-11-04T22:08:32Z",
 			"name": "Test / ESLint",
-			"steps": [],
+			"steps": [
+				{
+					"name": "Set up job",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 1,
+					"started_at": "2023-11-04T22:07:27.000Z",
+					"completed_at": "2023-11-04T22:07:29.000Z"
+				},
+				{
+					"name": "Run actions/checkout@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 2,
+					"started_at": "2023-11-04T22:07:29.000Z",
+					"completed_at": "2023-11-04T22:07:32.000Z"
+				},
+				{
+					"name": "Run actions/setup-node@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 3,
+					"started_at": "2023-11-04T22:07:33.000Z",
+					"completed_at": "2023-11-04T22:07:39.000Z"
+				},
+				{
+					"name": "Install development dependencies",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 4,
+					"started_at": "2023-11-04T22:07:39.000Z",
+					"completed_at": "2023-11-04T22:08:21.000Z"
+				},
+				{
+					"name": "Run eslint check",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 5,
+					"started_at": "2023-11-04T22:08:21.000Z",
+					"completed_at": "2023-11-04T22:08:28.000Z"
+				},
+				{
+					"name": "Post Run actions/setup-node@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 9,
+					"started_at": "2023-11-04T22:08:29.000Z",
+					"completed_at": "2023-11-04T22:08:29.000Z"
+				},
+				{
+					"name": "Post Run actions/checkout@v3",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 10,
+					"started_at": "2023-11-04T22:08:29.000Z",
+					"completed_at": "2023-11-04T22:08:29.000Z"
+				},
+				{
+					"name": "Complete job",
+					"status": "completed",
+					"conclusion": "success",
+					"number": 11,
+					"started_at": "2023-11-04T22:08:29.000Z",
+					"completed_at": "2023-11-04T22:08:29.000Z"
+				}
+			],
 			"check_run_url": "https://api.github.com/repos/FuturePortal/CIMonitor/check-runs/18367967136",
 			"labels": [
 				"ubuntu-22.04"
 			],
-			"runner_id": null,
-			"runner_name": null,
-			"runner_group_id": null,
-			"runner_group_name": null
+			"runner_id": 2,
+			"runner_name": "GitHub Actions 2",
+			"runner_group_id": 2,
+			"runner_group_name": "GitHub Actions"
 		},
 		"repository": {
 			"id": 56302138,
