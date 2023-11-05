@@ -12,7 +12,7 @@ class GitHubRunParser {
 		if (!status) {
 			status = {
 				id,
-				project: `${run.organization.login} / ${run.repository.name}`,
+				project: `${run.repository.owner.login} / ${run.repository.name}`,
 				state: 'info',
 				source: 'github',
 				branch: run.workflow_run.head_branch,
@@ -55,7 +55,7 @@ class GitHubRunParser {
 			username: run.sender.login,
 			userUrl: run.sender.html_url,
 			userImage: run.sender.avatar_url,
-			projectImage: run.organization.avatar_url,
+			projectImage: run.repository.owner.avatar_url,
 			sourceUrl: run.repository.html_url,
 			processes,
 			time: new Date().toUTCString(),
