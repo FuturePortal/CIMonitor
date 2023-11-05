@@ -11,7 +11,7 @@ class GitHubPushParser {
 		if (!status) {
 			status = {
 				id,
-				project: `${push.organization.login} / ${push.repository.name}`,
+				project: `${push.repository.owner.name} / ${push.repository.name}`,
 				state: 'info',
 				source: 'github',
 				time: new Date().toUTCString(),
@@ -34,7 +34,7 @@ class GitHubPushParser {
 			username: push.sender.login,
 			userUrl: push.sender.html_url,
 			userImage: push.sender.avatar_url,
-			projectImage: push.organization.avatar_url,
+			projectImage: push.repository.owner.avatar_url,
 			sourceUrl: push.repository.html_url,
 			time: new Date().toUTCString(),
 		};

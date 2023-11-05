@@ -10,6 +10,7 @@ type GitHubRepository = {
 	html_url: string;
 	owner: {
 		name: string;
+		login: string;
 		id: number;
 		avatar_url: string;
 	};
@@ -50,12 +51,6 @@ type GitHubSender = {
 	html_url: string;
 };
 
-type GitHubOrganization = {
-	login: string;
-	id: number;
-	avatar_url: string;
-};
-
 export type GitHubPush = {
 	ref: string;
 	repository: GitHubRepository;
@@ -63,7 +58,6 @@ export type GitHubPush = {
 		name: string;
 		email: string;
 	};
-	organization: GitHubOrganization;
 	sender: GitHubSender;
 };
 
@@ -85,7 +79,6 @@ export type GitHubWorkflowRun = {
 		name: string;
 	};
 	repository: GitHubRepository;
-	organization: GitHubOrganization;
 	sender: GitHubSender;
 };
 
@@ -105,7 +98,6 @@ export type GitHubPullRequest = {
 		};
 	};
 	repository: GitHubRepository;
-	organization: GitHubOrganization;
 	sender: GitHubSender;
 };
 
@@ -134,6 +126,5 @@ export type GitHubWorkflowJob = {
 		steps: GitHubStep[];
 	};
 	repository: GitHubRepository;
-	organization: GitHubOrganization;
 	sender: GitHubSender;
 };
