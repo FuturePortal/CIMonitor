@@ -6,7 +6,7 @@ context('A running GitHub release', () => {
 	});
 
 	it('pushes a GitHub action flow', () => {
-		for (let count = 1; count <= 18; count++) {
+		for (let count = 1; count <= 45; count++) {
 			if (count > 1) {
 				cy.wait(300);
 			}

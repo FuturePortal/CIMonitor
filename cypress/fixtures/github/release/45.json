@@ -5,7 +5,7 @@
 		"content-type": "application/json"
 	},
 	"body": {
-		"action": "in_progress",
+		"action": "completed",
 		"workflow_run": {
 			"id": 6763563049,
 			"name": "Tag new CIMonitor release",
@@ -16,8 +16,8 @@
 			"display_title": "Bump package version to 4.11.1",
 			"run_number": 15,
 			"event": "push",
-			"status": "in_progress",
-			"conclusion": null,
+			"status": "completed",
+			"conclusion": "success",
 			"workflow_id": 22604491,
 			"check_suite_id": 17922506804,
 			"check_suite_node_id": "CS_kwDOA1saOs8AAAAELEPANA",
@@ -25,7 +25,7 @@
 			"html_url": "https://github.com/FuturePortal/CIMonitor/actions/runs/6763563049",
 			"pull_requests": [],
 			"created_at": "2023-11-05T20:22:30Z",
-			"updated_at": "2023-11-05T20:22:39Z",
+			"updated_at": "2023-11-05T20:25:27Z",
 			"actor": {
 				"login": "rick-nu",
 				"id": 6495166,
