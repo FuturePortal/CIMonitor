@@ -124,8 +124,6 @@ class GitLabBuildParser {
 
 		steps = steps.map((step) => {
 			if (step.id === stepId) {
-				// TODO: check if previous was running, and current is started, then ignore
-
 				const previousState = step.state;
 				const newState = statusToStepState(build.build_status, build.build_allow_failure);
 
