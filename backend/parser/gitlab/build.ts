@@ -8,6 +8,7 @@ import { statusToStepState } from './helper';
 
 class GitLabBuildParser {
 	parse(id: string, build: GitLabBuild): Status | null {
+		// Created status is not relevant, we start displaying when a job is pending
 		if (build.build_status === 'created') {
 			return null;
 		}
@@ -18,6 +19,7 @@ class GitLabBuildParser {
 
 		const processId = build.pipeline_id;
 
+		// If the pushed build (step) is not part of the status its processes yet, add it
 		if (!processes.find((process) => process.id === processId)) {
 			if (isOldProcess(status, processId)) {
 				return null;
@@ -80,6 +82,7 @@ class GitLabBuildParser {
 
 		const stageId = Slugify(build.build_stage);
 
+		// If the pushed build (step) is not part of the process its stages yet, add it
 		if (!stages.find((stage) => stage.id === stageId)) {
 			stages.push({
 				id: stageId,
@@ -109,6 +112,7 @@ class GitLabBuildParser {
 
 		const stepId = Slugify(build.build_name);
 
+		// If the pushed build (step) is not part of the stage its steps yet, add it
 		if (!steps.find((step) => step.id === stepId)) {
 			steps.push({
 				id: stepId,
@@ -120,7 +124,17 @@ class GitLabBuildParser {
 
 		steps = steps.map((step) => {
 			if (step.id === stepId) {
-				step.state = statusToStepState(build.build_status, build.build_allow_failure);
+				// TODO: check if previous was running, and current is started, then ignore
+
+				const previousState = step.state;
+				const newState = statusToStepState(build.build_status, build.build_allow_failure);
+
+				// Don't set job to pending when it's running already
+				if (previousState === 'running' && newState === 'pending') {
+					return step;
+				}
+
+				step.state = newState;
 				step.time = new Date().toUTCString();
 			}
 
