@@ -51,7 +51,7 @@ const Statuses = ({ status }: Props): ReactElement => {
 						)}
 						<Merge title={status.mergeTitle} url={status.mergeUrl} />
 						{status.url && (
-							<LinkBox href={status.url} target="_blank">
+							<LinkBox href={status.url} target="_blank" rel="nofollow">
 								<Icon icon="launch" /> {pettyUrl(status.url)}
 							</LinkBox>
 						)}

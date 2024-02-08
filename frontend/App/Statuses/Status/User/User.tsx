@@ -16,7 +16,7 @@ const User = ({ username, url }: Props): ReactElement | null => {
 
 	if (url) {
 		return (
-			<LinkBox href={url} target="_blank">
+			<LinkBox href={url} target="_blank" rel="nofollow">
 				<Icon icon="person" /> {username || 'User'}
 			</LinkBox>
 		);

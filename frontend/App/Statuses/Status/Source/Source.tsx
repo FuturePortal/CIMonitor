@@ -33,7 +33,7 @@ const Source = ({ type, url }: Props): ReactElement => {
 
 	if (url) {
 		return (
-			<LinkBox href={url} target="_blank">
+			<LinkBox href={url} target="_blank" rel="nofollow">
 				{getIcon(type)}
 			</LinkBox>
 		);
