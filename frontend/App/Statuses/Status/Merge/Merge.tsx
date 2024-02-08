@@ -16,7 +16,7 @@ const Merge = ({ title, url }: Props): ReactElement | null => {
 
 	if (url) {
 		return (
-			<LinkBox href={url} target="_blank">
+			<LinkBox href={url} target="_blank" rel="nofollow">
 				<Icon icon="merge_type" /> {title || 'request'}
 			</LinkBox>
 		);
