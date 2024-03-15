@@ -3,11 +3,13 @@ import { createContext } from 'react';
 type AppContext = {
 	showCompleted: boolean | null;
 	showAvatars: boolean | null;
+	sound: boolean | null;
 };
 
 const defaultContext: AppContext = {
 	showCompleted: null,
 	showAvatars: null,
+	sound: null,
 };
 
 export const getQueryContext = (): AppContext => {
@@ -28,6 +30,7 @@ export const getQueryContext = (): AppContext => {
 	return {
 		showCompleted: isEnabled('completed'),
 		showAvatars: isEnabled('avatars'),
+		sound: isEnabled('sound'),
 	};
 };
 

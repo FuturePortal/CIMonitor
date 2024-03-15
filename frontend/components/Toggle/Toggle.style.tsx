@@ -4,8 +4,8 @@ import { stateColor, textMutedColor } from '/frontend/style/colors';
 
 export const Switch = styled.div`
 	position: absolute;
-	top: 0.2rem;
-	right: 2.1rem;
+	top: 0.25rem;
+	right: 2.2rem;
 	width: 1.25rem;
 	height: 1.25rem;
 	border-radius: 50%;

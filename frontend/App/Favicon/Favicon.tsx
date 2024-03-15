@@ -9,16 +9,16 @@ import WarningIcon from './icon/warning.png';
 
 import { State } from '/types/status';
 
-const getIcon = (state: State) => {
+const getIcon = (state: State): string => {
 	if (state === 'error') {
-		return ErrorIcon;
+		return ErrorIcon as string;
 	}
 
 	if (state === 'warning') {
-		return WarningIcon;
+		return WarningIcon as string;
 	}
 
-	return SuccessIcon;
+	return SuccessIcon as string;
 };
 
 const Favicon = (): ReactElement => {
