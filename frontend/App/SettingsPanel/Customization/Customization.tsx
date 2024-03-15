@@ -7,6 +7,7 @@ import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 import Icon from '/frontend/components/Icon';
 import Modifier from '/frontend/components/Modifier';
 import Toggle from '/frontend/components/Toggle';
+import Sounds from '/frontend/sounds/Sounds';
 import {
 	setSizeModifier,
 	toggleShowCompleted,
@@ -28,6 +29,14 @@ const Customization = (): ReactElement => {
 	const dispatch = useDispatch();
 
 	const server = <Icon icon="warning" state="warning" title="Server setting" />;
+
+	const handleSoundToggle = () => {
+		if (!soundEnabled) {
+			Sounds.playSuccess();
+		}
+
+		dispatch(toggleSound());
+	};
 
 	return (
 		<Content>
@@ -54,7 +63,7 @@ const Customization = (): ReactElement => {
 					</Description>
 				</About>
 				<Tool>
-					<Toggle onToggle={() => dispatch(toggleSound())} enabled={soundEnabled} />
+					<Toggle onToggle={handleSoundToggle} enabled={soundEnabled} />
 				</Tool>
 			</Setting>
 			<Setting>
