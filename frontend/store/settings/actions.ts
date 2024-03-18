@@ -4,6 +4,7 @@ import {
 	ToggleSettingsPanelAction,
 	ToggleShowCompletedAction,
 	ToggleShowUserAvatarsAction,
+	ToggleSoundAction,
 } from './types';
 
 export const toggleShowCompleted = (): ToggleShowCompletedAction => ({
@@ -12,6 +13,10 @@ export const toggleShowCompleted = (): ToggleShowCompletedAction => ({
 
 export const toggleShowUserAvatars = (): ToggleShowUserAvatarsAction => ({
 	type: 'settings-show-user-avatars-toggle',
+});
+
+export const toggleSound = (): ToggleSoundAction => ({
+	type: 'settings-sound-toggle',
 });
 
 export const toggleSettingsPanel = (): ToggleSettingsPanelAction => ({

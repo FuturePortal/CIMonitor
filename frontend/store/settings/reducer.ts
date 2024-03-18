@@ -5,6 +5,7 @@ const defaultState: StateType = {
 	showCompleted: false,
 	sizeModifier: 1,
 	showUserAvatars: true,
+	soundEnabled: false,
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -18,6 +19,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
 			return {
 				...state,
 				open: false,
+			};
+		case 'settings-sound-toggle':
+			return {
+				...state,
+				soundEnabled: !state.soundEnabled,
 			};
 		case 'settings-show-completed-toggle':
 			return {

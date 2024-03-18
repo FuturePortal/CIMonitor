@@ -9,6 +9,7 @@ query parameters are available for you.
 | --------- | ------------------------------------------- | ------------------------ |
 | completed | Show completed CI steps (hidden by default) | `1` to show, `0` to hide |
 | avatars   | Show user avatars                           | `1` to show, `0` to hide |
+| sound     | Enable warning/error/success sounds         | `1` for on, `0` for off  |
 
 ## How to use them
 

@@ -7,16 +7,36 @@ import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 import Icon from '/frontend/components/Icon';
 import Modifier from '/frontend/components/Modifier';
 import Toggle from '/frontend/components/Toggle';
-import { setSizeModifier, toggleShowCompleted, toggleShowUserAvatars } from '/frontend/store/settings/actions';
-import { getSizeModifier, isHidingUserAvatars, isShowingCompleted } from '/frontend/store/settings/selectors';
+import Sounds from '/frontend/sounds/Sounds';
+import {
+	setSizeModifier,
+	toggleShowCompleted,
+	toggleShowUserAvatars,
+	toggleSound,
+} from '/frontend/store/settings/actions';
+import {
+	getSizeModifier,
+	isHidingUserAvatars,
+	isShowingCompleted,
+	isSoundEnabled,
+} from '/frontend/store/settings/selectors';
 
 const Customization = (): ReactElement => {
 	const showCompleted = useSelector(isShowingCompleted);
 	const sizeModifier = useSelector(getSizeModifier);
+	const soundEnabled = useSelector(isSoundEnabled);
 	const isHidingAvatars = useSelector(isHidingUserAvatars);
 	const dispatch = useDispatch();
 
 	const server = <Icon icon="warning" state="warning" title="Server setting" />;
+
+	const handleSoundToggle = () => {
+		if (!soundEnabled) {
+			Sounds.playSuccess();
+		}
+
+		dispatch(toggleSound());
+	};
 
 	return (
 		<Content>
@@ -33,6 +53,17 @@ const Customization = (): ReactElement => {
 				</About>
 				<Tool>
 					<Toggle onToggle={() => dispatch(toggleShowCompleted())} enabled={showCompleted} />
+				</Tool>
+			</Setting>
+			<Setting>
+				<About>
+					<Title>Enable sounds</Title>
+					<Description>
+						Do you want to hear a status sound when a status starts, finishes or fails?
+					</Description>
+				</About>
+				<Tool>
+					<Toggle onToggle={handleSoundToggle} enabled={soundEnabled} />
 				</Tool>
 			</Setting>
 			<Setting>

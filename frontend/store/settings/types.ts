@@ -3,6 +3,7 @@ export type StateType = {
 	showCompleted: boolean;
 	sizeModifier: number;
 	showUserAvatars: boolean;
+	soundEnabled: boolean;
 };
 
 export type SetSizeModifierAction = {
@@ -12,6 +13,10 @@ export type SetSizeModifierAction = {
 
 export type ToggleShowCompletedAction = {
 	type: 'settings-show-completed-toggle';
+};
+
+export type ToggleSoundAction = {
+	type: 'settings-sound-toggle';
 };
 
 export type ToggleSettingsPanelAction = {
@@ -31,4 +36,5 @@ export type ActionTypes =
 	| CloseSettingsPanelAction
 	| ToggleShowCompletedAction
 	| SetSizeModifierAction
-	| ToggleShowUserAvatarsAction;
+	| ToggleShowUserAvatarsAction
+	| ToggleSoundAction;
