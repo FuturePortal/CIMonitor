@@ -14,14 +14,17 @@ class Sounds {
 	}
 
 	playInfo() {
+		this.info.currentTime = 0;
 		this.info.play();
 	}
 
 	playSuccess() {
+		this.success.currentTime = 0;
 		this.success.play();
 	}
 
 	playError() {
+		this.error.currentTime = 0;
 		this.error.play();
 	}
 }

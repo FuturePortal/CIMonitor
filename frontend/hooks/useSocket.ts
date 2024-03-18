@@ -28,7 +28,6 @@ const useSocket = (): UseSocketOutput => {
 		socket.on(socketEvent.newStatus, (status: Status) => dispatch(addStatus(status)));
 		socket.on(socketEvent.statusStateChange, (status: Status) => {
 			if (!soundEnabled) {
-				console.log('No sound enabled');
 				return;
 			}
 

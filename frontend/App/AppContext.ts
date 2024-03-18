@@ -6,12 +6,6 @@ type AppContext = {
 	sound: boolean | null;
 };
 
-const defaultContext: AppContext = {
-	showCompleted: null,
-	showAvatars: null,
-	sound: null,
-};
-
 export const getQueryContext = (): AppContext => {
 	const queryParams = new URLSearchParams(window?.location.search);
 
@@ -33,6 +27,8 @@ export const getQueryContext = (): AppContext => {
 		sound: isEnabled('sound'),
 	};
 };
+
+const defaultContext: AppContext = getQueryContext();
 
 const appContext = createContext<AppContext | null>(defaultContext);
 
