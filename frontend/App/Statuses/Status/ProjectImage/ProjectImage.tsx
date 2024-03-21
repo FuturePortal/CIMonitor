@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 
-import { Container } from './ProjectImage.style';
+import { ProjectAvatar } from './ProjectImage.style';
 
 type Props = {
 	url: string;
@@ -14,11 +14,7 @@ const ProjectImage = ({ url, alt }: Props): ReactElement | null => {
 		return null;
 	}
 
-	return (
-		<Container>
-			<img src={url} alt={alt} onError={() => setNotLoading(true)} />
-		</Container>
-	);
+	return <ProjectAvatar src={url} alt={alt} onError={() => setNotLoading(true)} />;
 };
 
 export default ProjectImage;

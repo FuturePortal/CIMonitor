@@ -44,9 +44,13 @@ export const LinkBox = styled.a`
 `;
 
 export const Details = styled.div`
-	flex-grow: 1;
-	flex-shrink: 1;
 	min-width: 5rem;
+	grid-column: 2;
+	grid-row: 1 / 3;
+
+	${fromSize.medium(css`
+		grid-row: 1;
+	`)}
 `;
 
 export const Project = styled.h1`
@@ -94,15 +98,36 @@ export const Container = styled.div<StatusProps>`
 
 export const Body = styled.div`
 	padding: 0.75rem;
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 50fr;
+	grid-template-rows: 3rem 1fr;
+	gap: 0.5rem;
+
+	${fromSize.medium(css`
+		grid-template-columns: 1fr 50fr 1fr;
+		grid-template-rows: 1fr;
+		gap: 1rem;
+	`)}
 `;
 
 export const UserImage = styled.div`
 	flex-shrink: 0;
+	grid-column: 1;
+	grid-row: 2;
+
+	${fromSize.medium(css`
+		grid-column: 3;
+		grid-row: 1;
+	`)}
 
 	img {
 		border-radius: 50%;
-		width: 6rem;
-		height: 6rem;
+		width: 3rem;
+		height: 3rem;
+
+		${fromSize.medium(css`
+			width: 6rem;
+			height: 6rem;
+		`)}
 	}
 `;
