@@ -1,6 +1,6 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
-import { Body, Box, Boxes, Container, Details, LinkBox, Project, UserImage } from './Status.style';
+import { Body, Box, Boxes, Container, Details, LinkBox, Project, ProjectImage, UserImage } from './Status.style';
 
 import RunTime from '/frontend/App/Statuses/Status/RunTime';
 import Icon from '/frontend/components/Icon';
@@ -8,7 +8,6 @@ import useSetting from '/frontend/hooks/useSetting';
 
 import Merge from './Merge';
 import Process from './Process';
-import ProjectImage from './ProjectImage';
 import Source from './Source';
 import TimePassed from './TimePassed';
 import User from './User';
@@ -28,13 +27,21 @@ const pettyUrl = (url: string) =>
 
 const Statuses = ({ status }: Props): ReactElement => {
 	const showAvatars = useSetting('showAvatars');
+	const [projectAvatarFailed, setProjectAvatarFailed] = useState(false);
 
 	const activeProcess = status.processes[0] || null;
 
 	return (
 		<Container key={status.id} state={status.state}>
 			<Body>
-				{status.projectImage && <ProjectImage url={status.projectImage} alt="Project image" />}
+				{status.projectImage && !projectAvatarFailed && (
+					<ProjectImage
+						src={status.projectImage}
+						alt={status.project}
+						onError={() => setProjectAvatarFailed(true)}
+					/>
+				)}
+				{!!status.userImage && showAvatars && <UserImage src={status.userImage} alt={status.username} />}
 				<Details>
 					<Project>{status.project}</Project>
 					<Boxes>
@@ -67,11 +74,6 @@ const Statuses = ({ status }: Props): ReactElement => {
 						</Box>
 					</Boxes>
 				</Details>
-				{!!status.userImage && showAvatars && (
-					<UserImage>
-						<img src={status.userImage} alt="User" />
-					</UserImage>
-				)}
 			</Body>
 			{status.processes && status.processes.map((process) => <Process key={process.id} process={process} />)}
 		</Container>

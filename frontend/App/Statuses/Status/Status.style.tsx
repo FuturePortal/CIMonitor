@@ -43,16 +43,6 @@ export const LinkBox = styled.a`
 	${boxBase};
 `;
 
-export const Details = styled.div`
-	min-width: 5rem;
-	grid-column: 2;
-	grid-row: 1 / 3;
-
-	${fromSize.medium(css`
-		grid-row: 1;
-	`)}
-`;
-
 export const Project = styled.h1`
 	margin-bottom: 0.5rem;
 	font-size: 1.5em;
@@ -98,36 +88,47 @@ export const Container = styled.div<StatusProps>`
 
 export const Body = styled.div`
 	padding: 0.75rem;
-	display: grid;
-	grid-template-columns: 1fr 50fr;
-	grid-template-rows: 3rem 1fr;
-	gap: 0.5rem;
+
+	&::after {
+		content: ' ';
+		display: block;
+		clear: both;
+	}
+`;
+
+const ImageBase = styled.img`
+	width: 3rem;
+	height: 3rem;
 
 	${fromSize.medium(css`
-		grid-template-columns: 1fr 50fr 1fr;
-		grid-template-rows: 1fr;
-		gap: 1rem;
+		width: 6rem;
+		height: 6rem;
 	`)}
 `;
 
-export const UserImage = styled.div`
-	flex-shrink: 0;
-	grid-column: 1;
-	grid-row: 2;
+export const ProjectImage = styled(ImageBase)`
+	border-radius: 0.25rem;
+	float: left;
+	margin: 0 0.5rem 0.5rem 0;
 
 	${fromSize.medium(css`
-		grid-column: 3;
-		grid-row: 1;
+		margin: 0 1rem 0 0;
 	`)}
+`;
 
-	img {
-		border-radius: 50%;
-		width: 3rem;
-		height: 3rem;
+export const UserImage = styled(ImageBase)`
+	border-radius: 50%;
+	float: left;
+	clear: left;
+	margin-right: 0.5rem;
 
-		${fromSize.medium(css`
-			width: 6rem;
-			height: 6rem;
-		`)}
-	}
+	${fromSize.medium(css`
+		clear: none;
+		float: right;
+		margin: 0 0 0 1rem;
+	`)}
+`;
+
+export const Details = styled.div`
+	min-width: 5rem;
 `;
