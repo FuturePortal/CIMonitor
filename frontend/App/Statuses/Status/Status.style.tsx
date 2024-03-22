@@ -100,7 +100,7 @@ const ImageBase = styled.img`
 	width: 3rem;
 	height: 3rem;
 
-	${fromSize.medium(css`
+	${fromSize.small(css`
 		width: 6rem;
 		height: 6rem;
 	`)}
@@ -111,7 +111,7 @@ export const ProjectImage = styled(ImageBase)`
 	float: left;
 	margin: 0 0.5rem 0.5rem 0;
 
-	${fromSize.medium(css`
+	${fromSize.small(css`
 		margin: 0 1rem 0 0;
 	`)}
 `;
@@ -122,7 +122,7 @@ export const UserImage = styled(ImageBase)`
 	clear: left;
 	margin-right: 0.5rem;
 
-	${fromSize.medium(css`
+	${fromSize.small(css`
 		clear: none;
 		float: right;
 		margin: 0 0 0 1rem;
