@@ -266,7 +266,7 @@
 					"nickname": "Nick"
 				},
 				{
-					"display_name": "Marc [REDACTED]",
+					"display_name": "Marc",
 					"links": {
 						"self": {
 							"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
@@ -281,7 +281,7 @@
 					"type": "user",
 					"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
 					"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
-					"nickname": "Marc [REDACTED]"
+					"nickname": "Marc"
 				}
 			],
 			"participants": [
@@ -338,7 +338,7 @@
 				{
 					"type": "participant",
 					"user": {
-						"display_name": "Marc [REDACTED]",
+						"display_name": "Marc",
 						"links": {
 							"self": {
 								"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
@@ -353,7 +353,7 @@
 						"type": "user",
 						"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
 						"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
-						"nickname": "Marc [REDACTED]"
+						"nickname": "Marc"
 					},
 					"role": "REVIEWER",
 					"approved": false,

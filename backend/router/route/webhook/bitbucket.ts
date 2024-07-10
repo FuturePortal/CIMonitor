@@ -1,6 +1,6 @@
 import express from 'express';
 
-// import Parser from 'backend/parser/bitbucket';
+import Parser from 'backend/parser/bitbucket';
 import StatusManager from 'backend/status/manager';
 import Status from 'types/status';
 
@@ -13,23 +13,27 @@ router.post('/', (request, response) => {
 
 	let status: Status | null = null;
 
-	switch (webhookType) {
-		// status = Parser.parsePush(request.body);
-		// break;
-		case 'repo:push':
-		case 'pullrequest:created':
-		case 'pullrequest:updated':
-		case 'repo:commit_status_created':
-		case 'repo:commit_status_updated':
-		default:
-			console.log(`[route/webhook/bitbucket] No parser for webhook type ${webhookType}.`);
-	}
+	try {
+		switch (webhookType) {
+			case 'repo:push':
+				status = Parser.parsePush(request.body);
+				break;
+			case 'pullrequest:created':
+			case 'pullrequest:updated':
+			case 'repo:commit_status_created':
+			case 'repo:commit_status_updated':
+			default:
+				console.log(`[route/webhook/bitbucket] No parser for webhook type ${webhookType}.`);
+		}
 
-	if (status !== null) {
-		StatusManager.setStatus(status);
-	}
+		if (status !== null) {
+			StatusManager.setStatus(status);
+		}
 
-	response.json({ message: 'thanks' });
+		response.json({ message: 'thanks' });
+	} catch (error) {
+		response.json({ message: 'thanks, although parsing failed.' });
+	}
 });
 
 export default router;

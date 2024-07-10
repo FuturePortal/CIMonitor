@@ -48,7 +48,7 @@ export type Status = {
 	state: State;
 	processes: Process[];
 	time: string;
-	source: 'github' | 'gitlab' | 'readthedocs';
+	source: 'github' | 'gitlab' | 'readthedocs' | 'bitbucket';
 	sourceUrl?: string;
 	url?: string;
 	branch?: string;

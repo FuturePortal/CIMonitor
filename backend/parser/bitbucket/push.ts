@@ -1,44 +1,40 @@
-// import StatusManager from 'backend/status/manager';
-// import { GitHubPush } from 'types/github';
-// import Status from 'types/status';
-//
-// import { getBranch, getTag } from './helper';
+import StatusManager from 'backend/status/manager';
+import { BitBucketChange, BitBucketPush } from 'types/bitbucket';
+import Status from 'types/status';
 
-class BitBucketPush {
-	// parse(id: string, push: GitHubPush): Status {
-	// 	let status = StatusManager.getStatus(id);
-	//
-	// 	if (!status) {
-	// 		status = {
-	// 			id,
-	// 			project: `${push.repository.owner.name} / ${push.repository.name}`,
-	// 			state: 'info',
-	// 			source: 'github',
-	// 			time: new Date().toUTCString(),
-	// 			processes: [],
-	// 		};
-	//
-	// 		const branch = getBranch(push.ref);
-	// 		if (branch) {
-	// 			status.branch = branch;
-	// 		}
-	//
-	// 		const tag = getTag(push.ref);
-	// 		if (tag) {
-	// 			status.tag = tag;
-	// 		}
-	// 	}
-	//
-	// 	return {
-	// 		...status,
-	// 		username: push.sender.login,
-	// 		userUrl: push.sender.html_url,
-	// 		userImage: push.sender.avatar_url,
-	// 		projectImage: push.repository.owner.avatar_url,
-	// 		sourceUrl: push.repository.html_url,
-	// 		time: new Date().toUTCString(),
-	// 	};
-	// }
+class BitBucketPushParser {
+	parse(id: string, push: BitBucketPush, change: BitBucketChange): Status {
+		let status = StatusManager.getStatus(id);
+
+		if (!status) {
+			status = {
+				id,
+				project: `${push.repository.workspace.name} / ${push.repository.name}`,
+				state: 'info',
+				source: 'bitbucket',
+				time: new Date().toUTCString(),
+				processes: [],
+			};
+
+			if (change.type === 'branch') {
+				status.branch = change.name;
+			}
+
+			if (change.type === 'tag') {
+				status.tag = change.name;
+			}
+		}
+
+		return {
+			...status,
+			username: push.actor.display_name,
+			userUrl: push.actor.links.html.href,
+			userImage: push.actor.links.avatar.href,
+			projectImage: push.repository.links.avatar.href,
+			sourceUrl: push.repository.links.html.href,
+			time: new Date().toUTCString(),
+		};
+	}
 }
 
-export default new BitBucketPush();
+export default new BitBucketPushParser();
