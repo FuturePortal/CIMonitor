@@ -2,6 +2,7 @@ import Slugify from 'backend/parser/slug';
 import {
 	BitBucketChangeWrapper,
 	BitBucketCommitStatusWebhook,
+	BitBucketPullRequestWebhook,
 	BitBucketPushWebhook,
 	BitBucketRepository,
 } from 'types/bitbucket';
@@ -52,6 +53,19 @@ class BitBucketParser {
 		const id = this.getInternalId(build.repository, build.commit_status.refname);
 
 		return BitBucketBuildParser.parse(id, build);
+	}
+
+	parsePullRequest(pr: BitBucketPullRequestWebhook): Status {
+		console.log('[parser/bitbucket] Parsing pull request...');
+
+		const id = this.getInternalId(pr.repository, pr.pullrequest.source.branch.name);
+
+		// TODO: parse the PR
+		console.log('[parser/bitbucket] TODO.');
+		id;
+		return null;
+
+		// return BitBucketPullRequestParser.parse(id, build);
 	}
 }
 

@@ -28,20 +28,6 @@ export type BitBucketUser = {
 
 export type BitBucketBuildState = 'INPROGRESS' | 'FAILED' | 'SUCCESSFUL';
 
-export type BitBucketCommitStatus = {
-	key: string;
-	type: 'build' | unknown;
-	state: BitBucketBuildState;
-	name: string;
-	refname: string | null; // branch name
-	commit: {
-		message: string;
-		author: {
-			user: BitBucketUser;
-		};
-	};
-};
-
 export type BitBucketChange = {
 	name: string; // branch/tag name
 	type: 'branch' | 'tag' | unknown;
@@ -67,7 +53,37 @@ export type BitBucketPushWebhook = {
 };
 
 export type BitBucketCommitStatusWebhook = {
-	commit_status: BitBucketCommitStatus;
+	commit_status: {
+		key: string;
+		type: 'build' | unknown;
+		state: BitBucketBuildState;
+		name: string;
+		refname: string | null; // branch name
+		commit: {
+			message: string;
+			author: {
+				user: BitBucketUser;
+			};
+		};
+	};
+	repository: BitBucketRepository;
+	actor: BitBucketUser;
+};
+
+export type BitBucketPullRequestWebhook = {
+	pullrequest: {
+		title: string;
+		source: {
+			branch: {
+				name: string;
+			};
+		};
+		links: {
+			html: {
+				href: string;
+			};
+		};
+	};
 	repository: BitBucketRepository;
 	actor: BitBucketUser;
 };

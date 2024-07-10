@@ -23,6 +23,8 @@ router.post('/', (request, response) => {
 			break;
 		case 'pullrequest:created':
 		case 'pullrequest:updated':
+			status = Parser.parsePullRequest(request.body);
+			break;
 		default:
 			console.log(`[route/webhook/bitbucket] No parser for webhook type ${webhookType}.`);
 	}
