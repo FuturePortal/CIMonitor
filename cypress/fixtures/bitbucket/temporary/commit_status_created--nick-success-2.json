@@ -2,17 +2,7 @@
 	"headers": {
 		"user-agent": "Bitbucket-Webhooks/2.0",
 		"content-type": "application/json",
-		"x-attempt-number": "1",
-		"x-b3-parentspanid": "1efe39d740f9e7ab",
-		"x-b3-sampled": "1",
-		"x-b3-spanid": "628851065a479d7a",
-		"x-b3-traceid": "1efe39d740f9e7ab",
-		"x-event-key": "repo:commit_status_created",
-		"x-event-time": "Wed, 10 Jul 2024 09:14:19 GMT",
-		"x-forwarded-server": "4b217011517d",
-		"x-hook-uuid": "58db4446-9835-4ebb-8086-e178bb857db9",
-		"x-request-uuid": "bdf5cf8d-f81d-401c-9e0a-be2815f97273",
-		"accept-encoding": "gzip"
+		"x-event-key": "repo:commit_status_created"
 	},
 	"body": {
 		"repository": {

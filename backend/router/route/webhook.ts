@@ -2,6 +2,7 @@ import express from 'express';
 import FileSystem from 'fs';
 import { IncomingHttpHeaders } from 'http';
 
+import BitBucketRouter from './webhook/bitbucket';
 import GitHubRouter from './webhook/github';
 import GitLabRouter from './webhook/gitlab';
 import ReadTheDocsRouter from './webhook/readthedocs';
@@ -10,29 +11,38 @@ const router = express.Router();
 
 const cleanHeaders = (headers: IncomingHttpHeaders): IncomingHttpHeaders => {
 	const headersToClean = [
-		'x-gitlab-event-uuid',
-		'connection',
-		'host',
-		'content-length',
 		'accept',
-		'x-real-ip',
+		'accept-encoding',
+		'baggage',
+		'connection',
+		'content-length',
+		'host',
+		'newrelic',
+		'sentry-trace',
+		'traceparent',
+		'tracestate',
+		'x-attempt-number',
+		'x-b3-parentspanid',
+		'x-b3-sampled',
+		'x-b3-spanid',
+		'x-b3-traceid',
 		'x-forwarded-for',
 		'x-forwarded-host',
 		'x-forwarded-port',
 		'x-forwarded-proto',
 		'x-forwarded-scheme',
-		'x-scheme',
+		'x-forwarded-server',
 		'x-github-delivery',
 		'x-github-hook-id',
 		'x-github-hook-installation-target-id',
 		'x-github-hook-installation-target-type',
+		'x-gitlab-event-uuid',
+		'x-hook-uuid',
 		'x-hub-signature',
 		'x-hub-signature-256',
-		'sentry-trace',
-		'baggage',
-		'traceparent',
-		'tracestate',
-		'newrelic',
+		'x-real-ip',
+		'x-request-uuid',
+		'x-scheme',
 	];
 
 	for (let headerToClean of headersToClean) {
@@ -82,8 +92,9 @@ router.use((request, response, next) => {
 	next();
 });
 
-router.use('/gitlab', GitLabRouter);
+router.use('/bitbucket', BitBucketRouter);
 router.use('/github', GitHubRouter);
+router.use('/gitlab', GitLabRouter);
 router.use('/readthedocs', ReadTheDocsRouter);
 
 export default router;
