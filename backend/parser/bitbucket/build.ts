@@ -66,7 +66,7 @@ class BitBucketBuildParser {
 					steps: [],
 					time: new Date().toUTCString(),
 					state: this.getStageState(build.commit_status.state),
-					title: 'Pipeline',
+					title: build.commit_status.name,
 				},
 			],
 			state: this.getProcessState(build.commit_status.state),

@@ -55,7 +55,6 @@ class ReadTheDocsParser {
 			processes,
 			url: build.docs_url,
 			sourceUrl: build.build_url,
-			state: this.getStatusState(processes),
 			time: new Date().toUTCString(),
 		};
 	}
@@ -74,18 +73,6 @@ class ReadTheDocsParser {
 			],
 			state: this.getProcessState(build.event),
 		};
-	}
-
-	getStatusState(processes: Process[]): State {
-		if (processes.find((process) => process.state === 'warning')) {
-			return 'warning';
-		}
-
-		if (processes.find((process) => process.state === 'error')) {
-			return 'error';
-		}
-
-		return 'success';
 	}
 
 	getProcessState(event: string): State {
