@@ -1,0 +1,470 @@
+{
+	"headers": {
+		"user-agent": "Bitbucket-Webhooks/2.0",
+		"content-type": "application/json",
+		"x-attempt-number": "1",
+		"x-b3-parentspanid": "96bddabba6e3469e",
+		"x-b3-sampled": "1",
+		"x-b3-spanid": "42995ee1f342897a",
+		"x-b3-traceid": "96bddabba6e3469e",
+		"x-event-key": "pullrequest:updated",
+		"x-event-time": "Wed, 10 Jul 2024 09:21:37 GMT",
+		"x-forwarded-server": "4b217011517d",
+		"x-hook-uuid": "58db4446-9835-4ebb-8086-e178bb857db9",
+		"x-request-uuid": "53346522-2e89-41b4-b071-72e99037085e",
+		"accept-encoding": "gzip"
+	},
+	"body": {
+		"repository": {
+			"type": "repository",
+			"full_name": "groupname/xo",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+				},
+				"html": {
+					"href": "https://bitbucket.org/groupname/xo"
+				},
+				"avatar": {
+					"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+				}
+			},
+			"name": "XO",
+			"scm": "git",
+			"website": null,
+			"owner": {
+				"display_name": "Development groupname",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/users/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D"
+					},
+					"avatar": {
+						"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/DL-3.png"
+					},
+					"html": {
+						"href": "https://bitbucket.org/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D/"
+					}
+				},
+				"type": "user",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"account_id": "5a6a0877bae36d1ee1890185",
+				"nickname": "Development groupname"
+			},
+			"workspace": {
+				"type": "workspace",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"name": "Development groupname",
+				"slug": "groupname",
+				"links": {
+					"avatar": {
+						"href": "https://bitbucket.org/workspaces/groupname/avatar/?ts=1677682798"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/"
+					},
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname"
+					}
+				}
+			},
+			"is_private": true,
+			"project": {
+				"type": "project",
+				"key": "PROJ",
+				"uuid": "{e3a2a754-7d0a-4616-a892-8acd318d7ab1}",
+				"name": "Software",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname/projects/PROJ"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/workspace/projects/PROJ"
+					},
+					"avatar": {
+						"href": "https://bitbucket.org/account/user/groupname/projects/PROJ/avatar/32?ts=1593421915"
+					}
+				}
+			},
+			"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}",
+			"parent": null
+		},
+		"actor": {
+			"display_name": "Björn [REDACTED]",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/users/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D"
+				},
+				"avatar": {
+					"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/BS-3.png"
+				},
+				"html": {
+					"href": "https://bitbucket.org/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D/"
+				}
+			},
+			"type": "user",
+			"uuid": "{99927a7f-57e1-457d-92f4-4be1a4af9137}",
+			"account_id": "712020:d6d2db88-8e9d-4e8d-a275-93829ee8c7eb",
+			"nickname": "Björn [REDACTED]"
+		},
+		"pullrequest": {
+			"comment_count": 9,
+			"task_count": 0,
+			"type": "pullrequest",
+			"id": 419,
+			"title": "XO-465 [FE] Wmo319 Fill in response on a Request",
+			"description": "## What\n\nAdd response to the 319 with all of it’s validation.\n\n## How to test\n\n1. Go to the 319\n2. There should be a new block Response\n3. All validation should work\n4. Should show an extra dropdown when choosing “Verzoek afgewezen“\n\n‌",
+			"rendered": {
+				"title": {
+					"type": "rendered",
+					"raw": "XO-465 [FE] Wmo319 Fill in response on a Request",
+					"markup": "markdown",
+					"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-465\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-465</a> [FE] Wmo319 Fill in response on a Request</p>"
+				},
+				"description": {
+					"type": "rendered",
+					"raw": "## What\n\nAdd response to the 319 with all of it’s validation.\n\n## How to test\n\n1. Go to the 319\n2. There should be a new block Response\n3. All validation should work\n4. Should show an extra dropdown when choosing “Verzoek afgewezen“\n\n‌",
+					"markup": "markdown",
+					"html": "<h2 id=\"markdown-header-what\">What</h2>\n<p>Add response to the 319 with all of it’s validation.</p>\n<h2 id=\"markdown-header-how-to-test\">How to test</h2>\n<ol>\n<li>Go to the 319</li>\n<li>There should be a new block Response</li>\n<li>All validation should work</li>\n<li>Should show an extra dropdown when choosing “Verzoek afgewezen“</li>\n</ol>\n<p>‌</p>"
+				}
+			},
+			"state": "OPEN",
+			"merge_commit": null,
+			"close_source_branch": false,
+			"closed_by": null,
+			"author": {
+				"display_name": "Björn [REDACTED]",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/users/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D"
+					},
+					"avatar": {
+						"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/BS-3.png"
+					},
+					"html": {
+						"href": "https://bitbucket.org/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D/"
+					}
+				},
+				"type": "user",
+				"uuid": "{99927a7f-57e1-457d-92f4-4be1a4af9137}",
+				"account_id": "712020:d6d2db88-8e9d-4e8d-a275-93829ee8c7eb",
+				"nickname": "Björn [REDACTED]"
+			},
+			"reason": "",
+			"created_on": "2024-06-21T13:48:32.349423+00:00",
+			"updated_on": "2024-07-10T09:21:36.299676+00:00",
+			"destination": {
+				"branch": {
+					"name": "main"
+				},
+				"commit": {
+					"hash": "a1176fc2a583",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583"
+						},
+						"html": {
+							"href": "https://bitbucket.org/groupname/xo/commits/a1176fc2a583"
+						}
+					},
+					"type": "commit"
+				},
+				"repository": {
+					"type": "repository",
+					"full_name": "groupname/xo",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+						},
+						"html": {
+							"href": "https://bitbucket.org/groupname/xo"
+						},
+						"avatar": {
+							"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+						}
+					},
+					"name": "XO",
+					"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}"
+				}
+			},
+			"source": {
+				"branch": {
+					"name": "feature/XO-465"
+				},
+				"commit": {
+					"hash": "640b42e1b503",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/640b42e1b503"
+						},
+						"html": {
+							"href": "https://bitbucket.org/groupname/xo/commits/640b42e1b503"
+						}
+					},
+					"type": "commit"
+				},
+				"repository": {
+					"type": "repository",
+					"full_name": "groupname/xo",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+						},
+						"html": {
+							"href": "https://bitbucket.org/groupname/xo"
+						},
+						"avatar": {
+							"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+						}
+					},
+					"name": "XO",
+					"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}"
+				}
+			},
+			"reviewers": [
+				{
+					"display_name": "Marcel van der Laan",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/users/%7B9783fd10-b6e4-46fd-9e86-91dc730f4392%7D"
+						},
+						"avatar": {
+							"href": "https://secure.gravatar.com/avatar/42300bb5091f0afe3658135b9b8ca9a0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FML-1.png"
+						},
+						"html": {
+							"href": "https://bitbucket.org/%7B9783fd10-b6e4-46fd-9e86-91dc730f4392%7D/"
+						}
+					},
+					"type": "user",
+					"uuid": "{9783fd10-b6e4-46fd-9e86-91dc730f4392}",
+					"account_id": "5f74aba0c594410077143b10",
+					"nickname": "Marcel van der Laan"
+				},
+				{
+					"display_name": "Pieter [REDACTED]",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+						},
+						"avatar": {
+							"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+						},
+						"html": {
+							"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+						}
+					},
+					"type": "user",
+					"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+					"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+					"nickname": "Pieter [REDACTED]"
+				},
+				{
+					"display_name": "Nick",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/users/%7B439374be-ee4d-411c-b153-0b768303ac74%7D"
+						},
+						"avatar": {
+							"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/N-5.png"
+						},
+						"html": {
+							"href": "https://bitbucket.org/%7B439374be-ee4d-411c-b153-0b768303ac74%7D/"
+						}
+					},
+					"type": "user",
+					"uuid": "{439374be-ee4d-411c-b153-0b768303ac74}",
+					"account_id": "712020:343fef7f-3815-42cb-bd8f-f22fd8d6676d",
+					"nickname": "Nick"
+				},
+				{
+					"display_name": "Marc [REDACTED]",
+					"links": {
+						"self": {
+							"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+						},
+						"avatar": {
+							"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+						},
+						"html": {
+							"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+						}
+					},
+					"type": "user",
+					"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+					"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+					"nickname": "Marc [REDACTED]"
+				}
+			],
+			"participants": [
+				{
+					"type": "participant",
+					"user": {
+						"display_name": "Pieter [REDACTED]",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+							},
+							"avatar": {
+								"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+						"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+						"nickname": "Pieter [REDACTED]"
+					},
+					"role": "REVIEWER",
+					"approved": false,
+					"state": null,
+					"participated_on": null
+				},
+				{
+					"type": "participant",
+					"user": {
+						"display_name": "Nick",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7B439374be-ee4d-411c-b153-0b768303ac74%7D"
+							},
+							"avatar": {
+								"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/N-5.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7B439374be-ee4d-411c-b153-0b768303ac74%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{439374be-ee4d-411c-b153-0b768303ac74}",
+						"account_id": "712020:343fef7f-3815-42cb-bd8f-f22fd8d6676d",
+						"nickname": "Nick"
+					},
+					"role": "REVIEWER",
+					"approved": true,
+					"state": "approved",
+					"participated_on": "2024-06-28T10:04:12.683424+00:00"
+				},
+				{
+					"type": "participant",
+					"user": {
+						"display_name": "Marc [REDACTED]",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+							},
+							"avatar": {
+								"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+						"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+						"nickname": "Marc [REDACTED]"
+					},
+					"role": "REVIEWER",
+					"approved": false,
+					"state": null,
+					"participated_on": "2024-06-24T14:01:18.645567+00:00"
+				},
+				{
+					"type": "participant",
+					"user": {
+						"display_name": "Marcel van der Laan",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7B9783fd10-b6e4-46fd-9e86-91dc730f4392%7D"
+							},
+							"avatar": {
+								"href": "https://secure.gravatar.com/avatar/42300bb5091f0afe3658135b9b8ca9a0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FML-1.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7B9783fd10-b6e4-46fd-9e86-91dc730f4392%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{9783fd10-b6e4-46fd-9e86-91dc730f4392}",
+						"account_id": "5f74aba0c594410077143b10",
+						"nickname": "Marcel van der Laan"
+					},
+					"role": "REVIEWER",
+					"approved": false,
+					"state": null,
+					"participated_on": null
+				},
+				{
+					"type": "participant",
+					"user": {
+						"display_name": "Björn [REDACTED]",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D"
+							},
+							"avatar": {
+								"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/BS-3.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7B99927a7f-57e1-457d-92f4-4be1a4af9137%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{99927a7f-57e1-457d-92f4-4be1a4af9137}",
+						"account_id": "712020:d6d2db88-8e9d-4e8d-a275-93829ee8c7eb",
+						"nickname": "Björn [REDACTED]"
+					},
+					"role": "PARTICIPANT",
+					"approved": true,
+					"state": "approved",
+					"participated_on": "2024-07-10T09:21:05.672066+00:00"
+				}
+			],
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419"
+				},
+				"html": {
+					"href": "https://bitbucket.org/groupname/xo/pull-requests/419"
+				},
+				"commits": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/commits"
+				},
+				"approve": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/approve"
+				},
+				"request-changes": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/request-changes"
+				},
+				"diff": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/groupname/xo:640b42e1b503%0Da1176fc2a583?from_pullrequest_id=419&topic=true&exclude_files=97a77efb-65a7-42d5-b48a-5c13c78fdadf"
+				},
+				"diffstat": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diffstat/groupname/xo:640b42e1b503%0Da1176fc2a583?from_pullrequest_id=419&topic=true&exclude_files=97a77efb-65a7-42d5-b48a-5c13c78fdadf"
+				},
+				"comments": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/comments"
+				},
+				"activity": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/activity"
+				},
+				"merge": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/merge"
+				},
+				"decline": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/decline"
+				},
+				"statuses": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/pullrequests/419/statuses"
+				}
+			},
+			"summary": {
+				"type": "rendered",
+				"raw": "## What\n\nAdd response to the 319 with all of it’s validation.\n\n## How to test\n\n1. Go to the 319\n2. There should be a new block Response\n3. All validation should work\n4. Should show an extra dropdown when choosing “Verzoek afgewezen“\n\n‌",
+				"markup": "markdown",
+				"html": "<h2 id=\"markdown-header-what\">What</h2>\n<p>Add response to the 319 with all of it’s validation.</p>\n<h2 id=\"markdown-header-how-to-test\">How to test</h2>\n<ol>\n<li>Go to the 319</li>\n<li>There should be a new block Response</li>\n<li>All validation should work</li>\n<li>Should show an extra dropdown when choosing “Verzoek afgewezen“</li>\n</ol>\n<p>‌</p>"
+			}
+		}
+	}
+}
