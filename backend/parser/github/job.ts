@@ -1,7 +1,7 @@
 import Slugify from 'backend/parser/slug';
 import StatusManager from 'backend/status/manager';
 import { GitHubWorkflowJob } from 'types/github';
-import Status, { Process, Stage, Step, StepState } from 'types/status';
+import Status, { Process, Stage, Step, StepAndStageState } from 'types/status';
 
 import { getStepState } from './helper';
 
@@ -104,7 +104,7 @@ class GitHubJobParser {
 		};
 	}
 
-	getStageState(steps: Step[]): StepState {
+	getStageState(steps: Step[]): StepAndStageState {
 		if (steps.length === 0) {
 			return 'running';
 		}

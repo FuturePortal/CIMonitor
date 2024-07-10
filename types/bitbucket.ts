@@ -26,10 +26,12 @@ export type BitBucketUser = {
 	};
 };
 
+export type BitBucketBuildState = 'INPROGRESS' | 'FAILED' | 'SUCCESSFUL';
+
 export type BitBucketCommitStatus = {
 	key: string;
 	type: 'build' | unknown;
-	state: 'INPROGRESS' | 'FAILED' | 'SUCCESSFUL';
+	state: BitBucketBuildState;
 	name: string;
 	refname: string | null; // branch name
 	commit: {

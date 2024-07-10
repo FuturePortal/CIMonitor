@@ -2,7 +2,7 @@ import Slugify from 'backend/parser/slug';
 import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import { GitLabBuild } from 'types/gitlab';
-import Status, { Process, Stage, Step, StepState } from 'types/status';
+import Status, { Process, Stage, Step, StepAndStageState } from 'types/status';
 
 import { statusToStepState } from './helper';
 
@@ -147,7 +147,7 @@ class GitLabBuildParser {
 		};
 	}
 
-	determineStageState(steps: Step[]): StepState {
+	determineStageState(steps: Step[]): StepAndStageState {
 		if (steps.find((step) => ['failed'].includes(step.state))) {
 			return 'failed';
 		}

@@ -28,7 +28,7 @@ class BitBucketParser {
 
 		if (!relevantChange) {
 			console.log('[parser/bitbucket] No relevant change of type branch was found. Stopping.');
-			throw 'No relevant change was found';
+			return null;
 		}
 
 		const id = this.getInternalId(push.repository, relevantChange.new.name);
@@ -41,7 +41,12 @@ class BitBucketParser {
 
 		if (build.commit_status.refname === null) {
 			console.log('[parser/bitbucket] Build could not be linked to a branch. Stopping.');
-			throw 'Build was not for a branch';
+			return null;
+		}
+
+		if (parseInt(build.commit_status.key) === 0 || isNaN(parseInt(build.commit_status.key))) {
+			console.log('[parser/bitbucket] Build has an invalid key, should be a build number. Stopping.');
+			return null;
 		}
 
 		const id = this.getInternalId(build.repository, build.commit_status.refname);

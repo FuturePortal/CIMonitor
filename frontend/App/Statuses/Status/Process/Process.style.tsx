@@ -4,7 +4,7 @@ import { opacity, stateColor, stateDarkColor } from '/frontend/style/colors';
 import { fromSize } from '/frontend/style/size';
 import { ellipsis } from '/frontend/style/text';
 
-import { State, StepState } from '/types/status';
+import { State, StepAndStageState } from '/types/status';
 
 type ProcessContainerProps = {
 	state: State;
@@ -29,7 +29,7 @@ export const Stages = styled.div`
 `;
 
 type StageProps = {
-	state: StepState;
+	state: StepAndStageState;
 	processState: State;
 };
 
@@ -71,7 +71,7 @@ export const Stage = styled.div<StageProps>`
 `;
 
 type StepProps = {
-	state: StepState;
+	state: StepAndStageState;
 	processState: State;
 };
 

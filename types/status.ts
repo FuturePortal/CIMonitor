@@ -1,6 +1,6 @@
 export type State = 'info' | 'warning' | 'error' | 'success';
 
-export type StepState =
+export type StepAndStageState =
 	| 'created'
 	| 'pending'
 	| 'running'
@@ -19,7 +19,7 @@ export type Duration = {
 export type Step = {
 	id: string;
 	title: string;
-	state: StepState;
+	state: StepAndStageState;
 	time: string;
 	duration?: Duration;
 };
@@ -27,7 +27,7 @@ export type Step = {
 export type Stage = {
 	id: string;
 	title?: string;
-	state: StepState;
+	state: StepAndStageState;
 	steps: Step[];
 	time: string;
 	duration?: Duration;

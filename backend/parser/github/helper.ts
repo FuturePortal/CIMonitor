@@ -1,5 +1,5 @@
 import { GitHubConclusion, GitHubStatus } from 'types/github';
-import { State, StepState } from 'types/status';
+import { State, StepAndStageState } from 'types/status';
 
 export const getProcessState = (status: GitHubStatus, conclusion: GitHubConclusion): State => {
 	if (conclusion !== null) {
@@ -17,7 +17,7 @@ export const getProcessState = (status: GitHubStatus, conclusion: GitHubConclusi
 	return 'info';
 };
 
-export const getStepState = (status: GitHubStatus, conclusion: GitHubConclusion): StepState => {
+export const getStepState = (status: GitHubStatus, conclusion: GitHubConclusion): StepAndStageState => {
 	if (conclusion !== null) {
 		if (conclusion === 'failure') {
 			return 'failed';

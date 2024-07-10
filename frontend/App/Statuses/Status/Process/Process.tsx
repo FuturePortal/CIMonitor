@@ -6,9 +6,9 @@ import RunTime from '/frontend/App/Statuses/Status/RunTime';
 import Icon from '/frontend/components/Icon';
 import useSetting from '/frontend/hooks/useSetting';
 
-import { Process as ProcessType, Stage as StageType, State, Step as StepType, StepState } from '/types/status';
+import { Process as ProcessType, Stage as StageType, State, Step as StepType, StepAndStageState } from '/types/status';
 
-const getStateIcon = (state: StepState, processState: State = 'warning') => {
+const getStateIcon = (state: StepAndStageState, processState: State = 'warning') => {
 	const icons = {
 		running: 'autorenew',
 		success: 'done',
