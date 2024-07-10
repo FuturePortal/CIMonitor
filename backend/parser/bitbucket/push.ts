@@ -1,9 +1,9 @@
 import StatusManager from 'backend/status/manager';
-import { BitBucketChange, BitBucketPush } from 'types/bitbucket';
+import { BitBucketChange, BitBucketPushWebhook } from 'types/bitbucket';
 import Status from 'types/status';
 
 class BitBucketPushParser {
-	parse(id: string, push: BitBucketPush, change: BitBucketChange): Status {
+	parse(id: string, push: BitBucketPushWebhook, change: BitBucketChange): Status {
 		let status = StatusManager.getStatus(id);
 
 		if (!status) {
@@ -25,11 +25,12 @@ class BitBucketPushParser {
 			}
 		}
 
+		const commitUser = change.target.author.user;
 		return {
 			...status,
-			username: push.actor.display_name,
-			userUrl: push.actor.links.html.href,
-			userImage: push.actor.links.avatar.href,
+			username: commitUser.display_name,
+			userUrl: commitUser.links.html.href,
+			userImage: commitUser.links.avatar.href,
 			projectImage: push.repository.links.avatar.href,
 			sourceUrl: push.repository.links.html.href,
 			time: new Date().toUTCString(),

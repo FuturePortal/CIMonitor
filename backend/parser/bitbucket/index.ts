@@ -1,7 +1,13 @@
 import Slugify from 'backend/parser/slug';
-import { BitBucketChangeWrapper, BitBucketPush, BitBucketRepository } from 'types/bitbucket';
+import {
+	BitBucketChangeWrapper,
+	BitBucketCommitStatusWebhook,
+	BitBucketPushWebhook,
+	BitBucketRepository,
+} from 'types/bitbucket';
 import Status from 'types/status';
 
+import BitBucketBuildParser from './build';
 import BitBucketPushParser from './push';
 
 class BitBucketParser {
@@ -9,7 +15,7 @@ class BitBucketParser {
 		return `bitbucket-${Slugify(repository.full_name)}-${Slugify(branch)}`;
 	}
 
-	parsePush(push: BitBucketPush): Status {
+	parsePush(push: BitBucketPushWebhook): Status {
 		console.log('[parser/bitbucket] Parsing push...');
 
 		const relevantChange = push.push.changes.find((changes: BitBucketChangeWrapper) => {
@@ -22,12 +28,25 @@ class BitBucketParser {
 
 		if (!relevantChange) {
 			console.log('[parser/bitbucket] No relevant change of type branch was found. Stopping.');
-			throw 'No relevant change was found :(';
+			throw 'No relevant change was found';
 		}
 
 		const id = this.getInternalId(push.repository, relevantChange.new.name);
 
 		return BitBucketPushParser.parse(id, push, relevantChange.new);
+	}
+
+	parseBuild(build: BitBucketCommitStatusWebhook): Status {
+		console.log('[parser/bitbucket] Parsing build...');
+
+		if (build.commit_status.refname === null) {
+			console.log('[parser/bitbucket] Build could not be linked to a branch. Stopping.');
+			throw 'Build was not for a branch';
+		}
+
+		const id = this.getInternalId(build.repository, build.commit_status.refname);
+
+		return BitBucketBuildParser.parse(id, build);
 	}
 }
 

@@ -18,10 +18,12 @@ router.post('/', (request, response) => {
 			case 'repo:push':
 				status = Parser.parsePush(request.body);
 				break;
-			case 'pullrequest:created':
-			case 'pullrequest:updated':
 			case 'repo:commit_status_created':
 			case 'repo:commit_status_updated':
+				status = Parser.parseBuild(request.body);
+				break;
+			case 'pullrequest:created':
+			case 'pullrequest:updated':
 			default:
 				console.log(`[route/webhook/bitbucket] No parser for webhook type ${webhookType}.`);
 		}
