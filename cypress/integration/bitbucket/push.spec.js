@@ -6,7 +6,7 @@ context('A running BitBucket push', () => {
 	});
 
 	it('pushes a BitBucket branch', () => {
-		for (let count = 1; count <= 4; count++) {
+		for (let count = 1; count <= 6; count++) {
 			if (count > 1) {
 				cy.wait(1000);
 			}
