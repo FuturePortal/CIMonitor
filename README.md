@@ -15,6 +15,7 @@ deployments are successful. All in one overview. This is all done via **webhooks
 - [GitHub](https://cimonitor.readthedocs.io/en/latest/webhook/github/)
 - [GitLab](https://cimonitor.readthedocs.io/en/latest/webhook/gitlab/)
 - [Read the Docs](https://cimonitor.readthedocs.io/en/latest/webhook/readthedocs/)
+- [BitBucket](https://cimonitor.readthedocs.io/en/latest/webhook/bitbucket/)
 
 ## Example
 

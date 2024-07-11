@@ -9,6 +9,7 @@ import {
 import Status from 'types/status';
 
 import BitBucketBuildParser from './build';
+import BitBucketPullRequestParser from './pull-request';
 import BitBucketPushParser from './push';
 
 class BitBucketParser {
@@ -60,12 +61,7 @@ class BitBucketParser {
 
 		const id = this.getInternalId(pr.repository, pr.pullrequest.source.branch.name);
 
-		// TODO: parse the PR
-		console.log('[parser/bitbucket] TODO.');
-		id;
-		return null;
-
-		// return BitBucketPullRequestParser.parse(id, build);
+		return BitBucketPullRequestParser.parse(id, pr);
 	}
 }
 

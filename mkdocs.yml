@@ -20,6 +20,7 @@ nav:
     - GitHub: webhook/github.md
     - GitLab: webhook/gitlab.md
     - Read the docs: webhook/readthedocs.md
+    - BitBucket: webhook/bitbucket.md
   - Modules: modules.md
   - Module:
     - GPIO: module/gpio.md
