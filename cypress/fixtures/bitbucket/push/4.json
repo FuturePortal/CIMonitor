@@ -1,0 +1,187 @@
+{
+	"headers": {
+		"user-agent": "Bitbucket-Webhooks/2.0",
+		"content-type": "application/json",
+		"x-event-key": "repo:commit_status_updated"
+	},
+	"body": {
+		"repository": {
+			"type": "repository",
+			"full_name": "groupname/xo",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+				},
+				"html": {
+					"href": "https://bitbucket.org/groupname/xo"
+				},
+				"avatar": {
+					"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+				}
+			},
+			"name": "XO",
+			"scm": "git",
+			"website": null,
+			"owner": {
+				"display_name": "Development groupname",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/users/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D"
+					},
+					"avatar": {
+						"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/DL-3.png"
+					},
+					"html": {
+						"href": "https://bitbucket.org/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D/"
+					}
+				},
+				"type": "user",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"account_id": "5a6a0877bae36d1ee1890185",
+				"nickname": "Development groupname"
+			},
+			"workspace": {
+				"type": "workspace",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"name": "Development groupname",
+				"slug": "groupname",
+				"links": {
+					"avatar": {
+						"href": "https://bitbucket.org/workspaces/groupname/avatar/?ts=1677682798"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/"
+					},
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname"
+					}
+				}
+			},
+			"is_private": true,
+			"project": {
+				"type": "project",
+				"key": "PROJ",
+				"uuid": "{e3a2a754-7d0a-4616-a892-8acd318d7ab1}",
+				"name": "Software",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname/projects/PROJ"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/workspace/projects/PROJ"
+					},
+					"avatar": {
+						"href": "https://bitbucket.org/account/user/groupname/projects/PROJ/avatar/32?ts=1593421915"
+					}
+				}
+			},
+			"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}",
+			"parent": null
+		},
+		"actor": {
+			"display_name": "Development groupname",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/users/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D"
+				},
+				"avatar": {
+					"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/DL-3.png"
+				},
+				"html": {
+					"href": "https://bitbucket.org/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D/"
+				}
+			},
+			"type": "user",
+			"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+			"account_id": "5a6a0877bae36d1ee1890185",
+			"nickname": "Development groupname"
+		},
+		"commit_status": {
+			"key": "606642714",
+			"type": "build",
+			"state": "FAILED",
+			"name": "Pipeline #3506 for Pull Request #437",
+			"refname": "feature/XO-466",
+			"commit": {
+				"type": "commit",
+				"hash": "0b6c06edfcb49802d7c63ba1b01eabd573c1bade",
+				"date": "2024-07-10T09:05:08+00:00",
+				"author": {
+					"type": "author",
+					"raw": "Marc <[REDACTED]>",
+					"user": {
+						"display_name": "Marc",
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+							},
+							"avatar": {
+								"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+							},
+							"html": {
+								"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+							}
+						},
+						"type": "user",
+						"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+						"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+						"nickname": "Marc"
+					}
+				},
+				"message": "XO-466: Removed 319 from excluded types\n",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/xo/commits/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+					},
+					"diff": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+					},
+					"approve": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/approve"
+					},
+					"comments": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/comments"
+					},
+					"statuses": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/statuses"
+					},
+					"patch": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/patch/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+					}
+				}
+			},
+			"url": "https://bitbucket.org/groupname/xo/addon/pipelines/home#!/results/3506",
+			"repository": {
+				"type": "repository",
+				"full_name": "groupname/xo",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/xo"
+					},
+					"avatar": {
+						"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+					}
+				},
+				"name": "XO",
+				"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}"
+			},
+			"description": "",
+			"created_on": "2024-07-10T09:06:37.643706+00:00",
+			"updated_on": "2024-07-10T09:14:31.026080+00:00",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/statuses/build/606642714"
+				},
+				"commit": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+				}
+			}
+		}
+	}
+}

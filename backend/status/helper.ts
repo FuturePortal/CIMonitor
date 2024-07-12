@@ -1,4 +1,4 @@
-import Status, { Duration, Process, Stage, State, StepState } from 'types/status';
+import Status, { Duration, Process, Stage, State, StepAndStageState } from 'types/status';
 
 const statusesExpire = 60 * 60 * 24 * 7; // 7 days
 const statusesTimeout = 60 * 60 * 2; // 2 hours
@@ -57,7 +57,7 @@ export const processStatusChanges = (status: Status): Status => {
 	};
 };
 
-const setDuration = (state: StepState | Process['state'], currentDuration?: Duration): Duration => {
+const setDuration = (state: StepAndStageState | Process['state'], currentDuration?: Duration): Duration => {
 	if (state === 'running' || state === 'warning') {
 		return {
 			ran: currentDuration?.ran || 0,

@@ -2,33 +2,9 @@ import Slugify from 'backend/parser/slug';
 import { isOldProcess } from 'backend/status/helper';
 import StatusManager from 'backend/status/manager';
 import ReadTheDocsBuild from 'types/readthedocs';
-import Status, { Process, State, StepState } from 'types/status';
+import Status, { Process, State, StepAndStageState } from 'types/status';
 
 class ReadTheDocsParser {
-	getState(event: string): State {
-		if (event === 'build:passed') {
-			return 'success';
-		}
-
-		if (event === 'build:failed') {
-			return 'error';
-		}
-
-		return 'warning';
-	}
-
-	getStepState(event: string): StepState {
-		if (event === 'build:passed') {
-			return 'success';
-		}
-
-		if (event === 'build:failed') {
-			return 'failed';
-		}
-
-		return 'running';
-	}
-
 	parseBuild(build: ReadTheDocsBuild): Status | null {
 		console.log('[parser/readthedocs] Parsing build...');
 
@@ -79,21 +55,8 @@ class ReadTheDocsParser {
 			processes,
 			url: build.docs_url,
 			sourceUrl: build.build_url,
-			state: this.determineState(processes),
 			time: new Date().toUTCString(),
 		};
-	}
-
-	determineState(processes: Process[]): State {
-		if (processes.find((process) => process.state === 'warning')) {
-			return 'warning';
-		}
-
-		if (processes.find((process) => process.state === 'error')) {
-			return 'error';
-		}
-
-		return 'success';
 	}
 
 	patchProcess(process: Process, build: ReadTheDocsBuild): Process {
@@ -104,12 +67,36 @@ class ReadTheDocsParser {
 					id: 'build',
 					steps: [],
 					time: new Date().toUTCString(),
-					state: this.getStepState(build.event),
+					state: this.getStageState(build.event),
 					title: 'Building documentation',
 				},
 			],
-			state: this.getState(build.event),
+			state: this.getProcessState(build.event),
 		};
+	}
+
+	getProcessState(event: string): State {
+		if (event === 'build:passed') {
+			return 'success';
+		}
+
+		if (event === 'build:failed') {
+			return 'error';
+		}
+
+		return 'warning';
+	}
+
+	getStageState(event: string): StepAndStageState {
+		if (event === 'build:passed') {
+			return 'success';
+		}
+
+		if (event === 'build:failed') {
+			return 'failed';
+		}
+
+		return 'running';
 	}
 }
 

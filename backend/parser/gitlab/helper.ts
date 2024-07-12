@@ -1,5 +1,5 @@
 import { GitLabStatus } from 'types/gitlab';
-import { State, StepState } from 'types/status';
+import { State, StepAndStageState } from 'types/status';
 
 type GitLabStatusMapper<ExpectedState> = {
 	// eslint-disable-next-line no-unused-vars
@@ -19,8 +19,8 @@ export const statusToState = (status: GitLabStatus): State => {
 	return states[status] || 'info';
 };
 
-export const statusToStepState = (status: GitLabStatus, allowFailure: boolean): StepState => {
-	const states: GitLabStatusMapper<StepState> = {
+export const statusToStepState = (status: GitLabStatus, allowFailure: boolean): StepAndStageState => {
+	const states: GitLabStatusMapper<StepAndStageState> = {
 		pending: 'pending',
 		running: 'running',
 		created: 'created',

@@ -1,0 +1,570 @@
+{
+	"headers": {
+		"user-agent": "Bitbucket-Webhooks/2.0",
+		"content-type": "application/json",
+		"x-event-key": "repo:push"
+	},
+	"body": {
+		"push": {
+			"changes": [
+				{
+					"old": null,
+					"new": {
+						"name": "feature/XO-466",
+						"target": {
+							"type": "commit",
+							"hash": "0b6c06edfcb49802d7c63ba1b01eabd573c1bade",
+							"date": "2024-07-10T09:05:08+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Marc <[REDACTED]>",
+								"user": {
+									"display_name": "Marc",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+									"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+									"nickname": "Marc"
+								}
+							},
+							"message": "XO-466: Removed 319 from excluded types\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "XO-466: Removed 319 from excluded types\n",
+								"markup": "markdown",
+								"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-466\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-466</a>: Removed 319 from excluded types</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								}
+							},
+							"parents": [
+								{
+									"hash": "a1176fc2a583a0751c67c7b5619e62d61dc9da54",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						},
+						"links": {
+							"self": {
+								"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/refs/branches/feature/XO-466"
+							},
+							"commits": {
+								"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commits/feature/XO-466"
+							},
+							"html": {
+								"href": "https://bitbucket.org/groupname/xo/branch/feature/XO-466"
+							}
+						},
+						"type": "branch",
+						"merge_strategies": ["merge_commit", "squash", "fast_forward"],
+						"default_merge_strategy": "merge_commit"
+					},
+					"truncated": true,
+					"created": true,
+					"forced": false,
+					"closed": false,
+					"links": {
+						"commits": {
+							"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commits?include=0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+						},
+						"html": {
+							"href": "https://bitbucket.org/groupname/xo/branch/feature/XO-466"
+						}
+					},
+					"commits": [
+						{
+							"type": "commit",
+							"hash": "0b6c06edfcb49802d7c63ba1b01eabd573c1bade",
+							"date": "2024-07-10T09:05:08+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Marc <[REDACTED]>",
+								"user": {
+									"display_name": "Marc",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+									"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+									"nickname": "Marc"
+								}
+							},
+							"message": "XO-466: Removed 319 from excluded types\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "XO-466: Removed 319 from excluded types\n",
+								"markup": "markdown",
+								"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-466\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-466</a>: Removed 319 from excluded types</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								},
+								"diff": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								},
+								"approve": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/approve"
+								},
+								"comments": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/comments"
+								},
+								"statuses": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/0b6c06edfcb49802d7c63ba1b01eabd573c1bade/statuses"
+								},
+								"patch": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/patch/0b6c06edfcb49802d7c63ba1b01eabd573c1bade"
+								}
+							},
+							"parents": [
+								{
+									"hash": "a1176fc2a583a0751c67c7b5619e62d61dc9da54",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						},
+						{
+							"type": "commit",
+							"hash": "a1176fc2a583a0751c67c7b5619e62d61dc9da54",
+							"date": "2024-07-09T14:39:32+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Pieter [REDACTED] <[REDACTED]>",
+								"user": {
+									"display_name": "Pieter [REDACTED]",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+									"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+									"nickname": "Pieter [REDACTED]"
+								}
+							},
+							"message": "Merged in feature/XO-372-mock (pull request #435)\n\nFeature/XO-372 mock\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "Merged in feature/XO-372-mock (pull request #435)\n\nFeature/XO-372 mock\n",
+								"markup": "markdown",
+								"html": "<p>Merged in feature/<a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-372\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-372</a>-mock (<a href=\"https://bitbucket.org/groupname/xo/pull-requests/435\" rel=\"nofollow\" class=\"ap-connect-link\">pull request #435</a>)</p>\n<p>Feature/<a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-372\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-372</a> mock</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+								},
+								"diff": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/a1176fc2a583a0751c67c7b5619e62d61dc9da54"
+								},
+								"approve": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54/approve"
+								},
+								"comments": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54/comments"
+								},
+								"statuses": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a1176fc2a583a0751c67c7b5619e62d61dc9da54/statuses"
+								}
+							},
+							"parents": [
+								{
+									"hash": "a4b653d15af6b3e69720c0a8c6a6c001e7cb018e",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/a4b653d15af6b3e69720c0a8c6a6c001e7cb018e"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/a4b653d15af6b3e69720c0a8c6a6c001e7cb018e"
+										}
+									},
+									"type": "commit"
+								},
+								{
+									"hash": "e82e64828d43ecb7e71d8d4adcff860ec35afa2a",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						},
+						{
+							"type": "commit",
+							"hash": "e82e64828d43ecb7e71d8d4adcff860ec35afa2a",
+							"date": "2024-07-09T13:08:36+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Pieter [REDACTED] <[REDACTED]>",
+								"user": {
+									"display_name": "Pieter [REDACTED]",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+									"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+									"nickname": "Pieter [REDACTED]"
+								}
+							},
+							"message": "XO-372: Add type definitions to mocks\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "XO-372: Add type definitions to mocks\n",
+								"markup": "markdown",
+								"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-372\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-372</a>: Add type definitions to mocks</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+								},
+								"diff": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+								},
+								"approve": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/e82e64828d43ecb7e71d8d4adcff860ec35afa2a/approve"
+								},
+								"comments": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/e82e64828d43ecb7e71d8d4adcff860ec35afa2a/comments"
+								},
+								"statuses": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/e82e64828d43ecb7e71d8d4adcff860ec35afa2a/statuses"
+								},
+								"patch": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/patch/e82e64828d43ecb7e71d8d4adcff860ec35afa2a"
+								}
+							},
+							"parents": [
+								{
+									"hash": "f7e2bebbc4a60715e9994f1248095abd19e35114",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/f7e2bebbc4a60715e9994f1248095abd19e35114"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/f7e2bebbc4a60715e9994f1248095abd19e35114"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						},
+						{
+							"type": "commit",
+							"hash": "f7e2bebbc4a60715e9994f1248095abd19e35114",
+							"date": "2024-07-09T13:03:12+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Pieter [REDACTED] <[REDACTED]>",
+								"user": {
+									"display_name": "Pieter [REDACTED]",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+									"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+									"nickname": "Pieter [REDACTED]"
+								}
+							},
+							"message": "XO-372: Remove unused lines\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "XO-372: Remove unused lines\n",
+								"markup": "markdown",
+								"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-372\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-372</a>: Remove unused lines</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/f7e2bebbc4a60715e9994f1248095abd19e35114"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/f7e2bebbc4a60715e9994f1248095abd19e35114"
+								},
+								"diff": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/f7e2bebbc4a60715e9994f1248095abd19e35114"
+								},
+								"approve": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/f7e2bebbc4a60715e9994f1248095abd19e35114/approve"
+								},
+								"comments": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/f7e2bebbc4a60715e9994f1248095abd19e35114/comments"
+								},
+								"statuses": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/f7e2bebbc4a60715e9994f1248095abd19e35114/statuses"
+								},
+								"patch": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/patch/f7e2bebbc4a60715e9994f1248095abd19e35114"
+								}
+							},
+							"parents": [
+								{
+									"hash": "1d98d1e873d494dc4f838e032169d1e7b8340e61",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						},
+						{
+							"type": "commit",
+							"hash": "1d98d1e873d494dc4f838e032169d1e7b8340e61",
+							"date": "2024-07-09T13:00:00+00:00",
+							"author": {
+								"type": "author",
+								"raw": "Pieter [REDACTED] <[REDACTED]>",
+								"user": {
+									"display_name": "Pieter [REDACTED]",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/users/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D"
+										},
+										"avatar": {
+											"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/PW-3.png"
+										},
+										"html": {
+											"href": "https://bitbucket.org/%7Bf13f3090-4b44-4dbc-bb22-900c559c0c1a%7D/"
+										}
+									},
+									"type": "user",
+									"uuid": "{f13f3090-4b44-4dbc-bb22-900c559c0c1a}",
+									"account_id": "712020:1874b931-dbea-4196-adbf-a67711461354",
+									"nickname": "Pieter [REDACTED]"
+								}
+							},
+							"message": "XO-372: Restructure the external service mock\n",
+							"summary": {
+								"type": "rendered",
+								"raw": "XO-372: Restructure the external service mock\n",
+								"markup": "markdown",
+								"html": "<p><a rel=\"nofollow\" href=\"https://groupname.atlassian.net/browse/XO-372\" target=\"_blank\" data-module-key=\"dvcs-connector-issue-key-linker\" data-link-key=\"dvcs-connector-issue-key-linker\" data-app-key=\"jira-bitbucket-connector-plugin.73f67970-4829-3039-988f-a0bd8a648ca3\" data-principal-uuid=\"{0cd27561-674a-4f88-a54b-593966be7ac9}\" class=\"ap-connect-dialog\">XO-372</a>: Restructure the external service mock</p>"
+							},
+							"links": {
+								"self": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+								},
+								"html": {
+									"href": "https://bitbucket.org/groupname/xo/commits/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+								},
+								"diff": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/diff/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+								},
+								"approve": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/1d98d1e873d494dc4f838e032169d1e7b8340e61/approve"
+								},
+								"comments": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/1d98d1e873d494dc4f838e032169d1e7b8340e61/comments"
+								},
+								"statuses": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/1d98d1e873d494dc4f838e032169d1e7b8340e61/statuses"
+								},
+								"patch": {
+									"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/patch/1d98d1e873d494dc4f838e032169d1e7b8340e61"
+								}
+							},
+							"parents": [
+								{
+									"hash": "4dce6f58402f580afe6b97d8baac4fcef4b8da0f",
+									"links": {
+										"self": {
+											"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo/commit/4dce6f58402f580afe6b97d8baac4fcef4b8da0f"
+										},
+										"html": {
+											"href": "https://bitbucket.org/groupname/xo/commits/4dce6f58402f580afe6b97d8baac4fcef4b8da0f"
+										}
+									},
+									"type": "commit"
+								}
+							],
+							"rendered": {},
+							"properties": {}
+						}
+					]
+				}
+			]
+		},
+		"repository": {
+			"type": "repository",
+			"full_name": "groupname/xo",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/repositories/groupname/xo"
+				},
+				"html": {
+					"href": "https://bitbucket.org/groupname/xo"
+				},
+				"avatar": {
+					"href": "https://bytebucket.org/ravatar/%7B05740f13-ee26-40c5-b530-4d204854fea1%7D?ts=3379276"
+				}
+			},
+			"name": "XO",
+			"scm": "git",
+			"website": null,
+			"owner": {
+				"display_name": "Development groupname",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/users/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D"
+					},
+					"avatar": {
+						"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/DL-3.png"
+					},
+					"html": {
+						"href": "https://bitbucket.org/%7B0cd27561-674a-4f88-a54b-593966be7ac9%7D/"
+					}
+				},
+				"type": "user",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"account_id": "5a6a0877bae36d1ee1890185",
+				"nickname": "Development groupname"
+			},
+			"workspace": {
+				"type": "workspace",
+				"uuid": "{0cd27561-674a-4f88-a54b-593966be7ac9}",
+				"name": "Development groupname",
+				"slug": "groupname",
+				"links": {
+					"avatar": {
+						"href": "https://bitbucket.org/workspaces/groupname/avatar/?ts=1677682798"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/"
+					},
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname"
+					}
+				}
+			},
+			"is_private": true,
+			"project": {
+				"type": "project",
+				"key": "PROJ",
+				"uuid": "{e3a2a754-7d0a-4616-a892-8acd318d7ab1}",
+				"name": "Software",
+				"links": {
+					"self": {
+						"href": "https://api.bitbucket.org/2.0/workspaces/groupname/projects/PROJ"
+					},
+					"html": {
+						"href": "https://bitbucket.org/groupname/workspace/projects/PROJ"
+					},
+					"avatar": {
+						"href": "https://bitbucket.org/account/user/groupname/projects/PROJ/avatar/32?ts=1593421915"
+					}
+				}
+			},
+			"uuid": "{05740f13-ee26-40c5-b530-4d204854fea1}",
+			"parent": null
+		},
+		"actor": {
+			"display_name": "Marc",
+			"links": {
+				"self": {
+					"href": "https://api.bitbucket.org/2.0/users/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D"
+				},
+				"avatar": {
+					"href": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/MR-4.png"
+				},
+				"html": {
+					"href": "https://bitbucket.org/%7Bb3d09cea-ea4a-46c1-aef4-eb2904f6820b%7D/"
+				}
+			},
+			"type": "user",
+			"uuid": "{b3d09cea-ea4a-46c1-aef4-eb2904f6820b}",
+			"account_id": "712020:9d68805c-afe3-47be-ae4e-85c8114c27b7",
+			"nickname": "Marc"
+		}
+	}
+}
