@@ -14,6 +14,7 @@ class BitBucketBuildParser {
 				state: 'info',
 				source: 'bitbucket',
 				time: new Date().toUTCString(),
+				branch: build.commit_status.refname,
 				processes: [],
 			};
 		}
