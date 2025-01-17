@@ -27,6 +27,7 @@ export const socketEvent = {
 	patchStatus: 'status-patch',
 	deleteStatus: 'status-delete',
 	statusStateChange: 'status-state-change',
+	globalStateChange: 'global-state-change',
 	requestAllStatuses: 'status-request',
 };
 

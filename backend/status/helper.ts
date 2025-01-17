@@ -40,6 +40,22 @@ export const getStuckStatuses = (statuses: Status[]): Status[] =>
 		return false;
 	});
 
+export const getGlobalState = (statuses: Status[]): State => {
+	if (statuses.find((status) => status.state === 'warning')) {
+		return 'warning';
+	}
+
+	if (statuses.find((status) => status.state === 'error')) {
+		return 'error';
+	}
+
+	if (statuses.find((status) => status.state === 'success')) {
+		return 'success';
+	}
+
+	return 'info';
+};
+
 export const processStatusChanges = (status: Status): Status => {
 	const processes = status.processes
 		// Sort processes by creation time

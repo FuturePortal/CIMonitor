@@ -2,7 +2,7 @@ import StorageManager from 'backend/storage/manager';
 import Status from 'types/status';
 
 import StatusEvents from './events';
-import { fixStuckStatus, getExpiredStatuses, getStuckStatuses, processStatusChanges } from './helper';
+import { fixStuckStatus, getExpiredStatuses, getGlobalState, getStuckStatuses, processStatusChanges } from './helper';
 
 class StatusManager {
 	statuses: Status[] = [];
@@ -80,6 +80,8 @@ class StatusManager {
 		}
 
 		this.statuses = statuses;
+
+		StatusEvents.emit(StatusEvents.event.globalStateChange, getGlobalState(statuses));
 
 		// TODO: fix dependency, storage manager should listen instead
 		// beware of the race condition that events are emit before the statuses are set on the manager

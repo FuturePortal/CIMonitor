@@ -4,7 +4,7 @@ import { Server as SocketServer } from 'socket.io';
 import StatusEvents from 'backend/status/events';
 import StatusManager from 'backend/status/manager';
 import { socketEvent } from 'types/cimonitor';
-import Status from 'types/status';
+import Status, { State } from 'types/status';
 
 class SocketManager {
 	socket = null;
@@ -47,6 +47,11 @@ class SocketManager {
 		StatusEvents.on(
 			StatusEvents.event.deleteAllStatuses,
 			() => this.socket && this.socket.sockets.emit(socketEvent.allStatuses, [])
+		);
+
+		StatusEvents.on(
+			StatusEvents.event.globalStateChange,
+			(state: State) => this.socket && this.socket.sockets.emit(socketEvent.globalStateChange, state)
 		);
 	}
 
