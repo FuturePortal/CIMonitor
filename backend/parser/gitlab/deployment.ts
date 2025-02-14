@@ -10,12 +10,15 @@ class GitLabDeploymentParser {
 		if (!status) {
 			status = {
 				id,
-				project: `${deployment.project.namespace} / ${deployment.project.name}`,
+				project: deployment.project.path_with_namespace,
 				state: 'info',
 				source: 'gitlab',
 				time: new Date().toUTCString(),
 				processes: [],
 				branch: deployment.ref,
+				username: deployment.user.name || deployment.user.username,
+				userImage: deployment.user.avatar_url,
+				userUrl: deployment.user_url,
 			};
 
 			if (deployment.ref) {
@@ -30,9 +33,6 @@ class GitLabDeploymentParser {
 		return {
 			...status,
 			projectImage: deployment.project.avatar_url,
-			username: deployment.user.name || deployment.user.username,
-			userImage: deployment.user.avatar_url,
-			userUrl: deployment.user_url,
 			sourceUrl: deployment.project.git_http_url,
 			url: deployment.environment_external_url,
 			time: new Date().toUTCString(),

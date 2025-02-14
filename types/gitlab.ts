@@ -130,6 +130,7 @@ export type GitLabBuild = {
 	project_id: number;
 	project_name: string;
 	user: GitLabUser;
+	project?: GitLabProject;
 	commit: {
 		id: number;
 		sha: string;
