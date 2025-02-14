@@ -69,12 +69,14 @@ class GitLabBuildParser {
 			}
 		}
 
-		status.username = build.user.name || build.user.username;
-		status.userUrl = build.commit.author_url;
-		status.userImage = build.user.avatar_url;
-		status.sourceUrl = build.repository.homepage;
-
-		return status;
+		return {
+			...status,
+			project: build.project_name,
+			username: build.user.name || build.user.username,
+			userUrl: build.commit.author_url,
+			userImage: build.user.avatar_url,
+			sourceUrl: build.repository.homepage,
+		};
 	}
 
 	patchProcess(process: Process, build: GitLabBuild): Process {

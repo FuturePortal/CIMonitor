@@ -25,7 +25,7 @@ class GitLabParser {
 	parseBuild(build: GitLabBuild): Status {
 		console.log('[parser/gitlab] Parsing build...');
 
-		const id = this.getInternalId(build.project_id, build.repository.name, build.ref, build.tag);
+		const id = this.getInternalId(build.project.id, build.repository.name, build.ref, build.tag);
 
 		return GitLabBuildParser.parse(id, build);
 	}

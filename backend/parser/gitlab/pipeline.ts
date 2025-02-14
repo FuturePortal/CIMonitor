@@ -49,7 +49,7 @@ class GitLabPipelineParser {
 		if (!status) {
 			status = {
 				id,
-				project: `${pipeline.project.namespace} / ${pipeline.project.name}`,
+				project: pipeline.project.path_with_namespace,
 				state: 'info',
 				source: 'gitlab',
 				time: new Date().toUTCString(),
@@ -65,12 +65,13 @@ class GitLabPipelineParser {
 			}
 		}
 
-		status.username = pipeline.user.name || pipeline.user.username;
-		status.userImage = pipeline.user.avatar_url;
-		status.projectImage = pipeline.project.avatar_url;
-		status.sourceUrl = pipeline.project.git_http_url;
-
-		return status;
+		return {
+			...status,
+			username: pipeline.user.name || pipeline.user.username,
+			userImage: pipeline.user.avatar_url,
+			projectImage: pipeline.project.avatar_url,
+			sourceUrl: pipeline.project.git_http_url,
+		};
 	}
 
 	patchProcess(process: Process, pipeline: GitLabPipeline): Process {

@@ -9,11 +9,13 @@ class GitLabMergeRequestParser {
 		if (!status) {
 			status = {
 				id,
-				project: `${mergeRequest.project.namespace} / ${mergeRequest.project.name}`,
+				project: mergeRequest.project.path_with_namespace,
 				state: 'info',
 				source: 'gitlab',
 				time: new Date().toUTCString(),
 				processes: [],
+				username: mergeRequest.user.name || mergeRequest.user.username,
+				userImage: mergeRequest.user.avatar_url,
 				branch: mergeRequest.object_attributes.source_branch,
 			};
 
@@ -25,8 +27,6 @@ class GitLabMergeRequestParser {
 		return {
 			...status,
 			projectImage: mergeRequest.project.avatar_url,
-			username: mergeRequest.user.name || mergeRequest.user.username,
-			userImage: mergeRequest.user.avatar_url,
 			sourceUrl: mergeRequest.project.git_http_url,
 			mergeTitle: mergeRequest.object_attributes.title,
 			mergeUrl: mergeRequest.object_attributes.url,
