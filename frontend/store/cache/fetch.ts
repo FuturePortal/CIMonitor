@@ -41,11 +41,15 @@ export const fetchContributors = async (): Promise<Contributor[]> => {
 
 		const contributors: Contributor[] = response.data;
 
-		store.dispatch(setContributors(contributors));
+		if (contributors.length > 0) {
+			store.dispatch(setContributors(contributors));
 
-		console.log(`[store/cache/fetch] Fetched ${contributors.length} contributors from the backend.`);
+			console.log(`[store/cache/fetch] Fetched ${contributors.length} contributors from the backend.`);
+			return contributors;
+		}
 
-		return contributors;
+		console.log(`[store/cache/fetch] Fetched no contributors from the backend.`);
+		return [];
 	} catch (error) {
 		return [];
 	}
