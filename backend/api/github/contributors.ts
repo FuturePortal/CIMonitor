@@ -2,16 +2,32 @@ import GitHubApi from 'backend/api/github';
 import { Contributor } from 'types/cimonitor';
 import { GitHubContributor, GitHubUser } from 'types/github';
 
+let cachedContributors: Contributor[] = [];
+
 export const getContributors = async (): Promise<Contributor[]> => {
-	const response = await GitHubApi().get('repos/FuturePortal/CIMonitor/stats/contributors');
+	try {
+		const response = await GitHubApi().get('repos/FuturePortal/CIMonitor/stats/contributors');
 
-	const contributors: GitHubContributor[] = response.data;
+		const contributors: GitHubContributor[] = response.data;
+		const cleanContributors = cleanResponse(contributors);
 
-	const cleanContributors = cleanResponse(contributors);
+		if (cleanContributors.length === 0) {
+			return cachedContributors;
+		}
 
-	const enrichedContributors = await enrichContributors(cleanContributors);
+		const enrichedContributors = await enrichContributors(cleanContributors);
+		const sortedContributors = enrichedContributors.sort(byCommits);
 
-	return enrichedContributors.sort(byCommits);
+		cachedContributors = sortedContributors;
+
+		return sortedContributors;
+	} catch (error) {
+		if (cachedContributors.length > 0) {
+			return cachedContributors;
+		}
+
+		throw error;
+	}
 };
 
 const cleanResponse = (contributors: GitHubContributor[]): Contributor[] =>
