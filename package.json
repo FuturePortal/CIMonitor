@@ -1,6 +1,6 @@
 {
 	"name": "cimonitor",
-	"version": "4.15.1",
+	"version": "4.16.0",
 	"description": "Monitors all your projects CI automatically",
 	"repository": "git@github.com:FuturePortal/CIMonitor.git",
 	"license": "MIT",
