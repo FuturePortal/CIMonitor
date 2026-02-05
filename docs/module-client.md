@@ -103,5 +103,5 @@ docker run \
     --volume /dev/mem:/dev/mem \
     --volume /dev/gpiomem:/dev/gpiomem \
     --env CIMONITOR_SERVER_URL="https://ci.example.com" \
-    cimonitor/module-client:latest-arm
+	cimonitor/module-client:latest
 ```

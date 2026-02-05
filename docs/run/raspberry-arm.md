@@ -1,10 +1,9 @@
 # Running on a Raspberry Pi
 
-To run CIMonitor on a Raspberry Pi (or any other ARM device), we also build special `-arm` tags on our docker containers.
-All you have to do is prepend `-arm` to the version you want to run. So on your raspberry you could just run
-`docker run cimonitor/server:latest-arm` or `docker run cimonitor/server:<version>-arm` (find the latest version in the
-[release overview](https://github.com/FuturePortal/CIMonitor/releases)). Check the
-[docker documentation](./docker.md) on how to fully run CIMonitor, and make sure you prepend the `-arm` tag.
+To run CIMonitor on a Raspberry Pi (or any other ARM device), we publish multi-arch docker images under the same tag.
+So on your raspberry you can run `docker run cimonitor/server:latest` or `docker run cimonitor/server:<version>` (find
+the latest version in the [release overview](https://github.com/FuturePortal/CIMonitor/releases)). Check the
+[docker documentation](./docker.md) on how to fully run CIMonitor.
 
 You could also do a [local installation](./locally.md) of course. That will work to on your ARM device.
 
@@ -64,8 +63,7 @@ Install docker following [the official docker installation guide](https://docs.d
 
 1. First, create a folder where you want to run the container: `# mkdir ~/CIMonitor`
 2. Navigate to the new folder so you can always find the saved statuses: `# cd ~/CIMonitor`
-3. See the [docker documentation](./docker.md) on what start command you should run. Don't forget to append `-arm` to
-   the docker tag.
+3. See the [docker documentation](./docker.md) on what start command you should run.
 4. You should now have CIMonitor running on the Raspberry Pi on port 3030.
 
 ## Start CIMonitor dashboard full-screen
