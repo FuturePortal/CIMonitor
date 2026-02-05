@@ -9,6 +9,12 @@ import webhookRouter from './route/webhook';
 
 const router = express.Router();
 
+// Prevent search engine indexing
+router.use((req, res, next) => {
+	res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+	next();
+});
+
 router.use('/', dashboardRouter);
 router.use('/webhook', webhookRouter);
 router.use('/version', versionRouter);
