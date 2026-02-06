@@ -13,7 +13,7 @@ router.post('/', (request, response) => {
 
 	if (!verifySimpleSecret(request)) {
 		console.log('[route/webhook/bitbucket] Invalid webhook secret.');
-		return response.status(403).json({ message: 'Forbidden' });
+		return response.status(403).json({ message: 'Invalid secret verification.' });
 	}
 
 	const webhookType: string = String(request.headers['x-event-key']);

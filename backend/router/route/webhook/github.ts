@@ -36,7 +36,7 @@ router.post('/', (request, response) => {
 
 	if (!verifyGitHubSignature(request)) {
 		console.log('[route/webhook/github] Invalid webhook signature.');
-		return response.status(403).json({ message: 'Forbidden' });
+		return response.status(403).json({ message: 'Invalid secret verification.' });
 	}
 
 	const githubWebhookType: string = String(request.headers['x-github-event']);
