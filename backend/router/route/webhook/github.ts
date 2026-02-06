@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import express from 'express';
 
 import GitHubParser from 'backend/parser/github';
@@ -6,8 +7,37 @@ import Status from 'types/status';
 
 const router = express.Router();
 
+const verifyGitHubSignature = (request: express.Request): boolean => {
+	const webhookSecret = process.env.WEBHOOK_SECRET;
+
+	if (!webhookSecret) {
+		return true;
+	}
+
+	const signature = request.headers['x-hub-signature-256'] as string;
+
+	if (!signature) {
+		return false;
+	}
+
+	const body = JSON.stringify(request.body);
+	const hmac = crypto.createHmac('sha256', webhookSecret);
+	hmac.update(body);
+	const expectedSignature = `sha256=${hmac.digest('hex')}`;
+
+	return crypto.timingSafeEqual(
+		new Uint8Array(Buffer.from(signature)),
+		new Uint8Array(Buffer.from(expectedSignature))
+	);
+};
+
 router.post('/', (request, response) => {
 	console.log('[route/webhook/github] Webhook received.');
+
+	if (!verifyGitHubSignature(request)) {
+		console.log('[route/webhook/github] Invalid webhook signature.');
+		return response.status(403).json({ message: 'Forbidden' });
+	}
 
 	const githubWebhookType: string = String(request.headers['x-github-event']);
 

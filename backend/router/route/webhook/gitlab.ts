@@ -5,10 +5,17 @@ import StatusManager from 'backend/status/manager';
 import GitLabWebhook from 'types/gitlab';
 import Status from 'types/status';
 
+import { verifySimpleSecret } from './verify-secret';
+
 const router = express.Router();
 
 router.post('/', (request, response) => {
 	console.log('[route/webhook/gitlab] Webhook received.');
+
+	if (!verifySimpleSecret(request)) {
+		console.log('[route/webhook/gitlab] Invalid webhook secret.');
+		return response.status(403).json({ message: 'Forbidden' });
+	}
 
 	const gitlabWebhook: GitLabWebhook = request.body;
 

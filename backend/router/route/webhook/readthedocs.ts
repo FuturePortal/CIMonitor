@@ -4,10 +4,17 @@ import ReadTheDocsParser from 'backend/parser/readthedocs';
 import StatusManager from 'backend/status/manager';
 import ReadTheDocsBuild from 'types/readthedocs';
 
+import { verifySimpleSecret } from './verify-secret';
+
 const router = express.Router();
 
 router.post('/', (request, response) => {
 	console.log('[route/webhook/readthedocs] Webhook received.');
+
+	if (!verifySimpleSecret(request)) {
+		console.log('[route/webhook/readthedocs] Invalid webhook secret.');
+		return response.status(403).json({ message: 'Forbidden' });
+	}
 
 	const webhook: ReadTheDocsBuild = request.body;
 

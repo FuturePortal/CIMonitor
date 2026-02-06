@@ -4,10 +4,17 @@ import Parser from 'backend/parser/bitbucket';
 import StatusManager from 'backend/status/manager';
 import Status from 'types/status';
 
+import { verifySimpleSecret } from './verify-secret';
+
 const router = express.Router();
 
 router.post('/', (request, response) => {
 	console.log('[route/webhook/bitbucket] Webhook received.');
+
+	if (!verifySimpleSecret(request)) {
+		console.log('[route/webhook/bitbucket] Invalid webhook secret.');
+		return response.status(403).json({ message: 'Forbidden' });
+	}
 
 	const webhookType: string = String(request.headers['x-event-key']);
 
