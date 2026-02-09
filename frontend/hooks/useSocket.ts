@@ -16,10 +16,16 @@ type UseSocketOutput = {
 const useSocket = (): UseSocketOutput => {
 	const [socketConnected, setSocketConnected] = useState(false);
 	const dispatch = useDispatch();
-	const soundEnabled = useSetting('sound');
+	const soundEnabled = useSetting('sound') as boolean;
+	const password = useSetting('password') as string;
+	const passwordLock = window.PASSWORD_PROTECTED === 'dashboard' ? password : '';
 
 	useEffect(() => {
-		const socket = io();
+		const socket = io({
+			auth: {
+				password: passwordLock,
+			},
+		});
 
 		socket.on(socketEvent.connect, () => setSocketConnected(true));
 		socket.on(socketEvent.disconnect, () => setSocketConnected(false));
@@ -52,7 +58,7 @@ const useSocket = (): UseSocketOutput => {
 			socket.disconnect();
 			clearInterval(requestStatusesInterval);
 		};
-	}, [soundEnabled]);
+	}, [soundEnabled, passwordLock]);
 
 	return {
 		socketConnected,

@@ -7,7 +7,7 @@ import store from './store';
 
 console.log('[frontend] init dashboard.');
 
-const root = createRoot(document.getElementById('cimonitor'));
+const root = createRoot(document.getElementById('cimonitor')!);
 
 root.render(
 	<StrictMode>

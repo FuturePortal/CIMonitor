@@ -1,5 +1,5 @@
 import { Server } from 'http';
-import { Server as SocketServer } from 'socket.io';
+import { Server as SocketServer, Socket } from 'socket.io';
 
 import StatusEvents from 'backend/status/events';
 import StatusManager from 'backend/status/manager';
@@ -7,9 +7,26 @@ import { socketEvent } from 'types/cimonitor';
 import Status, { State } from 'types/status';
 
 class SocketManager {
-	socket = null;
+	socket: SocketServer | null = null;
 	socketId = 0;
 	socketConnections = 0;
+
+	isAuthenticationRequired(): boolean {
+		const dashboardPassword = process.env.DASHBOARD_PASSWORD || '';
+		const dashboardLock = process.env.DASHBOARD_LOCK || 'settings';
+
+		if (!dashboardPassword) {
+			return false;
+		}
+
+		return dashboardLock === 'dashboard';
+	}
+
+	isPasswordValid(providedPassword: string): boolean {
+		const dashboardPassword = process.env.DASHBOARD_PASSWORD || '';
+
+		return providedPassword === dashboardPassword;
+	}
 
 	startSocket(server: Server): void {
 		this.socket = new SocketServer(server, {
@@ -18,7 +35,20 @@ class SocketManager {
 			},
 		});
 
-		this.socket.on(socketEvent.connect, (socket) => this.onClientConnect(socket));
+		this.socket.use((socket, next) => {
+			if (!this.isAuthenticationRequired()) {
+				return next();
+			}
+
+			const providedPassword = socket.handshake.auth.password || '';
+			if (this.isPasswordValid(providedPassword)) {
+				return next();
+			}
+
+			return next(new Error('Authentication failed'));
+		});
+
+		this.socket.on(socketEvent.connect, (socket: Socket) => this.onClientConnect(socket));
 
 		this.listenToStatusEvents();
 	}
@@ -55,7 +85,7 @@ class SocketManager {
 		);
 	}
 
-	onClientConnect(socket) {
+	onClientConnect(socket: Socket) {
 		const socketId = this.getNewSocketId();
 
 		console.log(`[socket/manager] Client ${socketId} connected. Now ${this.socketConnections} connections.`);

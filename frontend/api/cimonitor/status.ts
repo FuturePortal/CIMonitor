@@ -1,5 +1,5 @@
-import CIMonitorApi from '/frontend/api/cimonitor';
+import CIMonitorAPI from '/frontend/api/cimonitor';
 
-export const deleteAllStatuses = () => CIMonitorApi().delete('status/all');
+export const deleteAllStatuses = () => CIMonitorAPI.delete('status/all');
 
-export const deleteStatus = (statusId: string) => CIMonitorApi().delete(`status/${statusId}`);
+export const deleteStatus = (statusId: string) => CIMonitorAPI.delete(`status/${statusId}`);

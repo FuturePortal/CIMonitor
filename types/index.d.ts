@@ -14,3 +14,8 @@ declare module '*.mp3' {
 	const content: string;
 	export default content;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+interface Window {
+	PASSWORD_PROTECTED: 'dashboard' | 'settings' | 'no';
+}

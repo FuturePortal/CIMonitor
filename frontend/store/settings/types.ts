@@ -4,6 +4,7 @@ export type StateType = {
 	sizeModifier: number;
 	showUserAvatars: boolean;
 	soundEnabled: boolean;
+	password: string;
 };
 
 export type SetSizeModifierAction = {
@@ -31,10 +32,16 @@ export type ToggleShowUserAvatarsAction = {
 	type: 'settings-show-user-avatars-toggle';
 };
 
+export type SetPasswordAction = {
+	type: 'settings-password-set';
+	password: string;
+};
+
 export type ActionTypes =
 	| ToggleSettingsPanelAction
 	| CloseSettingsPanelAction
 	| ToggleShowCompletedAction
 	| SetSizeModifierAction
 	| ToggleShowUserAvatarsAction
-	| ToggleSoundAction;
+	| ToggleSoundAction
+	| SetPasswordAction;

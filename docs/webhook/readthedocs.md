@@ -7,9 +7,12 @@
 On Read the Docs, go to your project admin of the project you want to see statuses for. Go to the webhook page. here
 you can add your webhook.
 
--   Enter your CIMonitor URL: `<your_cimonitor_url>/webhook/readthedocs`
--   Enable all events (build:triggered, build:failed, and build:passed)
--   Leave the default JSON. Note: changing the json will break your status.
+- Enter your CIMonitor URL: `<your_cimonitor_url>/webhook/readthedocs`
+- Enable all events (build:triggered, build:failed, and build:passed)
+- Leave the default JSON. Note: changing the json will break your status.
+
+NOTE: If you've provided `WEBHOOK_SECRET` environment setting, you need to add this to your URL like so:
+`<your_cimonitor_url>/webhook/readthedocs?secret=your_secret_here`
 
 ![Add Read the Docs webhook screenshot](../images/webhook/readthedocs.png)
 

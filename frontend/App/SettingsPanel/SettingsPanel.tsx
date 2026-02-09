@@ -8,11 +8,11 @@ import { closeSettingsPanel } from '/frontend/store/settings/actions';
 import { isSettingsPanelOpen } from '/frontend/store/settings/selectors';
 import { hasNoStatuses } from '/frontend/store/status/selectors';
 
+import StatusesLock from './Statuses/Lock';
 import About from './About';
 import Changelog from './Changelog';
 import Customization from './Customization';
 import Documentation from './Documentation';
-import Statuses from './Statuses';
 
 type SettingsTab = {
 	icon: string;
@@ -29,7 +29,7 @@ const tabs: SettingsTab[] = [
 	{
 		icon: 'rule',
 		name: 'Statuses',
-		content: <Statuses />,
+		content: <StatusesLock />,
 	},
 	{
 		icon: 'brush',

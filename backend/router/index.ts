@@ -1,5 +1,6 @@
 import express from 'express';
 
+import authRouter from './route/auth';
 import changelogRouter from './route/changelog';
 import contributorRouter from './route/contributors';
 import dashboardRouter from './route/dashboard';
@@ -9,13 +10,13 @@ import webhookRouter from './route/webhook';
 
 const router = express.Router();
 
-// Prevent search engine indexing
 router.use((req, res, next) => {
 	res.setHeader('X-Robots-Tag', 'noindex, nofollow');
 	next();
 });
 
 router.use('/', dashboardRouter);
+router.use('/auth', authRouter);
 router.use('/webhook', webhookRouter);
 router.use('/version', versionRouter);
 router.use('/contributors', contributorRouter);

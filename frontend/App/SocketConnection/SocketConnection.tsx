@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { Fragment, ReactElement } from 'react';
 
 import { WarningBar } from './SocketConnection.style';
 
@@ -6,9 +6,9 @@ type Props = {
 	connected: boolean;
 };
 
-const SocketConnection = ({ connected }: Props): ReactElement | null => {
+const SocketConnection = ({ connected }: Props): ReactElement => {
 	if (connected) {
-		return null;
+		return <Fragment />;
 	}
 
 	return <WarningBar>Connection lost</WarningBar>;
