@@ -1,10 +1,12 @@
-import { ReactElement, ReactNode, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Form, Positioner } from './PasswordLock.style';
+import { Container, Positioner } from './PasswordLock.style';
 
+import { validatePassword } from '/frontend/api/cimonitor/auth';
 import PasswordLockForm from '/frontend/App/PasswordLock/Form';
 import MockStatuses from '/frontend/App/Statuses/Mock';
+import { setPassword } from '/frontend/store/settings/actions';
 import { getPassword } from '/frontend/store/settings/selectors';
 
 type Props = {
@@ -13,16 +15,45 @@ type Props = {
 };
 
 const PasswordLock = ({ children, formOnly = false }: Props): ReactElement | null => {
+	const dispatch = useDispatch();
 	const password = useSelector(getPassword);
 	const [passwordVerified, setPasswordVerified] = useState(false);
-	const [isVerifying, setVerifying] = useState(false);
+	const [isVerifying, setIsVerifying] = useState(false);
+
+	useEffect(() => {
+		const checkStoredPassword = async () => {
+			if (!password) {
+				return;
+			}
+
+			setIsVerifying(true);
+
+			try {
+				const result = await validatePassword(password);
+
+				if (result.valid) {
+					setPasswordVerified(true);
+				} else {
+					window.alert(result.reason);
+					dispatch(setPassword(''));
+				}
+			} catch (error) {
+				window.alert('Failed to verify the password.');
+				dispatch(setPassword(''));
+			} finally {
+				setIsVerifying(false);
+			}
+		};
+
+		checkStoredPassword();
+	}, [password]);
 
 	if (passwordVerified) {
 		return <>{children}</>;
 	}
 
 	if (formOnly) {
-		return <PasswordLockForm />;
+		return <PasswordLockForm isLoading={isVerifying} />;
 	}
 
 	return (
@@ -31,7 +62,7 @@ const PasswordLock = ({ children, formOnly = false }: Props): ReactElement | nul
 			<Positioner>
 				<Container>
 					<h1>CIMonitor version PACKAGE_VERSION</h1>
-					<PasswordLockForm />
+					<PasswordLockForm isLoading={isVerifying} />
 				</Container>
 			</Positioner>
 		</>

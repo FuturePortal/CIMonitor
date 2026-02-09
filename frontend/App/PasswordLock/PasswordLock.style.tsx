@@ -19,4 +19,5 @@ export const Container = styled.div`
 	color: ${textColor};
 	width: 100%;
 	max-width: 26rem;
+	margin: 0 2rem;
 `;

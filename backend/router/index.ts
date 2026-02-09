@@ -1,5 +1,6 @@
 import express from 'express';
 
+import authRouter from './route/auth';
 import changelogRouter from './route/changelog';
 import contributorRouter from './route/contributors';
 import dashboardRouter from './route/dashboard';
@@ -15,6 +16,7 @@ router.use((req, res, next) => {
 });
 
 router.use('/', dashboardRouter);
+router.use('/auth', authRouter);
 router.use('/webhook', webhookRouter);
 router.use('/version', versionRouter);
 router.use('/contributors', contributorRouter);

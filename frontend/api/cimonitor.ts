@@ -1,6 +1,7 @@
 import store from '/frontend/store';
 import { getPassword } from '/frontend/store/settings/selectors';
 
+export { validatePassword } from './cimonitor/auth';
 export { deleteAllStatuses, deleteStatus } from './cimonitor/status';
 
 const CIMonitorAPI = () => {
