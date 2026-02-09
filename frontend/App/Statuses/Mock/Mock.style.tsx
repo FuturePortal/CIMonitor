@@ -5,8 +5,11 @@ import { stateColor } from '/frontend/style/colors';
 import { State } from '/types/status';
 
 export const Mocks = styled.div`
-	height: 100vh;
+	height: 100dvh;
+	width: 100%;
 	overflow: hidden;
+	position: fixed;
+	z-index: 1;
 `;
 
 type MockProps = {

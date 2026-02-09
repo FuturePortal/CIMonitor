@@ -36,7 +36,7 @@ const MockStatuses = (): ReactElement => {
 	const [mocks, setMocks] = useState<ReactElement[]>(getRandomMocks());
 
 	useEffect(() => {
-		const interval = setInterval(() => setMocks(getRandomMocks()), 10000);
+		const interval = setInterval(() => setMocks(getRandomMocks()), 3000);
 
 		return () => clearInterval(interval);
 	}, []);

@@ -1,28 +1,18 @@
 import { ReactElement } from 'react';
 
-import useSocket from '/frontend/hooks/useSocket';
-
-import AppContext, { getQueryContext } from './AppContext';
-import Favicon from './Favicon';
-import SettingsPanel from './SettingsPanel';
-import SocketConnection from './SocketConnection';
-import Statuses from './Statuses';
-import Toolbar from './Toolbar';
+import Dashboard from '/frontend/App/Dashboard';
+import PasswordLock from '/frontend/App/PasswordLock';
 
 const App = (): ReactElement => {
-	const { socketConnected } = useSocket();
+	if (window.PASSWORD_PROTECTED === 'dashboard') {
+		return (
+			<PasswordLock>
+				<Dashboard />
+			</PasswordLock>
+		);
+	}
 
-	document.title = `${window.location.host} | CIMonitor`;
-
-	return (
-		<AppContext.Provider value={getQueryContext()}>
-			<Favicon />
-			<SocketConnection connected={socketConnected} />
-			<Statuses />
-			<Toolbar />
-			<SettingsPanel />
-		</AppContext.Provider>
-	);
+	return <Dashboard />;
 };
 
 export default App;
