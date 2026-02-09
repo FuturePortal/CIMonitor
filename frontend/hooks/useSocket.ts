@@ -18,11 +18,12 @@ const useSocket = (): UseSocketOutput => {
 	const dispatch = useDispatch();
 	const soundEnabled = useSetting('sound') as boolean;
 	const password = useSetting('password') as string;
+	const passwordLock = window.PASSWORD_PROTECTED === 'dashboard' ? password : '';
 
 	useEffect(() => {
 		const socket = io({
 			auth: {
-				password,
+				password: passwordLock,
 			},
 		});
 
@@ -57,7 +58,7 @@ const useSocket = (): UseSocketOutput => {
 			socket.disconnect();
 			clearInterval(requestStatusesInterval);
 		};
-	}, [soundEnabled, password]);
+	}, [soundEnabled, passwordLock]);
 
 	return {
 		socketConnected,

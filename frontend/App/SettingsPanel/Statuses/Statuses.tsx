@@ -5,6 +5,7 @@ import { Box, Boxes, DeleteButton, Details, Header, Intro, Project, Status } fro
 import { Content } from '/frontend/App/SettingsPanel/SettingsPanel.style';
 
 import { deleteAllStatuses, deleteStatus } from '/frontend/api/cimonitor';
+import PasswordLock from '/frontend/App/PasswordLock';
 import TimePassed from '/frontend/App/Statuses/Status/TimePassed';
 import Alert from '/frontend/components/Alert';
 import Icon from '/frontend/components/Icon';
@@ -14,49 +15,51 @@ const Statuses = (): ReactElement => {
 	const statuses = useSelector(getStatuses);
 
 	return (
-		<Content>
-			<Header>
-				<Intro>Be aware that removing statuses is happening on all connected CIMonitors.</Intro>
-				{statuses.length > 0 && (
-					<DeleteButton onClick={() => deleteAllStatuses()}>
-						<Icon icon="delete_forever" /> delete all
-					</DeleteButton>
+		<PasswordLock formOnly>
+			<Content>
+				<Header>
+					<Intro>Be aware that removing statuses is happening on all connected CIMonitors.</Intro>
+					{statuses.length > 0 && (
+						<DeleteButton onClick={() => deleteAllStatuses()}>
+							<Icon icon="delete_forever" /> delete all
+						</DeleteButton>
+					)}
+				</Header>
+				{statuses.length === 0 && (
+					<Alert state="success">
+						There are no statuses yet to display. Trigger a webhook to push now statuses to your dashboard.
+					</Alert>
 				)}
-			</Header>
-			{statuses.length === 0 && (
-				<Alert state="success">
-					There are no statuses yet to display. Trigger a webhook to push now statuses to your dashboard.
-				</Alert>
-			)}
-			{statuses.map((status) => (
-				<Status key={status.id} state={status.state}>
-					<Details>
-						<Project>{status.project}</Project>
-						<Boxes>
-							<Box>
-								<Icon icon="code" /> {status.source}
-							</Box>
-							{status.branch && (
+				{statuses.map((status) => (
+					<Status key={status.id} state={status.state}>
+						<Details>
+							<Project>{status.project}</Project>
+							<Boxes>
 								<Box>
-									<Icon icon="commit" /> {status.branch}
+									<Icon icon="code" /> {status.source}
 								</Box>
-							)}
-							{status.tag && (
+								{status.branch && (
+									<Box>
+										<Icon icon="commit" /> {status.branch}
+									</Box>
+								)}
+								{status.tag && (
+									<Box>
+										<Icon icon="bookmark_border" /> {status.tag}
+									</Box>
+								)}
 								<Box>
-									<Icon icon="bookmark_border" /> {status.tag}
+									<Icon icon="schedule" /> <TimePassed since={status.time} />
 								</Box>
-							)}
-							<Box>
-								<Icon icon="schedule" /> <TimePassed since={status.time} />
-							</Box>
-						</Boxes>
-					</Details>
-					<DeleteButton onClick={() => deleteStatus(status.id)}>
-						<Icon icon="delete_outline" /> delete
-					</DeleteButton>
-				</Status>
-			))}
-		</Content>
+							</Boxes>
+						</Details>
+						<DeleteButton onClick={() => deleteStatus(status.id)}>
+							<Icon icon="delete_outline" /> delete
+						</DeleteButton>
+					</Status>
+				))}
+			</Content>
+		</PasswordLock>
 	);
 };
 

@@ -1,7 +1,7 @@
 import { FormEvent, ReactElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Button, Form, Input } from './Form.style';
+import { Button, Form, Input, Loader } from './Form.style';
 
 import Icon from '/frontend/components/Icon';
 import { setPassword } from '/frontend/store/settings/actions';
@@ -16,9 +16,9 @@ const PasswordLockForm = ({ isLoading = false }: Props): ReactElement => {
 
 	if (isLoading) {
 		return (
-			<div>
+			<Loader>
 				<Icon icon="autorenew" /> Verifying password...
-			</div>
+			</Loader>
 		);
 	}
 

@@ -6,6 +6,8 @@ export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	margin: 1rem;
+	max-width: 26rem;
 `;
 
 export const Input = styled.input`
@@ -49,4 +51,8 @@ export const Button = styled.button`
 		opacity: 0.6;
 		cursor: not-allowed;
 	}
+`;
+
+export const Loader = styled.form`
+	margin: 1rem;
 `;

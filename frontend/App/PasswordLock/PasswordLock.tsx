@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Positioner } from './PasswordLock.style';
+import { Container, Positioner, SubTitle, Title } from './PasswordLock.style';
 
 import { validatePassword } from '/frontend/api/cimonitor/auth';
 import PasswordLockForm from '/frontend/App/PasswordLock/Form';
@@ -61,7 +61,8 @@ const PasswordLock = ({ children, formOnly = false }: Props): ReactElement | nul
 			<MockStatuses />
 			<Positioner>
 				<Container>
-					<h1>CIMonitor version PACKAGE_VERSION</h1>
+					<Title>CIMonitor</Title>
+					<SubTitle>Version PACKAGE_VERSION</SubTitle>
 					<PasswordLockForm isLoading={isVerifying} />
 				</Container>
 			</Positioner>
