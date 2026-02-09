@@ -4,7 +4,7 @@ import ReadTheDocsParser from 'backend/parser/readthedocs';
 import StatusManager from 'backend/status/manager';
 import ReadTheDocsBuild from 'types/readthedocs';
 
-import { verifySimpleSecret } from './verify-secret';
+import verifySimpleSecret from './verify-secret';
 
 const router = express.Router();
 

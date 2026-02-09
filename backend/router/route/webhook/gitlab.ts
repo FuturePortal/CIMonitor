@@ -5,14 +5,28 @@ import StatusManager from 'backend/status/manager';
 import GitLabWebhook from 'types/gitlab';
 import Status from 'types/status';
 
-import { verifySimpleSecret } from './verify-secret';
+import verifySimpleSecret from './verify-secret';
 
 const router = express.Router();
+
+const verifyGitLabSecret = (request: express.Request): boolean => {
+	const webhookSecret = process.env.WEBHOOK_SECRET;
+
+	if (!webhookSecret) {
+		return true;
+	}
+
+	if (request.headers['x-gitlab-token'] === webhookSecret) {
+		return true;
+	}
+
+	return verifySimpleSecret(request);
+};
 
 router.post('/', (request, response) => {
 	console.log('[route/webhook/gitlab] Webhook received.');
 
-	if (!verifySimpleSecret(request)) {
+	if (!verifyGitLabSecret(request)) {
 		console.log('[route/webhook/gitlab] Invalid webhook secret.');
 		return response.status(403).json({ message: 'Invalid secret verification.' });
 	}

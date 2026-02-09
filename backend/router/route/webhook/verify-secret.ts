@@ -19,10 +19,6 @@ const verifySimpleSecret = (request: express.Request): boolean => {
 		return true;
 	}
 
-	if (request.headers['x-gitlab-token'] === webhookSecret) {
-		return true;
-	}
-
 	if (request.query.secret === webhookSecret) {
 		return true;
 	}
@@ -30,4 +26,4 @@ const verifySimpleSecret = (request: express.Request): boolean => {
 	return false;
 };
 
-export { verifySimpleSecret };
+export default verifySimpleSecret;

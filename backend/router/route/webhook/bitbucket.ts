@@ -4,7 +4,7 @@ import Parser from 'backend/parser/bitbucket';
 import StatusManager from 'backend/status/manager';
 import Status from 'types/status';
 
-import { verifySimpleSecret } from './verify-secret';
+import verifySimpleSecret from './verify-secret';
 
 const router = express.Router();
 
