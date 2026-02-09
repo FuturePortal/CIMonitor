@@ -6,6 +6,7 @@ const defaultState: StateType = {
 	sizeModifier: 1,
 	showUserAvatars: true,
 	soundEnabled: false,
+	password: '',
 };
 
 const reducer = (state = defaultState, action: ActionTypes): StateType => {
@@ -39,6 +40,11 @@ const reducer = (state = defaultState, action: ActionTypes): StateType => {
 			return {
 				...state,
 				showUserAvatars: !state.showUserAvatars,
+			};
+		case 'settings-password-set':
+			return {
+				...state,
+				password: action.password,
 			};
 		default:
 			return state;

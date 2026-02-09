@@ -1,5 +1,6 @@
 import {
 	CloseSettingsPanelAction,
+	SetPasswordAction,
 	SetSizeModifierAction,
 	ToggleSettingsPanelAction,
 	ToggleShowCompletedAction,
@@ -30,4 +31,9 @@ export const closeSettingsPanel = (): CloseSettingsPanelAction => ({
 export const setSizeModifier = (sizeModifier: number): SetSizeModifierAction => ({
 	type: 'settings-size-modifier-set',
 	sizeModifier,
+});
+
+export const setPassword = (password: string): SetPasswordAction => ({
+	type: 'settings-password-set',
+	password,
 });

@@ -10,3 +10,5 @@ export const isHidingUserAvatars = (state: RootState): boolean => !state.setting
 
 export const getSizeModifier = (state: RootState): number =>
 	state.setting.sizeModifier ? state.setting.sizeModifier : 1;
+
+export const getPassword = (state: RootState): string => state.setting.password;

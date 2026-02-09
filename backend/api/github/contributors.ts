@@ -6,9 +6,9 @@ let cachedContributors: Contributor[] = [];
 
 export const getContributors = async (): Promise<Contributor[]> => {
 	try {
-		const response = await GitHubApi().get('repos/FuturePortal/CIMonitor/stats/contributors');
-
-		const contributors: GitHubContributor[] = response.data;
+		const contributors: GitHubContributor[] = await GitHubApi.get(
+			'repos/FuturePortal/CIMonitor/stats/contributors'
+		);
 		const cleanContributors = cleanResponse(contributors);
 
 		if (cleanContributors.length === 0) {
@@ -55,7 +55,7 @@ const enrichContributors = async (contributors: Contributor[]): Promise<Contribu
 
 const enrichContributor = async (contributor: Contributor): Promise<Contributor> => {
 	try {
-		const response = await GitHubApi().get(`users/${contributor.username}`);
+		const response = await GitHubApi.get(`users/${contributor.username}`);
 
 		const user: GitHubUser = response.data;
 

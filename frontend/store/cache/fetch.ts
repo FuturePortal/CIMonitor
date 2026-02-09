@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import CIMonitorAPI from '/frontend/api/cimonitor';
 import store from '/frontend/store';
 import { RootState } from '/frontend/store/store';
 
@@ -17,9 +16,7 @@ export const fetchVersion = async () => {
 		return cache.version;
 	}
 
-	const response = await axios.get('/version');
-
-	const version: Version = response.data;
+	const version: Version = await CIMonitorAPI.get('version');
 
 	store.dispatch(setVersion(version));
 
@@ -37,9 +34,7 @@ export const fetchContributors = async (): Promise<Contributor[]> => {
 	}
 
 	try {
-		const response = await axios.get('/contributors');
-
-		const contributors: Contributor[] = response.data;
+		const contributors: Contributor[] = await CIMonitorAPI.get('contributors');
 
 		if (contributors.length > 0) {
 			store.dispatch(setContributors(contributors));
@@ -64,9 +59,7 @@ export const fetchChangelog = async (): Promise<Change[]> => {
 	}
 
 	try {
-		const response = await axios.get('/changelog');
-
-		const changelog: Change[] = response.data;
+		const changelog: Change[] = await CIMonitorAPI.get('changelog');
 
 		store.dispatch(setChangelog(changelog));
 
