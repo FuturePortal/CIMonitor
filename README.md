@@ -17,6 +17,13 @@ deployments are successful. All in one overview. This is all done via **webhooks
 - [Read the Docs](https://cimonitor.readthedocs.io/en/latest/webhook/readthedocs/)
 - [BitBucket](https://cimonitor.readthedocs.io/en/latest/webhook/bitbucket/)
 
+## Security / privacy
+
+- No index requests are made by the CIMonitor (for search/index bots)
+- Webhooks may require a secret token provided via environment variable `WEBHOOK_SECRET`
+- The dashboard can be password protected by providing environment variable `DASHBOARD_PASSWORD` and `DASHBOARD_LOCK=dashboard`
+- Settings can be password protected by providing environment variable `DASHBOARD_PASSWORD` and `DASHBOARD_LOCK=settings`
+
 ## Example
 
 ![Dashboard demonstration](docs/images/dashboard.gif)
