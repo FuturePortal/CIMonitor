@@ -18,8 +18,12 @@ class SocketClient {
 
 	listen() {
 		console.log(`[socket/client] Connecting to ${process.env.CIMONITOR_SERVER_URL}...`);
-		const socket = io(process.env.CIMONITOR_SERVER_URL, {
+
+		const socket = io(process.env.CIMONITOR_SERVER_URL!, {
 			secure: false,
+			auth: {
+				password: process.env.DASHBOARD_PASSWORD,
+			},
 		});
 
 		socket.on(socketEvent.connect, () => {
