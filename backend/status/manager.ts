@@ -34,6 +34,7 @@ class StatusManager {
 		StorageManager.saveStatuses(statuses);
 
 		StatusEvents.emit(StatusEvents.event.deleteStatus, statusId);
+		StatusEvents.emit(StatusEvents.event.globalStateChange, getGlobalState(statuses));
 	}
 
 	deleteAllStatuses() {
@@ -43,6 +44,7 @@ class StatusManager {
 		StorageManager.saveStatuses([]);
 
 		StatusEvents.emit(StatusEvents.event.deleteAllStatuses);
+		StatusEvents.emit(StatusEvents.event.globalStateChange, getGlobalState([]));
 	}
 
 	setStatus(status: Status): void {
