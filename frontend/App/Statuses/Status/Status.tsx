@@ -20,11 +20,11 @@ type Props = {
 
 const highResAvatar = (url: string): string => {
 	const parsedUrl = new URL(url);
-	
+
 	// Improve gravatar image resolution
 	if (parsedUrl.hostname.endsWith('gravatar.com')) {
-		parsedUrl.searchParams.set('s', '512')
-		return parsedUrl;
+		parsedUrl.searchParams.set('s', '512');
+		return parsedUrl.toString();
 	}
 
 	return url;
