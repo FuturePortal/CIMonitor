@@ -19,13 +19,15 @@ type Props = {
 };
 
 const highResAvatar = (url: string): string => {
-	if (!new URL(url).hostname.endsWith('gravatar.com')) {
-		return url;
+	const parsedUrl = new URL(url);
+	
+	// Improve gravatar image resolution
+	if (parsedUrl.hostname.endsWith('gravatar.com')) {
+		parsedUrl.searchParams.set('s', '512')
+		return parsedUrl;
 	}
 
-	const parsed = new URL(url);
-	parsed.searchParams.set('s', '400');
-	return parsed.toString();
+	return url;
 };
 
 const pettyUrl = (url: string) =>
