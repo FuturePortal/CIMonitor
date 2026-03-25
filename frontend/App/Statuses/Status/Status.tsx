@@ -18,6 +18,18 @@ type Props = {
 	status: Status;
 };
 
+const highResAvatar = (url: string): string => {
+	const parsedUrl = new URL(url);
+
+	// Improve gravatar image resolution
+	if (parsedUrl.hostname.endsWith('gravatar.com')) {
+		parsedUrl.searchParams.set('s', '512');
+		return parsedUrl.toString();
+	}
+
+	return url;
+};
+
 const pettyUrl = (url: string) =>
 	String(url)
 		// strip http(s)://
@@ -41,7 +53,9 @@ const Statuses = ({ status }: Props): ReactElement => {
 						onError={() => setProjectAvatarFailed(true)}
 					/>
 				)}
-				{!!status.userImage && showAvatars && <UserImage src={status.userImage} alt={status.username} />}
+				{!!status.userImage && showAvatars && (
+					<UserImage src={highResAvatar(status.userImage)} alt={status.username} />
+				)}
 				<Details>
 					<Project>{status.project}</Project>
 					<Boxes>
