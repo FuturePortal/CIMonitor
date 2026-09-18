@@ -2,6 +2,7 @@ import { State } from './status';
 
 export type GpioModule = {
 	type: 'gpio';
+	/** BCM GPIO number (line offset on the GPIO chip), e.g. 17 for GPIO17 */
 	pin: number;
 	mode: 'on' | 'off' | 'on-for' | 'off-for';
 	duration?: number;

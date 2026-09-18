@@ -9,7 +9,9 @@ https://docs.docker.com/engine/install/raspberry-pi-os/#install-using-the-reposi
 
 ## Using GPIO modules?
 
-http://wiringpi.com/download-and-install/
+Nothing has to be installed on the Raspberry Pi itself. The module client container ships with
+[libgpiod](https://libgpiod.readthedocs.io/) and talks to the GPIO character device (`/dev/gpiochip0`) that you pass
+to the container. See the [GPIO module documentation](./module/gpio.md) for the pin numbering and options.
 
 ## Starting CIMonitor on a display (optional)
 
@@ -76,7 +78,7 @@ Create a `~/CIMonitor/storage/modules.json`:
 			"modules": [
 				{
 					"type": "gpio",
-					"pin": 7,
+					"pin": 4,
 					"mode": "on-for",
 					"duration": 10000
 				}
@@ -92,16 +94,15 @@ There, run the CIMonitor module client:
 
 ```shell
 docker run \
-    --privileged \
     --detach \
     --restart unless-stopped \
     --name CIMonitorClient \
     --volume $(pwd)/storage:/CIMonitor/storage \
-    --volume /usr/bin/gpio:/usr/bin/gpio \
-    --volume /lib/libwiringPiDev.so:/lib/libwiringPiDev.so \
-    --volume /lib/libwiringPi.so:/lib/libwiringPi.so \
-    --volume /dev/mem:/dev/mem \
-    --volume /dev/gpiomem:/dev/gpiomem \
+    --device /dev/gpiochip0 \
     --env CIMONITOR_SERVER_URL="https://ci.example.com" \
-	cimonitor/module-client:latest
+    cimonitor/module-client:latest
 ```
+
+The `--device /dev/gpiochip0` flag gives the container access to the GPIO pins, `--privileged` is not needed. On a
+Raspberry Pi 5 with a kernel older than 6.6.47 the header pins live on `gpiochip4` instead. Pass that device and set
+`--env GPIO_CHIP=gpiochip4` in that case.
