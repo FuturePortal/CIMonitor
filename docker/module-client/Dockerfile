@@ -27,7 +27,7 @@ FROM base as production
 ENV NODE_ENV=production
 ENV NODE_PATH=/CIMonitor/app
 
-RUN apk add --no-cache dumb-init
+RUN apk add --no-cache dumb-init libgpiod
 
 # Make sure "yarn build" is ran before building the production container
 COPY . /CIMonitor
