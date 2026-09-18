@@ -36,7 +36,9 @@ kernel older than 6.6.47. Run `gpiodetect` and `gpioinfo` on the host to find ou
 ## Pin numbering
 
 Pins are addressed by their BCM GPIO number, as printed on most pinout diagrams and on [pinout.xyz](https://pinout.xyz).
-Earlier versions of CIMonitor used WiringPi numbering. If you are upgrading, convert your pins using the table below.
+CIMonitor 4.x and earlier used WiringPi numbering. If you are upgrading, convert the `pin` values in your `modules.json`
+using the table below. Nothing changes in your wiring, the header pin stays the same. If you still have WiringPi
+installed, `gpio readall` prints the `wPi` and `BCM` columns side by side for your board.
 
 | WiringPi | BCM (use this) | Header pin |
 | -------- | -------------- | ---------- |
@@ -58,11 +60,24 @@ Earlier versions of CIMonitor used WiringPi numbering. If you are upgrading, con
 | 28       | 20             | 38         |
 | 29       | 21             | 40         |
 
+## Only one process can drive a pin
+
+The module client keeps a pin claimed while the module client container is running. Host tools such as WiringPi's
+`gpio` or libgpiod's `gpioset` cannot drive the same pin at that time and the client cannot claim a pin held by another
+process. Stop the container before testing pins from the host. `gpioinfo` on the host shows which pins are in use and
+lists the ones held by the module client with consumer `CIMonitor`.
+
 ## Testing
 
-You can test your wiring from the host with libgpiod's tools (`apt install gpiod`). The line stays driven for as long as
-the command runs:
+You can test your wiring from the host with libgpiod's tools (`apt install gpiod`) while the module client container is
+stopped. Drive GPIO17 low for 5 seconds, which turns on an active-low relay:
 
 ```shell
+# libgpiod 2.x (Raspberry Pi OS Trixie and newer)
 gpioset --chip gpiochip0 --hold-period 5s 17=0
+
+# libgpiod 1.x (Raspberry Pi OS Bookworm and older)
+gpioset --mode=time --sec=5 gpiochip0 17=0
 ```
+
+Check which version you have with `gpioset --version`.

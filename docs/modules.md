@@ -31,7 +31,7 @@ for the available GPIO options and pin numbering.
 					"type": "gpio",
 					"pin": 10,
 					"mode": "on-for",
-					"duration": 10
+					"duration": 10000
 				}
 			]
 		},
@@ -42,7 +42,7 @@ for the available GPIO options and pin numbering.
 					"type": "gpio",
 					"pin": 18,
 					"mode": "on-for",
-					"duration": 10
+					"duration": 10000
 				}
 			]
 		}
